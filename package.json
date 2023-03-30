@@ -1,5 +1,5 @@
 {
-  "name": "skyapp",
+  "name": "skyapp-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,20 +11,14 @@
     "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@geist-ui/core": "^2.3.8",
-    "@next/font": "^13.2.4",
-    "@types/node": "18.15.10",
-    "@types/react": "18.0.29",
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.31",
     "@types/react-dom": "18.0.11",
-    "@vercel/analytics": "^0.1.11",
-    "class-variance-authority": "^0.4.0",
-    "clsx": "^1.2.1",
-    "eslint": "8.36.0",
+    "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
     "inter-ui": "^3.19.3",
     "lucide-react": "^0.128.0",
     "next": "13.2.4",
-    "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sharp": "^0.32.0",
