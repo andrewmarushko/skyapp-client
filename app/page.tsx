@@ -1,25 +1,28 @@
-import LargeHeading from "@/components/ui/large-heading";
-import Paragraph from "@/components/ui/paragraph";
+import LargeHeading from '@/components/ui/large-heading';
+import Paragraph from '@/components/ui/paragraph';
+import { Separator } from '@/components/ui/separator';
 
 export default function Home() {
   return (
-    <div className="relative h-screen flex items-center justify-center overflow-x-hidden">
-      <div className="container pt-32 max-w-7xl w-full mx-auto h-full">
-        <div className="h-full gap-6 flex flex-col justify-start lg:justify-center items-center lg:items-start">
-          <LargeHeading
-            size="lg"
-            className="three-d text-black dark:text-light-gold"
-          >
-            Easily determine <br /> text similarity.
+    <>
+      {/* <section className="grid items-center gap-6 pt-6 pb-8 md:py-10">
+        <div className="flex max-w-[980px] flex-col items-start gap-2">
+          <LargeHeading>
+            Beautifully designed components <br className="hidden sm:inline" />
+            built with Radix UI and Tailwind CSS.
           </LargeHeading>
-          <Paragraph>Some cool text with paragraph</Paragraph>
-
-          <div className="relative w-full max-w-xl lg:max-w-3xl lg:left-1/2 aspect-square lg:absolute">
-            {/* TODO: Here is should be the image */}
-          </div>
+          <Separator />
+          <Paragraph>
+            Accessible and customizable components that you can copy and paste
+            into your apps. Free. Open Source.{' '}
+            <span className="font-semibold">
+              Use this to build your own component library
+            </span>
+            .
+          </Paragraph>
         </div>
-      </div>
-    </div>
+      </section> */}
+    </>
     // <main className={styles.main}>
     //   <div className={styles.description}>
     //     <p>

@@ -1,17 +1,29 @@
 import Link from 'next/link';
 
-import { buttonVariants } from '@/components/ui/button';
-import { Icons } from '@/components/ui/icons';
+import { siteConfig } from '@/config/site';
+import { CommandMenu } from '@/components/command-menu';
+import { Icons } from '@/components/icons';
 import { MainNav } from '@/components/main-nav';
+import { MobileNav } from '@/components/mobile-nav';
+import { ModeToggle } from '@/components/mode-toggle';
+import { buttonVariants } from '@/components/ui/button';
 
-const Navbar = async () => {
+export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
-      <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
+      <div className="container flex h-16 items-center justify-between">
         <MainNav />
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <nav className="flex items-center space-x-1">
-            <Link href={'/'} target="_blank" rel="noreferrer">
+        {/* <MobileNav /> */}
+        <div className="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
+          {/* <div className="w-full flex-1 md:w-auto md:flex-none">
+            <CommandMenu />
+          </div> */}
+          <nav className="flex items-center space-x-1 m-right">
+            <Link
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noreferrer"
+            >
               <div
                 className={buttonVariants({
                   size: 'sm',
@@ -23,7 +35,11 @@ const Navbar = async () => {
                 <span className="sr-only">GitHub</span>
               </div>
             </Link>
-            <Link href={'/'} target="_blank" rel="noreferrer">
+            <Link
+              href={siteConfig.links.twitter}
+              target="_blank"
+              rel="noreferrer"
+            >
               <div
                 className={buttonVariants({
                   size: 'sm',
@@ -35,11 +51,10 @@ const Navbar = async () => {
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
+            <ModeToggle />
           </nav>
         </div>
       </div>
     </header>
   );
-};
-
-export default Navbar;
+}

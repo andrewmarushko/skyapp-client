@@ -1,33 +1,46 @@
-import "@/styles/globals.css";
-import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
-import Providers from "@/components/theme-provider";
-import Navbar from "@/components/nav-bar";
+import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ["latin"] });
+import '@/styles/globals.css';
+import { cn } from '@/lib/utils';
+import { Analytics } from '@/components/analytics';
+import { Header } from '@/components/header';
 
-export default function RootLayout({
-  children,
-}: {
+import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/toaster';
+import { Footer } from '@/components/footer';
+
+const fontSans = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html
-      lang="en"
-      className={cn("bg-white text-slate-900 antialiased", inter.className)}
-    >
-      <body
-        className={cn("min-h-screen bg-slate-50 dark:bg-slate-900 antialiased")}
-      >
-        <Providers>
-          {/*  WARN: delete this ingnore when ts-support will be available or move into ts-config  */}
-          {/* @ts-expect-error Server Component */}
-          <Navbar />
-          {children}
-        </Providers>
-        {/* INFO: Allow for more height on mobile devices */}
-        <div className="h-40 md:hidden" />
-      </body>
-    </html>
+    <>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body
+          className={cn(
+            'min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50',
+            fontSans.variable,
+          )}
+        >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <div className="flex min-h-screen flex-col">
+              <Header />
+              <div className="container flex-1">{children}</div>
+              <Footer />
+            </div>
+          </ThemeProvider>
+          <Analytics />
+          <Toaster />
+        </body>
+      </html>
+    </>
   );
 }
