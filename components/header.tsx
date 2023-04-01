@@ -11,7 +11,7 @@ import { buttonVariants } from '@/components/ui/button';
 export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-b-slate-200 bg-white dark:border-b-slate-700 dark:bg-slate-900">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center">
         <MainNav />
         {/* <MobileNav /> */}
         <div className="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end">

@@ -56,7 +56,7 @@ export function MainNav() {
                 <ListItem href="/indoor" title="Indoor Skydive">
                   How to install dependencies and structure your app.
                 </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Blog">
+                <ListItem href="/" title="Blog">
                   Cool articles cover your topic ...etc
                 </ListItem>
               </ul>
