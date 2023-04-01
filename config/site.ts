@@ -8,7 +8,7 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "SkyApp",
+  name: "Flyer",
   description:
     "Beautifully designed components built with Radix UI and Tailwind CSS.",
   links: {
