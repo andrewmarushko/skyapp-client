@@ -3,7 +3,7 @@ import plugin from 'tailwindcss/plugin';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: 'jit',
+  // mode: 'jit',
   darkMode: ['class'],
   content: ['app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
 
@@ -20,8 +20,6 @@ module.exports = {
       },
       colors: {
         ...colors,
-        'bg-transparent-dark': 'rgba(0,0,0,.56)',
-        'bg-transparent-white': 'rgba(255,255,255,.56)',
       },
     },
     extend: {
@@ -74,6 +72,11 @@ module.exports = {
         fadeOut: {
           from: { opacity: 1 },
           to: { opacity: 0 },
+        },
+        colors: {
+          'transparent-dark': 'rgba(0,0,0,.56)',
+          'transparent-white': 'rgba(255,255,255,.56)',
+          'glass-effect': 'rgba(38,38,38,.6)',
         },
       },
       animation: {

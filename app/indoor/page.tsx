@@ -1,7 +1,9 @@
+import LargeHeading from '@/components/ui/large-heading';
+
 const IndoorPage = () => {
   return (
     <div>
-      <h1>Indoor main page</h1>
+      <LargeHeading>Indoor main page</LargeHeading>
     </div>
   );
 };

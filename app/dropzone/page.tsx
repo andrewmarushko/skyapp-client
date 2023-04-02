@@ -1,7 +1,9 @@
+import LargeHeading from '@/components/ui/large-heading';
+
 const DropzonePage = () => {
   return (
     <div>
-      <h1>Dropzones main page</h1>
+      <LargeHeading>Dropzones main page</LargeHeading>
     </div>
   );
 };

@@ -1,7 +1,9 @@
+import LargeHeading from '@/components/ui/large-heading';
+
 const ServicePage = () => {
   return (
     <div>
-      <h1>Services main page</h1>
+      <LargeHeading>Services main page</LargeHeading>
     </div>
   );
 };

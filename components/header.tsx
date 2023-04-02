@@ -10,7 +10,7 @@ import { buttonVariants } from '@/components/ui/button';
 
 export function Header() {
   return (
-    <header className="bg-transparent-white dark:bg-transparent-dark dark:bg-transparent-dark sticky top-0 z-40 w-full  border-b border-b-stone-200 backdrop-blur-[4px] dark:border-b-stone-700">
+    <header className="bg-transparent-white dark:bg-transparent-dark sticky top-0 z-40 w-full  border-b border-b-stone-200 backdrop-blur-[4px] dark:border-b-stone-700">
       <div className="container flex h-16 items-center justify-between">
         <MainNav />
 
