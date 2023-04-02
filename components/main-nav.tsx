@@ -76,9 +76,9 @@ export function MainNav() {
         </NavigationMenuList>
         <NavigationMenuIndicator />
 
-        <div className="perspective-[2000px] absolute top-full left-0 flex w-full justify-center">
-        <NavigationMenuViewport className="data-[state=open]:animate-scaleIn data-[state=closed]:animate-scaleOut relative mt-[10px] h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-[6px] bg-white transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)]" />
-      </div>
+        {/* <div className="perspective-[2000px] absolute top-full left-0 flex w-full justify-center"> */}
+        <NavigationMenuViewport className="" />
+      {/* </div> */}
       </NavigationMenu>
     </div>
   )

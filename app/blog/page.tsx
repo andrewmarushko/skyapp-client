@@ -3,7 +3,7 @@ import LargeHeading from '@/components/ui/large-heading';
 const BlogPage = () => {
   return (
     <div>
-      <LargeHeading>Blog Posts</LargeHeading>
+      <LargeHeading size="lg">Blog Posts</LargeHeading>
     </div>
   );
 };
