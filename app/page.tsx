@@ -1,204 +1,26 @@
 import LargeHeading from '@/components/ui/large-heading';
+import Page from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
 import { Separator } from '@/components/ui/separator';
 
 export default function Home() {
   return (
     <>
-      <section className="grid items-center gap-6 pb-8 pt-6 md:py-10">
-        <div className="flex max-w-[980px] flex-col items-start gap-2">
-          <LargeHeading>
-            Beautifully designed components <br className="hidden sm:inline" />
-            built with Radix UI and Tailwind CSS.
-          </LargeHeading>
-          <Separator />
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-          <Paragraph>
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source.{' '}
-            <span className="font-semibold">
-              Use this to build your own component library
-            </span>
-            .
-          </Paragraph>
-        </div>
-      </section>
+      <Page>
+        <LargeHeading>
+          Beautifully designed components <br className="hidden sm:inline" />
+          built with Radix UI and Tailwind CSS.
+        </LargeHeading>
+        {/* <Separator />
+        <Paragraph>
+          Accessible and customizable components that you can copy and paste
+          into your apps. Free. Open Source.{' '}
+          <span className="font-semibold">
+            Use this to build your own component library
+          </span>
+          .
+        </Paragraph> */}
+      </Page>
     </>
     // <main className={styles.main}>
     //   <div className={styles.description}>
