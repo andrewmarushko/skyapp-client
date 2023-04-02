@@ -1,19 +1,34 @@
-import { fontFamily } from 'tailwindcss/defaultTheme';
+import { fontFamily, colors } from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  // mode: 'jit',
   darkMode: ['class'],
   content: ['app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
+
   theme: {
     container: {
       center: true,
       padding: '1.5rem',
       screens: {
+        sm: '640px', // Small screens, mobile phones
+        md: '768px', // Medium screens, tablets
+        lg: '1024px', // Large screens, laptops
+        xl: '1280px', // Extra large screens, desktops
         '2xl': '1440px',
+      },
+      colors: {
+        ...colors,
       },
     },
     extend: {
+      borderRadius: {
+        xl: '1.5rem',
+      },
+      borderWidth: {
+        3: '3px',
+      },
       fontFamily: {
         sans: ['var(--font-inter)', ...fontFamily.sans],
       },
@@ -58,6 +73,11 @@ module.exports = {
           from: { opacity: 1 },
           to: { opacity: 0 },
         },
+        colors: {
+          'transparent-dark': 'rgba(0,0,0,.56)',
+          'transparent-white': 'rgba(255,255,255,.56)',
+          'glass-effect': 'rgba(38,38,38,.6)',
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -75,7 +95,6 @@ module.exports = {
   },
   plugins: [
     require('tailwindcss-animate'),
-    require('@tailwindcss/line-clamp'),
     plugin(({ matchUtilities }) => {
       matchUtilities({
         perspective: (value) => ({
