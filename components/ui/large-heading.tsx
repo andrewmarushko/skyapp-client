@@ -3,13 +3,14 @@ import { FunctionComponent } from 'react';
 import { cn } from '@/lib/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 
+//  TODO: Make the same styles as vercel.com or nextjs.org have
 const headingVariants = cva(
-  'text-black dark:text-white text-center lg:text-left font-extrabold leading-tight tracking-tighter',
+  'text-black dark:text-white lg:text-left font-extrabold leading-tight tracking-tighter',
   {
     variants: {
       size: {
-        default: 'text-4xl md:text-5xl lg:text-6xl',
-        lg: 'text-5xl md:text-6xl lg:text-7xl',
+        default: 'text-6xl md:text-8xl lg:text-8xl',
+        lg: 'text-7xl md:text-8xl lg:text-9xl',
         sm: 'text-2xl md:text-3xl lg:text-4xl',
       },
     },
@@ -21,7 +22,7 @@ const headingVariants = cva(
 
 interface LargeHeadingProps
   extends React.HTMLAttributes<HTMLHeadingElement>,
-  VariantProps<typeof headingVariants> { }
+    VariantProps<typeof headingVariants> {}
 
 const LargeHeading: FunctionComponent<LargeHeadingProps> = ({
   children,

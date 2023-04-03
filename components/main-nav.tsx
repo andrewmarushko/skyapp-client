@@ -10,20 +10,22 @@ import { buttonVariants } from "@/components/ui/button"
 import {
   NavigationMenu,
   NavigationMenuContent,
+  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { Separator } from "@/components/ui/separator"
 
 export function MainNav() {
   return (
-    <div className="md:flex">
-      <Link href="/" className="mr-6 flex items-center space-x-2">
-        <Icons.logo className="h-6 w-6" />
-        <span className="font-bold sm:inline-block">
+    <div className="container flex">
+      <Link href="/" className="flex items-center gap-1 cursor-pointer">
+        <Icons.logo className="h-8" />
+        <span className="text-xl font-bold uppercase">
           {siteConfig.name}
         </span>
       </Link>
@@ -34,17 +36,16 @@ export function MainNav() {
               Getting started
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-3">
+              <ul className="">
+                <li className="">
                   <Link href="/" passHref legacyBehavior>
                     <NavigationMenuLink
-                      className="flex h-full w-full select-none 
-                    flex-col justify-end space-y-2 rounded-md bg-gradient-to-b from-rose-500 to-indigo-700 p-6 no-underline outline-none focus:shadow-md"
+                      className=""
                     >
-                      <div className="text-lg font-medium text-white">
+                      <div className="">
                         {siteConfig.name}
                       </div>
-                      <p className="text-sm leading-snug text-white/90">
+                      <p className="">
                         {siteConfig.description}
                       </p>
                     </NavigationMenuLink>
@@ -56,7 +57,7 @@ export function MainNav() {
                 <ListItem href="/indoor" title="Indoor Skydive">
                   How to install dependencies and structure your app.
                 </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Blog">
+                <ListItem href="/" title="Blog">
                   Cool articles cover your topic ...etc
                 </ListItem>
               </ul>
@@ -73,6 +74,11 @@ export function MainNav() {
             </Link>
           </NavigationMenuItem>
         </NavigationMenuList>
+        <NavigationMenuIndicator />
+
+        {/* <div className="perspective-[2000px] absolute top-full left-0 flex w-full justify-center"> */}
+        <NavigationMenuViewport className="" />
+      {/* </div> */}
       </NavigationMenu>
     </div>
   )
@@ -87,12 +93,12 @@ const ListItem = React.forwardRef<
       <Link href={href} passHref legacyBehavior {...props}>
         <NavigationMenuLink
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-slate-700 dark:focus:bg-slate-700",
+            "",
             className
           )}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-slate-500 dark:text-slate-400">
+          <div className="">{title}</div>
+          <p className="">
             {children}
           </p>
         </NavigationMenuLink>
