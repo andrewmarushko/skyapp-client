@@ -22,7 +22,7 @@ export function Header() {
           </div> */}
           <nav className="m-right flex items-center space-x-1">
             <Link
-              href={siteConfig.links.github}
+              href={siteConfig.links.instagram}
               target="_blank"
               rel="noreferrer"
             >
@@ -33,26 +33,11 @@ export function Header() {
                   className: 'text-stone-700 dark:text-stone-400',
                 })}
               >
-                <Icons.gitHub className="h-5 w-5" />
+                <Icons.instagram className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </div>
             </Link>
-            <Link
-              href={siteConfig.links.twitter}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={buttonVariants({
-                  size: 'sm',
-                  variant: 'ghost',
-                  className: 'text-stone-700 dark:text-stone-400',
-                })}
-              >
-                <Icons.twitter className="h-5 w-5 fill-current" />
-                <span className="sr-only">Twitter</span>
-              </div>
-            </Link>
+
             <ModeToggle />
           </nav>
         </div>

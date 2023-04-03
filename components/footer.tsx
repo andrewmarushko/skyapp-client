@@ -10,21 +10,12 @@ export function Footer() {
           <p className="text-center text-sm leading-loose text-stone-600 dark:text-stone-400 md:text-left">
             Built by{' '}
             <a
-              href={siteConfig.links.twitter}
+              href={siteConfig.links.instagram}
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
-              shadcn
-            </a>
-            . The source code is available on{' '}
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              GitHub
+              Skydiving Center
             </a>
             .
           </p>

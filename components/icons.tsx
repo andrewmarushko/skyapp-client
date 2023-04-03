@@ -23,6 +23,7 @@ import {
   Trash,
   Twitter,
   User,
+  Instagram,
   X,
   type Icon as LucideIcon,
 } from 'lucide-react';
@@ -56,6 +57,7 @@ export const Icons = {
   ellipsis: MoreVertical,
   add: Plus,
   warning: AlertTriangle,
+  instagram: Instagram,
   user: User,
   arrowRight: ArrowRight,
   help: HelpCircle,
