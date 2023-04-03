@@ -3,7 +3,6 @@ interface SiteConfig {
   description: string
   links: {
     instagram: string
-
   }
 }
 
