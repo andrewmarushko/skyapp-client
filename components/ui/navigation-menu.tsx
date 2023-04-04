@@ -70,6 +70,7 @@ const NavigationMenuContent = React.forwardRef<
     ref={ref}
     className={cn(
       // "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=to-start]:slide-out-to-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=from-end]:slide-in-from-right-52 top-0 left-0 w-full md:absolute md:w-auto ",
+      'p-2 top-0 left-0 w-full ',
       className
     )}
     {...props}
@@ -83,10 +84,10 @@ const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
 >(({ className, ...props }, ref) => (
-  <div className={cn("absolute left-0 top-full flex justify-center ")}>
+  <div className={cn("absolute left-0 top-full flex justify-center p-2")}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        "origin-top-center data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:zoom-in-90 data-[state=closed]:zoom-out-95 relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-slate-200 bg-white bg-opacity-40 backdrop-blur-lg  dark:border-slate-700 dark:bg-stone-800 md:w-[var(--radix-navigation-menu-viewport-width)] dark:bg-opacity-70 backdrop-filter ",
+        "origin-top-center data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:zoom-in-90 data-[state=closed]:zoom-out-95 relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md md:w-[var(--radix-navigation-menu-viewport-width) bg-foreground/30 shadow-md backdrop-blur-[4px] dark:bg-background/10 backdrop-filter",
         className
       )}
       ref={ref}
@@ -100,18 +101,20 @@ NavigationMenuViewport.displayName =
 const NavigationMenuIndicator = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Indicator>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Indicator>
->(({ className, ...props }, ref) => (
-  <NavigationMenuPrimitive.Indicator
-    ref={ref}
-    className={cn(
-      // "data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=visible]:fade-in data-[state=hidden]:fade-out top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden",
-      className
-    )}
-    {...props}
-  >
-    <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-slate-200 shadow-md dark:bg-slate-800" />
-  </NavigationMenuPrimitive.Indicator>
-))
+>(({ className, ...props }, ref) => {
+  return (
+    <NavigationMenuPrimitive.Indicator
+      ref={ref}
+      className={cn(
+        "data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=visible]:fade-in data-[state=hidden]:fade-out top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden",
+        className
+      )}
+      {...props}
+    >
+      <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-foreground shadow-md dark:bg-background border dark:border-accent-7" />
+    </NavigationMenuPrimitive.Indicator>
+  )
+})
 NavigationMenuIndicator.displayName =
   NavigationMenuPrimitive.Indicator.displayName
 

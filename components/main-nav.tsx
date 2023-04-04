@@ -35,9 +35,9 @@ export function MainNav() {
             <NavigationMenuTrigger className="h-9">
               Getting started
             </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="">
-                <li className="">
+            <NavigationMenuContent className="">
+              <ul className="one m-0 grid list-none gap-x-[10px] p-[22px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
+                <li className="row-span-3 grid">
                   <Link href="/" passHref legacyBehavior>
                     <NavigationMenuLink
                       className=""
@@ -93,12 +93,12 @@ const ListItem = React.forwardRef<
       <Link href={href} passHref legacyBehavior {...props}>
         <NavigationMenuLink
           className={cn(
-            "",
+            "focus:shadow-[0_0_0_2px] focus:shadow-violet7 hover:bg-mauve3 block select-none rounded-[6px] p-3 text-[15px] leading-none no-underline outline-none transition-colors",
             className
           )}
         >
-          <div className="">{title}</div>
-          <p className="">
+          <div className="text-violet12 mb-[5px] font-medium leading-[1.2]">{title}</div>
+          <p className="text-mauve11 leading-[1.4]">
             {children}
           </p>
         </NavigationMenuLink>
