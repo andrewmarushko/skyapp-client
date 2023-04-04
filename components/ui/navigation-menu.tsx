@@ -38,9 +38,6 @@ const NavigationMenuList = React.forwardRef<
   />
 ))
 
-
-
-
 const navigationMenuTriggerStyle = cva(
   "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:bg-slate-100 dark:focus:bg-accent-2  disabled:opacity-50 dark:focus:bg-accent-2 disabled:pointer-events-none bg-transparent hover:bg-slate-100 dark:hover:bg-accent-2 dark:text-slate-100 dark:hover:text-slate-100 data-[state=open]:bg-slate-50 dark:data-[state=open]:bg-accent-2 data-[active]:bg-accent-2 dark:data-[active]:bg-accent-2 h-10 py-2 px-4 group w-max"
 )
@@ -84,7 +81,7 @@ const NavigationMenuViewport = React.forwardRef<
   <div className="perspective-[2000px] absolute top-full left-0 flex justify-center">
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        "data-[state=open]:animate-scaleIn data-[state=closed]:animate-scaleOut relative mt-[10px] h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-[6px] bg-foreground opacity-[0.6] dark:bg-background transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)] border border-accent-7 dark:border-accent-2",
+        "data-[state=open]:animate-scaleIn data-[state=closed]:animate-scaleOut relative mt-[10px] h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-[6px] bg-foreground dark:backdrop-filter dark:backdrop-blur-lg dark:bg-background transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)] border border-accent-7 dark:border-accent-2",
         className
       )}
       ref={ref}
