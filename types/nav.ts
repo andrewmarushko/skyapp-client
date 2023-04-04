@@ -18,20 +18,20 @@ export interface MainNavItem extends NavItem {}
 export interface SidebarNavItem extends NavItemWithChildren {}
 
 export interface SocialMediaInterface {
-  id: 5,
+  id: number,
   type: string,
   link: string,
   youtubeChannelId?: string | null
 }
 
 export interface WorkingHoursInterface {
-  id: 5,
+  id: number,
   day?: string[],
   hours?: string
 }
 
 export interface ItemLocationInterface {
-  id: 5,
+  id: number,
   zipcode?: string,
   country?: string,
   city?: string,
