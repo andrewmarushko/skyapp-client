@@ -21,26 +21,29 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body
-          className={cn(
-            'min-h-screen bg-white font-sans text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-50',
-            fontSans.variable,
-          )}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="flex min-h-screen flex-col">
-              <Header />
-              <div className="container flex-1">{children}</div>
-              <Footer />
-            </div>
-          </ThemeProvider>
-          <Analytics />
-          <Toaster />
-        </body>
-      </html>
-    </>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* TODO: Generate  meta tegs from api*/}
+        <title>Some title</title>
+        <meta name="description" content="alsdkasldka" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body
+        className={cn(
+          'min-h-screen bg-white font-sans text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-50',
+          fontSans.variable,
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <div className="container flex-1">{children}</div>
+            <Footer />
+          </div>
+        </ThemeProvider>
+        <Analytics />
+        <Toaster />
+      </body>
+    </html>
   );
 }
