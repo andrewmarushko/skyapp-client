@@ -57,20 +57,44 @@ interface StrapiImageFormatInterface {
   }
 }
 
-interface StrapiImageInterface {
-  id: number;
-  name: string;
-  alternativeText: string;
-  caption?: string;
-  width: number;
-  height: number;
+interface StrapiImageInterface extends StrapiImageFormatInterface {
+  id: number,
+  name: string,
+  alternativeText: string,
+  caption: null | string,
   formats: {
     thumbnail: StrapiImageFormatInterface;
-    large: StrapiImageFormatInterface;
-    medium: StrapiImageFormatInterface;
-    small: StrapiImageFormatInterface;
+    large?: StrapiImageFormatInterface;
+    medium?: StrapiImageFormatInterface;
+    small?: StrapiImageFormatInterface;
   };
-  previewUrl?: string;
+  folderPath: string,
+  createdAt: string,
+  updatedAt: string
+  previewUrl: null | string;
+  provider: string,
+}
+
+export interface SeoBlockInterface  {
+  id: 3,
+  title: null | string;
+  description: null | string;
+}
+
+export interface StrapiUserInterface {
+  id:number,
+  firstname: string,
+  lastname: string,
+  username: null | string,
+  email: string,
+  password: string,
+  resetPasswordToken: null | string,
+  registrationToken: string,
+  isActive: Boolean,
+  blocked: Boolean,
+  preferedLanguage: null | string,
+  createdAt: Date | string,
+  updatedAt: Date | string
 }
 
 export interface IndoorDataItemInterface {
@@ -98,7 +122,10 @@ export interface IndoorDataItemInterface {
   indoorLocation: ItemLocationInterface,
   workingHours: WorkingHoursInterface[],
   coverImage: StrapiImageInterface,
-
+  SEO: SeoBlockInterface,
+  logo: StrapiImageInterface,
+  createdBy: StrapiUserInterface,
+  updatedBy: StrapiUserInterface
 }
 
 export interface IndoorDataListInterface {

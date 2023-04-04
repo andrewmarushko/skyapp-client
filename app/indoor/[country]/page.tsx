@@ -1,6 +1,7 @@
-import { getData } from '@/api-service/indoor-api';
+import { getAllIndoors, getIndoorsByCountry } from '@/api-service/indoor-api';
 import LargeHeading from '@/components/ui/large-heading';
 import Page from '@/components/ui/page';
+import { IndoorDataItemInterface } from '@/types/nav';
 
 interface IndoorCountryPageProps {
   params: {
@@ -8,17 +9,14 @@ interface IndoorCountryPageProps {
   };
 }
 
-const IndoorCountryPage = async ({ params }: IndoorCountryPageProps) => {
-
-  const data = await getData()
-  console.log(data, 'data')
-
+const IndoorCountryPage = async ({ params: {country} }: IndoorCountryPageProps) => {
+  const data = await getIndoorsByCountry(country)
   return (
     <Page>
-      <LargeHeading size="lg">{params.country} page</LargeHeading>
+      <LargeHeading size="lg">{country} page</LargeHeading>
       <div>
-        {data.map((item) => (
-          <p key={item.country}>{item.country}</p>
+        {data.map((item : IndoorDataItemInterface) => (
+          <p key={item.id}>{item.name}</p>
         ))}
       </div>
     </Page>
