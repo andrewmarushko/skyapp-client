@@ -7,10 +7,10 @@ export default function Home() {
   return (
     <>
       <Page>
-        <LargeHeading size="lg">
+        {/* <LargeHeading size="lg">
           Beautifully designed components <br className="hidden sm:inline" />
           built with Radix UI and Tailwind CSS.
-        </LargeHeading>
+        </LargeHeading> */}
         {/* <Separator />
         <Paragraph>
           Accessible and customizable components that you can copy and paste
