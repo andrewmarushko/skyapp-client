@@ -1,5 +1,6 @@
 import { fontFamily, colors } from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
+const { blackA, mauve, violet, indigo, purple } = require('@radix-ui/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -9,8 +10,21 @@ module.exports = {
   content: ['app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
 
   theme: {
+    container: {
+      center: true,
+      padding: '1.5rem',
+      screens: {
+        '2xl': '1440px',
+      },
+    },
     extend: {
       colors: {
+        ...blackA,
+        ...mauve,
+        ...violet,
+        ...purple,
+        ...indigo,
+
         'accent-1': 'var(--accents-1)',
         'accent-2': 'var(--accents-2)',
         'accent-3': 'var(--accents-3)',
