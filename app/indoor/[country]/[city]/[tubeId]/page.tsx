@@ -11,14 +11,17 @@ interface IndoorTubePageProps {
   };
 }
 
-const IndoorTubePage = async ({ params: {country, city, tubeId} }: IndoorTubePageProps) => {
-  const data = await getIndoorsByID(country, city, tubeId)
+const IndoorTubePage = async ({
+  params: { country, city, tubeId },
+}: IndoorTubePageProps) => {
+  const data = await getIndoorsByID(country, city, tubeId);
   return (
     <Page>
       <LargeHeading size="lg">{tubeId} page</LargeHeading>
-      {data.map((item : IndoorDataItemInterface) => (
-        <p key={item.id}>{item.name}</p>
-      ))}
+      {data &&
+        data.map((item: IndoorDataItemInterface) => (
+          <p key={item.id}>{item.name}</p>
+        ))}
     </Page>
   );
 };

@@ -9,15 +9,18 @@ interface IndoorCountryPageProps {
   };
 }
 
-const IndoorCountryPage = async ({ params: {country} }: IndoorCountryPageProps) => {
-  const data = await getIndoorsByCountry(country)
+const IndoorCountryPage = async ({
+  params: { country },
+}: IndoorCountryPageProps) => {
+  const data = await getIndoorsByCountry(country);
   return (
     <Page>
       <LargeHeading size="lg">{country} page</LargeHeading>
       <div>
-        {data.map((item : IndoorDataItemInterface) => (
-          <p key={item.id}>{item.name}</p>
-        ))}
+        {data &&
+          data.map((item: IndoorDataItemInterface) => (
+            <p key={item.id}>{item.name}</p>
+          ))}
       </div>
     </Page>
   );
