@@ -14,12 +14,15 @@ interface IndoorTubePageProps {
   };
 }
 
-const IndoorTubePage = async ({ params: {country, city, tubeId} }: IndoorTubePageProps) => {
-  const data = await getIndoorsByID(country, city, tubeId)
+const IndoorTubePage = async ({
+  params: { country, city, tubeId },
+}: IndoorTubePageProps) => {
+  const data = await getIndoorsByID(country, city, tubeId);
   return (
     <Page>
-      {data.map((item : IndoorDataItemInterface) => (
-        <div className='flex flex-col gap-14 w-full' key={item.id}>
+      {data &&
+        data.map((item: IndoorDataItemInterface) => (
+          <div className='flex flex-col gap-14 w-full' key={item.id}>
           <section className='relative w-full flex flex-col gap-10' >
             <Image
               src={item.coverImage?.url}
@@ -138,7 +141,7 @@ const IndoorTubePage = async ({ params: {country, city, tubeId} }: IndoorTubePag
 
           </section>
         </div>
-      ))}
+        ))}
     </Page>
   );
 };

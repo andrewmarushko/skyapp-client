@@ -6,12 +6,12 @@ export default function Error({
   error,
   reset,
 }: {
-  error: Error;
-  reset: () => void;
+  error: Error,
+  reset: () => void,
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.log(error,'error');
+    console.log(error, 'error');
   }, [error]);
 
   return (

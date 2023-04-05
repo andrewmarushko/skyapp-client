@@ -10,12 +10,15 @@ interface IndoorCityPageProps {
   };
 }
 
-const IndoorCityPage = async({ params: {country, city} }: IndoorCityPageProps) => {
-  const data = await getIndoorsByCity(country, city)
+const IndoorCityPage = async ({
+  params: { country, city },
+}: IndoorCityPageProps) => {
+  const data = await getIndoorsByCity(country, city);
   return (
     <Page>
       <LargeHeading size="lg">{city} page</LargeHeading>
-        {data.map((item: IndoorDataItemInterface) => (
+      {data &&
+        data.map((item: IndoorDataItemInterface) => (
           <p key={item.id}>{item.name}</p>
         ))}
     </Page>
