@@ -1,7 +1,10 @@
 import { getIndoorsData } from '@/api-service/indoor-api';
 import LargeHeading from '@/components/ui/large-heading';
-import IndoorsLayout from './layout';
 import { Button } from '@/components/ui/button';
+
+import { Icons } from '@/components/icons';
+import Page from '@/components/ui/page';
+import { useState } from 'react';
 
 export interface Indoor {
   id: number;
@@ -24,32 +27,36 @@ export interface Attributes {
   companyName: string;
 }
 
+const riseLimit = () => {
+  console.log(123);
+};
+
 const IndoorPage = async () => {
-  const { data } = await getIndoorsData();
+  const data = await getIndoorsData();
+  console.log(data);
   return (
-    <div>
+    <Page>
       <LargeHeading size="lg">Indoor main page</LargeHeading>
-      <div className="grid grid-cols-4 gap-12">
-        {data.map(
-          ({ id, attributes: { name, diameter, speed, height } }: Indoor) => (
-            <div
-              className="col-span-1 rounded-xl border border-black p-4"
-              key={id}
-            >
-              <div>
-                <div>{name}</div>
-                <div>{height}</div>
-                <div>{speed}</div>
-                <div>{diameter}</div>
+      <div className="grid gap-10">
+        {data.map((countryData: any) => (
+          <div key={countryData.country} className="grid grid-cols-4 gap-12">
+            {countryData.data.map((indoor: any) => (
+              <div
+                className="col-span-1 rounded-xl border border-black p-4"
+                key={indoor.id}
+              >
+                <p>{indoor.indoorName}</p>
+                <p>{indoor.indoorLocation.city}</p>
+                <p>{indoor.indoorLocation.address}</p>
               </div>
-            </div>
-          ),
-        )}
+            ))}
+          </div>
+        ))}
       </div>
-      <div className="mt-4 flex justify-center">
+      <div className="mt-4 flex w-full justify-center">
         <Button>Load More</Button>
       </div>
-    </div>
+    </Page>
   );
 };
 
