@@ -27,3 +27,9 @@ export async function getIndoorsByID(
   const pageContent = await res.json();
   return pageContent;
 }
+
+export async function getIndoorsData() {
+  const res = await fetch(`${API_URL}/indoors?limit=10`);
+  const pageContent = await res.json();
+  return pageContent;
+}
