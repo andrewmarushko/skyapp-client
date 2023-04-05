@@ -1,22 +1,15 @@
 'use client';
 
-import * as React from 'react';
 import Link from 'next/link';
-import * as NavigationMenuRadix from '@radix-ui/react-navigation-menu';
-import { siteConfig } from '@/config/site';
-import { cn } from '@/lib/utils';
 import { Icons } from '@/components/icons';
-import { buttonVariants } from '@/components/ui/button';
 import {
   ListItem,
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { Separator } from '@/components/ui/separator';
