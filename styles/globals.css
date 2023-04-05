@@ -3,6 +3,135 @@
 @tailwind variants;
 @tailwind utilities;
 
+:root {
+  /* Primary */
+  --accents-1: #111;
+  --accents-2: #333;
+  --accents-3: #444;
+  --accents-4: #666;
+  --accents-5: #888;
+  --accents-6: #999;
+  --accents-7: #aeaeae;
+  --accents-8: #fafafa;
+
+  --geist-foreground: rgba(255, 255, 255, 1);
+  --geist-background: rgba(0, 0, 0, 1);
+
+  --geist-secondary-lighter: var(--accents-2);
+  --geist-secondary-light: var(--accents-3);
+  --geist-secondary: var(--accents-5);
+  --geist-secondary-dark: var(--accents-7);
+
+  /* Errors */
+  --geist-error-lighter: #f7d4d6;
+  --geist-error-light: #f33;
+  --geist-error: #f00;
+  --geist-error-dark: #e60000;
+
+  /* Success */
+  --geist-success-lighter: #d3e5ff;
+  --geist-success-light: #3291ff;
+  --geist-success: #0070f3;
+  --geist-success-dark: #0761d1;
+
+  /* Warning */
+  --geist-warning-lighter: #ffefcf;
+  --geist-warning-light: #f7b955;
+  --geist-warning: #f5a623;
+  --geist-warning-dark: #ab570a;
+
+  /* Violet */
+  --geist-violet-lighter: #d8ccf1;
+  --geist-violet-light: #8a63d2;
+  --geist-violet: #7928ca;
+  --geist-violet-dark: #4c2889;
+
+  /* Cyan */
+  --geist-cyan-lighter: #aaffec;
+  --geist-cyan-light: #79ffe1;
+  --geist-cyan: #50e3c2;
+  --geist-cyan-dark: #29bc9b;
+
+  /* Highlight */
+  --geist-highlight-purple: #f81ce5;
+  --geist-highlight-magenta: #eb367f;
+  --geist-highlight-pink: #ff0080;
+  --geist-highlight-yellow: #fff500;
+
+  /* Radius */
+  --geist-radius: 5px;
+  --geist-marketing-radius: 8px;
+
+  /* Elements */
+  --geist-link-color: var(--geist-success);
+
+  /* Shadows */
+  --shadow-smallest: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-extra-small: 0px 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-small: 0 5px 10px rgba(0, 0, 0, 0.12);
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-large: 0 30px 60px rgba(0, 0, 0, 0.12);
+  --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.12);
+  --shadow-sticky: 0 12px 10px -10px rgba(0, 0, 0, 0.12);
+
+  /* Other colors */
+  --wv-green: #0cce6b;
+  --wv-orange: #ffa400;
+  --wv-red: #ff4e42;
+
+  /* Spaces */
+  --geist-space: 4px;
+  --geist-space-2x: 8px;
+  --geist-space-4x: 16px;
+  --geist-space-8x: 32px;
+  --geist-space-16x: 64px;
+  --geist-space-24x: 96px;
+  --geist-space-32x: 128px;
+  --geist-space-48x: 192px;
+  --geist-space-64x: 256px;
+  --geist-space-small: 32px;
+  --geist-space-medium: 40px;
+  --geist-space-large: 48px;
+  --geist-space-gap: 24px;
+  --geist-space-gap-half: 12px;
+  --geist-space-gap-quarter: var(--geist-space-2x);
+  --geist-gap: var(--geist-space-gap);
+  --geist-gap-half: var(--geist-space-gap-half);
+  --geist-gap-quarter: var(--geist-space-gap-quarter);
+  --geist-gap-double: var(--geist-space-large);
+  --geist-gap-section: var(--geist-space-small);
+  --geist-space-negative: -4px;
+  --geist-space-2x-negative: -8px;
+  --geist-space-4x-negative: -16px;
+  --geist-space-8x-negative: -32px;
+  --geist-space-16x-negative: -64px;
+  --geist-space-24x-negative: -96px;
+  --geist-space-32x-negative: -128px;
+  --geist-space-48x-negative: -192px;
+  --geist-space-64x-negative: -256px;
+  --geist-space-small-negative: -32px;
+  --geist-space-medium-negative: -40px;
+  --geist-space-large-negative: -48px;
+  --geist-space-gap-negative: -24px;
+  --geist-space-gap-half-negative: -12px;
+  --geist-space-gap-quarter-negative: var(--geist-space-2x-negative);
+  --geist-gap-negative: var(--geist-space-gap-negative);
+  --geist-gap-half-negative: var(--geist-space-gap-half-negative);
+  --geist-gap-quarter-negative: var(--geist-space-gap-quarter-negative);
+  --geist-gap-double-negative: var(--geist-space-large-negative);
+
+  /* Width */
+  --geist-page-width: 1200px;
+  --geist-page-margin: var(--geist-space-gap);
+  --geist-page-width-with-margin: calc(
+    var(--geist-page-width) + calc(2 * var(--geist-page-margin))
+  );
+}
+
+.border-radius-50 {
+  border-radius: 50%;
+}
+
 /* :root {
   --max-width: 1100px;
   --border-radius: 12px;

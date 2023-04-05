@@ -1,7 +1,6 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import Page from '@/components/ui/page';
 
 export default function IndoorsLayout({
   children,

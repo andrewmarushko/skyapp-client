@@ -2,9 +2,7 @@ import { getIndoorsData } from '@/api-service/indoor-api';
 import LargeHeading from '@/components/ui/large-heading';
 import { Button } from '@/components/ui/button';
 
-import { Icons } from '@/components/icons';
 import Page from '@/components/ui/page';
-import { useState } from 'react';
 
 export interface Indoor {
   id: number;
@@ -27,13 +25,8 @@ export interface Attributes {
   companyName: string;
 }
 
-const riseLimit = () => {
-  console.log(123);
-};
-
 const IndoorPage = async () => {
   const data = await getIndoorsData();
-  console.log(data);
   return (
     <Page>
       <LargeHeading size="lg">Indoor main page</LargeHeading>
