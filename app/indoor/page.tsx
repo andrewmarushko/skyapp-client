@@ -1,39 +1,9 @@
-import { getIndoorsData } from '@/api-service/indoor-api';
+import { getAllIndoors } from '@/api-service/indoor-api';
 import LargeHeading from '@/components/ui/large-heading';
-import { Button } from '@/components/ui/button';
-
-import { Icons } from '@/components/icons';
-import Page from '@/components/ui/page';
-import { useState } from 'react';
-
-export interface Indoor {
-  id: number;
-  attributes: Attributes;
-}
-
-export interface Attributes {
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  name: string;
-  diameter: string;
-  speed: string;
-  height: string;
-  description: string;
-  facilities: string;
-  prices: string;
-  websiteUrl: string;
-  isStillBuilding: boolean;
-  companyName: string;
-}
-
-const riseLimit = () => {
-  console.log(123);
-};
-
-const IndoorPage = async () => {
-  const data = await getIndoorsData();
-  console.log(data);
+import { IndoorDataListInterface } from '@/types/nav';
+  
+const IndoorPage = async() => {
+  const data = await getAllIndoors()
   return (
     <Page>
       <LargeHeading size="lg">Indoor main page</LargeHeading>
