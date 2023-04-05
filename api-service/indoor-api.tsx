@@ -1,7 +1,7 @@
 const API_URL = process.env.NEXT_PUBLIC_DEV_URL;
 
 export async function getAllIndoors() {
-  const res = await fetch(`http://localhost:1337/api/indoors?limit=3`);
+  const res = await fetch(`${API_URL}/indoors`);
   const pageContent = await res.json();
   return pageContent;
 }
@@ -24,6 +24,12 @@ export async function getIndoorsByID(
   id: number,
 ) {
   const res = await fetch(`${API_URL}/indoors/${country}/${city}/${id}`);
+  const pageContent = await res.json();
+  return pageContent;
+}
+
+export async function getIndoorsData() {
+  const res = await fetch(`${API_URL}/indoors?limit=10`);
   const pageContent = await res.json();
   return pageContent;
 }
