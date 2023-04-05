@@ -25,8 +25,12 @@ import {
   Twitter,
   User,
   Instagram,
+  ExternalLink,
   ChevronDown,
+  Facebook,
+  Youtube,
   X,
+  MapPin,
   type Icon as LucideIcon,
 } from 'lucide-react';
 
@@ -62,7 +66,10 @@ export const Icons = {
   add: Plus,
   warning: AlertTriangle,
   instagram: Instagram,
+  facebook: Facebook,
+  youtube: Youtube,
   user: User,
+  mapPin: MapPin,
   arrowRight: ArrowRight,
   help: HelpCircle,
   pizza: Pizza,
@@ -73,6 +80,7 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
+  externalLink: ExternalLink,
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

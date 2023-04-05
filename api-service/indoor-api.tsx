@@ -23,9 +23,13 @@ export async function getIndoorsByID(
   city: string,
   id: number,
 ) {
-  const res = await fetch(
-    `http://localhost:1337/api/indoors/${country}/${city}/${id}`,
-  );
+  const res = await fetch(`${API_URL}/indoors/${country}/${city}/${id}`);
+  const pageContent = await res.json();
+  return pageContent;
+}
+
+export async function getIndoorsData() {
+  const res = await fetch(`${API_URL}/indoors?limit=10`);
   const pageContent = await res.json();
   return pageContent;
 }

@@ -41,7 +41,7 @@
   --geist-warning-dark: #ab570a;
 
   /* Violet */
-  :--geist-violet-lighter: #d8ccf1;
+  --geist-violet-lighter: #d8ccf1;
   --geist-violet-light: #8a63d2;
   --geist-violet: #7928ca;
   --geist-violet-dark: #4c2889;
@@ -126,6 +126,10 @@
   --geist-page-width-with-margin: calc(
     var(--geist-page-width) + calc(2 * var(--geist-page-margin))
   );
+}
+
+.border-radius-50 {
+  border-radius: 50%;
 }
 
 /* :root {
