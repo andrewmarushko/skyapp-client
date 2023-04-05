@@ -26,7 +26,10 @@ import {
   User,
   Instagram,
   ChevronDown,
+  Facebook,
+  Youtube,
   X,
+  MapPin,
   type Icon as LucideIcon,
 } from 'lucide-react';
 
@@ -62,7 +65,10 @@ export const Icons = {
   add: Plus,
   warning: AlertTriangle,
   instagram: Instagram,
+  facebook: Facebook,
+  youtube: Youtube,
   user: User,
+  mapPin: MapPin,
   arrowRight: ArrowRight,
   help: HelpCircle,
   pizza: Pizza,
