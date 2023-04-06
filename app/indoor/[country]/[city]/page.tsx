@@ -19,7 +19,7 @@ const IndoorCityPage = async ({
       <LargeHeading size="lg">{city} page</LargeHeading>
       {data &&
         data.map((item: IndoorDataItemInterface) => (
-          <p key={item.id}>{item.name}</p>
+          <p key={item.id}>{item.title}</p>
         ))}
     </Page>
   );
