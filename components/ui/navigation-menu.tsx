@@ -79,7 +79,7 @@ const NavigationMenuViewport = forwardRef<
   <div className="perspective-[2000px] absolute top-full left-0 flex justify-center">
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        "data-[state=open]:animate-scaleIn data-[state=closed]:animate-scaleOut relative mt-[10px] h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-[6px] bg-foreground dark:backdrop-filter dark:backdrop-blur-lg dark:bg-background transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)] border border-accent-7 dark:border-accent-2",
+        "data-[state=open]:animate-scaleIn data-[state=closed]:animate-scaleOut relative mt-[10px] h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-[6px] bg-background-light backdrop-filter backdrop-blur-lg dark:backdrop-filter dark:backdrop-blur-lg dark:bg-background-dark transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)] border border-accent-7 dark:border-accent-2",
         className
       )}
       ref={ref}

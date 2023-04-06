@@ -4,8 +4,6 @@ const { blackA, mauve, violet, indigo, purple } = require('@radix-ui/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: 'jit',
-  purge: ['app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
   darkMode: ['class'],
   content: ['app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
 
