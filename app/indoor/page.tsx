@@ -22,7 +22,7 @@ const IndoorPage = async () => {
                   ({
                     indoorLocation,
                     id,
-                    name,
+                    title,
                     websiteUrl,
                     coverImage,
                   }: IndoorDataItemInterface) => (
@@ -47,7 +47,7 @@ const IndoorPage = async () => {
                             <Link
                               href={`/indoor/${indoorLocation.country}/${indoorLocation.city}/${id}`}
                             >
-                              {name}
+                              {title}
                             </Link>
                           </p>
                           {websiteUrl && (

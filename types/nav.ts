@@ -21,7 +21,6 @@ export interface SocialMediaInterface {
   id: number,
   type: string,
   link: string,
-  youtubeChannelId?: string | null
 }
 
 export interface WorkingHoursInterface {
@@ -102,7 +101,7 @@ export interface IndoorDataItemInterface {
   createdAt: Date | string,
   updatedAt: Date | string,
   publishedAt: Date | string,
-  name: string,
+  title: string,
   diameter: string,
   speed: string,
   height: string,
@@ -118,7 +117,11 @@ export interface IndoorDataItemInterface {
     email: string,
     phone: string
   },
-  socialMedia: SocialMediaInterface[],
+  socialMedia: {
+    youtubeChannelId: string,
+    googlePlaceId: string,
+    list: SocialMediaInterface[]
+  },
   indoorLocation: ItemLocationInterface,
   workingHours: WorkingHoursInterface[],
   coverImage: StrapiImageInterface,
@@ -131,5 +134,10 @@ export interface IndoorDataItemInterface {
 export interface IndoorDataListInterface {
   country: string
   data: IndoorDataItemInterface[]
+}
+
+export interface CustomMapProps{
+  lat?: string,
+  long?: string
 }
 

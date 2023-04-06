@@ -31,6 +31,7 @@ import {
   Youtube,
   X,
   MapPin,
+  Map,
   type Icon as LucideIcon,
 } from 'lucide-react';
 
@@ -70,6 +71,7 @@ export const Icons = {
   youtube: Youtube,
   user: User,
   mapPin: MapPin,
+  map: Map,
   arrowRight: ArrowRight,
   help: HelpCircle,
   pizza: Pizza,
