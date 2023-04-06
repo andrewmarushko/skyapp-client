@@ -12,7 +12,7 @@ const nextConfig = {
     ],
   },
   images: {
-    domains: ['res.cloudinary.com'], 
+    domains: ['res.cloudinary.com', 'lh3.googleusercontent.com'], 
   },
   webpack(config) {
     config.resolve.alias['@/app'] = path.join(__dirname, 'app');
