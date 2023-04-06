@@ -20,7 +20,7 @@ const IndoorPage = async () => {
                     className="col-span-1 rounded-xl border border-black p-4"
                     key={indoor.id}
                   >
-                    <p>{indoor.name}</p>
+                    <p>{indoor.title}</p>
                     <p>{indoor.indoorLocation.city}</p>
                     <p>{indoor.indoorLocation.address}</p>
                   </div>

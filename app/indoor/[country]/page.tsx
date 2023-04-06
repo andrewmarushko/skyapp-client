@@ -19,7 +19,7 @@ const IndoorCountryPage = async ({
       <div>
         {data &&
           data.map((item: IndoorDataItemInterface) => (
-            <p key={item.id}>{item.name}</p>
+            <p key={item.id}>{item.title}</p>
           ))}
       </div>
     </Page>

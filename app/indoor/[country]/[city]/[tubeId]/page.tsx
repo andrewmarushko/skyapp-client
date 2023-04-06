@@ -1,10 +1,12 @@
-import { getIndoorsByID } from '@/api-service/indoor-api';
+import { getGooglePlaceReviewsById, getIndoorsByID, getYoutubeVideosById } from '@/api-service/indoor-api';
 import { Icons } from '@/components/icons';
 import LargeHeading from '@/components/ui/large-heading';
 import Page from '@/components/ui/page';
 import { IndoorDataItemInterface } from '@/types/nav';
 import Link from 'next/link';
 import Image from 'next/image';
+import { CustomMap } from '@/components/ui/google-map';
+import YouTubeFrame from '@/components/ui/youtube-framer';
 
 interface IndoorTubePageProps {
   params: {
@@ -17,11 +19,15 @@ interface IndoorTubePageProps {
 const IndoorTubePage = async ({
   params: { country, city, tubeId },
 }: IndoorTubePageProps) => {
-  const data = await getIndoorsByID(country, city, tubeId);
+  const indoorsList : IndoorDataItemInterface[] = await getIndoorsByID(country, city, tubeId);
+  const youtubeChannelId = indoorsList[0].socialMedia.youtubeChannelId;
+  const googlePlaceId = indoorsList[0].socialMedia.googlePlaceId;
+  const youTubeData = await getYoutubeVideosById(youtubeChannelId);
+  const googlePlacesReviews = await getGooglePlaceReviewsById(googlePlaceId)
   return (
     <Page>
-      {data &&
-        data.map((item: IndoorDataItemInterface) => (
+      {indoorsList &&
+        indoorsList.map((item: IndoorDataItemInterface) => (
           <div className='flex flex-col gap-14 w-full' key={item.id}>
           <section className='relative w-full flex flex-col gap-10' >
             <Image
@@ -46,14 +52,13 @@ const IndoorTubePage = async ({
                   />
                 </div>
                 <div className='flex flex-col gap-5'>
-                  <LargeHeading size="lg">{item.name}</LargeHeading>
+                  <LargeHeading size="lg">{item.title}</LargeHeading>
                   <div className='flex items-center gap-3'>
                     <Icons.mapPin className="h-5 w-5" />
                     <span>{item.indoorLocation.country}, {item.indoorLocation.city}, {item.indoorLocation.zipcode}, {item.indoorLocation.address}</span>
                   </div>
                 </div>
               </div>
-
               <Link
                 target="_blank"
                 href={item.websiteUrl}
@@ -67,7 +72,7 @@ const IndoorTubePage = async ({
             <div className='flex basis-1/2 gap-10 flex-col '>
               <div className='flex justify-between gap-5'>
                 <div className='flex gap-4'>
-                  {item.socialMedia.map(({id, link, type}) => (
+                  {item.socialMedia?.list?.map(({id, link, type}) => (
                     <Link href={link} key={id} target="_blank">
                       {type === 'Instagram' && <Icons.instagram className="h-9 w-9" />}
                       {type === 'Facebook' && <Icons.facebook className="h-9 w-9" />}
@@ -109,7 +114,6 @@ const IndoorTubePage = async ({
                 <LargeHeading size="sm">Available facilities</LargeHeading>
                 <p>{item.facilities}</p>
               </div>
-
             </div>
             <div className='flex basis-1/2'>
               <div className='flex w-full flex-col gap-5'>
@@ -138,7 +142,48 @@ const IndoorTubePage = async ({
                 </table>
               </div>
             </div>
-
+          </section>
+          <section className='grid grid-cols-3 gap-4'>
+            {youTubeData && youTubeData.items?.map((youTubeDataItem: any) => (
+              <YouTubeFrame
+                key={`video-${youTubeDataItem.id.videoId}`}
+                video={youTubeDataItem.id.videoId}
+                width={"100%"}
+                height={"100%"}
+                thumbnailQuality={"hqdefault"}
+                thumbnailClassName="h-full"
+              />
+            ))}
+          </section>
+          <section className='flex gap-20'>
+            <div className='bg-slate-400 flex flex-col gap-5 basis-1/2 p-6 rounded-lg'>
+              <div className='flex justify-between items-center w-full'>
+                <LargeHeading size="sm">Find us on the map</LargeHeading>
+                <Icons.map className="h-5 w-5" />
+              </div>
+              <CustomMap lat={item.indoorLocation.lat} long={item.indoorLocation.long} />
+            </div>
+            <div className='flex basis-1/2'></div>
+          </section>
+          <section className='grid grid-cols-3 gap-4'>
+            {googlePlacesReviews && googlePlacesReviews.result?.reviews.map((review : any) => (
+              <div 
+                key={`review-${review.time}`}
+                className='w-72 p-5 shadow-lg rounded-xl'
+              >
+                <Image
+                  src={review.profile_photo_url}
+                  alt="avatar"
+                  width={20}
+                  height={20}
+                  className="border-radius-50"
+                />
+                <p>{review.relative_time_description}</p>
+                <p>{review.author_name}</p>
+                <p>{review.text}</p>
+                <p>Rating - {review.rating}</p>
+              </div>
+            ))}
           </section>
         </div>
         ))}
