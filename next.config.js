@@ -18,6 +18,19 @@ const nextConfig = {
     config.resolve.alias['@/app'] = path.join(__dirname, 'app');
     return config;
   },
+  async headers() {
+    return [
+      {
+        source: "/googleapis.com",
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

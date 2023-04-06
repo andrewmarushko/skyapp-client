@@ -36,7 +36,7 @@ export async function getIndoorsData() {
 }
 
 export async function getYoutubeVideosById(channelId: string) {
-  const res = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${GOOGLE_KEY}&channelId=${channelId}&part=snippet&order=viewCount&maxResults=9`);
+  const res = await fetch(`https://www.googleapis.com/youtube/v3/search?key=${GOOGLE_KEY}&channelId=${channelId}&part=snippet&order=viewCount&maxResults=9`, { next: { revalidate: 10 } });
   const pageContent = await res.json();
   return pageContent;
 }
