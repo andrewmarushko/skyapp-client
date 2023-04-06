@@ -20,8 +20,8 @@ const IndoorTubePage = async ({
   params: { country, city, tubeId },
 }: IndoorTubePageProps) => {
   const indoorsList : IndoorDataItemInterface[] = await getIndoorsByID(country, city, tubeId);
-  const youtubeChannelId = indoorsList[0].socialMedia.youtubeChannelId;
-  const googlePlaceId = indoorsList[0].socialMedia.googlePlaceId;
+  const youtubeChannelId = indoorsList[0].socialMedia?.youtubeChannelId;
+  const googlePlaceId = indoorsList[0].socialMedia?.googlePlaceId;
   const youTubeData = await getYoutubeVideosById(youtubeChannelId);
   const googlePlacesReviews = await getGooglePlaceReviewsById(googlePlaceId)
   return (
