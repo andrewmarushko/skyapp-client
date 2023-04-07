@@ -1,7 +1,5 @@
 import {
-  getGooglePlaceReviewsById,
   getIndoorsByID,
-  getYoutubeVideosById,
 } from '@/api-service/indoor-api';
 import { Icons } from '@/components/icons';
 import LargeHeading from '@/components/ui/large-heading';
@@ -10,7 +8,6 @@ import { IndoorDataItemInterface } from '@/types/nav';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CustomMap } from '@/components/ui/google-map';
-import YouTubeFrame from '@/components/ui/youtube-framer';
 import YouTubeSection from '@/components/youtube-section';
 import GooglePlacesSection from '@/components/googlePlaces-section';
 import { Suspense } from 'react';
@@ -74,13 +71,15 @@ const IndoorTubePage = async ({
                     </div>
                   </div>
                 </div>
-                <Link
+                {item.websiteUrl && 
+                  <Link
                   target="_blank"
                   href={item.websiteUrl}
                   className="flex h-20 w-24 items-center rounded-lg bg-slate-800 text-center text-white"
-                >
-                  Go to website
-                </Link>
+                  >
+                    Go to website
+                  </Link>
+                }
               </div>
             </section>
             <section className="mt-5 flex gap-20">

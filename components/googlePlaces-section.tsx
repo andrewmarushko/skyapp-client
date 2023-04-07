@@ -1,5 +1,4 @@
 'use client';
-const GOOGLE_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 import useSWR from 'swr';
 import Image from 'next/image';
 
@@ -21,7 +20,7 @@ export default function GooglePlacesSection({
   return (
     <section className="grid grid-cols-3 gap-4">
       {data &&
-        data.reviews.map((review: any) => (
+        data.reviews?.map((review: any) => (
           <div
             key={`review-${review.time}`}
             className="w-72 rounded-xl p-5 shadow-lg"

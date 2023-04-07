@@ -1,5 +1,4 @@
 'use client';
-const GOOGLE_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 import useSWR from 'swr';
 
 import YouTubeFrame from './ui/youtube-framer';
@@ -19,6 +18,8 @@ export default function YouTubeSection({
   if (!data) return <h1>LOADING.....</h1>;
 
   if (error) return <span> Problem to load videos</span>;
+
+  console.log(data, 'data')
 
   return (
     <section className="grid grid-cols-3 gap-4">
