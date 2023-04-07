@@ -33,7 +33,6 @@ const IndoorTubePage = async ({
   );
   const youtubeChannelId = indoorsList[0].socialMedia?.youtubeChannelId;
   const googlePlaceId = indoorsList[0].socialMedia?.googlePlaceId;
-  // const youTubeData = await getYoutubeVideosById(youtubeChannelId);
 
   return (
     <Page>
@@ -172,18 +171,6 @@ const IndoorTubePage = async ({
             <Suspense fallback={<h1>loading comments</h1>}>
               <YouTubeSection youtubeChannelId={youtubeChannelId} />
             </Suspense>
-            {/* <section className='grid grid-cols-3 gap-4'>
-            {youTubeData && youTubeData.items?.map((youTubeDataItem: any) => (
-              <YouTubeFrame
-                key={`video-${youTubeDataItem.id.videoId}`}
-                video={youTubeDataItem.id.videoId}
-                width={"100%"}
-                height={"100%"}
-                thumbnailQuality={"hqdefault"}
-                thumbnailClassName="h-full"
-              />
-            ))}
-          </section> */}
             <section className="flex gap-20">
               <div className="flex basis-1/2 flex-col gap-5 rounded-lg bg-slate-400 p-6">
                 <div className="flex w-full items-center justify-between">
@@ -200,26 +187,6 @@ const IndoorTubePage = async ({
             <Suspense fallback={<h1>loading comments</h1>}>
               <GooglePlacesSection googlePlaceId={googlePlaceId} />
             </Suspense>
-            {/* <section className='grid grid-cols-3 gap-4'>
-            {googlePlacesReviews && googlePlacesReviews.result?.reviews?.map((review : any) => (
-              <div 
-                key={`review-${review.time}`}
-                className='w-72 p-5 shadow-lg rounded-xl'
-              >
-                <Image
-                  src={review.profile_photo_url}
-                  alt="avatar"
-                  width={20}
-                  height={20}
-                  className="border-radius-50"
-                />
-                <p>{review.relative_time_description}</p>
-                <p>{review.author_name}</p>
-                <p>{review.text}</p>
-                <p>Rating - {review.rating}</p>
-              </div>
-            ))}
-          </section> */}
           </div>
         ))}
     </Page>
