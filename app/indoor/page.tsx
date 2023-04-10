@@ -14,6 +14,33 @@ export async function generateMetadata(): Promise<Metadata> {
     ),
     title: seo.metaTitle,
     description: seo.metaDescription,
+    robots: {
+      index: false,
+      follow: true,
+      nocache: true,
+      googleBot: {
+        index: true,
+        follow: false,
+        noimageindex: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Next.js",
+      description: "The React Framework for the Web",
+      siteId: "1467726470533754880",
+      creator: "@nextjs",
+      creatorId: "1467726470533754880",
+      images: ["https://nextjs.org/og.png"],
+    },
+    viewport: {
+      width: "device-width",
+      initialScale: 1,
+      maximumScale: 1,
+    },
   };
 }
 
@@ -22,6 +49,8 @@ const IndoorPage = async () => {
     getAllIndoors(),
     getIndoorPageData(),
   ]);
+
+  console.log(pageIndoorData);
 
   return (
     <Page>

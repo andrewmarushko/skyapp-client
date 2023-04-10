@@ -1,8 +1,7 @@
 const API_URL = process.env.NEXT_PUBLIC_DEV_URL;
-const GOOGLE_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
 export async function getAllIndoors() {
-  const res = await fetch(`${API_URL}/indoors`);
+  const res = await fetch(`${API_URL}/indoors`, { cache: 'no-store'});
   const pageContent = await res.json();
   return pageContent;
 }
@@ -38,7 +37,7 @@ export async function getIndoorsData() {
 }
 
 export async function getIndoorPageData() {
-  const data = await fetch(`${API_URL}/indoor-page`)
+  const data = await fetch(`${API_URL}/indoor-page`, { cache: 'no-store'})
 
   return await data.json()
 }
