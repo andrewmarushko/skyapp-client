@@ -36,3 +36,9 @@ export async function getIndoorsData() {
   const pageContent = await res.json();
   return pageContent;
 }
+
+export async function getIndoorPageData() {
+  const data = await fetch(`${API_URL}/indoor-page`)
+
+  return await data.json()
+}

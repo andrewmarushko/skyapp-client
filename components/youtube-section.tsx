@@ -15,11 +15,11 @@ export default function YouTubeSection({
     revalidateOnMount: true,
   });
 
-  if (!data) return <h1>LOADING.....</h1>;
+ 
+  if (!data) return <div><h1>LOADING.....</h1></div>;
 
-  if (error) return <span> Problem to load videos</span>;
+  if (error) return <div><span> Problem to load videos</span></div>;
 
-  console.log(data, 'data')
 
   return (
     <section className="grid grid-cols-3 gap-4">
