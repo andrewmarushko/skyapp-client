@@ -12,7 +12,11 @@ const headingVariants = cva(
         default: 'text-6xl md:text-8xl lg:text-8xl',
         lg: 'text-7xl md:text-8xl lg:text-9xl',
         sm: 'text-2xl md:text-3xl lg:text-4xl',
+
       },
+      componentType: {
+        hero: 'max-w-[800px], '
+      }
     },
     defaultVariants: {
       size: 'default',

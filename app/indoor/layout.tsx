@@ -1,5 +1,6 @@
 'use client';
 
+import { Hero } from '@/components/hero';
 import { Input } from '@/components/ui/input';
 
 export default function IndoorsLayout({
@@ -9,6 +10,7 @@ export default function IndoorsLayout({
 }) {
   return (
     <div>
+      <Hero />
       <div className="grid grid-cols-4 gap-12">
         <div className="col-span-1 mt-10 w-full">
           <div>

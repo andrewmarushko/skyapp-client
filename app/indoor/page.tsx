@@ -13,21 +13,23 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const pageData = await fetch(
-    `${process.env.NEXT_PUBLIC_DEV_URL}/indoor-page`,
-  );
-  const { seo } = await pageData.json();
+// export async function generateMetadata(): Promise<Metadata> {
+//   const pageData = await fetch(
+//     `${process.env.NEXT_PUBLIC_DEV_URL}/indoor-page`,
+//   );
 
-  return {
-    metadataBase: new URL(
-      `https://${seo.canonicalURL}/indoor` ||
-        `https://${process.env.NEXT_PUBLIC_DEV_URL}/indoor`,
-    ),
-    title: seo.metaTitle,
-    description: seo.metaDescription,
-  };
-}
+//   console.log(pageData, 'pageData')
+//   // const { seo } = await pageData.json();
+
+//   return {
+//     metadataBase: new URL(
+//       `https://${seo.canonicalURL}/indoor` ||
+//         `https://${process.env.NEXT_PUBLIC_DEV_URL}/indoor`,
+//     ),
+//     title: seo.metaTitle,
+//     description: seo.metaDescription,
+//   };
+// }
 
 const IndoorPage = async () => {
   const [windTunnels, pageIndoorData] = await Promise.all([
@@ -35,20 +37,21 @@ const IndoorPage = async () => {
     getIndoorPageData(),
   ]);
 
-  console.log("windtunnels", windTunnels);
+  console.log("pageIndoorData", pageIndoorData);
+  console.log("windTunnels", windTunnels)
 
   return (
     <Page>
       <div>
-        <LargeHeading size="lg">{pageIndoorData.hero.title}</LargeHeading>
-        <h2>{pageIndoorData.hero.subtitle}</h2>
+        {/* <LargeHeading size="lg">{pageIndoorData.hero.title}</LargeHeading> */}
+        {/* <h2>{pageIndoorData.hero.subtitle}</h2> */}
       </div>
       <div className="grid gap-10">
         {windTunnels &&
           windTunnels.map((countryData: IndoorDataListInterface) => (
             <div key={countryData.country} className="grid grid-cols-3 gap-8">
               {countryData &&
-                countryData.data.map(
+                countryData.data?.map(
                   ({
                     indoorLocation,
                     id,

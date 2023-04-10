@@ -68,6 +68,9 @@ module.exports = {
         default: 'var(--geist-radius)',
         marketing: 'var(--geist-marketing-radius)',
       },
+      fontSize: {
+        secondaryHeading: 'var(--secondary-heading)',
+      },
       extend: {
         colors: {
           link: 'var(--geist-link-color)',

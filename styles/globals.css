@@ -126,6 +126,10 @@
   --geist-page-width-with-margin: calc(
     var(--geist-page-width) + calc(2 * var(--geist-page-margin))
   );
+
+  /* Font sizes */
+  --secondary-heading: ['64px', '74px']
+
 }
 
 .border-radius-50 {
