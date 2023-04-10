@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import { useRef } from 'react';
+import { useRef } from "react";
+import Image from "next/image";
 
 export type Props = {
-  video: string,
-  width: string,
-  height: string,
-  containerClassName?: string,
-  thumbnailClassName?: string,
-  thumbnailQuality: 'default' | 'hqdefault' | 'mqdefault' | 'sddefault',
+  video: string;
+  width: number ;
+  height: number;
+  containerClassName?: string;
+  thumbnailClassName?: string;
+  thumbnailQuality: "default" | "hqdefault" | "mqdefault" | "sddefault";
 };
 
 export default function YouTubeFrame({
@@ -16,27 +17,27 @@ export default function YouTubeFrame({
   width,
   height,
   thumbnailQuality,
-  thumbnailClassName = '',
-  containerClassName = '',
-}: Props) {
-  const divRef = (useRef < HTMLDivElement) | (null > null);
+  thumbnailClassName = "",
+  containerClassName = "",
+}: Props): JSX.Element {
+  const divRef = useRef<HTMLDivElement | null>(null);
 
   const onClick = () => {
-    const iframe = document.createElement('iframe');
-    iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('allowfullscreen', '1');
+    const iframe = document.createElement("iframe");
+    iframe.setAttribute("frameborder", "0");
+    iframe.setAttribute("allowfullscreen", "1");
     iframe.setAttribute(
-      'allow',
-      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+      "allow",
+      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
     );
-    iframe.style.width = width;
-    iframe.style.height = height;
+    iframe.style.width = width.toString();
+    iframe.style.height = height.toString();
     iframe.setAttribute(
-      'src',
+      "src",
       `https://www.youtube.com/embed/${video}?rel=0&showinfo=1&autoplay=1`,
     );
     if (divRef.current) {
-      divRef.current.innerHTML = '';
+      divRef.current.innerHTML = "";
       divRef.current.appendChild(iframe);
     }
   };
@@ -50,7 +51,7 @@ export default function YouTubeFrame({
         onClick={onClick}
         className="ti-control-play position-absolute display-1 text-white"
       />
-      <img
+      <Image
         onClick={onClick}
         loading="lazy"
         src={`https://img.youtube.com/vi/${video}/${thumbnailQuality}.jpg`}
@@ -62,5 +63,3 @@ export default function YouTubeFrame({
     </div>
   );
 }
-
-export default YouTubeFrame

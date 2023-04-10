@@ -18,6 +18,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "maps.googleapis.com",
       "googleapis.com",
+      "img.youtube.com"
     ],
   },
   webpack(config) {
