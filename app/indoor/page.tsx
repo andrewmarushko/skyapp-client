@@ -14,10 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const pageData = await fetch(
-    `${process.env.NEXT_PUBLIC_DEV_URL}/indoor-page`,
-  );
-  const { seo } = await pageData.json();
+  const {seo} = await getIndoorPageData()
 
   return {
     metadataBase: new URL(
@@ -35,86 +32,16 @@ const IndoorPage = async () => {
     getIndoorPageData(),
   ]);
 
-  console.log("windtunnels", windTunnels);
-
+  console.log("windtunnels", windTunnels, pageIndoorData);
   return (
     <Page>
-      <div>
-        <LargeHeading size="lg">{pageIndoorData.hero.title}</LargeHeading>
-        <h2>{pageIndoorData.hero.subtitle}</h2>
-      </div>
       <div className="grid gap-10">
         {windTunnels &&
-          windTunnels.map((countryData: IndoorDataListInterface) => (
-            <div key={countryData.country} className="grid grid-cols-3 gap-8">
-              {countryData &&
-                countryData.data.map(
-                  ({
-                    indoorLocation,
-                    id,
-                    title,
-                    websiteUrl,
-                    coverImage,
-                  }: IndoorDataItemInterface) => (
-                    <div key={id} className={`relative col-span-1 rounded-xl`}>
-                      <Link
-                        href={`/indoor/${indoorLocation.country}/${indoorLocation.city}/${id}`}
-                      >
-                        <Image
-                          src={coverImage?.url}
-                          alt={coverImage?.alternativeText}
-                          width={200}
-                          height={200}
-                          className="h-[200px] w-full rounded-t-xl object-cover"
-                          priority
-                          quality={100}
-                        />
-
-                        <div className="rounded-b-xl border border-t-0 border-[#d2d2d2] p-3">
-                          <div className="flex justify-between">
-                            <p className="mb-3 font-semibold underline">
-                              <Link
-                                href={`/indoor/${indoorLocation.country}/${indoorLocation.city}/${id}`}
-                              >
-                                {title}
-                              </Link>
-                            </p>
-                            {websiteUrl && (
-                              <a target="_blank" href={websiteUrl}>
-                                <div className="flex items-center gap-1">
-                                  <p>Visit Site</p>
-                                  <Icons.externalLink
-                                    width="20px"
-                                    height="20px"
-                                  />
-                                </div>
-                              </a>
-                            )}
-                          </div>
-                          <div>
-                            <span>
-                              <Link
-                                className="underline"
-                                href={`/indoor/${indoorLocation.country}`}
-                              >
-                                {indoorLocation.country + ", "}
-                              </Link>
-                            </span>
-                            <span>
-                              <Link
-                                className="underline"
-                                href={`/indoor/${indoorLocation.country}/${indoorLocation.city}`}
-                              >
-                                {indoorLocation.city}
-                              </Link>
-                            </span>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                  ),
-                )}
-            </div>
+          windTunnels.map((windTunnel: any) => (
+          <div key={`indoor-${windTunnels.id}`}>
+            <h2>{windTunnels.companyName}</h2>
+            <p>{windTunnel.title}</p>
+          </div>
           ))}
       </div>
       <div className="mt-4 flex w-full justify-center">
