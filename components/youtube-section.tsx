@@ -21,15 +21,18 @@ export default function YouTubeSection({
   if (error) return <div><span> Problem to load videos</span></div>;
 
 
+  console.log(data.items[0])
+
   return (
     <section className="grid grid-cols-3 gap-4">
       {data &&
         data.items?.map((youTubeDataItem: any) => (
           <YouTubeFrame
             key={`video-${youTubeDataItem.id.videoId}`}
-            videoId={youTubeDataItem.id.videoId}
-            width={100}
-            height={100}
+            video={youTubeDataItem.id.videoId}
+            width={300}
+            height={300}
+            thumbnailQuality='hqdefault'
           />
         ))}
     </section>

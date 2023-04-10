@@ -10,10 +10,16 @@ export const paragraphVariants = cva(
       size: {
         default: "text-base sm:text-lg",
         sm: "text-sm sm:text-base",
+        lg: "text-2xl"
       },
+      paragraphStyles: {
+        subtitle: "tracking-tightSubtitle text-accent-4",
+        default: "",
+      }
     },
     defaultVariants: {
       size: "default",
+      paragraphStyles: "default"
     },
   }
 );
@@ -23,12 +29,12 @@ interface ParagraphProps
   VariantProps<typeof paragraphVariants> { }
 
 const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
-  ({ className, size, children, ...props }, ref) => {
+  ({ className, size, paragraphStyles, children, ...props }, ref) => {
     return (
       <p
         ref={ref}
         {...props}
-        className={cn(paragraphVariants({ size, className }))}
+        className={cn(paragraphVariants({ size, paragraphStyles, className }))}
       >
         {children}
       </p>

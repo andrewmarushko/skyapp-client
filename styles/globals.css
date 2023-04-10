@@ -14,8 +14,8 @@
   --accents-7: #aeaeae;
   --accents-8: #fafafa;
 
-  --geist-foreground: rgba(255, 255, 255, 1);
-  --geist-background: rgba(0, 0, 0, 1);
+  --geist-background-light: rgba(255, 255, 255, 1);
+  --geist-background-dark: rgba(0, 0, 0, 1);
 
   --geist-secondary-lighter: var(--accents-2);
   --geist-secondary-light: var(--accents-3);
@@ -126,6 +126,16 @@
   --geist-page-width-with-margin: calc(
     var(--geist-page-width) + calc(2 * var(--geist-page-margin))
   );
+
+  /* Font sizes */
+  --fs-64: 64px;
+
+  /* Line height */
+  --lh-74: 74px;
+
+  /* Letter spacing */
+  --letter-spacing-title: -0.04em;
+  --letter-spacing-subtitle: -0.04em;
 }
 
 .border-radius-50 {

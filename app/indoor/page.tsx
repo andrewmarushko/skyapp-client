@@ -6,7 +6,6 @@ import {
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import LargeHeading from "@/components/ui/large-heading";
-
 import Page from "@/components/ui/page";
 import { IndoorDataItemInterface, IndoorDataListInterface } from "@/types/nav";
 import { Metadata } from "next";
@@ -15,7 +14,6 @@ import Link from "next/link";
 
 export async function generateMetadata(): Promise<Metadata> {
   const {seo} = await getIndoorPageData()
-
   return {
     metadataBase: new URL(
       `https://${seo.canonicalURL}/indoor` ||
@@ -32,7 +30,6 @@ const IndoorPage = async () => {
     getIndoorPageData(),
   ]);
 
-  console.log("windtunnels", windTunnels, pageIndoorData);
   return (
     <Page>
       <div className="grid gap-10">
@@ -51,4 +48,4 @@ const IndoorPage = async () => {
   );
 };
 
-export default IndoorPage;
+export default IndoorPage
