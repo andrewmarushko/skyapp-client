@@ -1,4 +1,4 @@
-import { getAllIndoors, getIndoorsByCountry } from '@/api-service/indoor-api';
+import { getIndoorsByCountry } from '@/api-service/indoor-api';
 import LargeHeading from '@/components/ui/large-heading';
 import Page from '@/components/ui/page';
 import { IndoorDataItemInterface } from '@/types/nav';

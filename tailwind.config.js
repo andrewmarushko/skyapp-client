@@ -4,13 +4,11 @@ const { blackA, mauve, violet, indigo, purple } = require('@radix-ui/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: 'jit',
-  purge: ['app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
   darkMode: ['class'],
   content: ['app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
 
   theme: {
-    screens: {
+    breakpoints: {
       'sm': '640px',
       'md': '768px',
       'lg': '1024px',
@@ -70,6 +68,7 @@ module.exports = {
         'highlight-magenta': 'var(--geist-highlight-magenta)',
         'highlight-pink': 'var(--geist-highlight-pink)',
         'highlight-yellow': 'var(--geist-highlight-yellow)',
+          link: 'var(--geist-link-color)',
       },
       borderRadius: {
         default: 'var(--geist-radius)',
@@ -84,11 +83,6 @@ module.exports = {
       letterSpacing: {
         tightTitle: 'var(--letter-spacing-title)',
         tightSubtitle: 'var(--letter-spacing-subtitle)'
-      },
-      extend: {
-        colors: {
-          link: 'var(--geist-link-color)',
-        },
       },
     },
   },
