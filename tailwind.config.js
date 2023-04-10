@@ -10,6 +10,13 @@ module.exports = {
   content: ['app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
 
   theme: {
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     container: {
       center: true,
       padding: '1.5rem',
@@ -69,7 +76,14 @@ module.exports = {
         marketing: 'var(--geist-marketing-radius)',
       },
       fontSize: {
-        secondaryHeading: 'var(--secondary-heading)',
+        64: 'var(--fs-64)',
+      },
+      lineHeight: {
+        74: 'var(--lh-74)',
+      },
+      letterSpacing: {
+        tightTitle: 'var(--letter-spacing-title)',
+        tightSubtitle: 'var(--letter-spacing-subtitle)'
       },
       extend: {
         colors: {

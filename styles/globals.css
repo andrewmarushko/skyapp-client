@@ -128,8 +128,14 @@
   );
 
   /* Font sizes */
-  --secondary-heading: ['64px', '74px']
+  --fs-64: 64px;
 
+  /* Line height */
+  --lh-74: 74px;
+
+  /* Letter spacing */
+  --letter-spacing-title: -0.04em;
+  --letter-spacing-subtitle: -0.04em;
 }
 
 .border-radius-50 {

@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
 import { Hero } from '@/components/hero';
-import { Input } from '@/components/ui/input';
+import { Input } from "@/components/ui/input";
 
 export default function IndoorsLayout({
   children,
 }: {
-  children: React.ReactNode,
+  children: React.ReactNode;
 }) {
   return (
-    <div>
-      <Hero />
+    <>
+      <Hero title='All indoors' subtitle='Choose one of them and fly like in the sky!' />
       <div className="grid grid-cols-4 gap-12">
         <div className="col-span-1 mt-10 w-full">
           <div>
@@ -27,6 +27,6 @@ export default function IndoorsLayout({
         </div>
         <div className="col-span-3 w-full">{children}</div>
       </div>
-    </div>
+    </>
   );
 }

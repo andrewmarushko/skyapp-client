@@ -1,11 +1,17 @@
-import { siteConfig } from '@/config/site';
 import LargeHeading from './ui/large-heading';
+import Paragraph from './ui/paragraph';
+import { FunctionComponent } from 'react';
 
-export function Hero() {
+interface HeroPropsInterface {
+  title?: string
+  subtitle?: string
+}
+
+export const Hero: FunctionComponent<HeroPropsInterface> = ({title = '', subtitle = ''}) => {
   return (
-    <div className='flex gap-4 flex-col justify-center items-center my-12'>
-      <LargeHeading>All indoors</LargeHeading>
-      <p className='text-2xl text tracking-tight text-accent-4'>Choose the one and fly like in the sky</p>
+    <div className='flex gap-4 flex-col items-center py-12'>
+      <LargeHeading size={"hero"} otherStyles={"hero"}>{title}</LargeHeading>
+      <Paragraph otherStyles={"hero"}>{subtitle}</Paragraph>
     </div>
   );
 }
