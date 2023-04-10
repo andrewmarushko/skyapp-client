@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind variants;
 @tailwind utilities;
 
 :root {
@@ -135,7 +134,7 @@
 
   /* Letter spacing */
   --letter-spacing-title: -0.04em;
-  --letter-spacing-subtitle: -0.04em;
+  --letter-spacing-subtitle: -0.03em;
 }
 
 .border-radius-50 {
