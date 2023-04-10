@@ -10,7 +10,7 @@ interface HeroPropsInterface {
 export const Hero: FunctionComponent<HeroPropsInterface> = ({title = '', subtitle = ''}) => {
   return (
     <div className='flex gap-4 flex-col items-center py-12'>
-      <LargeHeading size={"hero"} headingStyles={"title"}>{title}</LargeHeading>
+      <LargeHeading size={"title"} headingStyles={"title"}>{title}</LargeHeading>
       <Paragraph size={"lg"} paragraphStyles={"subtitle"}>{subtitle}</Paragraph>
     </div>
   );

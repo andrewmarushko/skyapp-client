@@ -12,7 +12,7 @@ const headingVariants = cva(
         default: 'text-6xl md:text-8xl lg:text-8xl',
         lg: 'text-7xl md:text-8xl lg:text-9xl',
         sm: 'text-2xl md:text-3xl lg:text-4xl',
-        hero: 'text-64 leading-74'
+        title: 'text-2xl md:text-64 md:leading-74'
       },
       headingStyles: {
         title: 'max-w-[800px] tracking-tightTitle text-center',
