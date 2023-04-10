@@ -8,13 +8,6 @@ module.exports = {
   content: ['app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
 
   theme: {
-    breakpoints: {
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1536px',
-    },
     container: {
       center: true,
       padding: '1.5rem',
