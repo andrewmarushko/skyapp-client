@@ -1,15 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
-const YOUTUBE_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+const YOUTUBE_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+console.log(process.env.NEXT_PUBLIC_YOUTUBE_API_KEY);
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { channelId: string } },
 ) {
   const res = await fetch(
-    `https://maps.googleapis.com/maps/api/place/details/json?place_id=${params.channelId}&fields=reviews&key=${YOUTUBE_KEY}`,
+    `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_KEY}&channelId=${params.channelId}&part=snippet&order=viewCount&maxResults=9`,
+    { next: { revalidate: 7200 } },
   );
   const data = await res.json();
 
-  return NextResponse.json({ data });
+  return NextResponse.json({ items: data.items });
 }
