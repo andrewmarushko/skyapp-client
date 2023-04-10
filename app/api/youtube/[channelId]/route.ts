@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const YOUTUBE_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
-console.log(process.env.NEXT_PUBLIC_YOUTUBE_API_KEY);
 
 export async function GET(
   request: NextRequest,

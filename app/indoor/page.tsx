@@ -1,20 +1,11 @@
-import {
-  getAllIndoors,
-  getIndoorPageData,
-  getIndoorsData,
-} from "@/api-service/indoor-api";
-import { Icons } from "@/components/icons";
+import { getAllIndoors, getIndoorPageData } from "@/api-service/indoor-api";
 import { Button } from "@/components/ui/button";
-import LargeHeading from "@/components/ui/large-heading";
 
 import Page from "@/components/ui/page";
-import { IndoorDataItemInterface, IndoorDataListInterface } from "@/types/nav";
 import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const {seo} = await getIndoorPageData()
+  const { seo } = await getIndoorPageData();
 
   return {
     metadataBase: new URL(
@@ -32,16 +23,17 @@ const IndoorPage = async () => {
     getIndoorPageData(),
   ]);
 
-  console.log("windtunnels", windTunnels, pageIndoorData);
   return (
     <Page>
+      <h1>{pageIndoorData.hero.title}</h1>
+      <p>{pageIndoorData.hero.subtitle}</p>
       <div className="grid gap-10">
         {windTunnels &&
           windTunnels.map((windTunnel: any) => (
-          <div key={`indoor-${windTunnels.id}`}>
-            <h2>{windTunnels.companyName}</h2>
-            <p>{windTunnel.title}</p>
-          </div>
+            <div key={`indoor-${windTunnels.id}`}>
+              <h2>{windTunnels.companyName}</h2>
+              <p>{windTunnel.title}</p>
+            </div>
           ))}
       </div>
       <div className="mt-4 flex w-full justify-center">
