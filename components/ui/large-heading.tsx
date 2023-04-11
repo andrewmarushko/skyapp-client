@@ -3,7 +3,6 @@ import { FunctionComponent } from 'react';
 import { cn } from '@/lib/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 
-//  TODO: Make the same styles as vercel.com or nextjs.org have
 const headingVariants = cva(
   'text-black dark:text-white font-bold leading-tight',
   {
