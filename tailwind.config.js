@@ -79,8 +79,8 @@ module.exports = {
         tightSubtitle: 'var(--letter-spacing-subtitle)'
       },
       boxShadow: {
-        customSm: 'var(--shadow-small)',
-        customMd: 'var(--shadow-medium)',
+        geistShadowSm: 'var(--shadow-small)',
+        geistShadowMd: 'var(--shadow-medium)',
         whiteBorderShadow: 'var(--shadow-medium-border)'
       },
       transitionProperty: {
