@@ -32,7 +32,8 @@ module.exports = {
         'accent-7': 'var(--accents-7)',
         'accent-8': 'var(--accents-8)',
         foreground: 'var(--geist-foreground)',
-        background: 'var(--geist-background)',
+        background: 'var(--geist-background-light)',
+        'background-dark': 'var(--geist-background-dark)',
         'secondary-lighter': 'var(--geist-secondary-lighter)',
         'secondary-light': 'var(--geist-secondary-light)',
         secondary: 'var(--geist-secondary)',
@@ -77,6 +78,17 @@ module.exports = {
         tightTitle: 'var(--letter-spacing-title)',
         tightSubtitle: 'var(--letter-spacing-subtitle)'
       },
+      boxShadow: {
+        customSm: 'var(--shadow-small)',
+        customMd: 'var(--shadow-medium)',
+        whiteBorderShadow: 'var(--shadow-medium-border)'
+      },
+      transitionProperty: {
+        boxShadow: 'box-shadow',
+      },
+      transitionTimingFunction: {
+        ease: 'ease'
+      }
     },
   },
   plugins: [

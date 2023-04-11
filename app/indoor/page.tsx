@@ -5,8 +5,10 @@ import {
 } from "@/api-service/indoor-api";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import LargeHeading from "@/components/ui/large-heading";
 import Page from "@/components/ui/page";
+import Paragraph from "@/components/ui/paragraph";
 import { IndoorDataItemInterface, IndoorDataListInterface } from "@/types/nav";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -29,17 +31,18 @@ const IndoorPage = async () => {
     getAllIndoors(),
     getIndoorPageData(),
   ]);
-
   return (
     <Page>
-      <div className="grid gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {windTunnels &&
           windTunnels.map((windTunnel: any) => (
-          <div key={`indoor-${windTunnels.id}`}>
-            <h2>{windTunnels.companyName}</h2>
-            <p>{windTunnel.title}</p>
-          </div>
-          ))}
+            <Card key={`indoor-${windTunnels.id}`}>
+              <Paragraph>
+                {windTunnel.title}
+              </Paragraph>
+            </Card>
+          ))
+        }
       </div>
       <div className="mt-4 flex w-full justify-center">
         <Button>Load More</Button>
