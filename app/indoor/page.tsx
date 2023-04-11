@@ -31,7 +31,7 @@ const IndoorPage = async () => {
       <div className="grid gap-10">
         {windTunnels &&
           windTunnels.map((windTunnel: any) => (
-            <div key={`indoor-${windTunnels.id}`}>
+            <div key={`indoor-${windTunnels.title}`}>
               <h2>{windTunnels.companyName}</h2>
               <p>{windTunnel.title}</p>
             </div>
