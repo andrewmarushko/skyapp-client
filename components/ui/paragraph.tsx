@@ -13,7 +13,7 @@ export const paragraphVariants = cva(
         lg: "text-xl md:text-2xl"
       },
       paragraphStyles: {
-        subtitle: "tracking-tightSubtitle text-sk-accent-4",
+        subtitle: "tracking-tightSubtitle text-accent-400",
         default: "",
       }
     },

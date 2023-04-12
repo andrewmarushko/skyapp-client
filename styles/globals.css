@@ -13,8 +13,8 @@
   --accents-7: #aeaeae;
   --accents-8: #fafafa;
 
-  --geist-background-light: #fff;
-  --geist-background-dark: #000;
+  --geist-background-light: rgba(255, 255, 255, 1);
+  --geist-background-dark: rgba(0, 0, 0, 1);
 
   --geist-secondary-lighter: var(--accents-2);
   --geist-secondary-light: var(--accents-3);
@@ -79,6 +79,8 @@
   --wv-green: #0cce6b;
   --wv-orange: #ffa400;
   --wv-red: #ff4e42;
+  --wv-black: #000;
+  --wv-white: #fff;
 
   /* Spaces */
   --geist-space: 4px;
