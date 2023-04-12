@@ -25,6 +25,7 @@ module.exports = {
 
         //accents
         accent: {
+          DEFAULT: 'var(--accents-0)',
           100: 'var(--accents-1)',
           200: 'var(--accents-2)',
           300: 'var(--accents-3)',
@@ -33,11 +34,7 @@ module.exports = {
           600: 'var(--accents-6)',
           700: 'var(--accents-7)',
           800: 'var(--accents-8)',
-          bg: {
-            dark: 'var(--wv-black)',
-            white: 'var(--wv-white)'
-          }
-
+          900: 'var(--accents-9)',
         },
         //bg-colors
         sk: {

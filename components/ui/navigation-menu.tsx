@@ -101,7 +101,7 @@ const NavigationMenuIndicator = forwardRef<
     )}
     {...props}
   >
-    <div className="relative top-[70%] h-[10px] w-[10px] z-50 rotate-[45deg] rounded-tl-[2px] bg-foreground border border-accent-200 dark:border-accent-200 dark:bg-sk-light text-bg" />
+    <div className="relative top-[70%] h-[10px] w-[10px] z-50 rotate-[45deg] rounded-tl-[2px] bg-foreground border border-accent-200 dark:border-accent-200 dark:bg-sk-light" />
   </NavigationMenuPrimitive.Indicator>
 ))
 
