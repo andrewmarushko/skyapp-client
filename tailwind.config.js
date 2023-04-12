@@ -80,7 +80,7 @@ module.exports = {
       },
       boxShadow: {
         'geist-shadow-sm': 'var(--shadow-small)',
-        'geist-shadow-md: 'var(--shadow-medium)',
+        'geist-shadow-md': 'var(--shadow-medium)',
         'border-shadow-white': 'var(--shadow-medium-border)'
       },
       transitionProperty: {
