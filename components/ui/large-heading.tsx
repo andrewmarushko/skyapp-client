@@ -14,7 +14,7 @@ const headingVariants = cva(
         title: 'text-4xl md:text-64 md:leading-74'
       },
       headingStyles: {
-        title: 'max-w-full md:max-w-[800px] tracking-tightTitle text-center',
+        title: 'max-w-full md:max-w-[800px] tracking-tight-title text-center',
         default: 'tracking-tighter'
       }
     },

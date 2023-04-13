@@ -1,4 +1,3 @@
-import { fontFamily, colors } from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
 const { blackA, mauve, violet, indigo, purple } = require('@radix-ui/colors');
 
@@ -89,29 +88,34 @@ module.exports = {
         },
       },
       borderRadius: {
-        default: 'var(--geist-radius)',
+        DEFAULT: 'var(--geist-radius)',
         marketing: 'var(--geist-marketing-radius)',
       },
       fontSize: {
-        64: 'var(--fs-64)',
+        64: 'var(--font-size-64)',
       },
       lineHeight: {
-        74: 'var(--lh-74)',
+        74: 'var(--line-height-74)',
       },
       letterSpacing: {
-        tightTitle: 'var(--letter-spacing-title)',
-        tightSubtitle: 'var(--letter-spacing-subtitle)'
+        tight: {
+          title: 'var(--letter-spacing-title)',
+          subtitle: 'var(--letter-spacing-subtitle)'
+        }
       },
       boxShadow: {
         'geist-shadow-sm': 'var(--shadow-small)',
         'geist-shadow-md': 'var(--shadow-medium)',
-        'border-shadow-white': 'var(--shadow-medium-border)'
+        'geist-shadow-sm-dark': 'var(--shadow-small-dark)',
+        'geist-shadow-md-dark': 'var(--shadow-medium-dark)',
+        'geist-border-shadow-white': 'var(--shadow-medium)',
+        'geist-border-shadow-white-dark': 'var(--shadow-medium-border)',
       },
       transitionProperty: {
-        boxShadow: 'box-shadow',
+        'box-shadow': 'box-shadow',
       },
       transitionTimingFunction: {
-        ease: 'ease'
+        DEFAULT: 'var(--transition-timing-function-default-ease)'
       }
     },
   },

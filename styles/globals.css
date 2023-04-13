@@ -15,6 +15,7 @@
   --accents-8: #fafafa;
   --accents-9: #fff;
 
+  --geist-foreground: #fff;
   --geist-background-light: rgba(255, 255, 255, 1);
   --geist-background-dark: rgba(0, 0, 0, 1);
 
@@ -74,8 +75,19 @@
   --shadow-large: 0 30px 60px rgba(0, 0, 0, 0.12);
   --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.12);
   --shadow-sticky: 0 12px 10px -10px rgba(0, 0, 0, 0.12);
-  --shadow-medium-border: 0 0 0 1px var(--geist-background-light);
 
+  /* Shadows dark */
+  --shadow-smallest-dark: 0 0 0 1px var(--accents-2);
+  --shadow-extra-small-dark: 0 0 0 1px var(--accents-2);
+  --shadow-small-dark: 0 0 0 1px var(--accents-2);
+  --shadow-medium-dark: 0 0 0 1px var(--accents-2);
+  --shadow-large-dark: 0 0 0 1px var(--accents-2);
+  --shadow-sticky-dark: 0 0 0 1px var(--accents-2);
+  --shadow-hover-dark: 0 0 0 1px var(--geist-foreground);
+  --shadow-medium-border: 0 0 0 1px var(--geist-foreground);
+
+  /* Transition timing function */
+  --transition-timing-function-default-ease: cubic-bezier(0.25, 0.1, 0.25, 1.0) 
 
   /* Other colors */
   --wv-green: #0cce6b;
@@ -131,14 +143,17 @@
   );
 
   /* Font sizes */
-  --fs-64: 64px;
+  --font-size-64: 64px;
 
   /* Line height */
-  --lh-74: 74px;
+  --line-height-74: 74px;
 
   /* Letter spacing */
   --letter-spacing-title: -0.04em;
   --letter-spacing-subtitle: -0.03em;
+  /* .dark {
+    --shadow-small: 0 0 0 1px var(--accents-2);
+  } */
 }
 
 .border-radius-50 {
