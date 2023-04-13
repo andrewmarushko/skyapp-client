@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 
 import Page from '@/components/ui/page';
 import { Metadata } from 'next';
+import { Card } from "@/components/ui/card";
+import Paragraph from "@/components/ui/paragraph";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getIndoorPageData();
@@ -28,14 +30,16 @@ const IndoorPage = async () => {
   console.log('windtunnels', windTunnels, pageIndoorData);
   return (
     <Page>
-      <div className="grid gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         {windTunnels &&
           windTunnels.map((windTunnel: any) => (
-            <div key={`indoor-${windTunnels.title}`}>
-              <h2>{windTunnels.companyName}</h2>
-              <p>{windTunnel.title}</p>
-            </div>
-          ))}
+            <Card key={`indoor-${windTunnels.id}`}>
+              <Paragraph>
+                {windTunnel.title}
+              </Paragraph>
+            </Card>
+          ))
+        }
       </div>
       <div className="mt-4 flex w-full justify-center">
         <Button>Load More</Button>

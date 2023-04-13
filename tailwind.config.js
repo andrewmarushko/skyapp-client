@@ -1,4 +1,3 @@
-import { fontFamily, colors } from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
 const { blackA, mauve, violet, indigo, purple } = require('@radix-ui/colors');
 
@@ -23,60 +22,101 @@ module.exports = {
         ...purple,
         ...indigo,
 
-        'accent-1': 'var(--accents-1)',
-        'accent-2': 'var(--accents-2)',
-        'accent-3': 'var(--accents-3)',
-        'accent-4': 'var(--accents-4)',
-        'accent-5': 'var(--accents-5)',
-        'accent-6': 'var(--accents-6)',
-        'accent-7': 'var(--accents-7)',
-        'accent-8': 'var(--accents-8)',
-        foreground: 'var(--geist-foreground)',
-        background: 'var(--geist-background)',
-        'secondary-lighter': 'var(--geist-secondary-lighter)',
-        'secondary-light': 'var(--geist-secondary-light)',
-        secondary: 'var(--geist-secondary)',
-        'secondary-dark': 'var(--geist-secondary-dark)',
-        'error-lighter': 'var(--geist-error-lighter)',
-        'error-light': 'var(--geist-error-light)',
-        error: 'var(--geist-error)',
-        'error-dark': 'var(--geist-error-dark)',
-        'success-lighter': 'var(--geist-success-lighter)',
-        'success-light': 'var(--geist-success-light)',
-        success: 'var(--geist-success)',
-        'success-dark': 'var(--geist-success-dark)',
-        'warning-lighter': 'var(--geist-warning-lighter)',
-        'warning-light': 'var(--geist-warning-light)',
-        warning: 'var(--geist-warning)',
-        'warning-dark': 'var(--geist-warning-dark)',
-        'violet-lighter': 'var(--geist-violet-lighter)',
-        'violet-light': 'var(--geist-violet-light)',
-        violet: 'var(--geist-violet)',
-        'violet-dark': 'var(--geist-violet-dark)',
-        'cyan-lighter': 'var(--geist-cyan-lighter)',
-        'cyan-light': 'var(--geist-cyan-light)',
-        cyan: 'var(--geist-cyan)',
-        'cyan-dark': 'var(--geist-cyan-dark)',
-        'highlight-purple': 'var(--geist-highlight-purple)',
-        'highlight-magenta': 'var(--geist-highlight-magenta)',
-        'highlight-pink': 'var(--geist-highlight-pink)',
-        'highlight-yellow': 'var(--geist-highlight-yellow)',
-          link: 'var(--geist-link-color)',
+        //accents
+        accent: {
+          DEFAULT: 'var(--accent)',
+          100: 'var(--accents-1)',
+          200: 'var(--accents-2)',
+          300: 'var(--accents-3)',
+          400: 'var(--accents-4)',
+          500: 'var(--accents-5)',
+          600: 'var(--accents-6)',
+          700: 'var(--accents-7)',
+          800: 'var(--accents-8)',
+          900: 'var(--accents-9)',
+        },
+        //bg-colors
+        sk: {
+          light: 'var(--geist-background-light)',
+          dark: 'var(--geist-background-dark)'
+        },
+        //link
+        link: 'var(--geist-link-color)',
+        //secondary colors
+        secondary: {
+          lighter: 'var(--geist-secondary-lighter)',
+          light: 'var(--geist-secondary-light)',
+          DEFAULT: 'var(--geist-secondary)',
+          dark: 'var(--geist-secondary-dark)'
+        },
+        //custom colors from geist pallette
+        error: {
+          lighter: 'var(--geist-error-lighter)',
+          light: 'var(--geist-error-light)',
+          DEFAULT: 'var(--geist-error)',
+          dark: 'var(--geist-error-dark)',
+        },
+        success: {
+          lighter: 'var(--geist-success-lighter)',
+          light: 'var(--geist-success-light)',
+          DEFAULT: 'var(--geist-success)',
+          dark: 'var(--geist-success-dark)',
+        },
+        warning: {
+          lighter: 'var(--geist-warning-lighter)',
+          light: 'var(--geist-warning-light)',
+          DEFAULT: 'var(--geist-warning)',
+          dark: 'var(--geist-warning-dark)',
+        },
+        violet: {
+          lighter: 'var(--geist-violet-lighter)',
+          light: 'var(--geist-violet-light)',
+          DEFAULT: 'var(--geist-violet)',
+          dark: 'var(--geist-violet-dark)',
+        },
+        cyan: {
+          lighter: 'var(--geist-cyan-lighter)',
+          light: 'var(--geist-cyan-light)',
+          DEFAULT: 'var(--geist-cyan)',
+          dark: 'var(--geist-cyan-dark)',
+        },
+        hightlight: {
+          purple: 'var(--geist-highlight-purple)',
+          magenta: 'var(--geist-highlight-magenta)',
+          pink: 'var(--geist-highlight-pink)',
+          yellow: 'var(--geist-highlight-yellow)',
+        },
       },
       borderRadius: {
-        default: 'var(--geist-radius)',
+        DEFAULT: 'var(--geist-radius)',
         marketing: 'var(--geist-marketing-radius)',
       },
       fontSize: {
-        64: 'var(--fs-64)',
+        64: 'var(--font-size-64)',
       },
       lineHeight: {
-        74: 'var(--lh-74)',
+        74: 'var(--line-height-74)',
       },
       letterSpacing: {
-        tightTitle: 'var(--letter-spacing-title)',
-        tightSubtitle: 'var(--letter-spacing-subtitle)'
+        tight: {
+          title: 'var(--letter-spacing-title)',
+          subtitle: 'var(--letter-spacing-subtitle)'
+        }
       },
+      boxShadow: {
+        'geist-shadow-sm': 'var(--shadow-small)',
+        'geist-shadow-md': 'var(--shadow-medium)',
+        'geist-shadow-sm-dark': 'var(--shadow-small-dark)',
+        'geist-shadow-md-dark': 'var(--shadow-medium-dark)',
+        'geist-border-shadow-white': 'var(--shadow-medium)',
+        'geist-border-shadow-white-dark': 'var(--shadow-medium-border)',
+      },
+      transitionProperty: {
+        'box-shadow': 'box-shadow',
+      },
+      transitionTimingFunction: {
+        DEFAULT: 'var(--transition-timing-function-default-ease)'
+      }
     },
   },
   plugins: [
