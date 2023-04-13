@@ -4,7 +4,7 @@
 
 :root {
   /* Primary */
-  --accents-0: #000;
+  --accent: #000;
   --accents-1: #111;
   --accents-2: #333;
   --accents-3: #444;
@@ -151,9 +151,6 @@
   /* Letter spacing */
   --letter-spacing-title: -0.04em;
   --letter-spacing-subtitle: -0.03em;
-  /* .dark {
-    --shadow-small: 0 0 0 1px var(--accents-2);
-  } */
 }
 
 .border-radius-50 {

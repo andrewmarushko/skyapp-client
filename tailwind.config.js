@@ -24,7 +24,7 @@ module.exports = {
 
         //accents
         accent: {
-          DEFAULT: 'var(--accents-0)',
+          DEFAULT: 'var(--accent)',
           100: 'var(--accents-1)',
           200: 'var(--accents-2)',
           300: 'var(--accents-3)',
