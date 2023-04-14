@@ -6,7 +6,7 @@ interface PageProps {
 
 const Page = ({ children }: PageProps) => {
   return (
-      <div className="flex flex-col items-start gap-2">
+      <div className="flex flex-col items-start gap-2 w-screen">
         {children}
       </div>
   );
