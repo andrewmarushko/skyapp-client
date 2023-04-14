@@ -8,8 +8,8 @@
     Author: @andrewmarushko
 */
 
-import { Card } from './ui/card'
-import { Button } from './ui/button'
+import { Card } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 import { useFetchSWR } from '@/hooks/useFetchSWR';
 
 // TODO: Add types for data
@@ -17,7 +17,7 @@ import { useFetchSWR } from '@/hooks/useFetchSWR';
 const fetchIndoorsData = async (): Promise<any> => {
     const response = await fetch(`http://localhost:1337/api/indoors`);
     if (!response.ok) {
-      throw new Error("Не удалось загрузить данные пользователя");
+      throw new Error("Can't load data from server");
     }
 
     const indoorData: {data: any} = await response.json()
@@ -48,7 +48,7 @@ export const ContentLayout = () => {
     if (error) {
         handleError(error);
         // Отобразить сообщение об ошибке или выполнить другую логику
-        return <div>Can't load indoors</div>;
+        return <div>Cant load indoors</div>;
       }
 
     // TODO: Create no found component
@@ -59,7 +59,7 @@ export const ContentLayout = () => {
         <div className='container grid grid-cols-2 gap-5'>
             <div>Filter sidebar</div>
 
-            <div className=''>
+            <div>
                 <div className='grid grid-cols-3 gap-4'>
                 {data.map((item: any) => {
                     return (
