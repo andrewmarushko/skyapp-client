@@ -3,8 +3,9 @@ import { Button } from '@/components/ui/button';
 
 import Page from '@/components/ui/page';
 import { Metadata } from 'next';
-import { Card } from "@/components/ui/card";
 import Paragraph from "@/components/ui/paragraph";
+import LargeHeading from '@/components/ui/large-heading';
+import { ContentLayout } from '@/components/content-layout';
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getIndoorPageData();
@@ -27,23 +28,13 @@ const IndoorPage = async () => {
     getIndoorPageData(),
   ]);
 
-  console.log('windtunnels', windTunnels, pageIndoorData);
   return (
     <Page>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {windTunnels &&
-          windTunnels.map((windTunnel: any) => (
-            <Card key={`indoor-${windTunnels.id}`}>
-              <Paragraph>
-                {windTunnel.title}
-              </Paragraph>
-            </Card>
-          ))
-        }
+      <div className='flex flex-col items-center w-full'>
+        <LargeHeading size={'title'} headingStyles={'title'}>Find you wind tunel</LargeHeading>
+        <Paragraph paragraphStyles={'subtitle'}>Here you can find perfect spot for you indoor skydiving and grow your flying skills.</Paragraph>
       </div>
-      <div className="mt-4 flex w-full justify-center">
-        <Button>Load More</Button>
-      </div>
+        <ContentLayout />
     </Page>
   );
 };

@@ -10,6 +10,9 @@ export type YouTubeSectionProps = {
 export default function YouTubeSection({
   youtubeChannelId,
 }: YouTubeSectionProps) {
+
+  // TODO: use useFetchSWR hook here 
+
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   const { data, error } = useSWR(`/api/youtube/${youtubeChannelId}`, fetcher, {
     revalidateOnMount: true,
@@ -20,8 +23,6 @@ export default function YouTubeSection({
 
   if (error) return <div><span> Problem to load videos</span></div>;
 
-
-  console.log(data.items[0])
 
   return (
     <section className="grid grid-cols-3 gap-4">
