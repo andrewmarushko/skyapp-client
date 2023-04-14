@@ -11,6 +11,7 @@
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useFetchSWR } from '@/hooks/useFetchSWR';
+import Link from 'next/link';
 
 // TODO: Add types for data
 
@@ -63,9 +64,11 @@ export const ContentLayout = () => {
                 <div className='grid grid-cols-3 gap-4'>
                 {data.map((item: any) => {
                     return (
+                        <Link href={`indoor/${item.attributes.slug}`}>
                         <Card key={item.id}>
                             <h1>{ item.attributes.title}</h1>
                         </Card>
+                        </Link>
                     )
                 })}
                 </div>
