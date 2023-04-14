@@ -64,8 +64,8 @@ export const ContentLayout = () => {
                 <div className='grid grid-cols-3 gap-4'>
                 {data.map((item: any) => {
                     return (
-                        <Link href={`indoor/${item.attributes.slug}`}>
-                        <Card key={item.id}>
+                        <Link key={item.id} href={`indoor/${item.attributes.slug}`}>
+                        <Card>
                             <h1>{ item.attributes.title}</h1>
                         </Card>
                         </Link>
