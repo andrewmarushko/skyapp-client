@@ -8,6 +8,11 @@ import { Header } from '@/components/header';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
+import {
+  getFooterData,
+  getLogoData,
+  getNavigationData,
+} from '@/api-service/indoor-api';
 
 const fontSans = Inter({
   subsets: ['latin'],
@@ -19,7 +24,17 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function Layout({ children }: RootLayoutProps) {
+  const logoResponse = getLogoData();
+  const navigationMenuResponse = getNavigationData();
+  const footerResponse = getFooterData();
+
+  const [logoData, navigationMenuData, footerData] = await Promise.all([
+    logoResponse,
+    navigationMenuResponse,
+    footerResponse,
+  ]);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -30,9 +45,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="flex min-h-screen flex-col">
-            <Header />
+            <Header logoData={logoData} navigationData={navigationMenuData} />
             <div className="flex-1">{children}</div>
-            <Footer />
+            <Footer footerData={footerData} />
           </div>
         </ThemeProvider>
         <Analytics />

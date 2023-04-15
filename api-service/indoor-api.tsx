@@ -44,3 +44,27 @@ export async function getIndoorPageData() {
   return data;
 
 }
+
+export async function getFooterData() {
+  const data = await request<any>(`${API_URL}/general?populate[0]=footer&populate[1]=footer.links,footer.copyright,footer.subscribe,footer.social&populate[2]=footer.navigation.links,footer.subscribe.submitButton,footer.social.link`, { cache: 'force-cache' }, (error)=> {
+    console.error(error)
+  })
+
+  return data.data.attributes;
+}
+
+export async function getLogoData() {
+  const data = await request<any>(`${API_URL}/general?populate[0]=logo&populate[1]=logo.logok`, { cache: 'force-cache' }, (error)=> {
+    console.error(error)
+  })
+
+  return data.data.attributes;
+}
+
+export async function getNavigationData() {
+  const data = await request<any>(`${API_URL}/general?populate[0]=mainNavigation&populate[1]=mainNavigation.navigationLinks,mainNavigation.panel&populate[2]=mainNavigation.panel.push,mainNavigation.panel.links&populate[3]=mainNavigation.panel.push.link,mainNavigation.panel.links.link`, { cache: 'force-cache' }, (error)=> {
+    console.error(error)
+  })
+
+  return data.data.attributes;
+}

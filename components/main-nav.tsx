@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { Icons } from '@/components/icons';
 import {
   ListItem,
   NavigationMenu,
@@ -12,14 +11,30 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import { Separator } from '@/components/ui/separator';
 
-export function MainNav() {
+// WARN: Add navigation interface
+interface MainNavigationProps {
+  mainNavigationData: any
+}
+
+export function MainNav({ mainNavigationData }: MainNavigationProps) {
+  const { panel, navigationLinks} = mainNavigationData
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+        {panel.map((panelItem:  {label: string, id: number, push: {
+          description: string,
+          link: {
+            label: string,
+            href: string,
+            target: string
+          },      
+        }, 
+        links: []
+      }) => (
+          <NavigationMenuItem key={panelItem.id}>
+          <NavigationMenuTrigger>{panelItem.label}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="one m-0 grid list-none gap-x-[10px] p-[6px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
               <li className="row-span-3 grid">
@@ -27,37 +42,39 @@ export function MainNav() {
                   <a
                     className="flex h-full w-full select-none 
                       flex-col justify-end rounded-[4px] bg-gradient-to-b from-purple9 to-indigo9 p-[25px] no-underline outline-none focus:shadow-[0_0_0_2px] focus:shadow-violet7"
-                    href="/"
+                    href={panelItem.push.link.href}
+                    target={panelItem.push.link.target}
                   >
-                    <Icons.logo className="h-6 w-6 text-white" />
                     <div className="mb-2 mt-4 text-lg font-medium text-white">
-                      Sky App
+                      {panelItem.push.link.label}
                     </div>
                     <p className="text-sm leading-tight text-white/90">
-                      Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
+                      {panelItem.push.description}
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/indoor" title="Indoor">
-                Re-usable components built using Radix UI and Tailwind CSS.
-              </ListItem>
-              <ListItem href="/dropzone" title="Dropzone">
-                How to install dependencies and structure your app.
-              </ListItem>
-              <ListItem href="/blog" title="Blog">
-                Styles for headings, paragraphs, lists...etc
-              </ListItem>
+              {panelItem.links.map((linkItem: {id: number, description: string, link: {
+                label: string,
+                href: string
+              }}) => (
+                <ListItem key={linkItem.id} href={linkItem.link.href} title={linkItem.link.label}>
+                  {linkItem.description}
+                </ListItem>)
+              )}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
+        ))}
         <NavigationMenuItem>
-          <Link href="/services" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Other Services
-            </NavigationMenuLink>
-          </Link>
+          {navigationLinks.map((navigation: { id: number, href: string, label: string })  => (
+              <Link href={navigation.href} key={navigation.id} legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  {navigation.label}
+                </NavigationMenuLink>
+              </Link>
+            )
+          )}
         </NavigationMenuItem>
       </NavigationMenuList>
       {/* TODO: Need too make proper styles for borders */}
