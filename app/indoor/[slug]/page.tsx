@@ -1,6 +1,4 @@
-import {
-  getIndoorsByID,
-} from '@/api-service/indoor-api';
+import { getIndoorsByID } from '@/api-service/indoor-api';
 import { Icons } from '@/components/icons';
 import LargeHeading from '@/components/ui/large-heading';
 import Page from '@/components/ui/page';
@@ -14,17 +12,12 @@ import { Suspense } from 'react';
 
 interface IndoorTubePageProps {
   params: {
-    slug: string;
+    slug: string,
   };
 }
 
-const IndoorTubePage = async ({
-  params: { slug },
-}: IndoorTubePageProps) => {
-  
-  const indoorsList: any = await getIndoorsByID(
-    slug
-  );
+const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
+  const indoorsList: any = await getIndoorsByID(slug);
 
   // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
   // const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;

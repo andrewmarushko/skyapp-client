@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { getIndoorPageData } from '@/api-service/indoor-api';
 import Page from '@/components/ui/page';
-import Paragraph from "@/components/ui/paragraph";
+import Paragraph from '@/components/ui/paragraph';
 import LargeHeading from '@/components/ui/large-heading';
 import { ContentLayout } from '@/components/content-layout';
 
@@ -22,15 +22,19 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const IndoorPage = async () => {
-  const pageIndoorData = await getIndoorPageData()
+  const pageIndoorData = await getIndoorPageData();
 
   return (
     <Page>
-      <div className='flex flex-col items-center w-full'>
-        <LargeHeading size={'title'} headingStyles={'title'}>{pageIndoorData.hero.title}</LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>{pageIndoorData.hero.subtitle}</Paragraph>
+      <div className="flex w-full flex-col items-center">
+        <LargeHeading size={'title'} headingStyles={'title'}>
+          {pageIndoorData.hero.title}
+        </LargeHeading>
+        <Paragraph paragraphStyles={'subtitle'}>
+          {pageIndoorData.hero.subtitle}
+        </Paragraph>
       </div>
-        <ContentLayout />
+      <ContentLayout />
     </Page>
   );
 };
