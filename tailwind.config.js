@@ -34,6 +34,7 @@ module.exports = {
           700: 'var(--accents-7)',
           800: 'var(--accents-8)',
           900: 'var(--accents-9)',
+          1000: 'var(--accents-10)',
         },
         //bg-colors
         sk: {
@@ -86,6 +87,24 @@ module.exports = {
           pink: 'var(--geist-highlight-pink)',
           yellow: 'var(--geist-highlight-yellow)',
         },
+        //button custom colors
+        button: {
+          default: {
+            fg: 'var(--button-custom-fg)',
+            bg: 'var(--button-custom-bg)',
+            border: 'var(--button-custom-border)',
+            'fg-active': 'var(--button-custom-fg-active)',
+            'bg-active': 'var(--button-custom-bg-active)',
+            'border-active': 'var(--button-custom-border-active)',
+            'fg-hover': 'var(--button-custom-fg-hover)',
+            'bg-hover': 'var(--button-custom-bg-hover)',
+            'border-hover': 'var(--button-custom-border-hover)',
+          }
+        },
+        'geist-foreground': 'var(--geist-foreground)'
+      },
+      spacing: {
+        'geist-gap-half': 'var(--geist-gap-half)'
       },
       borderRadius: {
         DEFAULT: 'var(--geist-radius)',
@@ -93,9 +112,20 @@ module.exports = {
       },
       fontSize: {
         64: 'var(--font-size-64)',
+        'geist-form-large-font': 'var(--geist-form-large-font)',
+        'geist-form-small-font': 'var(--geist-form-small-font)',
+        'geist-form-font': 'var(--geist-form-font)'
       },
       lineHeight: {
         74: 'var(--line-height-74)',
+        'geist-form-large-line-height': 'var(--geist-form-large-line-height)',
+        'geist-form-small-line-height': 'var(--geist-form-small-line-height)',
+        'geist-form-line-height': 'var(--geist-form-line-height)'
+      },
+      height: {
+        'geist-form-large-height': 'var(--geist-form-large-height)',
+        'geist-form-small-height': 'var(--geist-form-small-height)',
+        'geist-form-height': 'var(--geist-form-height)'
       },
       letterSpacing: {
         tight: {
@@ -111,11 +141,24 @@ module.exports = {
         'geist-border-shadow-white': 'var(--shadow-medium)',
         'geist-border-shadow-white-dark': 'var(--shadow-medium-border)',
       },
-      transitionProperty: {
-        'box-shadow': 'box-shadow',
-      },
       transitionTimingFunction: {
         DEFAULT: 'var(--transition-timing-function-default-ease)'
+      },
+      minWidth: {
+        164: "164px"
+      },
+      maxWidth: {
+        164: "164px"
+      },
+      animation: {
+        'loading-blink': 'loading-blink 1.4s infinite both'
+      },
+      keyframes: {
+        'loading-blink': {
+          '0%': { opacity: 0.2 },
+          '20%': { transform: 1 },
+          '100%': { transform: 0.2 },
+        }
       }
     },
   },

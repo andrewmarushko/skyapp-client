@@ -12,10 +12,11 @@
   --accents-5: #888;
   --accents-6: #999;
   --accents-7: #aeaeae;
-  --accents-8: #fafafa;
-  --accents-9: #fff;
+  --accents-8: #eaeaea;
+  --accents-9: #fafafa;
+  --accents-10: #fff;
 
-  --geist-foreground: #fff;
+  --geist-foreground: var(--accents-10);
   --geist-background-light: rgba(255, 255, 255, 1);
   --geist-background-dark: rgba(0, 0, 0, 1);
 
@@ -86,6 +87,17 @@
   --shadow-hover-dark: 0 0 0 1px var(--geist-foreground);
   --shadow-medium-border: 0 0 0 1px var(--geist-foreground);
 
+  /* Button custom colors */
+  --button-custom-fg: var(--accents-10);
+  --button-custom-bg: #24292e;
+  --button-custom-border: #24292e;
+  --button-custom-fg-active: ;
+  --button-custom-bg-active: ;
+  --button-custom-border-active: var(--accent);
+  --button-custom-fg-hover: var(--accents-10);
+  --button-custom-bg-hover: #555;
+  --button-custom-border-hover: #555;
+
   /* Transition timing function */
   --transition-timing-function-default-ease: cubic-bezier(0.25, 0.1, 0.25, 1.0) 
 
@@ -134,6 +146,15 @@
   --geist-gap-half-negative: var(--geist-space-gap-half-negative);
   --geist-gap-quarter-negative: var(--geist-space-gap-quarter-negative);
   --geist-gap-double-negative: var(--geist-space-large-negative);
+  --geist-form-large-font: 1rem;
+  --geist-form-large-line-height: 1.5rem;
+  --geist-form-large-height: var(--geist-space-large);
+  --geist-form-small-font: 0.875rem;
+  --geist-form-small-line-height: 0.875rem;
+  --geist-form-small-height: var(--geist-space-small);
+  --geist-form-font: 0.875rem;
+  --geist-form-line-height: 1.25rem;
+  --geist-form-height: var(--geist-space-medium);
 
   /* Width */
   --geist-page-width: 1200px;

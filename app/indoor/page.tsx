@@ -41,8 +41,8 @@ const IndoorPage = async () => {
           ))
         }
       </div>
-      <div className="mt-4 flex w-full justify-center">
-        <Button>Load More</Button>
+      <div className="mt-4 flex gap-4 justify-center">
+        <Button size={'lg'}>Action</Button>
       </div>
     </Page>
   );
