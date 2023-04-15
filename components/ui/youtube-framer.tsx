@@ -20,7 +20,7 @@ export default function YouTubeFrame({
   thumbnailClassName = '',
   containerClassName = '',
 }: Props): JSX.Element {
-  const divRef = (useRef < HTMLDivElement) | (null > null);
+  const divRef = useRef<HTMLDivElement | null>(null);
 
   const onClick = () => {
     const iframe = document.createElement('iframe');
