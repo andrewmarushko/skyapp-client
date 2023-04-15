@@ -54,7 +54,7 @@ export async function getFooterData() {
 }
 
 export async function getLogoData() {
-  const data = await request<any>(`${API_URL}/general?populate[0]=logo&populate[1]=logo.logok`, { cache: 'force-cache' }, (error)=> {
+  const data = await request<any>(`${API_URL}/general?populate[0]=logo&populate[1]=logo.logo`, { cache: 'force-cache' }, (error)=> {
     console.error(error)
   })
 
