@@ -42,5 +42,4 @@ export async function getIndoorPageData() {
   })
 
   return data;
-
 }
