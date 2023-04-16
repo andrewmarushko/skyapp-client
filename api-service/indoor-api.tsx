@@ -1,3 +1,5 @@
+import { request } from "@/lib/request";
+
 const API_URL = process.env.NEXT_PUBLIC_DEV_URL;
 
 export async function getAllIndoors() {
@@ -19,11 +21,9 @@ export async function getIndoorsByCity(country: string, city: string) {
 }
 
 export async function getIndoorsByID(
-  country: string,
-  city: string,
-  id: number,
+  slug: string
 ) {
-  const res = await fetch(`${API_URL}/indoors/${country}/${city}/${id}`, {
+  const res = await fetch(`${API_URL}/indoors/${slug}`, {
     cache: 'no-store',
   });
   const pageContent = await res.json();
@@ -37,7 +37,9 @@ export async function getIndoorsData() {
 }
 
 export async function getIndoorPageData() {
-  const data = await fetch(`${API_URL}/indoor-page`, { cache: 'no-store'})
+  const data = await request<any>(`${API_URL}/indoor-page`, { cache: 'no-store'}, (error)=> {
+    console.error(error)
+  })
 
-  return await data.json()
+  return data;
 }
