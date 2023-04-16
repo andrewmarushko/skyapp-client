@@ -34,7 +34,6 @@ module.exports = {
           700: 'var(--accents-7)',
           800: 'var(--accents-8)',
           900: 'var(--accents-9)',
-          1000: 'var(--accents-10)',
         },
         //bg-colors
         sk: {
@@ -112,20 +111,20 @@ module.exports = {
       },
       fontSize: {
         64: 'var(--font-size-64)',
-        'geist-form-large-font': 'var(--geist-form-large-font)',
-        'geist-form-small-font': 'var(--geist-form-small-font)',
-        'geist-form-font': 'var(--geist-form-font)'
+        'geist-action-large-font': 'var(--geist-action-large-font)',
+        'geist-action-small-font': 'var(--geist-action-small-font)',
+        'geist-action-font': 'var(--geist-action-font)'
       },
       lineHeight: {
         74: 'var(--line-height-74)',
-        'geist-form-large-line-height': 'var(--geist-form-large-line-height)',
-        'geist-form-small-line-height': 'var(--geist-form-small-line-height)',
-        'geist-form-line-height': 'var(--geist-form-line-height)'
+        'geist-action-large-line-height': 'var(--geist-action-large-line-height)',
+        'geist-action-small-line-height': 'var(--geist-action-small-line-height)',
+        'geist-action-line-height': 'var(--geist-action-line-height)'
       },
       height: {
-        'geist-form-large-height': 'var(--geist-form-large-height)',
-        'geist-form-small-height': 'var(--geist-form-small-height)',
-        'geist-form-height': 'var(--geist-form-height)'
+        'geist-action-large-height': 'var(--geist-action-large-height)',
+        'geist-action-small-height': 'var(--geist-action-small-height)',
+        'geist-action-height': 'var(--geist-action-height)'
       },
       letterSpacing: {
         tight: {

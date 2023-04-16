@@ -10,11 +10,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "text-geist-form-large-font bg-button-default-bg border text-button-default-fg border-button-default-border hover:bg-button-default-bg-hover hover:text-button-default-fg-hover hover:border-button-default-border-hover active:select-none active:shadow-none active:bg-button-default-bg-active active:text-button-default-fg-active active:border-button-custom-fg-hover",
+          "text-geist-action-large-font bg-button-default-bg border text-button-default-fg border-button-default-border hover:bg-button-default-bg-hover hover:text-button-default-fg-hover hover:border-button-default-border-hover active:select-none active:shadow-none active:bg-button-default-bg-active active:text-button-default-fg-active active:border-button-custom-fg-hover",
         ghost:
           "bg-transparent hover:bg-accent-800 dark:hover:bg-accent-200",
-        form:
-          "bg-violet text-accent-1000 border border-violet text-sm min-w-164 max-w-164 hover:text-violet hover:bg-sk-light active:select-none active:bg-accent-700 active:dark:bg-accent-100 dark:active:bg-accent-100 dark:hover:text-hightlight-purple dark:hover:border-hightlight-purple dark:hover:bg-sk-dark disabled:bg-accent-100 disabled:text-accent-300 disabled:border-accent-300",
+        action:
+          "bg-violet text-accent-900 border border-violet text-sm min-w-164 max-w-164 hover:text-violet hover:bg-sk-light active:select-none active:bg-accent-700 active:dark:bg-accent-100 dark:active:bg-accent-100 dark:hover:text-hightlight-purple dark:hover:border-hightlight-purple dark:hover:bg-sk-dark disabled:bg-accent-100 disabled:text-accent-300 disabled:border-accent-300",
+        cta:
+          "bg-accent border border-accent text-sm text-accent-900 hover:bg-accent-900 hover:text-accent hover:border hover:border-accent"
       },
       fullWidth: {
         true: 'w-full' 
@@ -23,9 +25,9 @@ const buttonVariants = cva(
         true: ''
       },
       size: {
-        default: "h-geist-form-height leading-geist-form-height px-geist-gap-half",
-        lg: "h-geist-form-large-height leading-geist-form-large-height px-geist-gap-half",
-        sm: "h-geist-form-small-height leading-geist-form-small-height px-geist-gap-half",
+        default: "h-geist-action-height leading-geist-action-height px-geist-gap-half",
+        lg: "h-geist-action-large-height leading-geist-action-large-height px-geist-gap-half",
+        sm: "h-geist-action-small-height leading-geist-action-small-height px-geist-gap-half",
       },
     },
     defaultVariants: {
