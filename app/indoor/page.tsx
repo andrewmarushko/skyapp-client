@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { getIndoorPageData } from '@/api-service/indoor-api';
+import { getIndoorPageData } from '@/api-service/indoor';
 import Page from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
 import LargeHeading from '@/components/ui/large-heading';
