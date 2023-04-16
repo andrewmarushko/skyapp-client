@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
 const YOUTUBE_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 

@@ -11,16 +11,16 @@ const headingVariants = cva(
         default: 'text-6xl md:text-8xl lg:text-8xl',
         lg: 'text-7xl md:text-8xl lg:text-9xl',
         sm: 'text-2xl md:text-3xl lg:text-4xl',
-        title: 'text-4xl md:text-64 md:leading-74'
+        title: 'text-4xl md:text-64 md:leading-74',
       },
       headingStyles: {
-        title: 'max-w-full md:max-w-[800px] tracking-tightTitle text-center',
-        default: 'tracking-tighter'
-      }
+        title: 'max-w-full md:max-w-[800px] tracking-tight-title text-center',
+        default: 'tracking-tighter',
+      },
     },
     defaultVariants: {
       size: 'default',
-      headingStyles: 'default'
+      headingStyles: 'default',
     },
   },
 );
@@ -37,7 +37,10 @@ const LargeHeading: FunctionComponent<LargeHeadingProps> = ({
   ...props
 }) => {
   return (
-    <h1 {...props} className={cn(headingVariants({ size, headingStyles, className }))}>
+    <h1
+      {...props}
+      className={cn(headingVariants({ size, headingStyles, className }))}
+    >
       {children}
     </h1>
   );

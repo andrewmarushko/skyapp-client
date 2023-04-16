@@ -1,8 +1,10 @@
-import { getAllIndoors, getIndoorPageData } from '@/api-service/indoor-api';
-import { Button } from '@/components/ui/button';
-
-import Page from '@/components/ui/page';
 import { Metadata } from 'next';
+
+import { getIndoorPageData } from '@/api-service/indoor-api';
+import Page from '@/components/ui/page';
+import Paragraph from '@/components/ui/paragraph';
+import LargeHeading from '@/components/ui/large-heading';
+import { ContentLayout } from '@/components/content-layout';
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getIndoorPageData();
@@ -20,26 +22,19 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const IndoorPage = async () => {
-  const [windTunnels, pageIndoorData] = await Promise.all([
-    getAllIndoors(),
-    getIndoorPageData(),
-  ]);
+  const pageIndoorData = await getIndoorPageData();
 
-  console.log('windtunnels', windTunnels, pageIndoorData);
   return (
     <Page>
-      <div className="grid gap-10">
-        {windTunnels &&
-          windTunnels.map((windTunnel: any) => (
-            <div key={`indoor-${windTunnels.title}`}>
-              <h2>{windTunnels.companyName}</h2>
-              <p>{windTunnel.title}</p>
-            </div>
-          ))}
+      <div className="flex w-full flex-col items-center">
+        <LargeHeading size={'title'} headingStyles={'title'}>
+          {pageIndoorData.hero.title}
+        </LargeHeading>
+        <Paragraph paragraphStyles={'subtitle'}>
+          {pageIndoorData.hero.subtitle}
+        </Paragraph>
       </div>
-      <div className="mt-4 flex w-full justify-center">
-        <Button>Load More</Button>
-      </div>
+      <ContentLayout />
     </Page>
   );
 };

@@ -1,6 +1,4 @@
-import {
-  getIndoorsByID,
-} from '@/api-service/indoor-api';
+import { getIndoorsByID } from '@/api-service/indoor-api';
 import { Icons } from '@/components/icons';
 import LargeHeading from '@/components/ui/large-heading';
 import Page from '@/components/ui/page';
@@ -14,27 +12,22 @@ import { Suspense } from 'react';
 
 interface IndoorTubePageProps {
   params: {
-    country: string,
-    city: string,
-    tubeId: number,
+    slug: string,
   };
 }
 
-const IndoorTubePage = async ({
-  params: { country, city, tubeId },
-}: IndoorTubePageProps) => {
-  const indoorsList: IndoorDataItemInterface[] = await getIndoorsByID(
-    country,
-    city,
-    tubeId,
-  );
-  const youtubeChannelId = indoorsList[0].socialMedia?.youtubeChannelId;
-  const googlePlaceId = indoorsList[0].socialMedia?.googlePlaceId;
+const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
+  const indoorsList: any = await getIndoorsByID(slug);
+
+  // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
+  // const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
 
   return (
     <Page>
-      {indoorsList &&
-        indoorsList.map((item: IndoorDataItemInterface) => (
+      {indoorsList.data.attributes.title}
+      {/* TODO: Refactor this no map needed anymore */}
+      {/* {indoorsList &&
+        indoorsList.data.map((item: IndoorDataItemInterface) => (
           <div className="flex w-full flex-col gap-14" key={item.id}>
             <section className="relative flex w-full flex-col gap-10">
               <Image
@@ -187,7 +180,7 @@ const IndoorTubePage = async ({
               <GooglePlacesSection googlePlaceId={googlePlaceId} />
             </Suspense>
           </div>
-        ))}
+        ))} */}
     </Page>
   );
 };
