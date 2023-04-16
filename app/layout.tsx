@@ -31,11 +31,11 @@ export default async function Layout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="flex min-h-screen flex-col">
+          <main className="flex min-h-screen flex-col">
             <Header logoData={logoData} navigationData={navigationMenuData} />
             <div className="flex-1">{children}</div>
             <Footer footerData={footerData} />
-          </div>
+          </main>
         </ThemeProvider>
         <Analytics />
         <Toaster />

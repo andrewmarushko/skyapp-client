@@ -1,4 +1,4 @@
-import { getIndoorsByID } from '@/api-service/indoor-api';
+import { getIndoorsByID } from '@/api-service/indoor';
 import { Icons } from '@/components/icons';
 import LargeHeading from '@/components/ui/large-heading';
 import Page from '@/components/ui/page';
@@ -16,6 +16,8 @@ interface IndoorTubePageProps {
   };
 }
 
+  // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
+  // const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
   const indoorsList: any = await getIndoorsByID(slug);
 
@@ -24,6 +26,10 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
 
   return (
     <Page>
+      {indoorsList.data.attributes.title}
+      {/* TODO: Refactor this no map needed anymore */}
+      {/* {indoorsList &&
+        indoorsList.data.map((item: IndoorDataItemInterface) => (
       {indoorsList.data.attributes.title}
       {/* TODO: Refactor this no map needed anymore */}
       {/* {indoorsList &&

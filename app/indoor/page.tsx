@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { getIndoorPageData } from '@/api-service/indoor-api';
+import { getIndoorPageData } from '@/api-service/indoor';
 import Page from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
 import LargeHeading from '@/components/ui/large-heading';
@@ -33,8 +33,16 @@ const IndoorPage = async () => {
         <Paragraph paragraphStyles={'subtitle'}>
           {pageIndoorData.hero.subtitle}
         </Paragraph>
+      <div className="flex w-full flex-col items-center">
+        <LargeHeading size={'title'} headingStyles={'title'}>
+          {pageIndoorData.hero.title}
+        </LargeHeading>
+        <Paragraph paragraphStyles={'subtitle'}>
+          {pageIndoorData.hero.subtitle}
+        </Paragraph>
       </div>
       <ContentLayout />
+      </div>
     </Page>
   );
 };
