@@ -1,7 +1,11 @@
 import { siteConfig } from '@/config/site';
 import { Icons } from '@/components/icons';
 
-export function Footer() {
+interface FooterProps {
+  footerData: any;
+}
+
+export function Footer({ footerData }: FooterProps) {
   return (
     <footer className="">
       <div className="flex flex-col items-center justify-between gap-4 border-t border-t-stone-200 py-10 dark:border-t-stone-700 md:h-24 md:flex-row md:py-0">

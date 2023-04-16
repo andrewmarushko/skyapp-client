@@ -1,15 +1,11 @@
-"use client";
+'use client';
 
 export default function IndoorsLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode,
 }) {
-  return (
-    <main className="grid grid-cols-4 gap-12">
-      {children}
-    </main>
-  );
+  return <main className="grid grid-cols-4 gap-12">{children}</main>;
 }
 
 // <div className="col-span-1 mt-10 w-full">

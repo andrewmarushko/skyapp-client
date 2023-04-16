@@ -86,6 +86,24 @@ module.exports = {
           pink: 'var(--geist-highlight-pink)',
           yellow: 'var(--geist-highlight-yellow)',
         },
+        //button custom colors
+        button: {
+          default: {
+            fg: 'var(--button-custom-fg)',
+            bg: 'var(--button-custom-bg)',
+            border: 'var(--button-custom-border)',
+            'fg-active': 'var(--button-custom-fg-active)',
+            'bg-active': 'var(--button-custom-bg-active)',
+            'border-active': 'var(--button-custom-border-active)',
+            'fg-hover': 'var(--button-custom-fg-hover)',
+            'bg-hover': 'var(--button-custom-bg-hover)',
+            'border-hover': 'var(--button-custom-border-hover)',
+          }
+        },
+        'geist-foreground': 'var(--geist-foreground)'
+      },
+      spacing: {
+        'geist-gap-half': 'var(--geist-gap-half)'
       },
       borderRadius: {
         DEFAULT: 'var(--geist-radius)',
@@ -93,9 +111,20 @@ module.exports = {
       },
       fontSize: {
         64: 'var(--font-size-64)',
+        'geist-action-large-font': 'var(--geist-action-large-font)',
+        'geist-action-small-font': 'var(--geist-action-small-font)',
+        'geist-action-font': 'var(--geist-action-font)'
       },
       lineHeight: {
         74: 'var(--line-height-74)',
+        'geist-action-large-line-height': 'var(--geist-action-large-line-height)',
+        'geist-action-small-line-height': 'var(--geist-action-small-line-height)',
+        'geist-action-line-height': 'var(--geist-action-line-height)'
+      },
+      height: {
+        'geist-action-large-height': 'var(--geist-action-large-height)',
+        'geist-action-small-height': 'var(--geist-action-small-height)',
+        'geist-action-height': 'var(--geist-action-height)'
       },
       letterSpacing: {
         tight: {
@@ -111,11 +140,24 @@ module.exports = {
         'geist-border-shadow-white': 'var(--shadow-medium)',
         'geist-border-shadow-white-dark': 'var(--shadow-medium-border)',
       },
-      transitionProperty: {
-        'box-shadow': 'box-shadow',
-      },
       transitionTimingFunction: {
         DEFAULT: 'var(--transition-timing-function-default-ease)'
+      },
+      minWidth: {
+        164: "164px"
+      },
+      maxWidth: {
+        164: "164px"
+      },
+      animation: {
+        'loading-blink': 'loading-blink 1.4s infinite both'
+      },
+      keyframes: {
+        'loading-blink': {
+          '0%': { opacity: 0.2 },
+          '20%': { transform: 1 },
+          '100%': { transform: 0.2 },
+        }
       }
     },
   },
