@@ -1,5 +1,22 @@
+import { getPageSeo } from '@/api-service/seo';
 import LargeHeading from '@/components/ui/large-heading';
 import Paragraph from '@/components/ui/paragraph';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const {seo} = await getPageSeo('dropzone-page')
+
+  console.log(seo)
+  if (!seo) {
+    return {
+      title: "DROPZONES"
+    }
+  }
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription
+  }
+}
 
 const DropzonePage = () => {
   return (

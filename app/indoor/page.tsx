@@ -5,19 +5,20 @@ import Page from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
 import LargeHeading from '@/components/ui/large-heading';
 import { ContentLayout } from '@/components/content-layout';
+import { getPageSeo } from '@/api-service/seo';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getIndoorPageData();
+  const { seo } = await getPageSeo('indoor-page');
+
+  if (!seo) {
+    return {
+      title: "INDOOR PAGE"
+    }
+  }
 
   return {
-    metadataBase: new URL(`${seo.canonicalURL}`),
     title: seo.metaTitle,
     description: seo.metaDescription,
-    viewport: {
-      width: 'device-width',
-      initialScale: 1,
-      maximumScale: 1,
-    },
   };
 }
 
@@ -26,7 +27,7 @@ const IndoorPage = async () => {
 
   return (
     <Page>
-      <div className="flex w-full flex-col items-center">
+      {/* <div className="flex w-full flex-col items-center">
         <LargeHeading size={'title'} headingStyles={'title'}>
           {pageIndoorData.hero.title}
         </LargeHeading>
@@ -42,7 +43,7 @@ const IndoorPage = async () => {
         </Paragraph>
       </div>
       <ContentLayout />
-      </div>
+      </div> */}
     </Page>
   );
 };

@@ -1,5 +1,24 @@
+import { getPageSeo } from '@/api-service/seo';
 import LargeHeading from '@/components/ui/large-heading';
 import Paragraph from '@/components/ui/paragraph';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const {seo} = await getPageSeo('services-page')
+
+  console.log(seo)
+
+  // TODO: need to create initial mocks if seo doesn't exist
+  if (!seo) {
+    return {
+      title: "DEFAULT"
+    }
+  }
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription
+  }
+}
 
 const ServicePage = () => {
   return (
@@ -16,4 +35,4 @@ const ServicePage = () => {
   );
 };
 
-export default ServicePage;
+export default ServicePage
