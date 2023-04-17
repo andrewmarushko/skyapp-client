@@ -8,7 +8,7 @@ import Link, {LinkProps} from 'next/link';
 import { useSelectedLayoutSegment } from "next/navigation";
 
 const linkVariants = cva(
-  "text-accent-400 rounded-link text-sm leading-14 duration-100 outline-none bg-transparent hover:text-accent dark:text-experimental-gray-800 dark:hover:text-experimental-gray-900",
+  "text-accent-400 rounded-link text-sm leading-14 duration-100 outline-none hover:text-accent dark:text-experimental-gray-800 dark:hover:text-experimental-gray-900",
   {
     variants: {
       variant: {
