@@ -86,6 +86,45 @@ module.exports = {
           pink: 'var(--geist-highlight-pink)',
           yellow: 'var(--geist-highlight-yellow)',
         },
+        //experimental gray
+        'experimental-gray': {
+          DEFAULT: 'var(--geist-experimental-color-gray-1)',
+          100: 'var(--geist-experimental-color-gray-2)',
+          200: 'var(--geist-experimental-color-gray-3)',
+          300: 'var(--geist-experimental-color-gray-4)',
+          400: 'var(--geist-experimental-color-gray-5)',
+          500: 'var(--geist-experimental-color-gray-6)',
+          600: 'var(--geist-experimental-color-gray-7)',
+          700: 'var(--geist-experimental-color-gray-8)',
+          800: 'var(--geist-experimental-color-gray-9)',
+          900: 'var(--geist-experimental-color-gray-10)',
+        },
+        //experimental gray a for dark theme
+        'experimental-gray-a-dark': {
+          DEFAULT: 'var(--geist-experimental-color-gray-a1-dark)',
+          100: 'var(--geist-experimental-color-gray-a2-dark)',
+          200: 'var(--geist-experimental-color-gray-a3-dark)',
+          300: 'var(--geist-experimental-color-gray-a4-dark)',
+          400: 'var(--geist-experimental-color-gray-a5-dark)',
+          500: 'var(--geist-experimental-color-gray-a6-dark)',
+          600: 'var(--geist-experimental-color-gray-a7-dark)',
+          700: 'var(--geist-experimental-color-gray-a8-dark)',
+          800: 'var(--geist-experimental-color-gray-a9-dark)',
+          900: 'var(--geist-experimental-color-gray-a10-dark)',
+        },
+        //experimental gray a for light theme
+        'experimental-gray-a': {
+          DEFAULT: 'var(--geist-experimental-color-gray-a1)',
+          100: 'var(--geist-experimental-color-gray-a2)',
+          200: 'var(--geist-experimental-color-gray-a3)',
+          300: 'var(--geist-experimental-color-gray-a4)',
+          400: 'var(--geist-experimental-color-gray-a5)',
+          500: 'var(--geist-experimental-color-gray-a6)',
+          600: 'var(--geist-experimental-color-gray-a7)',
+          700: 'var(--geist-experimental-color-gray-a8)',
+          800: 'var(--geist-experimental-color-gray-a9)',
+          900: 'var(--geist-experimental-color-gray-a10)',
+        },
         //button custom colors
         button: {
           default: {
@@ -108,6 +147,7 @@ module.exports = {
       borderRadius: {
         DEFAULT: 'var(--geist-radius)',
         marketing: 'var(--geist-marketing-radius)',
+        link: 'var(--geist-link-radius)',
       },
       fontSize: {
         64: 'var(--font-size-64)',
@@ -116,6 +156,7 @@ module.exports = {
         'geist-action-font': 'var(--geist-action-font)'
       },
       lineHeight: {
+        14: 'var(--line-height-14)',
         74: 'var(--line-height-74)',
         'geist-action-large-line-height': 'var(--geist-action-large-line-height)',
         'geist-action-small-line-height': 'var(--geist-action-small-line-height)',
@@ -139,6 +180,10 @@ module.exports = {
         'geist-shadow-md-dark': 'var(--shadow-medium-dark)',
         'geist-border-shadow-white': 'var(--shadow-medium)',
         'geist-border-shadow-white-dark': 'var(--shadow-medium-border)',
+      },
+      transitionProperty: {
+        color: 'var(--transition-property-color)',
+        'bg-and-color': 'var(--transition-property-color-and-background)'
       },
       transitionTimingFunction: {
         DEFAULT: 'var(--transition-timing-function-default-ease)'
