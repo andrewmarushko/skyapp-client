@@ -15,6 +15,10 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        //Please keep in mind, that this breakpoint has 1150px value on vercel.com site
+        lg: '950px',
+      },
       colors: {
         ...blackA,
         ...mauve,
@@ -124,7 +128,11 @@ module.exports = {
       height: {
         'geist-action-large-height': 'var(--geist-action-large-height)',
         'geist-action-small-height': 'var(--geist-action-small-height)',
-        'geist-action-height': 'var(--geist-action-height)'
+        'geist-action-height': 'var(--geist-action-height)',
+        '1px': 'var(--header-1px)'
+      },
+      minHeight: {
+        'header-height': 'var(--header-height)',
       },
       letterSpacing: {
         tight: {
@@ -139,15 +147,30 @@ module.exports = {
         'geist-shadow-md-dark': 'var(--shadow-medium-dark)',
         'geist-border-shadow-white': 'var(--shadow-medium)',
         'geist-border-shadow-white-dark': 'var(--shadow-medium-border)',
+        'header-border-bottom': 'var(--header-border-bottom)',
+        'header-border-bottom-dark': 'var(--header-border-bottom-dark)'
       },
       transitionTimingFunction: {
         DEFAULT: 'var(--transition-timing-function-default-ease)'
+      },
+      transitionProperty: {
+        'background-color-and-box-shadow': 'var(--transition-property-background-color-and-box-shadow)',
+        'background-color': 'var(--transition-property-background-color)'
       },
       minWidth: {
         164: "164px"
       },
       maxWidth: {
         164: "164px"
+      },
+      inset: {
+        '-1px': 'var(---inset-1px)'
+      },
+      zIndex: {
+        '-1': 'var(---z-index-1)',
+      },
+      backdropSaturate: {
+        180: 'var(--backdrop-saturate-180)',
       },
       animation: {
         'loading-blink': 'loading-blink 1.4s infinite both'

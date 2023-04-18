@@ -97,6 +97,10 @@
   --button-custom-bg-hover: #555;
   --button-custom-border-hover: #555;
 
+  /* Header shadows */
+  --header-border-bottom: inset 0 -1px 0 0 rgba(0,0,0,.1);
+  --header-border-bottom-dark: inset 0 -1px 0 0 hsla(0,0%,100%,.1)
+
   /* Transition timing function */
   --transition-timing-function-default-ease: cubic-bezier(0.25, 0.1, 0.25, 1.0) 
 
@@ -155,12 +159,25 @@
   --geist-action-line-height: 1.25rem;
   --geist-action-height: var(--geist-space-medium);
 
+  /* Inset */
+  ---inset-1px: -1px;
+
   /* Width */
   --geist-page-width: 1200px;
   --geist-page-margin: var(--geist-space-gap);
   --geist-page-width-with-margin: calc(
     var(--geist-page-width) + calc(2 * var(--geist-page-margin))
   );
+
+  /* Height */
+  --header-height: 64px;
+  --header-1px: 1px;
+
+  /* Z-index */
+  ---z-index-1: -1;
+
+  /* Backdrop saturate */
+  --backdrop-saturate-180: 1.8;
 
   /* Font sizes */
   --font-size-64: 64px;
@@ -171,4 +188,8 @@
   /* Letter spacing */
   --letter-spacing-title: -0.04em;
   --letter-spacing-subtitle: -0.03em;
+
+  /* Transition property */
+  --transition-property-background-color: background-color;
+  --transition-property-background-color-and-box-shadow: box-shadow, background-color;
 }
