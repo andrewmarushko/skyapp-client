@@ -3,21 +3,38 @@ import LargeHeading from '@/components/ui/large-heading';
 import Paragraph from '@/components/ui/paragraph';
 import { Metadata } from 'next';
 
+const defaultSeo = {
+  title: "Indoor",
+  description: "Indoor Page"
+}
+
 export async function generateMetadata(): Promise<Metadata> {
-  const {seo} = await getPageSeo('services-page')
+  const { seo } = await getPageSeo('services-page')
 
-  console.log(seo)
+  if (!seo) return defaultSeo
 
-  // TODO: need to create initial mocks if seo doesn't exist
-  if (!seo) {
-    return {
-      title: "DEFAULT"
+  return {
+    metadataBase: new URL(`${seo.metadataBase}`),
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    applicationName: seo.applicationName,
+    keywords: seo.keywords,
+    formatDetection: {
+      email: seo.format_description.email,
+      telephone: seo.format_description.telephone,
+      address: seo.format_description.address
+    },
+    viewport: {
+      width: seo.viewport.width,
+      initialScale: seo.viewport.initial_scale,
+    },
+    robots: {
+      index: seo.robots.index,
+      follow: seo.robots.follow,
+      nocache: seo.robots.nocache,
     }
   }
-  return {
-    title: seo.metaTitle,
-    description: seo.metaDescription
-  }
+
 }
 
 const ServicePage = () => {

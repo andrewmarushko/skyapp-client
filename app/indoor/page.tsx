@@ -7,19 +7,37 @@ import LargeHeading from '@/components/ui/large-heading';
 import { ContentLayout } from '@/components/content-layout';
 import { getPageSeo } from '@/api-service/seo';
 
+const defaultSeo = {
+  title: "Indoor",
+  description: "Indoor Page"
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getPageSeo('indoor-page');
 
-  if (!seo) {
-    return {
-      title: "INDOOR PAGE"
-    }
-  }
+  if (!seo) return defaultSeo
 
   return {
+    metadataBase: new URL(`${seo.metadataBase}`),
     title: seo.metaTitle,
     description: seo.metaDescription,
-  };
+    applicationName: seo.applicationName,
+    keywords: seo.keywords,
+    formatDetection: {
+      email: seo.format_description.email,
+      telephone: seo.format_description.telephone,
+      address: seo.format_description.address
+    },
+    viewport: {
+      width: seo.viewport.width,
+      initialScale: seo.viewport.initial_scale,
+    },
+    robots: {
+      index: seo.robots.index,
+      follow: seo.robots.follow,
+      nocache: seo.robots.nocache,
+    }
+  }
 }
 
 const IndoorPage = async () => {
