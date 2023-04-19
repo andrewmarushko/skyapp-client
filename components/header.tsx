@@ -39,7 +39,7 @@ export function Header({ logoData, navigationData }: HeaderProps) {
           </span>
         </Link>
         <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
-        <nav className={`${isOpen ? 'block' : 'hidden'} lg:hidden visible w-full max-w-100vw px-geist-gap pb-geist-gap py-0 bg-sk-light z-2000 fixed top-header-height left-0 right-0 bottom-0 overflow-y-scroll`}>
+        <nav className={`${isOpen ? 'block' : 'hidden'} lg:hidden visible w-full max-w-100vw px-geist-gap pb-geist-gap py-0 bg-sk-light dark:bg-sk-dark z-2000 fixed top-header-height left-0 right-0 bottom-0 overflow-y-scroll`}>
           <ul>
             <li>
               <a className='' href="/">Contacts</a>

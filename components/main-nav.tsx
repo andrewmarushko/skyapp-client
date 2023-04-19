@@ -11,6 +11,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
+import { CustomLink } from './ui/link';
 
 // WARN: Add navigation interface
 interface MainNavigationProps {
@@ -23,7 +24,7 @@ export function MainNav({ mainNavigationData, containerClassnames = '' }: MainNa
 
   return (
     <NavigationMenu className={containerClassnames}>
-      <NavigationMenuList>
+      <NavigationMenuList className='flex items-center gap-2'>
         {panel.map((panelItem:  {label: string, id: number, push: {
           description: string,
           link: {
@@ -67,16 +68,14 @@ export function MainNav({ mainNavigationData, containerClassnames = '' }: MainNa
           </NavigationMenuContent>
         </NavigationMenuItem>
         ))}
-        <NavigationMenuItem>
           {navigationLinks.map((navigation: { id: number, href: string, label: string })  => (
-              <Link href={navigation.href} key={navigation.id} legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  {navigation.label}
-                </NavigationMenuLink>
-              </Link>
-            )
+            <NavigationMenuItem key={navigation.id}>
+              <CustomLink dataActive href={navigation.href} >
+                {navigation.label}
+              </CustomLink>
+            </NavigationMenuItem>
+          )
           )}
-        </NavigationMenuItem>
       </NavigationMenuList>
       {/* TODO: Need too make proper styles for borders */}
       {/* <NavigationMenuIndicator /> */}

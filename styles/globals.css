@@ -60,9 +60,46 @@
   --geist-highlight-pink: #ff0080;
   --geist-highlight-yellow: #fff500;
 
+  /* experimental gray */
+  --geist-experimental-color-gray-1: #1a1a1a;
+  --geist-experimental-color-gray-2: #1f1f1f;
+  --geist-experimental-color-gray-3: #292929;
+  --geist-experimental-color-gray-4: #2e2e2e;
+  --geist-experimental-color-gray-5: #454545;
+  --geist-experimental-color-gray-6: #878787;
+  --geist-experimental-color-gray-7: #8f8f8f;
+  --geist-experimental-color-gray-8: #7d7d7d;
+  --geist-experimental-color-gray-9: #a0a0a0;
+  --geist-experimental-color-gray-10: #ededed;
+
+  /* experimental gray a for dark theme */
+  --geist-experimental-color-gray-a1-dark: hsla(0,0%,100%,.07);
+  --geist-experimental-color-gray-a2-dark: hsla(0,0%,100%,.09);
+  --geist-experimental-color-gray-a3-dark: hsla(0,0%,100%,.125);
+  --geist-experimental-color-gray-a4-dark: hsla(0,0%,100%,.14);
+  --geist-experimental-color-gray-a5-dark: hsla(0,0%,100%,.24);
+  --geist-experimental-color-gray-a6-dark: hsla(0,0%,100%,.51);
+  --geist-experimental-color-gray-a7-dark: hsla(0,0%,100%,.54);
+  --geist-experimental-color-gray-a8-dark: hsla(0,0%,100%,.47);
+  --geist-experimental-color-gray-a9-dark: hsla(0,0%,100%,.61);
+  --geist-experimental-color-gray-a10-dark: hsla(0,0%,100%,.92);
+
+  /* experimental gray a for light theme */
+  --geist-experimental-color-gray-a1: rgba(0,0,0,.04);
+  --geist-experimental-color-gray-a2: rgba(0,0,0,.08);
+  --geist-experimental-color-gray-a3: rgba(0,0,0,.1);
+  --geist-experimental-color-gray-a4: rgba(0,0,0,.08);
+  --geist-experimental-color-gray-a5: rgba(0,0,0,.21);
+  --geist-experimental-color-gray-a6: rgba(0,0,0,.34);
+  --geist-experimental-color-gray-a7: rgba(0,0,0,.44);
+  --geist-experimental-color-gray-a8: rgba(0,0,0,.51);
+  --geist-experimental-color-gray-a9: rgba(0,0,0,.61);
+  --geist-experimental-color-gray-a10: rgba(0,0,0,.91);
+
   /* Radius */
   --geist-radius: 5px;
   --geist-marketing-radius: 8px;
+  --geist-link-radius: 9999px;
 
   /* Elements */
   --geist-link-color: var(--geist-success);
@@ -193,10 +230,15 @@
 
   /* Line height */
   --line-height-74: 74px;
+  --line-height-14: 14px;
 
   /* Letter spacing */
   --letter-spacing-title: -0.04em;
   --letter-spacing-subtitle: -0.03em;
+
+  /* Transition property */
+  --transition-property-color: color;
+  --transition-property-color-and-background: background, color;
 
   /* Transition property */
   --transition-property-background-color: background-color;

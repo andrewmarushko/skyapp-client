@@ -1,5 +1,6 @@
 import { siteConfig } from '@/config/site';
 import { Icons } from '@/components/icons';
+import { CustomLink } from './ui/link';
 
 interface FooterProps {
   footerData: any;
@@ -22,6 +23,7 @@ export function Footer({ footerData }: FooterProps) {
               Skydiving Center
             </a>
             .
+            <CustomLink variant={'footer'} size={"sm"} href={'/dropzone'}>I am a Footer Link</CustomLink>
           </p>
         </div>
       </div>

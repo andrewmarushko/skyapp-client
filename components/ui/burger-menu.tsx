@@ -8,13 +8,10 @@ interface BurgerMenuInterface {
   setIsOpen: (value: boolean) => void;
 }
 
-
 export const BurgerMenu: FunctionComponent<BurgerMenuInterface> = ({isOpen, setIsOpen}) => {
-  const burgerMenuBeforeStyles = `before:content-[''] before:block before:h-1px before:w-6 before:bg-accent before:transition-transform before:ease`
-  const burgerMenuAfterStyles = `after:content-[''] after:block after:h-1px after:w-6 after:bg-accent after:transition-transform after:ease`
+  const burgerMenuBeforeStyles = `before:content-[''] before:block before:h-1px before:w-6 before:bg-accent before:transition-transform before:ease before:dark:bg-geist-foreground`
+  const burgerMenuAfterStyles = `after:content-[''] after:block after:h-1px after:w-6 after:bg-accent after:transition-transform after:ease after:dark:bg-geist-foreground`
   
-  // const [isOpen, setIsOpen] = useState(false);
-
   const toggleBurgerMenu = () => {
     setIsOpen(!isOpen);
   };
