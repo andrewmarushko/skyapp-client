@@ -9,6 +9,9 @@ interface DropzoneDzPageProps {
   };
 }
 
+
+// TODO: add also seo for this generated page
+
 const DropzoneDZPage = ({ params }: DropzoneDzPageProps) => {
   return (
     <Page>
