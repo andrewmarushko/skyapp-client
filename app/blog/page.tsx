@@ -2,6 +2,7 @@ import { getPageSeo } from '@/api-service/seo';
 import LargeHeading from '@/components/ui/large-heading';
 import Page from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
+
 import { Metadata } from 'next';
 
 const defaultSeo = {

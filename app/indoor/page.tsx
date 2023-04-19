@@ -59,6 +59,13 @@ const IndoorPage = async () => {
         <Paragraph paragraphStyles={'subtitle'}>
           {pageIndoorData.hero.subtitle}
         </Paragraph>
+      <div className="flex w-full flex-col items-center">
+        <LargeHeading size={'title'} headingStyles={'title'}>
+          {pageIndoorData.hero.title}
+        </LargeHeading>
+        <Paragraph paragraphStyles={'subtitle'}>
+          {pageIndoorData.hero.subtitle}
+        </Paragraph>
       </div>
       <ContentLayout />
       </div> */}
