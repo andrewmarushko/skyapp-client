@@ -107,7 +107,8 @@ module.exports = {
         'geist-foreground': 'var(--geist-foreground)'
       },
       spacing: {
-        'geist-gap-half': 'var(--geist-gap-half)'
+        'geist-gap-half': 'var(--geist-gap-half)',
+        'geist-gap': 'var(--geist-gap)',
       },
       borderRadius: {
         DEFAULT: 'var(--geist-radius)',
@@ -158,16 +159,19 @@ module.exports = {
         'background-color': 'var(--transition-property-background-color)'
       },
       minWidth: {
-        164: "164px"
+        164: "var(--min-width-164)"
       },
       maxWidth: {
-        164: "164px"
+        164: "var(--max-width-164)",
+        '100vw': "var(--max-width-100vw)"
       },
       inset: {
-        '-1px': 'var(---inset-1px)'
+        '1px': 'var(--inset-1px)',
+        'header-height': 'var(--inset-header-height)'
       },
       zIndex: {
-        '-1': 'var(---z-index-1)',
+        '1': 'var(--z-index-1)',
+        2000: 'var(--z-index-2000)'
       },
       backdropSaturate: {
         180: 'var(--backdrop-saturate-180)',

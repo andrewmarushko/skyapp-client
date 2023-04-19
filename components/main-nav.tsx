@@ -15,14 +15,14 @@ import {
 // WARN: Add navigation interface
 interface MainNavigationProps {
   mainNavigationData: any,
-  containerClassNames?: string
+  containerClassnames?: string
 }
 
-export function MainNav({ mainNavigationData, containerClassNames = '' }: MainNavigationProps) {
+export function MainNav({ mainNavigationData, containerClassnames = '' }: MainNavigationProps) {
   const { panel, navigationLinks} = mainNavigationData
 
   return (
-    <NavigationMenu className={containerClassNames}>
+    <NavigationMenu className={containerClassnames}>
       <NavigationMenuList>
         {panel.map((panelItem:  {label: string, id: number, push: {
           description: string,

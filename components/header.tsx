@@ -8,7 +8,8 @@ import { MainNav } from '@/components/main-nav';
 import { ModeToggle } from '@/components/mode-toggle';
 import { buttonVariants } from '@/components/ui/button';
 import useStickyHeader from '@/hooks/useStickyElement';
-import { BurgerMenuIcon } from './ui/burger-menu';
+import { useState } from 'react';
+import { BurgerMenu } from './ui/burger-menu';
 
 interface HeaderProps {
   logoData: any;
@@ -21,6 +22,8 @@ export function Header({ logoData, navigationData }: HeaderProps) {
   const { logo } = logoData;
   const { mainNavigation } = navigationData;
   const { elementRef, isSticky } = useStickyHeader();
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header
       ref={elementRef}
@@ -35,8 +38,19 @@ export function Header({ logoData, navigationData }: HeaderProps) {
             {logo.companyName}
           </span>
         </Link>
-        <BurgerMenuIcon />
-        <MainNav mainNavigationData={mainNavigation} containerClassNames='hidden lg:flex' />
+        <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+        <nav className={`${isOpen ? 'block' : 'hidden'} lg:hidden visible w-full max-w-100vw px-geist-gap pb-geist-gap py-0 bg-sk-light z-2000 fixed top-header-height left-0 right-0 bottom-0 overflow-y-scroll`}>
+          <ul>
+            <li>
+              <a className='' href="/">Contacts</a>
+            </li>
+            <li>
+              <a href="/">Feedback</a>
+            </li>
+          </ul>
+          <ul></ul>
+        </nav>
+        <MainNav mainNavigationData={mainNavigation} containerClassnames='hidden lg:flex' />
         <div className="hidden lg:flex w-max items-center space-x-2 sm:space-x-4 md:justify-end">
           {/* <div className="w-full flex-1 md:w-auto md:flex-none">
             <CommandMenu />

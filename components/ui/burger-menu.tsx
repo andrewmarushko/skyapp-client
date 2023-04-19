@@ -1,14 +1,19 @@
 "use client"
 
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent } from 'react';
 import { Button } from './button';
 
+interface BurgerMenuInterface {
+  isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
+}
 
-export const BurgerMenuIcon: FunctionComponent = () => {
+
+export const BurgerMenu: FunctionComponent<BurgerMenuInterface> = ({isOpen, setIsOpen}) => {
   const burgerMenuBeforeStyles = `before:content-[''] before:block before:h-1px before:w-6 before:bg-accent before:transition-transform before:ease`
   const burgerMenuAfterStyles = `after:content-[''] after:block after:h-1px after:w-6 after:bg-accent after:transition-transform after:ease`
   
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   const toggleBurgerMenu = () => {
     setIsOpen(!isOpen);

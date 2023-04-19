@@ -159,9 +159,6 @@
   --geist-action-line-height: 1.25rem;
   --geist-action-height: var(--geist-space-medium);
 
-  /* Inset */
-  ---inset-1px: -1px;
-
   /* Width */
   --geist-page-width: 1200px;
   --geist-page-margin: var(--geist-space-gap);
@@ -169,12 +166,24 @@
     var(--geist-page-width) + calc(2 * var(--geist-page-margin))
   );
 
+  /* Min width */
+  --min-width-164: 164px;
+
+  /* Min width */
+  --max-width-164: 164px;
+  --max-width-100vw: 100vw;
+
   /* Height */
   --header-height: 64px;
   --header-1px: 1px;
 
+  /* Inset */
+  --inset-1px: 1px;
+  --inset-header-height: calc(var(--header-height) - 1px);
+
   /* Z-index */
-  ---z-index-1: -1;
+  --z-index-1: 1;
+  --z-index-2000: 2000;
 
   /* Backdrop saturate */
   --backdrop-saturate-180: 1.8;
