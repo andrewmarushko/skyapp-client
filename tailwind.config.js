@@ -148,6 +148,7 @@ module.exports = {
       spacing: {
         'geist-gap-half': 'var(--geist-gap-half)',
         'geist-gap': 'var(--geist-gap)',
+        'geist-gap-quarter': 'var(--geist-gap-quarter)',
       },
       borderRadius: {
         DEFAULT: 'var(--geist-radius)',
@@ -158,19 +159,22 @@ module.exports = {
         64: 'var(--font-size-64)',
         'geist-action-large-font': 'var(--geist-action-large-font)',
         'geist-action-small-font': 'var(--geist-action-small-font)',
-        'geist-action-font': 'var(--geist-action-font)'
+        'geist-action-font': 'var(--geist-action-font)',
+        'geist-form-font': 'var(--geist-form-font)'
       },
       lineHeight: {
         14: 'var(--line-height-14)',
         74: 'var(--line-height-74)',
         'geist-action-large-line-height': 'var(--geist-action-large-line-height)',
         'geist-action-small-line-height': 'var(--geist-action-small-line-height)',
-        'geist-action-line-height': 'var(--geist-action-line-height)'
+        'geist-action-line-height': 'var(--geist-action-line-height)',
+        'geist-form-line-height': 'var(--geist-form-line-height)'
       },
       height: {
         'geist-action-large-height': 'var(--geist-action-large-height)',
         'geist-action-small-height': 'var(--geist-action-small-height)',
         'geist-action-height': 'var(--geist-action-height)',
+        'geist-form-height': 'var(--geist-form-height)',
         '1px': 'var(--header-1px)'
       },
       minHeight: {
@@ -201,7 +205,8 @@ module.exports = {
       },
       transitionProperty: {
         'background-color-and-box-shadow': 'var(--transition-property-background-color-and-box-shadow)',
-        'background-color': 'var(--transition-property-background-color)'
+        'background-color': 'var(--transition-property-background-color)',
+        'colors-shadow-transform': 'var(--transition-property-colors-shadow-transform)'
       },
       minWidth: {
         164: "var(--min-width-164)"

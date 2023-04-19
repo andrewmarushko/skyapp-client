@@ -1,6 +1,4 @@
 'use client';
-
-import Link from 'next/link';
 import {
   ListItem,
   NavigationMenu,
@@ -9,7 +7,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { CustomLink } from './ui/link';
 
