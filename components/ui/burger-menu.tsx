@@ -13,7 +13,7 @@ export const BurgerMenu: FunctionComponent<BurgerMenuInterface> = ({isOpen, togg
   const burgerMenuAfterStyles = `after:content-[''] after:block after:h-1px after:w-6 after:bg-accent after:transition-transform after:ease after:dark:bg-geist-foreground`
   return (
     <div className="lg:hidden flex flex-col items-center gap-2">
-      <Button variant={'ghost'} onClick={toggleBurgerMenu}>
+      <Button variant={'burger'} onClick={toggleBurgerMenu}>
         <div className={`flex flex-col justify-center items-center w-full h-full pointer-events-none ${burgerMenuBeforeStyles} ${burgerMenuAfterStyles}
           ${isOpen ? 'before:rotate-45 before:translate-y-[1px]' : 'before:rotate-0 before:-translate-y-1'} 
           ${isOpen ? 'after:-rotate-45 after:translate-y-0' : 'after:rotate-0 after:translate-y-1'}
