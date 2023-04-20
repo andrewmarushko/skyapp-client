@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const useStickyHeader = () => {
+const useStickyElement = () => {
   const [isSticky, setIsSticky] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
@@ -23,4 +23,4 @@ const useStickyHeader = () => {
   return { elementRef, isSticky };
 };
 
-export default useStickyHeader;
+export default useStickyElement;

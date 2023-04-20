@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect } from 'react';
 
-import useStickyHeader from '@/hooks/useStickyElement';
+import useStickyElement from '@/hooks/useStickyElement';
 import useOpen from '@/hooks/useOpen';
 import { Icons } from '@/components/icons';
 import { MainNav } from '@/components/main-nav';
@@ -21,7 +21,7 @@ const lgBreakpoint = 950;
 export function Header({ logoData, navigationData }: HeaderProps) {
   const { logo } = logoData;
   const { mainNavigation } = navigationData;
-  const { elementRef, isSticky } = useStickyHeader();
+  const { elementRef, isSticky } = useStickyElement();
   const { isOpen, setIsOpen, toggleBurgerMenu } = useOpen();
 
   //Here is the code that checks the current width and in case it is less than lg  - isOpen becomes false.
