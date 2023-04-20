@@ -1,11 +1,12 @@
 "use client"
 
 import Link from 'next/link';
+import { useEffect } from 'react';
 
+import useStickyHeader from '@/hooks/useStickyElement';
+import useOpen from '@/hooks/useOpen';
 import { Icons } from '@/components/icons';
 import { MainNav } from '@/components/main-nav';
-import useStickyHeader from '@/hooks/useStickyElement';
-import { useState } from 'react';
 import { BurgerMenu } from '@/components/ui/burger-menu';
 import { NavigationLink } from '@/components/ui/link';
 
@@ -15,12 +16,25 @@ interface HeaderProps {
 }
 
 const onScrollHeaderClasses = `before:w-full before:h-full before:absolute before:content-[''] before:-z-1 before:backdrop-saturate-180 before:backdrop-blur-sm before:-top-1px shadow-header-border-bottom dark:shadow-header-border-bottom-dark`
+const lgBreakpoint = 950;
 
 export function Header({ logoData, navigationData }: HeaderProps) {
   const { logo } = logoData;
   const { mainNavigation } = navigationData;
   const { elementRef, isSticky } = useStickyHeader();
-  const [ isOpen, setIsOpen ] = useState(false);
+  const { isOpen, setIsOpen, toggleBurgerMenu } = useOpen();
+
+  //Here is the code that checks the current width and in case it is less than lg  - isOpen becomes false.
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth >= lgBreakpoint && isOpen) {
+        setIsOpen(false);
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  });
 
   return (
     <header
@@ -37,7 +51,7 @@ export function Header({ logoData, navigationData }: HeaderProps) {
               {logo.companyName}
             </span>
           </Link>
-          <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+          <BurgerMenu isOpen={isOpen} toggleBurgerMenu={toggleBurgerMenu} />
         </div>
         <MainNav mainNavigationData={mainNavigation} containerClassnames='hidden lg:flex flex-1' />
         <div className='hidden lg:flex gap-2 flex-1 justify-end'>

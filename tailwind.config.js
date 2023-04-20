@@ -153,7 +153,6 @@ module.exports = {
       borderRadius: {
         DEFAULT: 'var(--geist-radius)',
         marketing: 'var(--geist-marketing-radius)',
-        link: 'var(--geist-link-radius)',
       },
       fontSize: {
         64: 'var(--font-size-64)',
