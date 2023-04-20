@@ -1,6 +1,4 @@
 'use client';
-
-import Link from 'next/link';
 import {
   ListItem,
   NavigationMenu,
@@ -9,20 +7,20 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import { CustomLink } from './ui/link';
+import { NavigationLink } from '@/components/ui/link';
 
 // WARN: Add navigation interface
 interface MainNavigationProps {
-  mainNavigationData: any
+  mainNavigationData: any,
+  containerClassnames?: string
 }
 
-export function MainNav({ mainNavigationData }: MainNavigationProps) {
+export function MainNav({ mainNavigationData, containerClassnames = '' }: MainNavigationProps) {
   const { panel, navigationLinks} = mainNavigationData
 
   return (
-    <NavigationMenu>
+    <NavigationMenu className={containerClassnames}>
       <NavigationMenuList className='flex items-center gap-2'>
         {panel.map((panelItem:  {label: string, id: number, push: {
           description: string,
@@ -69,9 +67,9 @@ export function MainNav({ mainNavigationData }: MainNavigationProps) {
         ))}
           {navigationLinks.map((navigation: { id: number, href: string, label: string })  => (
             <NavigationMenuItem key={navigation.id}>
-              <CustomLink dataActive href={navigation.href} >
+              <NavigationLink dataActive href={navigation.href} >
                 {navigation.label}
-              </CustomLink>
+              </NavigationLink>
             </NavigationMenuItem>
           )
           )}

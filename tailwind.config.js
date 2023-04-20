@@ -15,6 +15,10 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        //Please keep in mind, that this breakpoint has 1150px value on vercel.com site
+        lg: '950px',
+      },
       colors: {
         ...blackA,
         ...mauve,
@@ -142,7 +146,9 @@ module.exports = {
         'geist-foreground': 'var(--geist-foreground)'
       },
       spacing: {
-        'geist-gap-half': 'var(--geist-gap-half)'
+        'geist-gap-half': 'var(--geist-gap-half)',
+        'geist-gap': 'var(--geist-gap)',
+        'geist-gap-quarter': 'var(--geist-gap-quarter)',
       },
       borderRadius: {
         DEFAULT: 'var(--geist-radius)',
@@ -153,19 +159,26 @@ module.exports = {
         64: 'var(--font-size-64)',
         'geist-action-large-font': 'var(--geist-action-large-font)',
         'geist-action-small-font': 'var(--geist-action-small-font)',
-        'geist-action-font': 'var(--geist-action-font)'
+        'geist-action-font': 'var(--geist-action-font)',
+        'geist-form-font': 'var(--geist-form-font)'
       },
       lineHeight: {
         14: 'var(--line-height-14)',
         74: 'var(--line-height-74)',
         'geist-action-large-line-height': 'var(--geist-action-large-line-height)',
         'geist-action-small-line-height': 'var(--geist-action-small-line-height)',
-        'geist-action-line-height': 'var(--geist-action-line-height)'
+        'geist-action-line-height': 'var(--geist-action-line-height)',
+        'geist-form-line-height': 'var(--geist-form-line-height)'
       },
       height: {
         'geist-action-large-height': 'var(--geist-action-large-height)',
         'geist-action-small-height': 'var(--geist-action-small-height)',
-        'geist-action-height': 'var(--geist-action-height)'
+        'geist-action-height': 'var(--geist-action-height)',
+        'geist-form-height': 'var(--geist-form-height)',
+        '1px': 'var(--header-1px)'
+      },
+      minHeight: {
+        'header-height': 'var(--header-height)',
       },
       letterSpacing: {
         tight: {
@@ -180,6 +193,12 @@ module.exports = {
         'geist-shadow-md-dark': 'var(--shadow-medium-dark)',
         'geist-border-shadow-white': 'var(--shadow-medium)',
         'geist-border-shadow-white-dark': 'var(--shadow-medium-border)',
+        'header-border-bottom': 'var(--header-border-bottom)',
+        'header-border-bottom-dark': 'var(--header-border-bottom-dark)'
+      },
+      transitionProperty: {
+        color: 'var(--transition-property-color)',
+        'bg-and-color': 'var(--transition-property-color-and-background)'
       },
       transitionProperty: {
         color: 'var(--transition-property-color)',
@@ -188,11 +207,28 @@ module.exports = {
       transitionTimingFunction: {
         DEFAULT: 'var(--transition-timing-function-default-ease)'
       },
+      transitionProperty: {
+        'background-color-and-box-shadow': 'var(--transition-property-background-color-and-box-shadow)',
+        'background-color': 'var(--transition-property-background-color)',
+        'colors-shadow-transform': 'var(--transition-property-colors-shadow-transform)'
+      },
       minWidth: {
-        164: "164px"
+        164: "var(--min-width-164)"
       },
       maxWidth: {
-        164: "164px"
+        164: "var(--max-width-164)",
+        '100vw': "var(--max-width-100vw)"
+      },
+      inset: {
+        '1px': 'var(--inset-1px)',
+        'header-height': 'var(--inset-header-height)'
+      },
+      zIndex: {
+        '1': 'var(--z-index-1)',
+        2000: 'var(--z-index-2000)'
+      },
+      backdropSaturate: {
+        180: 'var(--backdrop-saturate-180)',
       },
       animation: {
         'loading-blink': 'loading-blink 1.4s infinite both'
