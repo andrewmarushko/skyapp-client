@@ -1,6 +1,6 @@
 import { siteConfig } from '@/config/site';
 import { Icons } from '@/components/icons';
-import { CustomLink } from './ui/link';
+import { NavigationLink } from '@/components/ui/link';
 import { ModeToggle } from './mode-toggle';
 import Link from 'next/link';
 import { buttonVariants } from './ui/button';
@@ -26,7 +26,7 @@ export function Footer({ footerData }: FooterProps) {
               Skydiving Center
             </a>
             .
-            <CustomLink variant={'footer'} size={"sm"} href={'/dropzone'}>I am a Footer Link</CustomLink>
+            <NavigationLink variant={'footer'} size={"sm"} href={'/dropzone'}>I am a Footer Link</NavigationLink>
           </p>
           <div className="flex w-max items-center space-x-2 sm:space-x-4 md:justify-end">
             <nav className="m-right flex items-center space-x-1">

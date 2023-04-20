@@ -16,9 +16,7 @@ const buttonVariants = cva(
         action:
           "bg-violet text-accent-900 border border-violet text-sm min-w-164 max-w-164 hover:text-violet hover:bg-sk-light active:select-none active:bg-accent-700 active:dark:bg-accent-100 dark:active:bg-accent-100 dark:hover:text-hightlight-purple dark:hover:border-hightlight-purple dark:hover:bg-sk-dark disabled:bg-accent-100 disabled:text-accent-300 disabled:border-accent-300",
         cta:
-          "bg-accent border border-accent text-sm text-accent-900 hover:bg-accent-900 hover:text-accent hover:border hover:border-accent",
-        burger:
-          "w-6 h-10 flex justify-center items-center rounded bg-transparent border-none transition-background-color duration-200 ease select-none"
+          "bg-accent border border-accent text-sm text-accent-900 hover:bg-accent-900 hover:text-accent hover:border hover:border-accent"
       },
       fullWidth: {
         true: 'w-full' 
@@ -45,6 +43,7 @@ export interface ButtonProps
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, fullWidth, loading, children, ...props }, ref) => {
+    console
     return <button
       className={cn(buttonVariants({ variant, size, fullWidth, loading, className }))}
       ref={ref}

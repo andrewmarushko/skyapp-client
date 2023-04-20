@@ -39,12 +39,12 @@ const linkVariants = cva(
   }
 )
 
-export interface CustomLinkProps
+export interface NavigationLinkProps
   extends LinkProps, VariantProps<typeof linkVariants> {
     className?: string;
     children?: ReactNode;
   }
-const CustomLink = forwardRef<HTMLAnchorElement, CustomLinkProps>(
+const NavigationLink = forwardRef<HTMLAnchorElement, NavigationLinkProps>(
   ({ className, variant, size, fullWidth, children, dataActive, ...props }, ref) => {
     const segment = useSelectedLayoutSegment();
     const isActive = props.href === `/${segment}`;
@@ -56,6 +56,6 @@ const CustomLink = forwardRef<HTMLAnchorElement, CustomLinkProps>(
     >{children}</Link>
   } 
 )
-CustomLink.displayName = "Link"
+NavigationLink.displayName = "Link"
 
-export { CustomLink, linkVariants }
+export { NavigationLink, linkVariants }

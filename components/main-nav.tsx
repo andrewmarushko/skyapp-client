@@ -8,7 +8,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { CustomLink } from './ui/link';
+import { NavigationLink } from '@/components/ui/link';
 
 // WARN: Add navigation interface
 interface MainNavigationProps {
@@ -67,9 +67,9 @@ export function MainNav({ mainNavigationData, containerClassnames = '' }: MainNa
         ))}
           {navigationLinks.map((navigation: { id: number, href: string, label: string })  => (
             <NavigationMenuItem key={navigation.id}>
-              <CustomLink dataActive href={navigation.href} >
+              <NavigationLink dataActive href={navigation.href} >
                 {navigation.label}
-              </CustomLink>
+              </NavigationLink>
             </NavigationMenuItem>
           )
           )}

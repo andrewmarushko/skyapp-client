@@ -6,8 +6,8 @@ import { Icons } from '@/components/icons';
 import { MainNav } from '@/components/main-nav';
 import useStickyHeader from '@/hooks/useStickyElement';
 import { useState } from 'react';
-import { BurgerMenu } from './ui/burger-menu';
-import { CustomLink } from './ui/link';
+import { BurgerMenu } from '@/components/ui/burger-menu';
+import { NavigationLink } from '@/components/ui/link';
 
 interface HeaderProps {
   logoData: any;
@@ -41,28 +41,29 @@ export function Header({ logoData, navigationData }: HeaderProps) {
         </div>
         <MainNav mainNavigationData={mainNavigation} containerClassnames='hidden lg:flex flex-1' />
         <div className='hidden lg:flex gap-2 flex-1 justify-end'>
-          <CustomLink variant={'white'} href={'/contacts'}>Contacts</CustomLink>
-          <CustomLink variant={'black'} href={'/feedback'}>Feedback</CustomLink>
+          {/* TODO: creat side menu api */}
+          <NavigationLink variant={'white'} href={'/contacts'}>Contacts</NavigationLink>
+          <NavigationLink variant={'black'} href={'/feedback'}>Feedback</NavigationLink>
         </div>
         <nav className={`${isOpen ? 'block' : 'hidden'} lg:hidden visible w-full max-w-100vw px-geist-gap pb-geist-gap py-0 bg-sk-light dark:bg-sk-dark z-2000 fixed top-header-height left-0 right-0 bottom-0 overflow-y-scroll`}>
           <ul className='flex flex-col gap-4 list-none m-0 p-0'>
             <li className='border-none px-geist-gap-quarter'>
-              <CustomLink 
+              <NavigationLink 
                 variant={'white'} 
                 href={'/contacts'} 
                 onClick={(state) => setIsOpen(!state)}
               >
                 Contacts
-              </CustomLink>
+              </NavigationLink>
             </li>
             <li className='border-none px-geist-gap-quarter'>
-              <CustomLink 
+              <NavigationLink 
                 variant={'black'} 
                 href={'/feedback'} 
                 onClick={(state) => setIsOpen(!state)}
               >
                 Feedback
-              </CustomLink>
+              </NavigationLink>
             </li>
           </ul>
           <ul></ul>
