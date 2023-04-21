@@ -8,11 +8,13 @@ import Link, {LinkProps} from 'next/link';
 import { useSelectedLayoutSegment } from "next/navigation";
 
 const linkVariants = cva(
-  "text-sm leading-14 outline-none hover:text-accent",
+  "text-sm leading-14 outline-none hover:text-accent no-underline",
   {
     variants: {
       variant: {
-        default:
+        default: 
+          'text-inherit',
+        headerNav: 
           "block text-accent-400 rounded-full duration-200 transition-bg-and-color dark:text-experimental-gray-800 dark:hover:text-experimental-gray-900",
         footer:
           "inline text-accent-400 rounded-full transition-color dark:text-accents-5 dark:hover:text-geist-foreground",
@@ -29,7 +31,7 @@ const linkVariants = cva(
       },
       size: {
         default: "py-2 px-3",
-        sm: "",
+        sm: "p-0",
       },
     },
     defaultVariants: {

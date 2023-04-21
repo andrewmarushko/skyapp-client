@@ -175,10 +175,14 @@ module.exports = {
         'geist-action-small-height': 'var(--geist-action-small-height)',
         'geist-action-height': 'var(--geist-action-height)',
         'geist-form-height': 'var(--geist-form-height)',
-        '1px': 'var(--header-1px)'
+        '1px': 'var(--header-1px)',
+        'geist-gap-x2': 'var(--geist-gap-x2)',
       },
       minHeight: {
         'header-height': 'var(--header-height)',
+      },
+      maxHeight: {
+        '60vh': 'var(--height-60vh)',
       },
       letterSpacing: {
         tight: {
@@ -210,7 +214,8 @@ module.exports = {
       transitionProperty: {
         'background-color-and-box-shadow': 'var(--transition-property-background-color-and-box-shadow)',
         'background-color': 'var(--transition-property-background-color)',
-        'colors-shadow-transform': 'var(--transition-property-colors-shadow-transform)'
+        'colors-shadow-transform': 'var(--transition-property-colors-shadow-transform)',
+        'max-height': 'var(--transition-property-max-height)'
       },
       minWidth: {
         164: "var(--min-width-164)"
@@ -229,6 +234,9 @@ module.exports = {
       },
       backdropSaturate: {
         180: 'var(--backdrop-saturate-180)',
+      },
+      willChange: {
+        'height': 'var(--will-change-height)',
       },
       animation: {
         'loading-blink': 'loading-blink 1.4s infinite both'
