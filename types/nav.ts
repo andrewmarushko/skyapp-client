@@ -141,3 +141,38 @@ export interface CustomMapProps{
   long?: string
 }
 
+export interface NavDataInterface {
+  createdAt: Date,
+  locale: string,
+  publishedAt: Date,
+  mainNavigation: MainNavInterface,
+  updatedAt: Date,
+}
+
+export interface MainNavInterface {
+  id: number,
+  navigationLinks: NavLinksInterface[],
+  panel: NavPanelInterface[]
+}
+
+export interface NavLinksInterface {
+  id: number,
+  href: string,
+  label: string,
+  targer: string
+}
+
+{/* TODO: add typization for PUSH key */}
+export interface NavPanelInterface {
+  id: number,
+  label: string,
+  links: NavPanelLinkInterface[],
+  push: any
+}
+
+export interface NavPanelLinkInterface {
+  id: number,
+  description: string,
+  link: NavLinksInterface,
+}
+

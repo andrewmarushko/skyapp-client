@@ -99,6 +99,7 @@
   /* Radius */
   --geist-radius: 5px;
   --geist-marketing-radius: 8px;
+  --geist-link-radius: 9999px;
 
   /* Elements */
   --geist-link-color: var(--geist-success);
@@ -215,6 +216,8 @@
   /* Height */
   --header-height: 64px;
   --header-1px: 1px;
+  --geist-gap-x2: calc(2 * var(--geist-gap));
+  --height-60vh: 60vh;
 
   /* Inset */
   --inset-1px: 1px;
@@ -238,10 +241,15 @@
   --letter-spacing-title: -0.04em;
   --letter-spacing-subtitle: -0.03em;
 
+  /* Will change */
+  --will-change-height: height;
+  --letter-spacing-subtitle: -0.03em;
+
   /* Transition property */
   --transition-property-color: color;
   --transition-property-color-and-background: background, color;
   --transition-property-background-color: background-color;
   --transition-property-background-color-and-box-shadow: box-shadow, background-color;
   --transition-property-colors-shadow-transform:  border-color,background, color, transform, box-shadow;
+  --transition-property-max-height: max-height;
 }

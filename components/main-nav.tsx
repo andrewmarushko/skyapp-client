@@ -32,7 +32,7 @@ export function MainNav({ mainNavigationData, containerClassnames = '' }: MainNa
         }, 
         links: []
       }) => (
-          <NavigationMenuItem key={panelItem.id}>
+        <NavigationMenuItem key={panelItem.id}>
           <NavigationMenuTrigger>{panelItem.label}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="one m-0 grid list-none gap-x-[10px] p-[6px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
@@ -67,7 +67,7 @@ export function MainNav({ mainNavigationData, containerClassnames = '' }: MainNa
         ))}
           {navigationLinks.map((navigation: { id: number, href: string, label: string })  => (
             <NavigationMenuItem key={navigation.id}>
-              <NavigationLink dataActive href={navigation.href} >
+              <NavigationLink variant={'headerNav'} dataActive href={navigation.href} >
                 {navigation.label}
               </NavigationLink>
             </NavigationMenuItem>
