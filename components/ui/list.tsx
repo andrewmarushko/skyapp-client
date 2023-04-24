@@ -5,14 +5,14 @@ import { VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { ReactNode, forwardRef } from "react"
 
-const liVariants = cva(
+const listVariants = cva(
   "select-none flex items-center text-base h-geist-gap-x2 transition-background-color duration-200 ease-in-out dark:hover:bg-accent-100 dark:focus:bg-accent-100 dark:focus-visible:border-accent-900",
   {
     variants: {
       variant: {
-        firstLevelLink: 
+        menu: 
           "text-accent-300 dark:text-accent-600 border-b-accent-800 dark:border-b-accent-200 border-b", 
-        secondLevelLink: 
+        subMenu: 
           'text-accent-400 dark:text-accent-500',
       },
       fullWidth: {
@@ -23,21 +23,21 @@ const liVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "firstLevelLink",
+      variant: "menu",
       size: "default",
     },
   }
 )
 
-export interface NavigationLinkProps
-  extends VariantProps<typeof liVariants> {
+export interface NavigationListProps
+  extends VariantProps<typeof listVariants> {
     children?: ReactNode;
   }
 
-const Li = forwardRef<HTMLLIElement, NavigationLinkProps>(
+const List = forwardRef<HTMLLIElement, NavigationListProps>(
   ({ variant, size, fullWidth, children, ...props }, ref) => {
     return <li
-      className={`${cn(liVariants({ variant, size, fullWidth }))}`}
+      className={`${cn(listVariants({ variant, size, fullWidth }))}`}
       ref={ref}
       {...props}
     >
@@ -45,6 +45,6 @@ const Li = forwardRef<HTMLLIElement, NavigationLinkProps>(
     </li>
   } 
 )
-Li.displayName = "Li"
+List.displayName = "List"
 
-export { Li, liVariants }
+export { List, listVariants }

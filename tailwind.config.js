@@ -239,14 +239,24 @@ module.exports = {
         'height': 'var(--will-change-height)',
       },
       animation: {
-        'loading-blink': 'loading-blink 1.4s infinite both'
+        'loading-blink': 'loading-blink 1.4s infinite both',
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       keyframes: {
         'loading-blink': {
           '0%': { opacity: 0.2 },
           '20%': { transform: 1 },
           '100%': { transform: 0.2 },
-        }
+        },
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
       }
     },
   },

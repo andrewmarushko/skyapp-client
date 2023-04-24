@@ -50,7 +50,6 @@ export function Header({ logoData, navigationData }: HeaderProps) {
         <MobileNav 
           navigationData={mainNavigation} 
           isMobileNavOpen={isOpen} 
-          showMobileNav={show} 
           hideMobileNav={hide} 
         />
       </div>
