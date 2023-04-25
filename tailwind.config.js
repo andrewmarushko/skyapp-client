@@ -172,6 +172,7 @@ module.exports = {
         DEFAULT: 'var(--geist-radius)',
         marketing: 'var(--geist-marketing-radius)',
         link: 'var(--geist-link-radius)',
+        link: 'var(--geist-link-radius)',
       },
       fontSize: {
         64: 'var(--font-size-64)',
@@ -195,10 +196,14 @@ module.exports = {
         'geist-form-height': 'var(--geist-form-height)',
         '1px': 'var(--header-1px)',
         'geist-gap-x2': 'var(--geist-gap-x2)',
+        'geist-gap-x2': 'var(--geist-gap-x2)',
         'nav-menu-height': 'var(--nav-menu-height)'
       },
       minHeight: {
         'header-height': 'var(--header-height)',
+      },
+      maxHeight: {
+        '60vh': 'var(--height-60vh)',
       },
       maxHeight: {
         '60vh': 'var(--height-60vh)',
@@ -232,6 +237,10 @@ module.exports = {
         color: 'var(--transition-property-color)',
         'bg-and-color': 'var(--transition-property-color-and-background)'
       },
+      transitionProperty: {
+        color: 'var(--transition-property-color)',
+        'bg-and-color': 'var(--transition-property-color-and-background)'
+      },
       transitionTimingFunction: {
         DEFAULT: 'var(--transition-timing-function-default-ease)'
       },
@@ -239,6 +248,7 @@ module.exports = {
         'background-color-and-box-shadow': 'var(--transition-property-background-color-and-box-shadow)',
         'background-color': 'var(--transition-property-background-color)',
         'colors-shadow-transform': 'var(--transition-property-colors-shadow-transform)',
+        'max-height': 'var(--transition-property-max-height)',
         'max-height': 'var(--transition-property-max-height)',
         'width-height': 'var(--transition-width-height)',
         'width-transform': 'var(--transition-width-transform)'
@@ -263,6 +273,9 @@ module.exports = {
       },
       backdropSaturate: {
         180: 'var(--backdrop-saturate-180)',
+      },
+      willChange: {
+        'height': 'var(--will-change-height)',
       },
       willChange: {
         'height': 'var(--will-change-height)',
@@ -305,7 +318,7 @@ module.exports = {
           '0%': { opacity: 1 },
           '100%': { opacity: 0 },
         },
-        },
+        }
       }
     },
   },
