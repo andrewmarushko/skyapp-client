@@ -21,7 +21,7 @@ export function MainNav({ mainNavigationData }: MainNavigationProps) {
   const { panel, navigationLinks} = mainNavigationData
 
   return (
-    <NavigationMenu className='hidden lg:flex flex-1'>
+    <NavigationMenu className='hidden lg:flex flex-1 justify-center'>
       <NavigationMenuList className='flex items-center gap-2'>
         {panel.map((panelItem) => (
         <NavigationMenuItem key={panelItem.id}>
