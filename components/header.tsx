@@ -41,9 +41,9 @@ export function Header({ logoData, navigationData }: HeaderProps) {
           </Link>
           <BurgerMenu isOpen={isOpen} toggleBurgerMenu={toggle} />
         </div>
-        <MainNav mainNavigationData={mainNavigation} containerClassnames='hidden lg:flex flex-1' />
+        <MainNav mainNavigationData={mainNavigation} />
         <div className='hidden lg:flex gap-2 flex-1 justify-end'>
-          {/* TODO: creat side menu api */}
+          {/* TODO: create side menu api */}
           <NavigationLink variant={'white'} href={'/contacts'}>Contacts</NavigationLink>
           <NavigationLink variant={'black'} href={'/feedback'}>Feedback</NavigationLink>
         </div>

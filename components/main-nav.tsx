@@ -3,64 +3,65 @@ import {
   ListItem,
   NavigationMenu,
   NavigationMenuContent,
+  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import { NavigationLink } from '@/components/ui/link';
+import { Icons } from '@/components/icons';
+import { MainNavInterface } from '@/types/nav';
 
-// WARN: Add navigation interface
 interface MainNavigationProps {
-  mainNavigationData: any,
-  containerClassnames?: string
+  mainNavigationData: MainNavInterface,
 }
 
-export function MainNav({ mainNavigationData, containerClassnames = '' }: MainNavigationProps) {
+export function MainNav({ mainNavigationData }: MainNavigationProps) {
   const { panel, navigationLinks} = mainNavigationData
 
   return (
-    <NavigationMenu className={containerClassnames}>
+    <NavigationMenu className='hidden lg:flex flex-1'>
       <NavigationMenuList className='flex items-center gap-2'>
-        {panel.map((panelItem:  {label: string, id: number, push: {
-          description: string,
-          link: {
-            label: string,
-            href: string,
-            target: string
-          },      
-        }, 
-        links: []
-      }) => (
+        {panel.map((panelItem) => (
         <NavigationMenuItem key={panelItem.id}>
           <NavigationMenuTrigger>{panelItem.label}</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="one m-0 grid list-none gap-x-[10px] p-[6px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
-              <li className="row-span-3 grid">
+            <ul className="m-0 z-0 grid grid-cols-1-3 list-none gap-x-1.5 p-1.5 w-125">
+              <li>
                 <NavigationMenuLink asChild>
-                  <a
-                    className="flex h-full w-full select-none 
-                      flex-col justify-end rounded-[4px] bg-gradient-to-b from-purple9 to-indigo9 p-[25px] no-underline outline-none focus:shadow-[0_0_0_2px] focus:shadow-violet7"
+                  <NavigationLink
+                    variant={"skydivingCenter"}
+                    size={"md"}
                     href={panelItem.push.link.href}
                     target={panelItem.push.link.target}
                   >
-                    <div className="mb-2 mt-4 text-lg font-medium text-white">
-                      {panelItem.push.link.label}
+                    <div className="flex items-stretch justify-between">
+                      {/* TODO: Add the field for this span on the server */}
+                      <span className='flex items-center justify-center text-sm leading-4 text-experimental-gray-dark-700 font-normal'>Start flying</span>
+                      <Icons.arrowUpRight className="h-4 w-4" />
                     </div>
-                    <p className="text-sm leading-tight text-white/90">
-                      {panelItem.push.description}
-                    </p>
-                  </a>
+                    <div>
+                      <span className='flex items-center gap-2 mb-1.5 text-accent dark:text-experimental-gray-dark-900 text-base font-medium'>
+                        {panelItem.push.link.label}
+                      </span>
+                      <p className='text-experimental-gray-800 dark:text-experimental-gray-dark-800 text-sm font-normal'>
+                        {panelItem.push.description}
+                      </p>
+                    </div>
+                  </NavigationLink>
                 </NavigationMenuLink>
               </li>
-              {panelItem.links.map((linkItem: {id: number, description: string, link: {
-                label: string,
-                href: string
-              }}) => (
-                <ListItem key={linkItem.id} href={linkItem.link.href} title={linkItem.link.label}>
-                  {linkItem.description}
-                </ListItem>)
-              )}
+              <li className="grid grid-cols-2">
+                {panelItem.links.map((linkItem: {id: number, description: string, link: {
+                  label: string,
+                  href: string
+                }}) => (
+                  <ListItem key={linkItem.id} href={linkItem.link.href} title={linkItem.link.label}>
+                    {linkItem.description}
+                  </ListItem>)
+                )}
+              </li>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -74,8 +75,7 @@ export function MainNav({ mainNavigationData, containerClassnames = '' }: MainNa
           )
           )}
       </NavigationMenuList>
-      {/* TODO: Need too make proper styles for borders */}
-      {/* <NavigationMenuIndicator /> */}
+      <NavigationMenuIndicator />
     </NavigationMenu>
   );
 }
