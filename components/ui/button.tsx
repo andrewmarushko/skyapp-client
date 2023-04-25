@@ -18,8 +18,6 @@ const buttonVariants = cva(
           "bg-accent border border-accent text-sm text-accent-900 hover:bg-accent-900 hover:text-accent hover:border hover:border-accent",
         burger:
           "w-6 h-10 flex justify-center items-center rounded bg-transparent border-none transition-background-color duration-200 ease select-none",
-        desktopNav:
-          "block text-accent-400 rounded-full duration-200 transition-bg-and-color dark:text-experimental-gray-800 hover:bg-experimental-gray-a-100 hover:text-experimental-gray-a-900 dark:hover:bg-experimental-gray-a-dark-100 dark:hover:text-experimental-gray-a-dark-900",
         mobileNav:
           "font-normal inline-block"
       },

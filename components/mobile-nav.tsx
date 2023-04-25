@@ -48,7 +48,7 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({ navigationDat
               </span>
             </AccordionTrigger>
             <AccordionContent>
-              <div className={`max-h-60vh text-base overflow-y-auto transition-max-height ease duration-200`}>
+              <div className={`max-h-60vh text-base overflow-y-auto`}>
                 <div className='overflow-y-hidden'>
                   <ul className='mb-3'>
                     {links.map(({ link , id }) =>(

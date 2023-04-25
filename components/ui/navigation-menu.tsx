@@ -3,16 +3,16 @@ import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
 import { cva } from "class-variance-authority"
 import { ChevronDown } from "lucide-react"
 import { forwardRef } from "react"
+import { Icons } from '@/components/icons';
 
 const NavigationMenu = forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
 >(({ className, children, ...props }, ref) => (
-  // <Button variant={'desktopNav'}>sdfsdfsd</Button>
   <NavigationMenuPrimitive.Root
     ref={ref}
     className={cn(
-      "relative z-10 flex justify-center",
+      "relative z-10 flex",
       className
     )}
     {...props}
@@ -38,7 +38,9 @@ const NavigationMenuList = forwardRef<
 ))
 
 const navigationMenuTriggerStyle = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:bg-slate-100 dark:focus:bg-accent-200  disabled:opacity-50 dark:focus:bg-accent-200 disabled:pointer-events-none bg-transparent hover:bg-slate-100 dark:hover:bg-accent-200 dark:text-slate-100 dark:hover:text-slate-100 data-[state=open]:bg-slate-50 dark:data-[state=open]:bg-accent-200 data-[active]:bg-accent-200 dark:data-[active]:bg-accent-200 h-10 py-2 px-4 group w-max"
+  `flex py-2 px-3 items-center text-sm leading-14 text-accent-400 rounded-full duration-200 transition-bg-and-color
+  data-[state=open]:bg-experimental-gray-a-100 data-[state=open]:text-experimental-gray-a-900 
+  dark:text-experimental-gray-dark-800 dark:data-[state=open]:bg-experimental-gray-a-dark-200 dark:data-[state=open]:text-experimental-gray-a-dark-900`
 )
 
 // INFO: menu items styles
@@ -66,13 +68,13 @@ const NavigationMenuContent = forwardRef<
   <NavigationMenuPrimitive.Content
     ref={ref}
     className={cn(
-      "data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight top-0 left-0 w-full sm:w-auto relative",
+      "top-0 left-0 w-full duration-200 ease",
       className
     )}
     {...props}
   />
 ))
- 
+
 const NavigationMenuViewport = forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
@@ -80,7 +82,9 @@ const NavigationMenuViewport = forwardRef<
   <div className="perspective-[2000px] absolute top-full left-0 flex justify-center">
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        "data-[state=open]:animate-scaleIn data-[state=closed]:animate-scaleOut relative mt-[10px] h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-[6px] bg-background-light backdrop-filter backdrop-blur-lg dark:backdrop-filter dark:backdrop-blur-lg dark:bg-background-dark transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)] border border-accent-700 dark:border-accent-200",
+        `relative mt-5 w-full origin-top-center overflow-hidden rounded-xl bg-sk-light shadow-3xl transition-width-height duration-300
+        border border-accent-800 data-[state=open]:animate-navigation-menu-scale-in data-[state=closed]:animate-navigation-menu-scale-out
+        dark:backdrop-filter dark:backdrop-blur-2xl dark:bg-sk-menu-dark dark:border-accent-200`,
         className
       )}
       ref={ref}
@@ -89,7 +93,7 @@ const NavigationMenuViewport = forwardRef<
 </div>
 ))
 
- 
+
 const NavigationMenuIndicator = forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Indicator>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Indicator>
@@ -97,12 +101,14 @@ const NavigationMenuIndicator = forwardRef<
   <NavigationMenuPrimitive.Indicator
     ref={ref}
     className={cn(
-      "data-[state=visible]:animate-fadeIn data-[state=hidden]:animate-fadeOut top-full z-0 flex h-[10px] items-end justify-center overflow-hidden transition-[width,transform_250ms_ease]",
+      `absolute left-0 translate-x-0 data-[state=visible]:animate-fade-in data-[state=closed]:animate-fade-out 
+      top-[133%] z-10 flex h-2.5
+      items-end justify-center overflow-hidden transition-width-transform duration-200 ease`,
       className
     )}
     {...props}
   >
-    <div className="relative top-[70%] h-[10px] w-[10px] z-50 rotate-[45deg] rounded-tl-[2px] bg-foreground border border-accent-200 dark:border-accent-200 dark:bg-sk-light" />
+    <Icons.navIndicator className="fill-sk-light dark:fill-sk-dark -top-3 z-10 absolute w-8 h-8 rotate-180"/>
   </NavigationMenuPrimitive.Indicator>
 ))
 
@@ -112,23 +118,22 @@ const NavigationMenuIndicator = forwardRef<
   React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, ...props }, ref) => {
   return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-slate-700 dark:focus:bg-slate-700",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-slate-500 dark:text-slate-400">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
+    <NavigationMenuLink asChild>
+      <a
+        ref={ref}
+        className={cn(
+          `block select-none space-y-1 rounded-lg p-3 text-sm leading-none no-underline outline-none transition-colors ease
+          focus-within:shadow-sm-gray hover:bg-experimental-gray dark:hover:bg-experimental-gray-a-dark`,
+          className
+        )}
+        {...props}
+      >
+        <div className="flex mb-2 whitespace-nowrap text-experimental-gray-900 dark:text-experimental-gray-dark-900 text-sm font-medium leading-none">{title}</div>
+        <p className="text-sm text-experimental-gray-800 dark:text-experimental-gray-dark-800">
+          {children}
+        </p>
+      </a>
+    </NavigationMenuLink>
   )
 })
 

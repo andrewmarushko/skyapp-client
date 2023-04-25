@@ -18,6 +18,7 @@
   --geist-foreground: var(--accents-9);
   --geist-background-light: rgba(255, 255, 255, 1);
   --geist-background-dark: rgba(0, 0, 0, 1);
+  --geist-menu-bg-dark: rgba(0,0,0,.6);
 
   --geist-secondary-lighter: var(--accents-2);
   --geist-secondary-light: var(--accents-3);
@@ -61,16 +62,28 @@
   --geist-highlight-yellow: #fff500;
 
   /* experimental gray */
-  --geist-experimental-color-gray-1: #1a1a1a;
-  --geist-experimental-color-gray-2: #1f1f1f;
-  --geist-experimental-color-gray-3: #292929;
-  --geist-experimental-color-gray-4: #2e2e2e;
-  --geist-experimental-color-gray-5: #454545;
-  --geist-experimental-color-gray-6: #878787;
+  --geist-experimental-color-gray-1: #f5f5f5;
+  --geist-experimental-color-gray-2: #ebebeb;
+  --geist-experimental-color-gray-3: #e6e6e6;
+  --geist-experimental-color-gray-4: #eaeaea;
+  --geist-experimental-color-gray-5: #c9c9c9;
+  --geist-experimental-color-gray-6: #a8a8a8;
   --geist-experimental-color-gray-7: #8f8f8f;
   --geist-experimental-color-gray-8: #7d7d7d;
-  --geist-experimental-color-gray-9: #a0a0a0;
-  --geist-experimental-color-gray-10: #ededed;
+  --geist-experimental-color-gray-9: #666;
+  --geist-experimental-color-gray-10: #171717;
+
+  /* experimental gray dark */
+  --geist-experimental-color-gray-1-dark: #1a1a1a;
+  --geist-experimental-color-gray-2-dark: #1f1f1f;
+  --geist-experimental-color-gray-3-dark: #292929;
+  --geist-experimental-color-gray-4-dark: #2e2e2e;
+  --geist-experimental-color-gray-5-dark: #454545;
+  --geist-experimental-color-gray-6-dark: #878787;
+  --geist-experimental-color-gray-7-dark: #8f8f8f;
+  --geist-experimental-color-gray-8-dark: #7d7d7d;
+  --geist-experimental-color-gray-9-dark: #a0a0a0;
+  --geist-experimental-color-gray-10-dark: #ededed;
 
   /* experimental gray a for dark theme */
   --geist-experimental-color-gray-a1-dark: hsla(0,0%,100%,.07);
@@ -112,6 +125,8 @@
   --shadow-large: 0 30px 60px rgba(0, 0, 0, 0.12);
   --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.12);
   --shadow-sticky: 0 12px 10px -10px rgba(0, 0, 0, 0.12);
+  --shadow-3xl: 0 50px 100px -20px rgba(0,0,0,.12), 0 30px 60px -30px rgba(0,0,0,.15);
+  --shadow-sm-gray: 0 0 0 2px var(--geist-experimental-color-gray-7);
 
   /* Shadows dark */
   --shadow-smallest-dark: 0 0 0 1px var(--accents-2);
@@ -121,6 +136,7 @@
   --shadow-large-dark: 0 0 0 1px var(--accents-2);
   --shadow-sticky-dark: 0 0 0 1px var(--accents-2);
   --shadow-hover-dark: 0 0 0 1px var(--geist-foreground);
+  --shadow-medium-border: 0 0 0 1px var(--geist-foreground);
   --shadow-medium-border: 0 0 0 1px var(--geist-foreground);
 
   /* Button custom colors */
@@ -136,10 +152,10 @@
 
   /* Header shadows */
   --header-border-bottom: inset 0 -1px 0 0 rgba(0,0,0,.1);
-  --header-border-bottom-dark: inset 0 -1px 0 0 hsla(0,0%,100%,.1)
+  --header-border-bottom-dark: inset 0 -1px 0 0 hsla(0,0%,100%,.1);
 
   /* Transition timing function */
-  --transition-timing-function-default-ease: cubic-bezier(0.25, 0.1, 0.25, 1.0) 
+  --transition-timing-function-default-ease: cubic-bezier(0.25, 0.1, 0.25, 1.0);
 
   /* Other colors */
   --wv-green: #0cce6b;
@@ -148,7 +164,9 @@
 
   /* Spaces */
   --geist-space: 4px;
+  --geist-space-1-5x: 6px; 
   --geist-space-2x: 8px;
+  --geist-space-2-5x: 10px;
   --geist-space-4x: 16px;
   --geist-space-8x: 32px;
   --geist-space-16x: 64px;
@@ -156,6 +174,7 @@
   --geist-space-32x: 128px;
   --geist-space-48x: 192px;
   --geist-space-64x: 256px;
+  --geist-space-125x: 500px;
   --geist-space-small: 32px;
   --geist-space-medium: 40px;
   --geist-space-large: 48px;
@@ -198,13 +217,26 @@
   --geist-form-font: 0.875rem;
   --geist-form-line-height: 1.25rem;
   --geist-form-height: var(--geist-space-medium);
+  --space-navigation-pointer: calc(100% + 20px - 9px);
+
+  /* Radix nav menu viewport width */
+  --radix-navigation-menu-viewport-width: 580px;
+  --radix-navigation-menu-viewport-height: 282px;
+
+  /* Menu border width */
+  --menu-border-width: 1px;
 
   /* Width */
   --geist-page-width: 1200px;
   --geist-page-margin: var(--geist-space-gap);
   --geist-page-width-with-margin: calc(
-    var(--geist-page-width) + calc(2 * var(--geist-page-margin))
+    var(--geist-page-width) + calc(2 * var(--geist-page-margin));
+  --radix-navigation-menu-viewport-width-calculated: calc(
+    var(--radix-navigation-menu-viewport-width) + var(--menu-border-width) * 2);
   );
+
+  /* Grid template columns */
+  --grid-template-columns-1-3: 1fr 2fr;
 
   /* Min width */
   --min-width-164: 164px;
@@ -218,6 +250,7 @@
   --header-1px: 1px;
   --geist-gap-x2: calc(2 * var(--geist-gap));
   --height-60vh: 60vh;
+  --nav-menu-height: calc(var(--radix-navigation-menu-viewport-height) + var(--menu-border-width) * 2);
 
   /* Inset */
   --inset-1px: 1px;
@@ -250,6 +283,11 @@
   --transition-property-color-and-background: background, color;
   --transition-property-background-color: background-color;
   --transition-property-background-color-and-box-shadow: box-shadow, background-color;
-  --transition-property-colors-shadow-transform:  border-color,background, color, transform, box-shadow;
+  --transition-property-colors-shadow-transform:  border-color, background, color, transform, box-shadow;
   --transition-property-max-height: max-height;
+  --transition-width-height: width, height, all;
+  --transition-width-transform: width, transform;
+
+  /* Transform origin */
+  --transform-origin-top-center: top center;
 }
