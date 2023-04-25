@@ -21,7 +21,7 @@ export function MainNav({ mainNavigationData }: MainNavigationProps) {
   const { panel, navigationLinks} = mainNavigationData
 
   return (
-    <NavigationMenu className='hidden lg:flex flex-1 justify-center'>
+    <NavigationMenu className='hidden lg:flex justify-center flex-1'>
       <NavigationMenuList className='flex items-center gap-2'>
         {panel.map((panelItem) => (
         <NavigationMenuItem key={panelItem.id}>
@@ -66,16 +66,15 @@ export function MainNav({ mainNavigationData }: MainNavigationProps) {
           </NavigationMenuContent>
         </NavigationMenuItem>
         ))}
-          {navigationLinks.map((navigation: { id: number, href: string, label: string })  => (
-            <NavigationMenuItem key={navigation.id}>
-              <NavigationLink variant={'headerNav'} dataActive href={navigation.href} >
-                {navigation.label}
-              </NavigationLink>
-            </NavigationMenuItem>
-          )
-          )}
-      </NavigationMenuList>
-      <NavigationMenuIndicator />
-    </NavigationMenu>
-  );
+        {navigationLinks.map((navigation: { id: number, href: string, label: string })  => (
+          <NavigationMenuItem key={navigation.id}>
+            <NavigationLink variant={'headerNav'} dataActive href={navigation.href} >
+              {navigation.label}
+            </NavigationLink>
+          </NavigationMenuItem>
+        ))}
+    </NavigationMenuList>
+    <NavigationMenuIndicator />
+  </NavigationMenu>
+);
 }
