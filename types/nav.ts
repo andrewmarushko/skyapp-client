@@ -1,4 +1,5 @@
 import { Icons } from "@/components/icons"
+import { DateInterface, NavLinksInterface } from "./general"
 
 export interface NavItem {
   title: string
@@ -141,25 +142,14 @@ export interface CustomMapProps{
   long?: string
 }
 
-export interface NavDataInterface {
-  createdAt: Date,
-  locale: string,
-  publishedAt: Date,
+export interface NavDataInterface extends DateInterface {
   mainNavigation: MainNavInterface,
-  updatedAt: Date,
 }
 
 export interface MainNavInterface {
   id: number,
   navigationLinks: NavLinksInterface[],
   panel: NavPanelInterface[]
-}
-
-export interface NavLinksInterface {
-  id: number,
-  href: string,
-  label: string,
-  targer: string
 }
 
 {/* TODO: add typization for PUSH key */}
@@ -175,4 +165,6 @@ export interface NavPanelLinkInterface {
   description: string,
   link: NavLinksInterface,
 }
+
+
 

@@ -172,7 +172,8 @@ module.exports = {
         DEFAULT: 'var(--geist-radius)',
         marketing: 'var(--geist-marketing-radius)',
         link: 'var(--geist-link-radius)',
-        link: 'var(--geist-link-radius)',
+        100: 'var(--border-radius-100)',
+        50: 'var(--border-radius-50)'
       },
       fontSize: {
         64: 'var(--font-size-64)',
@@ -187,7 +188,8 @@ module.exports = {
         'geist-action-large-line-height': 'var(--geist-action-large-line-height)',
         'geist-action-small-line-height': 'var(--geist-action-small-line-height)',
         'geist-action-line-height': 'var(--geist-action-line-height)',
-        'geist-form-line-height': 'var(--geist-form-line-height)'
+        'geist-form-line-height': 'var(--geist-form-line-height)',
+        0: 'var(--line-height-0)'
       },
       height: {
         'geist-action-large-height': 'var(--geist-action-large-height)',
