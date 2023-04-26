@@ -1,13 +1,16 @@
-import Link from 'next/link';
-import { siteConfig } from '@/config/site';
+'use client'
+
 import { Icons } from '@/components/icons';
 import { NavigationLink } from '@/components/ui/link';
-import { ModeToggle } from '@/components/mode-toggle';
-import { buttonVariants } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
 import { FooterInterface } from '@/types/footer';
 import { LogoInterface } from '@/types/logo';
 import React from 'react';
+import dynamic from 'next/dynamic';
+
+const ModeToggle = dynamic(() =>
+  import('@/components/mode-toggle').then((mod) => mod.ModeToggle), {ssr: false }
+)
 
 interface FooterProps {
   footerData: FooterInterface;
@@ -17,7 +20,6 @@ interface FooterProps {
 export function Footer({ footerData, logoData }: FooterProps) {
   const { logo } = logoData;
   const { navigation, social, subscribe, copyright } = footerData.footer;
-  console.log(logoData, 'logoData')
   return (
     <footer className="w-full border-t border-t-stone-200 dark:border-t-stone-700 py-9">
       <div className="container flex flex-col gap-4">
