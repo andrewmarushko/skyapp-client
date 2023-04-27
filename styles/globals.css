@@ -115,6 +115,7 @@
   --geist-link-radius: 9999px;
   --border-radius-100: 100px;
   --border-radius-50: 50%;
+  --border-radius-xs: 4px;
 
   /* Elements */
   --geist-link-color: var(--geist-success);
@@ -129,6 +130,7 @@
   --shadow-sticky: 0 12px 10px -10px rgba(0, 0, 0, 0.12);
   --shadow-3xl: 0 50px 100px -20px rgba(0,0,0,.12), 0 30px 60px -30px rgba(0,0,0,.15);
   --shadow-sm-gray: 0 0 0 2px var(--geist-experimental-color-gray-7);
+  --next-focus-shadow: 0 0 0 2px var(--geist-success);
 
   /* Shadows dark */
   --shadow-smallest-dark: 0 0 0 1px var(--accents-2);
@@ -165,6 +167,7 @@
   --wv-red: #ff4e42;
 
   /* Spaces */
+  --geist-space-0-5x: 2px;
   --geist-space: 4px;
   --geist-space-1-5x: 6px; 
   --geist-space-2x: 8px;
@@ -245,6 +248,7 @@
 
   /* Min width */
   --max-width-164: 164px;
+  --max-width-240: 240px;
   --max-width-100vw: 100vw;
 
   /* Height */

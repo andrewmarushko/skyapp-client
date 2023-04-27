@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent } from 'react';
 import { NavigationLink } from './ui/link';
 import { Icons } from '@/components/icons';
 
@@ -16,7 +16,7 @@ export const Logo: FunctionComponent<LogoPropsInterface> = ({
       href={href}
       variant={'logo'}
     >
-      <Icons.logo className="h-8" />
+      <Icons.logo className="h-8 hover:bg-current" />
       {
         isCompanyName && 
         <span className="text-xl font-bold uppercase">

@@ -15,20 +15,20 @@ interface HeaderProps {
   navigationData: NavDataInterface;
 }
 
-const onScrollHeaderClasses = `before:w-full before:h-full before:absolute before:content-[''] before:-z-1 before:backdrop-saturate-180 before:backdrop-blur-sm before:-top-1px shadow-header-border-bottom dark:shadow-header-border-bottom-dark`
+const onScrollHeaderClasses = `before:w-full before:h-full before:absolute before:content-[''] before:-z-1 before:backdrop-saturate-180 before:backdrop-blur-md before:-top-1px shadow-header-border-bottom dark:shadow-header-border-bottom-dark`
 
 export function Header({ logoData, navigationData }: HeaderProps) {
   const { logo } = logoData;
   const { mainNavigation } = navigationData;
   const { elementRef, isSticky } = useStickyElement();
-  const { isOpen, toggle, show, hide } = useOpen();
+  const { isOpen, toggle, hide } = useOpen();
 
   return (
     <header
       ref={elementRef}
       className={`flex min-h-header-height justify-center bg-transparent sticky top-0 z-40 w-full max-w-full transition-background-color-and-box-shadow ease duration-200 dark:border-b-stone-700 ${isSticky ? `${onScrollHeaderClasses}` : ''}`}>
       <div className="container flex items-center justify-between">
-        <div className='flex justify-between flex-1'>
+        <div className='flex justify-between items-center flex-1'>
           <Logo href={logo.href} companyName={logo.companyName} />
           <BurgerMenu isOpen={isOpen} toggleBurgerMenu={toggle} />
         </div>
