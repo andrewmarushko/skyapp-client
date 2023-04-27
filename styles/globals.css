@@ -113,7 +113,8 @@
   --geist-radius: 5px;
   --geist-marketing-radius: 8px;
   --geist-link-radius: 9999px;
-  --geist-link-radius: 9999px;
+  --border-radius-100: 100px;
+  --border-radius-50: 50%;
 
   /* Elements */
   --geist-link-color: var(--geist-success);
@@ -270,6 +271,7 @@
   /* Line height */
   --line-height-74: 74px;
   --line-height-14: 14px;
+  --line-height-0: 0;
 
   /* Letter spacing */
   --letter-spacing-title: -0.04em;

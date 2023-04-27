@@ -27,6 +27,9 @@ const linkVariants = cva(
           hover:bg-experimental-gray-200 no-underline outline-none text-experimental-gray-700 
           transition-background-color ease focus-visible:shadow-sm-gray focus-visible:shadow-experimental-gray-600
           dark:bg-experimental-gray-a-dark dark:hover:bg-experimental-gray-a-dark-200 hover:text-experimental-gray-dark-700`,
+        logo: 'flex cursor-pointer items-center gap-1',
+        socialNetwork:
+          "text-accent-400 transition-all duration-200 ease"
       },
       dataActive: {
         true: ''

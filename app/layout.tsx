@@ -34,7 +34,7 @@ export default async function Layout({ children }: RootLayoutProps) {
           <main className="flex min-h-screen flex-col">
             <Header logoData={logoData} navigationData={navigationMenuData} />
             <div className="flex-1">{children}</div>
-            <Footer footerData={footerData} />
+            <Footer logoData={logoData} footerData={footerData} />
           </main>
         </ThemeProvider>
         <Analytics />
