@@ -1,12 +1,13 @@
 'use client'
-
+import React from 'react';
+import dynamic from 'next/dynamic';
 import { Icons } from '@/components/icons';
 import { NavigationLink } from '@/components/ui/link';
 import { Logo } from '@/components/logo';
 import { FooterInterface } from '@/types/footer';
 import { LogoInterface } from '@/types/logo';
-import React from 'react';
-import dynamic from 'next/dynamic';
+import { SubscriptionForm } from '@/components/forms/subscribe-form';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const ModeToggle = dynamic(() =>
   import('@/components/mode-toggle').then((mod) => mod.ModeToggle), {ssr: false }
@@ -20,35 +21,60 @@ interface FooterProps {
 export function Footer({ footerData, logoData }: FooterProps) {
   const { logo } = logoData;
   const { navigation, social, subscribe, copyright } = footerData.footer;
+
   return (
     <footer className="w-full border-t border-t-stone-200 dark:border-t-stone-700 py-9">
       <div className="container flex flex-col gap-4">
-        <div className='grid grid-cols-4 max-w-full gap-6'>
-          <div className='flex items-start justify-between gap-0'>
+        <div className='grid md:grid-cols-3 lg:grid-cols-4 max-w-full gap-6'>
+          <div className='flex items-start justify-center md:justify-between gap-0'>
             <Logo href={logo.href} companyName={logo.companyName} />
           </div>
           {navigation.map(({id, label, links}) => (
             <div key={id}>
-              <h2 className='text-sm my-3'>{label}</h2>
-              <ul className='flex flex-col list-none'>
-                {links.map(({id, label, target, href}) => (
-                  <li key={id} className='text-accent-400 py-2'>
-                    <NavigationLink target={target} variant={'footer'} size={'sm'} href={href}>{label}</NavigationLink>
-                  </li>
-                ))}
-              </ul>
+              <div className='hidden md:block' >
+                <h4 className='text-sm mb-3 font-medium'>{label}</h4>
+                <ul className='flex flex-col list-none'>
+                  {links.map(({id, label, target, href}) => (
+                    <li key={id} className='text-accent-400 py-2'>
+                      <NavigationLink target={target} variant={'footer'} size={'sm'} href={href}>{label}</NavigationLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <Accordion className='md:hidden' type="single" collapsible>
+                <AccordionItem className='dark:border-b-accent-200' value="item-1">
+                  <AccordionTrigger className='font-normal'>
+                  <h4 className='text-sm mb-3 font-medium'>{label}</h4>               
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className={`max-h-60vh text-base overflow-y-auto`}>
+                      <div className='overflow-y-hidden'>
+                        <ul className='mb-3'>
+                        {links.map(({id, label, target, href}) => (
+                          <li key={id} className='text-accent-400 py-2'>
+                            <NavigationLink target={target} variant={'footer'} size={'sm'} href={href}>{label}</NavigationLink>
+                          </li>
+                        ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           ))}
-          <div>
-
+          <div className='col-span-full lg:col-span-1'>
+            <h4 className='text-sm mb-3 font-medium'>{subscribe.title}</h4>
+            <p className='text-sm text-accent-400 pt-2 pb-4'>{subscribe.subtitle}</p>
+            <SubscriptionForm buttonLabel={subscribe.submitButton.label} />
           </div>
         </div>
-        <div className='flex flex-col justify-between mt-6 gap-1'>
-          <span className='text-accent-400 text-sm'>{copyright.companyName} {copyright.reserved} {copyright.copyright}</span>
-          <div className='flex justify-between items-center'>
+        <div className='flex flex-col items-center md:items-start justify-between mt-6 gap-4 md:gap-1'>
+          <span className='text-accent-400 dark:text-accent-500 text-sm'>{copyright.companyName} {copyright.reserved} {copyright.copyright}</span>
+          <div className='flex w-full flex-col md:flex-row justify-between items-center gap-6 md:gap-0'>
             <ul className='flex'>
               {social.map(({id, type, link}) => (
-                <li className='pr-4 mr-4 border-r border-r-accent-800 leading-0 last:pr-0 last:mr-0 last:border-r-0' key={id}>
+                <li className='pr-4 mr-4 border-r border-r-accent-800 dark:border-r-accent-200 leading-0 last:pr-0 last:mr-0 last:border-r-0' key={id}>
                   <NavigationLink variant={'socialNetwork'} size={'sm'} href={link.href} target={link.target}>
                     {type==='instagram' && <Icons.instagram className="h-5 w-5" />}
                     {type==='facebook' && <Icons.facebook className="h-5 w-5" />}
@@ -62,43 +88,6 @@ export function Footer({ footerData, logoData }: FooterProps) {
             <ModeToggle />
           </div>
         </div>
-        {/* <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-          <Icons.logo className="h-6 w-6" />
-          <p className="text-center text-sm leading-loose text-stone-600 dark:text-stone-400 md:text-left">
-            Built by{' '}
-            <a
-              href={siteConfig.links.instagram}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              Skydiving Center
-            </a>
-            .
-            <NavigationLink variant={'footer'} size={"sm"} href={'/dropzone'}>I am a Footer Link</NavigationLink>
-          </p>
-          <div className="flex w-max items-center space-x-2 sm:space-x-4 md:justify-end">
-            <nav className="m-right flex items-center space-x-1">
-              <Link
-                href={siteConfig.links.instagram}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div
-                  className={buttonVariants({
-                    size: 'sm',
-                    variant: 'ghost',
-                    className: 'text-stone-700 dark:text-stone-400',
-                  })}
-                >
-                  <Icons.instagram className="h-5 w-5" />
-                  <span className="sr-only">GitHub</span>
-                </div>
-              </Link>
-              <ModeToggle />
-            </nav>
-          </div>
-        </div> */}
       </div>
     </footer>
   );

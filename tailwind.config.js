@@ -163,9 +163,10 @@ module.exports = {
         'geist-gap-half': 'var(--geist-gap-half)',
         'geist-gap': 'var(--geist-gap)',
         'geist-gap-quarter': 'var(--geist-gap-quarter)',
-        '1.5': 'var(--geist-space-1-5x)',
-        '2.5': 'var(--geist-space-2-5x)',
-        125: 'var(--geist-space-125x)',
+        '1.5': 'var(--geist-space-3x)',
+        '2.5': 'var(--geist-space-5x)',
+        '0.5': 'var(--geist-space)',
+        125: 'var(--geist-space-250x)',
         'navigation-pointer': 'var(--space-navigation-pointer)',
       },
       borderRadius: {
@@ -173,7 +174,8 @@ module.exports = {
         marketing: 'var(--geist-marketing-radius)',
         link: 'var(--geist-link-radius)',
         100: 'var(--border-radius-100)',
-        50: 'var(--border-radius-50)'
+        50: 'var(--border-radius-50)',
+        xs: 'var(--border-radius-xs)'
       },
       fontSize: {
         64: 'var(--font-size-64)',
@@ -229,7 +231,8 @@ module.exports = {
         'header-border-bottom': 'var(--header-border-bottom)',
         'header-border-bottom-dark': 'var(--header-border-bottom-dark)',
         '3xl': 'var(--shadow-3xl)',
-        'sm-gray': 'var(--shadow-sm-gray)'
+        'sm-gray': 'var(--shadow-sm-gray)',
+        'focus-shadow': 'var(--next-focus-shadow)'
       },
       transitionProperty: {
         color: 'var(--transition-property-color)',
@@ -263,6 +266,7 @@ module.exports = {
       },
       maxWidth: {
         164: "var(--max-width-164)",
+        240: "var(--max-width-240)",
         '100vw': "var(--max-width-100vw)"
       },
       inset: {
