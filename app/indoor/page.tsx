@@ -41,34 +41,21 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const IndoorPage = async () => {
-  const pageIndoorData = await getIndoorPageData();
+  const { hero } = await getIndoorPageData();
 
   return (
     <Page>
-      {/* <div className="flex w-full flex-col items-center">
-        <LargeHeading size={'title'} headingStyles={'title'}>
-          {pageIndoorData.hero.title}
-        </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>
-          {pageIndoorData.hero.subtitle}
-        </Paragraph>
       <div className="flex w-full flex-col items-center">
         <LargeHeading size={'title'} headingStyles={'title'}>
-          {pageIndoorData.hero.title}
+          {hero.title}
         </LargeHeading>
         <Paragraph paragraphStyles={'subtitle'}>
-          {pageIndoorData.hero.subtitle}
-        </Paragraph>
-      <div className="flex w-full flex-col items-center">
-        <LargeHeading size={'title'} headingStyles={'title'}>
-          {pageIndoorData.hero.title}
-        </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>
-          {pageIndoorData.hero.subtitle}
+          {hero.subtitle}
         </Paragraph>
       </div>
-      <ContentLayout />
-      </div> */}
+      <div className='container mt-10'>
+        <ContentLayout />
+      </div>
     </Page>
   );
 };

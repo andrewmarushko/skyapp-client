@@ -1,11 +1,23 @@
+import { API_URL, CACHE_DISABLED, CACHE_ENABLED,  REVALIDATE_TIME } from "@/constants/api";
 import { request } from "@/lib/request";
+import { INDOOR_PAGE_QUERY, INDOOR_QUERY } from "./queries/indoor";
 
-const API_URL = process.env.NEXT_PUBLIC_DEV_URL;
 
-export async function getAllIndoors() {
-  const res = await fetch(`${API_URL}/indoors`, { cache: 'no-store'});
-  const pageContent = await res.json();
-  return pageContent;
+export async function getIndoorPageData() {
+    const data = await request<any>(`${API_URL}/indoor-page?${INDOOR_PAGE_QUERY}`, { cache: CACHE_DISABLED, next: { revalidate: REVALIDATE_TIME } }, (error) => {
+        console.error(error)
+    })
+
+    return data.data.attributes;
+}
+
+export async function fetchAllTubes() {
+
+  const indoors = await request<any>(`${API_URL}/indoors?${INDOOR_QUERY}`, { cache: CACHE_DISABLED}, error => {
+    console.error(error)
+  })
+
+  return indoors.data;
 }
 
 export async function getIndoorsByCountry(country: string) {
@@ -36,10 +48,3 @@ export async function getIndoorsData() {
   return pageContent;
 }
 
-export async function getIndoorPageData() {
-  const data = await request<any>(`${API_URL}/indoor-page`, { cache: 'no-store'}, (error)=> {
-    console.error(error)
-  })
-
-  return data;
-}
