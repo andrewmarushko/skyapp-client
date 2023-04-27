@@ -1,12 +1,28 @@
+
+import qs from 'qs'
+
 import { request } from "@/lib/request";
+import { API_URL } from '@/constants/api';
 
-const API_URL = process.env.NEXT_PUBLIC_DEV_URL;
 
-export async function getAllIndoors() {
-  const res = await fetch(`${API_URL}/indoors`, { cache: 'no-store'});
-  const pageContent = await res.json();
-  return pageContent;
-}
+export const INDOOR_PAGE_QUERY = qs.stringify({
+    populate: [
+    'hero',
+    ],
+},
+{
+    encodeValuesOnly: true,
+});
+
+export const INDOOR_QUERY = qs.stringify({
+  populate: [
+    'cover,location',
+  ]
+
+}, {
+    encodeValuesOnly: true,
+  })
+
 
 export async function getIndoorsByCountry(country: string) {
   const res = await fetch(`${API_URL}/indoors/${country}`);
