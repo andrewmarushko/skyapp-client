@@ -20,6 +20,14 @@ export async function fetchAllTubes() {
   return indoors.data;
 }
 
+export async function fetchTube(slug: string) {
+  const indoor = await request<any>(`${API_URL}/indoors/${slug}?${INDOOR_QUERY}`, { cache: CACHE_DISABLED }, error => {
+    console.error(error)
+  })
+  
+  return indoor.data
+}
+
 export async function getIndoorsByCountry(country: string) {
   const res = await fetch(`${API_URL}/indoors/${country}`);
   const pageContent = await res.json();
