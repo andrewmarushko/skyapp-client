@@ -32,7 +32,7 @@ export function Footer({ footerData, logoData }: FooterProps) {
           {navigation.map(({id, label, links}) => (
             <div key={id}>
               <div className='hidden md:block' >
-                <h4 className='text-sm mb-3 font-medium'>{label}</h4>
+                <span className='text-sm mb-3 font-medium'>{label}</span>
                 <ul className='flex flex-col list-none'>
                   {links.map(({id, label, target, href}) => (
                     <li key={id} className='text-accent-400 py-2'>
@@ -44,7 +44,7 @@ export function Footer({ footerData, logoData }: FooterProps) {
               <Accordion className='md:hidden' type="single" collapsible>
                 <AccordionItem className='dark:border-b-accent-200' value="item-1">
                   <AccordionTrigger className='font-normal'>
-                  <h4 className='text-sm mb-3 font-medium'>{label}</h4>               
+                  <span className='text-sm mb-3 font-medium'>{label}</span>               
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className={`max-h-60vh text-base overflow-y-auto`}>
@@ -64,7 +64,7 @@ export function Footer({ footerData, logoData }: FooterProps) {
             </div>
           ))}
           <div className='col-span-full lg:col-span-1'>
-            <h4 className='text-sm mb-3 font-medium'>{subscribe.title}</h4>
+            <span className='text-sm mb-3 font-medium'>{subscribe.title}</span>
             <p className='text-sm text-accent-400 pt-2 pb-4'>{subscribe.subtitle}</p>
             <SubscriptionForm buttonLabel={subscribe.submitButton.label} />
           </div>
