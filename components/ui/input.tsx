@@ -10,6 +10,8 @@ const inputsVariants = cva(
       variant: {
         default: 
           'border-0 w-full bg-experimental-gray dark:bg-experimental-gray-dark h-full rounded-md text-sm text-experimental-gray-900 dark:text-experimental-gray-dark-900 px-0 pr-20 pl-3',
+        search: 
+          'mx-3 focus-visible:outline-none dark:bg-sk-dark',
       },
       fullWidth: {
         true: 'w-full' 
