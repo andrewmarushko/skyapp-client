@@ -1,9 +1,9 @@
 import { getPageSeo } from '@/api-service/seo';
+import { Search } from '@/components/search';
 import LargeHeading from '@/components/ui/large-heading';
 import Page from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
 import { Metadata } from 'next';
-
 
 const defaultSeo = {
   title: 'Home Page',
@@ -46,6 +46,7 @@ export default function Home() {
           Home page
         </LargeHeading>
         <Paragraph paragraphStyles={'subtitle'}>Home Page</Paragraph>
+        <Search />
       </div>
     </Page>
   );
