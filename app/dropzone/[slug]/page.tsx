@@ -1,17 +1,24 @@
-import { getPageSeo } from '@/api-service/seo';
+import { fetchAllDropzones, fetchDropzone, fetchDropzoneSEO } from '@/api-service/dropzone';
 import LargeHeading from '@/components/ui/large-heading';
-import Paragraph from '@/components/ui/paragraph';
+import Page from '@/components/ui/page';
 import { Metadata } from 'next';
 
-const defaultSeo = {
-  title: 'Dropzone',
-  description: "Dropzone Page"
+interface DropzoneDzPageProps {
+  params: {
+    slug: string,
+  };
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const {seo} = await getPageSeo('dropzone-page')
+const defaultSeo = {
+  title: "Indoor",
+  description: "Indoor Page"
+}
 
-  if (!seo) return defaultSeo
+
+export async function generateMetadata({ params}: {params: { slug: string}}): Promise<Metadata> {
+  const seo = await fetchDropzoneSEO(params.slug);
+
+  if (!seo) return defaultSeo;
 
   return {
     metadataBase: new URL(`${seo.metadataBase}`),
@@ -36,19 +43,16 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-const DropzonePage = () => {
+
+// TODO: add also seo for this generated page
+
+const DropzonePage = async ({ params }: DropzoneDzPageProps) => {
+  const dropzone = await fetchDropzone(params.slug)
+
   return (
-    <div>
-      <div className="flex w-full flex-col items-center">
-        <LargeHeading size={'title'} headingStyles={'title'}>
-          Find you dropzone
-        </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>
-          Here you can find perfect spot for you skydiving and place to have
-          fun.
-        </Paragraph>
-      </div>
-    </div>
+    <Page>
+      <LargeHeading size="title">{dropzone.attributes.title} page</LargeHeading>
+    </Page>
   );
 };
 

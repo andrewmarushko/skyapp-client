@@ -23,12 +23,12 @@ export function ModeToggle() {
       defaultValue={theme}
       onValueChange={handleChange}
     >
-      <ToggleItem value="light" aria-checked={theme === 'light'}>
+      <ToggleItem aria-label='light' value="light" aria-checked={theme === 'light'}>
         <span className="flex items-center justify-center">
           <Icons.sun className="h-4 w-4" />
         </span>
       </ToggleItem>
-      <ToggleItem
+      <ToggleItem aria-label='dark'
         className="dark:aria-selected:bg-accent-200"
         value="dark"
         aria-checked={theme === 'dark'}
@@ -37,7 +37,7 @@ export function ModeToggle() {
           <Icons.moon className="h-4 w-4" />
         </span>
       </ToggleItem>
-      <ToggleItem value="system" aria-checked={theme === 'system'}>
+      <ToggleItem aria-label='system' value="system" aria-checked={theme === 'system'}>
         <span className="flex items-center justify-center">
           <Icons.laptop className="h-4 w-4" />
         </span>

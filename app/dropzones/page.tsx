@@ -1,16 +1,17 @@
+import { fetchDropzonePageData } from '@/api-service/dropzone';
 import { getPageSeo } from '@/api-service/seo';
 import LargeHeading from '@/components/ui/large-heading';
-import Page from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
 import { Metadata } from 'next';
+import { DropzonesContentLayout } from './components/content-layout';
 
 const defaultSeo = {
-  title: 'Home Page',
-  description: 'Home page description'
+  title: 'Dropzone',
+  description: "Dropzone Page"
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('home-page')
+  const {seo} = await getPageSeo('dropzone-page')
 
   if (!seo) return defaultSeo
 
@@ -37,16 +38,22 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function Home() {
+const DropzonePage = async () => {
+  const {hero} = await fetchDropzonePageData()
+
   return (
-    <Page>
+    <div>
       <div className="flex w-full flex-col items-center">
         <LargeHeading size={'title'} headingStyles={'title'}>
-          Home page
+          {hero.title}
         </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>Home Page</Paragraph>
-     
+        <Paragraph paragraphStyles={'subtitle'}>
+          {hero.subtitle}
+        </Paragraph>
       </div>
-    </Page>
+      <DropzonesContentLayout />
+    </div>
   );
-}
+};
+
+export default DropzonePage;

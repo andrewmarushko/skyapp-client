@@ -304,3 +304,7 @@
   /* Transform origin */
   --transform-origin-top-center: top center;
 }
+
+input[type="search"]::-webkit-search-cancel-button{
+  cursor: pointer;
+}

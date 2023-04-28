@@ -4,8 +4,8 @@ import { getIndoorPageData } from '@/api-service/indoor';
 import Page from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
 import LargeHeading from '@/components/ui/large-heading';
-import { ContentLayout } from '@/components/content-layout';
 import { getPageSeo } from '@/api-service/seo';
+import { IndoorContentLayout } from '@/app/indoors/components/content-layout';
 
 const defaultSeo = {
   title: "Indoor",
@@ -54,7 +54,7 @@ const IndoorPage = async () => {
         </Paragraph>
       </div>
       <div className='container mt-10'>
-        <ContentLayout />
+        <IndoorContentLayout />
       </div>
     </Page>
   );

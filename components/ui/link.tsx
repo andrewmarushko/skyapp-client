@@ -65,6 +65,7 @@ const NavigationLink = forwardRef<HTMLAnchorElement, NavigationLinkProps>(
       className={`${cn(linkVariants({ variant, size, fullWidth, className }))} ${activeLinkClasses}`}
       ref={ref}
       target={target}
+      aria-label="social"
       {...props}
     >{children}</Link>
   } 
