@@ -113,7 +113,9 @@
   --geist-radius: 5px;
   --geist-marketing-radius: 8px;
   --geist-link-radius: 9999px;
-  --geist-link-radius: 9999px;
+  --border-radius-100: 100px;
+  --border-radius-50: 50%;
+  --border-radius-xs: 4px;
 
   /* Elements */
   --geist-link-color: var(--geist-success);
@@ -128,6 +130,7 @@
   --shadow-sticky: 0 12px 10px -10px rgba(0, 0, 0, 0.12);
   --shadow-3xl: 0 50px 100px -20px rgba(0,0,0,.12), 0 30px 60px -30px rgba(0,0,0,.15);
   --shadow-sm-gray: 0 0 0 2px var(--geist-experimental-color-gray-7);
+  --next-focus-shadow: 0 0 0 2px var(--geist-success);
 
   /* Shadows dark */
   --shadow-smallest-dark: 0 0 0 1px var(--accents-2);
@@ -164,44 +167,47 @@
   --wv-red: #ff4e42;
 
   /* Spaces */
-  --geist-space: 4px;
-  --geist-space-1-5x: 6px; 
-  --geist-space-2x: 8px;
-  --geist-space-2-5x: 10px;
-  --geist-space-4x: 16px;
-  --geist-space-8x: 32px;
-  --geist-space-16x: 64px;
-  --geist-space-24x: 96px;
-  --geist-space-32x: 128px;
-  --geist-space-48x: 192px;
-  --geist-space-64x: 256px;
-  --geist-space-125x: 500px;
+  --geist-space: 2px;
+  --geist-space-2x: 4px;
+  --geist-space-3x: 6px;
+  --geist-space-4x: 8px;
+  --geist-space-5x: 10px;
+  --geist-space-8x: 16px;
+  --geist-space-16x: 32px;
+  --geist-space-32x: 64px;
+  --geist-space-48x: 96px;
+  --geist-space-96x: 192px;
+  --geist-space-64x: 128px;
+  --geist-space-128x: 256px;
+  --geist-space-250x: 500px;
   --geist-space-small: 32px;
   --geist-space-medium: 40px;
   --geist-space-large: 48px;
   --geist-space-gap: 24px;
   --geist-space-gap-half: 12px;
-  --geist-space-gap-quarter: var(--geist-space-2x);
+  --geist-space-gap-quarter: var(--geist-space-4x);
   --geist-gap: var(--geist-space-gap);
   --geist-gap-half: var(--geist-space-gap-half);
   --geist-gap-quarter: var(--geist-space-gap-quarter);
   --geist-gap-double: var(--geist-space-large);
   --geist-gap-section: var(--geist-space-small);
-  --geist-space-negative: -4px;
-  --geist-space-2x-negative: -8px;
-  --geist-space-4x-negative: -16px;
-  --geist-space-8x-negative: -32px;
-  --geist-space-16x-negative: -64px;
-  --geist-space-24x-negative: -96px;
-  --geist-space-32x-negative: -128px;
-  --geist-space-48x-negative: -192px;
-  --geist-space-64x-negative: -256px;
+  --geist-space-negative: -2px;
+  --geist-space-2x-negative: -4px;
+  --geist-space-4x-negative: -8px;
+  --geist-space-8x-negative: -16px;
+  --geist-space-16x-negative: -32px;
+  --geist-space-24x-negative: -48px;
+  --geist-space-32x-negative: -64px;
+  --geist-space-48x-negative: -96px;
+  --geist-space-64x-negative: -128px;
+  --geist-space-96x-negative: -192px;
+  --geist-space-128x-negative: -256px;
   --geist-space-small-negative: -32px;
   --geist-space-medium-negative: -40px;
   --geist-space-large-negative: -48px;
   --geist-space-gap-negative: -24px;
   --geist-space-gap-half-negative: -12px;
-  --geist-space-gap-quarter-negative: var(--geist-space-2x-negative);
+  --geist-space-gap-quarter-negative: var(--geist-space-4x-negative);
   --geist-gap-negative: var(--geist-space-gap-negative);
   --geist-gap-half-negative: var(--geist-space-gap-half-negative);
   --geist-gap-quarter-negative: var(--geist-space-gap-quarter-negative);
@@ -244,6 +250,7 @@
 
   /* Min width */
   --max-width-164: 164px;
+  --max-width-240: 240px;
   --max-width-100vw: 100vw;
 
   /* Height */
@@ -270,6 +277,7 @@
   /* Line height */
   --line-height-74: 74px;
   --line-height-14: 14px;
+  --line-height-0: 0;
 
   /* Letter spacing */
   --letter-spacing-title: -0.04em;
