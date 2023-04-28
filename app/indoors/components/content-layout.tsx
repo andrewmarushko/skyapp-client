@@ -8,65 +8,51 @@
     Author: @andrewmarushko
 */
 
-import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useFetchSWR } from '@/hooks/useFetchSWR';
-import Link from 'next/link';
-import Image from 'next/image';
 import { fetchAllTubes } from '@/api-service/indoor';
 import { handleFetchError } from '@/lib/handleFetchError';
 import { Search } from '@/components/search';
-
+import { IndoorCard } from '@/components/indoor-card';
 
 export const IndoorContentLayout = () => {
+  // TODO: Add typization
+  const { data, error, isLoading, handleError } = useFetchSWR<any, Error>(
+    `indoors`,
+    () => fetchAllTubes(),
+    undefined,
+    handleFetchError
+  );
 
-    const { data, error, isLoading, handleError } = useFetchSWR<any, Error>(
-        `indoors`,
-        () => fetchAllTubes(),
-        undefined,
-        handleFetchError
-    );
+  // TODO: Create skeleton for card component
+  if (isLoading) return <p>...LOADING...</p>
 
-    // TODO: Create skeleton for card component
-    if (isLoading) return <p>...LOADING...</p>
+  // TODO: Create error message component
+  if (error) {
+    handleError(error);
+    // Отобразить сообщение об ошибке или выполнить другую логику
+    return <div>Cant load indoors</div>;
+  }
 
-    // TODO: Create error message component
-    if (error) {
-        handleError(error);
-        // Отобразить сообщение об ошибке или выполнить другую логику
-        return <div>Cant load indoors</div>;
-    }
+  // TODO: Create no found component
+  if (!data) return <p>No records found</p>
 
-    // TODO: Create no found component
-    if (!data) return <p>No records found</p>
-
-    return (
-        <div className='container grid grid-cols-2 gap-5'>
-            <div>
-                <Search />
-            </div>
-
-            <div>
-                <div className='grid grid-cols-3 gap-4'>
-                    {data.map(({ attributes, id }: any) => {
-                        return (
-                            <Link key={id} href={`indoor/${attributes.slug}`}>
-                                <Card>
-                                    <Image loading='lazy' src={attributes.cover.data.attributes.formats.thumbnail.url} alt={attributes.cover.data.attributes.alternativeText} width={attributes.cover.data.attributes.formats.thumbnail.width} height={attributes.cover.data.attributes.formats.thumbnail.height} />
-                                    <h1>{attributes.title}</h1>
-                                    <span>Location: {attributes.location.city}, {attributes.location.country}</span>
-                                    <div>{attributes.company_name}</div>
-                                    <span>{attributes.diameter}</span>
-
-                                </Card>
-                            </Link>
-                        )
-                    })}
-                </div>
-                <div className="mt-4 flex w-full justify-center">
-                    <Button>Load More</Button>
-                </div>
-            </div>
+  return (
+    <div className='container grid gap-5'>
+      <div>
+        <Search />
+      </div>
+      <div>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {/* TODO: Add typization */}
+          {data.map(({ attributes, id }: any) => (
+            <IndoorCard key={id} data={attributes}/>
+          ))}
         </div>
-    )
+        <div className="mt-4 flex w-full justify-center">
+          <Button>Load More</Button>
+        </div>
+      </div>
+    </div>
+  )
 }
