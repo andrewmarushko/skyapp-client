@@ -27,7 +27,7 @@ export const IndoorCard: FunctionComponent<IndoorCardPropsInterface> = ({
             quality={100}
           />
         </div>
-        <div className='flex flex-col gap-3 px-4 py-6'>
+        <div className='flex flex-col gap-3 px-2 sm:px-4 py-3 sm:py-6'>
           <h3 className='text-2xl leading-7 tracking-tighter text-accent dark:text-accent-900 font-bold'>{title}</h3>
           <div className='flex justify-between items-center'>
             <div className='flex items-center gap-1'>
