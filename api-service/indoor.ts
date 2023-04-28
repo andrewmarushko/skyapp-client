@@ -1,6 +1,7 @@
-import { API_URL, CACHE_DISABLED, CACHE_ENABLED,  REVALIDATE_TIME } from "@/constants/api";
+import { API_URL, CACHE_DISABLED,  REVALIDATE_TIME } from "@/constants/api";
 import { request } from "@/lib/request";
 import { INDOOR_PAGE_QUERY, INDOOR_QUERY } from "./queries/indoor";
+import qs from "qs";
 
 
 export async function getIndoorPageData() {
@@ -28,31 +29,26 @@ export async function fetchTube(slug: string) {
   return indoor.data
 }
 
-export async function getIndoorsByCountry(country: string) {
-  const res = await fetch(`${API_URL}/indoors/${country}`);
-  const pageContent = await res.json();
-  return pageContent;
-}
+export async function fetchIndoorSEO(slug: string) {
+  const DROPZONE_SEO_QUERY = qs.stringify({
+      filters: {
+          slug: {
+              $eq: slug
+          }
+      },
+      populate: [
+          'seo',
+          'seo.format_description',
+          'seo.viewport',
+          'seo.robots'
+      ]
+  },
+  {
+      encodeValuesOnly: true
+  })
+  const seo = await request<any>(`${API_URL}/indoors/?${DROPZONE_SEO_QUERY}`, { cache: CACHE_DISABLED}, error => {
+      console.error(error)
+  })
 
-export async function getIndoorsByCity(country: string, city: string) {
-  const res = await fetch(`${API_URL}/indoors/${country}/${city}`);
-  const pageContent = await res.json();
-  return pageContent;
+  return seo.data[0].attributes.seo
 }
-
-export async function getIndoorsByID(
-  slug: string
-) {
-  const res = await fetch(`${API_URL}/indoors/${slug}`, {
-    cache: 'no-store',
-  });
-  const pageContent = await res.json();
-  return pageContent;
-}
-
-export async function getIndoorsData() {
-  const res = await fetch(`${API_URL}/indoors?limit=10`);
-  const pageContent = await res.json();
-  return pageContent;
-}
-
