@@ -15,6 +15,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { handleFetchError } from '@/lib/handleFetchError';
 import { fetchAllDropzones } from '@/api-service/dropzone';
+import { Search } from '@/components/search';
 
 
 export const DropzonesContentLayout = () => {
@@ -42,7 +43,7 @@ export const DropzonesContentLayout = () => {
     return (
         <div className='container grid grid-cols-2 gap-5'>
             <div>
-                <input className='p-1 rounded' type='text' />
+                <Search />
             </div>
 
             <div>
