@@ -36,8 +36,6 @@ export const IndoorContentLayout = () => {
         return <div>Cant load indoors</div>;
     }
 
-    console.log(data)
-
     return (
         <div className='container grid grid-cols-2 gap-5'>
             <div>
