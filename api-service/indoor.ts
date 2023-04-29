@@ -12,9 +12,23 @@ export async function getIndoorPageData() {
     return data.data.attributes;
 }
 
-export async function fetchAllTubes() {
+export async function fetchAllTubes(searchParam: string = '') {
 
-  const indoors = await request<any>(`${API_URL}/indoors?${INDOOR_QUERY}`, { cache: CACHE_DISABLED}, error => {
+  const INDOOR_SEARCH_QUERY = qs.stringify({
+    filters: {
+      slug: {
+        $containsi: searchParam
+      }
+    },
+    populate: [
+      'cover,location',
+    ]
+  
+  }, {
+      encodeValuesOnly: true,
+    })
+
+  const indoors = await request<any>(`${API_URL}/indoors?${searchParam === "" ? `${INDOOR_QUERY}` : `${INDOOR_SEARCH_QUERY}`}`, { cache: CACHE_DISABLED}, error => {
     console.error(error)
   })
 
