@@ -23,6 +23,7 @@ export const DropzonesContentLayout = () => {
     const { data, error, isLoading, handleError } = useFetchSWR<any, Error>(
         `indoors`,
         () => fetchAllDropzones(),
+        [],
         undefined,
         handleFetchError
     );
@@ -43,7 +44,9 @@ export const DropzonesContentLayout = () => {
     return (
         <div className='container grid grid-cols-2 gap-5'>
             <div>
-                <Search />
+                <Search onChange={function (e: any): void {
+                    throw new Error('Function not implemented.');
+                } } />
             </div>
 
             <div>

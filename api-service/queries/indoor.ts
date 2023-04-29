@@ -22,3 +22,18 @@ export const INDOOR_QUERY = qs.stringify({
 }, {
     encodeValuesOnly: true,
   })
+
+
+  // export const INDOOR_SEARCH_QUERY = qs.stringify({
+  //   filters: {
+  //     $containsi: {
+  //       slug: searchParam
+  //     }
+  //   },
+  //   populate: [
+  //     'cover,location',
+  //   ]
+  
+  // }, {
+  //     encodeValuesOnly: true,
+  //   })

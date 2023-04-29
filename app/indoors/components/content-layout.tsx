@@ -16,19 +16,21 @@ import Image from 'next/image';
 import { fetchAllTubes } from '@/api-service/indoor';
 import { handleFetchError } from '@/lib/handleFetchError';
 import { Search } from '@/components/search';
+import { useIndoorState } from '@/store/indoors';
+import { useDebounce } from '@/hooks/useDebounce';
 
 
 export const IndoorContentLayout = () => {
 
+    const { search, setSearch } = useIndoorState()
+    const debouncedSearch = useDebounce(search, 500); 
     const { data, error, isLoading, handleError } = useFetchSWR<any, Error>(
         `indoors`,
-        () => fetchAllTubes(),
+        () => fetchAllTubes(search),
+        [debouncedSearch],
         undefined,
         handleFetchError
     );
-
-    // TODO: Create skeleton for card component
-    if (isLoading) return <p>...LOADING...</p>
 
     // TODO: Create error message component
     if (error) {
@@ -37,18 +39,18 @@ export const IndoorContentLayout = () => {
         return <div>Cant load indoors</div>;
     }
 
-    // TODO: Create no found component
-    if (!data) return <p>No records found</p>
 
     return (
         <div className='container grid grid-cols-2 gap-5'>
             <div>
-                <Search />
+                <Search onChange={(e: any) => setSearch(e.target.value)}/>
             </div>
 
             <div>
                 <div className='grid grid-cols-3 gap-4'>
-                    {data.map(({ attributes, id }: any) => {
+                    {isLoading && <p>Loading</p>}
+                    {!data && <p>No records found</p>}
+                    {data && data.map(({ attributes, id }: any) => {
                         return (
                             <Link key={id} href={`indoor/${attributes.slug}`}>
                                 <Card>
@@ -62,6 +64,7 @@ export const IndoorContentLayout = () => {
                             </Link>
                         )
                     })}
+                    {data && data.length === 0 && <p>No Results</p>}
                 </div>
                 <div className="mt-4 flex w-full justify-center">
                     <Button>Load More</Button>
