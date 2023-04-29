@@ -21,14 +21,14 @@ export async function fetchAllTubes(searchParam: string = '') {
       }
     },
     populate: [
-      'cover,location',
+      'cover,location,tube_logo',
     ]
   
   }, {
       encodeValuesOnly: true,
     })
 
-  const indoors = await request<any>(`${API_URL}/indoors?${searchParam === "" ? `${INDOOR_QUERY}` : `${INDOOR_SEARCH_QUERY}`}`, { cache: CACHE_DISABLED}, error => {
+   const indoors = await request<any>(`${API_URL}/indoors?${INDOOR_SEARCH_QUERY}`, { cache: CACHE_DISABLED}, error => { 
     console.error(error)
   })
 
