@@ -1,9 +1,4 @@
-
 import qs from 'qs'
-
-import { request } from "@/lib/request";
-import { API_URL } from '@/constants/api';
-
 
 export const INDOOR_PAGE_QUERY = qs.stringify({
     populate: [
@@ -16,24 +11,9 @@ export const INDOOR_PAGE_QUERY = qs.stringify({
 
 export const INDOOR_QUERY = qs.stringify({
   populate: [
-    'cover,location',
+    'cover,location,tube_logo',
   ]
 
 }, {
     encodeValuesOnly: true,
   })
-
-
-  // export const INDOOR_SEARCH_QUERY = qs.stringify({
-  //   filters: {
-  //     $containsi: {
-  //       slug: searchParam
-  //     }
-  //   },
-  //   populate: [
-  //     'cover,location',
-  //   ]
-  
-  // }, {
-  //     encodeValuesOnly: true,
-  //   })

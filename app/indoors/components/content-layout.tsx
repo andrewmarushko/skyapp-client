@@ -8,25 +8,22 @@
     Author: @andrewmarushko
 */
 
-import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useFetchSWR } from '@/hooks/useFetchSWR';
-import Link from 'next/link';
-import Image from 'next/image';
 import { fetchAllTubes } from '@/api-service/indoor';
 import { handleFetchError } from '@/lib/handleFetchError';
 import { Search } from '@/components/search';
 import { useIndoorState } from '@/store/indoors';
 import { useDebounce } from '@/hooks/useDebounce';
 
+import { IndoorCard } from '@/components/indoor-card';
 
 export const IndoorContentLayout = () => {
-
     const { search, setSearch } = useIndoorState()
     const debouncedSearch = useDebounce(search, 500); 
     const { data, error, isLoading, handleError } = useFetchSWR<any, Error>(
         `indoors`,
-        () => fetchAllTubes(search),
+        () => fetchAllTubes(debouncedSearch),
         [debouncedSearch],
         undefined,
         handleFetchError
@@ -39,6 +36,7 @@ export const IndoorContentLayout = () => {
         return <div>Cant load indoors</div>;
     }
 
+    console.log(data)
 
     return (
         <div className='container grid grid-cols-2 gap-5'>
@@ -47,24 +45,13 @@ export const IndoorContentLayout = () => {
             </div>
 
             <div>
-                <div className='grid grid-cols-3 gap-4'>
-                    {isLoading && <p>Loading</p>}
-                    {!data && <p>No records found</p>}
-                    {data && data.map(({ attributes, id }: any) => {
-                        return (
-                            <Link key={id} href={`indoor/${attributes.slug}`}>
-                                <Card>
-                                    <Image loading='lazy' src={attributes.cover.data.attributes.formats.thumbnail.url} alt={attributes.cover.data.attributes.alternativeText} width={attributes.cover.data.attributes.formats.thumbnail.width} height={attributes.cover.data.attributes.formats.thumbnail.height} />
-                                    <h1>{attributes.title}</h1>
-                                    <span>Location: {attributes.location.city}, {attributes.location.country}</span>
-                                    <div>{attributes.company_name}</div>
-                                    <span>{attributes.diameter}</span>
-
-                                </Card>
-                            </Link>
-                        )
-                    })}
-                    {data && data.length === 0 && <p>No Results</p>}
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'> 
+                {isLoading && <p>Loading</p>}
+                {!data && <p>No records found</p>}
+                {data && data.map(({ attributes, id }: any) => (
+                    <IndoorCard key={id} data={attributes}/>
+                ))}
+                {data && data.length === 0 && <p>No Results</p>}
                 </div>
                 <div className="mt-4 flex w-full justify-center">
                     <Button>Load More</Button>
