@@ -1,16 +1,19 @@
-import { getPageSeo } from '@/api-service/seo';
-import LargeHeading from '@/components/ui/large-heading';
-import Page from '@/components/ui/page';
-import Paragraph from '@/components/ui/paragraph';
 import { Metadata } from 'next';
 
+import { getIndoorPageData } from '@/api-service/indoor';
+import Page from '@/components/ui/page';
+import Paragraph from '@/components/ui/paragraph';
+import LargeHeading from '@/components/ui/large-heading';
+import { getPageSeo } from '@/api-service/seo';
+import { IndoorContentLayout } from '@/app/indoors/components/content-layout';
+
 const defaultSeo = {
-  title: 'Home Page',
-  description: 'Home page description'
+  title: "Indoor",
+  description: "Indoor Page"
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('home-page')
+  const { seo } = await getPageSeo('indoor-page');
 
   if (!seo) return defaultSeo
 
@@ -37,16 +40,24 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function Home() {
+const IndoorPage = async () => {
+  const { hero } = await getIndoorPageData();
+
   return (
     <Page>
       <div className="flex w-full flex-col items-center">
         <LargeHeading size={'title'} headingStyles={'title'}>
-          Home page
+          {hero.title}
         </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>Home Page</Paragraph>
-     
+        <Paragraph paragraphStyles={'subtitle'}>
+          {hero.subtitle}
+        </Paragraph>
+      </div>
+      <div className='container mt-10'>
+        <IndoorContentLayout />
       </div>
     </Page>
   );
-}
+};
+
+export default IndoorPage;

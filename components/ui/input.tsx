@@ -1,18 +1,37 @@
 
 import { cn } from "@/lib/utils"
+import { VariantProps, cva } from "class-variance-authority"
 import { forwardRef } from "react"
 
+const inputsVariants = cva(
+  "",
+  {
+    variants: {
+      variant: {
+        default: 
+          'border-0 w-full bg-experimental-gray dark:bg-experimental-gray-dark h-full rounded-md text-sm text-experimental-gray-900 dark:text-experimental-gray-dark-900 px-0 pr-20 pl-3',
+        search: 
+          'mx-3 focus-visible:outline-none dark:bg-sk-dark',
+      },
+      fullWidth: {
+        true: 'w-full' 
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
+
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends React.InputHTMLAttributes<HTMLInputElement>, 
+    VariantProps<typeof inputsVariants> {}
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, ...props }, ref) => {
+  ({ className, variant, size, fullWidth, ...props }, ref) => {
     return (
       <input
-        className={cn(
-          "flex h-10 w-full rounded-md border border-slate-300 bg-transparent py-2 px-3 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900",
-          className
-        )}
+        className={cn(inputsVariants({variant, fullWidth, className}))}
         ref={ref}
         {...props}
       />

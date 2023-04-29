@@ -12,36 +12,22 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useFetchSWR } from '@/hooks/useFetchSWR';
 import Link from 'next/link';
-
-// TODO: Add types for data
-
-const fetchIndoorsData = async (): Promise<any> => {
-    const response = await fetch(`http://localhost:1337/api/indoors`);
-    if (!response.ok) {
-      throw new Error("Can't load data from server");
-    }
-
-    const indoorData: {data: any} = await response.json()
-
-    return indoorData.data;
-  };
-
-  const handleFetchError = (error: Error) => {
-
-    // TODO: Hanlde error or make some stuff with analytics
-    console.error("Error request:", error);
-  };
+import Image from 'next/image';
+import { handleFetchError } from '@/lib/handleFetchError';
+import { fetchAllDropzones } from '@/api-service/dropzone';
+import { Search } from '@/components/search';
 
 
-export const ContentLayout = () => {
+export const DropzonesContentLayout = () => {
 
     const { data, error, isLoading, handleError } = useFetchSWR<any, Error>(
         `indoors`,
-        () => fetchIndoorsData(),
+        () => fetchAllDropzones(),
+        [],
         undefined,
         handleFetchError
-      );
-     
+    );
+
     // TODO: Create skeleton for card component
     if (isLoading) return <p>...LOADING...</p>
 
@@ -50,27 +36,32 @@ export const ContentLayout = () => {
         handleError(error);
         // Отобразить сообщение об ошибке или выполнить другую логику
         return <div>Cant load indoors</div>;
-      }
+    }
 
     // TODO: Create no found component
     if (!data) return <p>No records found</p>
 
-
     return (
         <div className='container grid grid-cols-2 gap-5'>
-            <div>Filter sidebar</div>
+            <div>
+                <Search onChange={function (e: any): void {
+                    throw new Error('Function not implemented.');
+                } } />
+            </div>
 
             <div>
                 <div className='grid grid-cols-3 gap-4'>
-                {data.map((item: any) => {
-                    return (
-                        <Link key={item.id} href={`indoor/${item.attributes.slug}`}>
-                        <Card>
-                            <h1>{ item.attributes.title}</h1>
-                        </Card>
-                        </Link>
-                    )
-                })}
+                    {data.map(({ attributes, id }: any) => {
+                        return (
+                            <Link key={id} href={`dropzone/${attributes.slug}`}>
+                                <Card>
+                                    <Image loading='lazy' src={attributes.cover.data.attributes.formats.thumbnail.url} alt={attributes.cover.data.attributes.alternativeText} width={attributes.cover.data.attributes.formats.thumbnail.width} height={attributes.cover.data.attributes.formats.thumbnail.height} />
+                                    <h1>{attributes.title}</h1>
+                                    <span>Location: {attributes.location.city}, {attributes.location.country}</span>
+                                </Card>
+                            </Link>
+                        )
+                    })}
                 </div>
                 <div className="mt-4 flex w-full justify-center">
                     <Button>Load More</Button>

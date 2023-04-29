@@ -1,4 +1,4 @@
-import { getIndoorsByID } from '@/api-service/indoor';
+import { fetchIndoorSEO, fetchTube } from '@/api-service/indoor';
 import { Icons } from '@/components/icons';
 import LargeHeading from '@/components/ui/large-heading';
 import Page from '@/components/ui/page';
@@ -9,6 +9,7 @@ import { CustomMap } from '@/components/ui/google-map';
 import YouTubeSection from '@/components/youtube-section';
 import GooglePlacesSection from '@/components/googlePlaces-section';
 import { Suspense } from 'react';
+import { Metadata } from 'next';
 
 interface IndoorTubePageProps {
   params: {
@@ -16,17 +17,50 @@ interface IndoorTubePageProps {
   };
 }
 
+const defaultSeo = {
+  title: 'Indooe',
+  description: "Indoor Page"
+}
+
+export async function generateMetadata({ params }: IndoorTubePageProps): Promise<Metadata> {
+  const seo = await fetchIndoorSEO(params.slug)
+
+  if (!seo) return defaultSeo
+
+  return {
+    metadataBase: new URL(`${seo.metadataBase}`),
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    applicationName: seo.applicationName,
+    keywords: seo.keywords,
+    formatDetection: {
+      email: seo.format_description.email,
+      telephone: seo.format_description.telephone,
+      address: seo.format_description.address
+    },
+    viewport: {
+      width: seo.viewport.width,
+      initialScale: seo.viewport.initial_scale,
+    },
+    robots: {
+      index: seo.robots.index,
+      follow: seo.robots.follow,
+      nocache: seo.robots.nocache,
+    }
+  }
+}
+
   // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
   // const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
-  const indoorsList: any = await getIndoorsByID(slug);
-
+  // const indoorsList: any = await getIndoorsByID(slug);
+  const indoor = await fetchTube(slug)
   // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
   // const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
 
   return (
     <Page>
-      {indoorsList.data.attributes.title}
+      {indoor.attributes.title}
       {/* TODO: Refactor this no map needed anymore */}
       {/* {indoorsList &&
         indoorsList.data.map((item: IndoorDataItemInterface) => (

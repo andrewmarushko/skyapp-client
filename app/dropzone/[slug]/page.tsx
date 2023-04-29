@@ -1,18 +1,24 @@
-import { getPageSeo } from '@/api-service/seo';
+import { fetchAllDropzones, fetchDropzone, fetchDropzoneSEO } from '@/api-service/dropzone';
 import LargeHeading from '@/components/ui/large-heading';
 import Page from '@/components/ui/page';
-import Paragraph from '@/components/ui/paragraph';
 import { Metadata } from 'next';
 
-const defaultSeo = {
-  title: 'Home Page',
-  description: 'Home page description'
+interface DropzoneDzPageProps {
+  params: {
+    slug: string,
+  };
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('home-page')
+const defaultSeo = {
+  title: "Indoor",
+  description: "Indoor Page"
+}
 
-  if (!seo) return defaultSeo
+
+export async function generateMetadata({ params}: {params: { slug: string}}): Promise<Metadata> {
+  const seo = await fetchDropzoneSEO(params.slug);
+
+  if (!seo) return defaultSeo;
 
   return {
     metadataBase: new URL(`${seo.metadataBase}`),
@@ -37,16 +43,17 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function Home() {
+
+// TODO: add also seo for this generated page
+
+const DropzonePage = async ({ params }: DropzoneDzPageProps) => {
+  const dropzone = await fetchDropzone(params.slug)
+
   return (
     <Page>
-      <div className="flex w-full flex-col items-center">
-        <LargeHeading size={'title'} headingStyles={'title'}>
-          Home page
-        </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>Home Page</Paragraph>
-     
-      </div>
+      <LargeHeading size="title">{dropzone.attributes.title} page</LargeHeading>
     </Page>
   );
-}
+};
+
+export default DropzonePage;
