@@ -50,6 +50,7 @@ export const IndoorContentLayout = () => {
                     <IndoorCard key={id} data={attributes}/>
                 ))}
                 {data && data.length === 0 && <p>No Results</p>}
+
                 </div>
                 <div className="mt-4 flex w-full justify-center">
                     <Button>Load More</Button>

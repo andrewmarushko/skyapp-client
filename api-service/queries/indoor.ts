@@ -17,3 +17,4 @@ export const INDOOR_QUERY = qs.stringify({
 }, {
     encodeValuesOnly: true,
   })
+
