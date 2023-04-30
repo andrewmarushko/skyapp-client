@@ -43,6 +43,15 @@ export async function generateMetadata({ params}: {params: { slug: string}}): Pr
   }
 }
 
+export async function generateStaticParams() {
+  const dropzones = await fetchAllDropzones()
+
+  return dropzones.map((dropzone: any) => {
+    return {
+      slug: dropzone.attributes.slug
+    }
+  })
+}
 
 // TODO: add also seo for this generated page
 
