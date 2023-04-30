@@ -17,3 +17,10 @@ export interface DateInterface {
   publishedAt: Date,
   updatedAt: Date,
 }
+
+export interface BecomePartnerInterface {
+  id: number,
+  title: string,
+  subtitle?: string,
+  link: NavLinksInterface
+}

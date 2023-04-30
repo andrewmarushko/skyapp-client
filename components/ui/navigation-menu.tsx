@@ -9,7 +9,6 @@ const NavigationMenu = forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
 >(({ className, children, ...props }, ref) => (
-  // <Button variant={'desktopNav'}>sdfsdfsd</Button>
   <NavigationMenuPrimitive.Root
     ref={ref}
     className={cn(
@@ -39,7 +38,7 @@ const NavigationMenuList = forwardRef<
 ))
 
 const navigationMenuTriggerStyle = cva(
-  `flex py-2 px-3 items-center text-sm leading-14 text-accent-400 rounded-full duration-200 transition-bg-and-color
+  `flex py-2 px-3 items-center text-sm leading-14px text-accent-400 rounded-full duration-200 transition-bg-and-color
   data-[state=open]:bg-experimental-gray-a-100 data-[state=open]:text-experimental-gray-a-900 
   dark:text-experimental-gray-dark-800 dark:data-[state=open]:bg-experimental-gray-a-dark-200 dark:data-[state=open]:text-experimental-gray-a-dark-900`
 )
