@@ -1,18 +1,19 @@
-import { getPageSeo } from '@/api-service/seo';
-import LargeHeading from '@/components/ui/large-heading';
-import Page from '@/components/ui/page';
-import Paragraph from '@/components/ui/paragraph';
-import { Metadata } from 'next';
+
+import { Metadata } from "next"
+import { getPageSeo } from "@/api-service/seo"
+import { Hero } from "@/components/hero"
+import { Page } from "@/components/ui/page"
 
 const defaultSeo = {
   title: 'Contacts',
-  description: 'Contacts Page',
-};
+  description: "Contacts Page"
+}
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('contacts-page');
+  const { seo } = await getPageSeo('contacts-page')
 
-  if (!seo) return defaultSeo;
+  if (!seo) return defaultSeo
+
 
   return {
     metadataBase: new URL(`${seo.metadataBase}`),
@@ -23,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     formatDetection: {
       email: seo.format_description.email,
       telephone: seo.format_description.telephone,
-      address: seo.format_description.address,
+      address: seo.format_description.address
     },
     viewport: {
       width: seo.viewport.width,
@@ -33,19 +34,16 @@ export async function generateMetadata(): Promise<Metadata> {
       index: seo.robots.index,
       follow: seo.robots.follow,
       nocache: seo.robots.nocache,
-    },
-  };
+    }
+  }
 }
 
 const ContactsPage = async () => {
   return (
     <Page>
-      <LargeHeading size="title">Contact Page</LargeHeading>
-      <Paragraph paragraphStyles="subtitle">
-        Here is a contact page for collaborations.
-      </Paragraph>
+      <Hero title={'Contact Page'} subtitle={'Here is a contact page for collaborations.'} />
     </Page>
-  );
-};
+  )
+}
 
 export default ContactsPage;

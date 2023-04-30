@@ -1,16 +1,13 @@
-import LargeHeading from '@/components/ui/large-heading';
-import Page from '@/components/ui/page';
-import Paragraph from '@/components/ui/paragraph';
+
+import { Hero } from "@/components/hero"
+import { Page } from "@/components/ui/page"
 
 const LegalPage = async () => {
-  return (
+  return(
     <Page>
-      <LargeHeading size="title">Privacy & Policy</LargeHeading>
-      <Paragraph paragraphStyles="subtitle">
-        Here is a contact page for collaborations.
-      </Paragraph>
+      <Hero title={'Privacy & Policy'} subtitle={'Here is a contact page for collaborations.'} />
     </Page>
-  );
-};
+  )
+}
 
 export default LegalPage;

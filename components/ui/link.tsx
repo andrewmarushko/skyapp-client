@@ -8,13 +8,15 @@ import Link, { LinkProps } from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
 
 const linkVariants = cva(
-  'text-sm leading-14 outline-none hover:text-accent no-underline',
+  "leading-14px outline-none hover:text-accent no-underline",
   {
     variants: {
       variant: {
-        default: 'text-inherit',
-        headerNav:
-          'block text-accent-400 rounded-full duration-200 transition-bg-and-color dark:text-experimental-gray-dark-800 dark:hover:text-experimental-gray-dark-900',
+        default: 
+          '',
+        headerNav: 
+          "block text-accent-400 rounded-full duration-200 transition-bg-and-color dark:text-experimental-gray-dark-800 dark:hover:text-experimental-gray-dark-900",
+
         footer:
           'inline text-accent-400 rounded-full transition-color dark:text-accents-5 dark:hover:text-geist-foreground',
         white:
@@ -26,14 +28,19 @@ const linkVariants = cva(
           transition-background-color ease focus-visible:shadow-sm-gray focus-visible:shadow-experimental-gray-600
           dark:bg-experimental-gray-a-dark dark:hover:bg-experimental-gray-a-dark-200 hover:text-experimental-gray-dark-700`,
         logo: 'flex cursor-pointer items-center gap-1 hover:text-current',
-        socialNetwork:
-          'text-accent-400 dark:text-accent-500 dark:hover:text-accent-900 transition-all duration-200 ease',
+        socialNetwork: "text-accent-400 dark:text-accent-500 dark:hover:text-accent-900 transition-all duration-200 ease",
+        ghostWhite: 
+          "flex items-center justify-center h-12 border leading-6 bg-sk-light text-accent border-accent-900 rounded font-medium px-geist-gap-half duration-150 ease transition-colors-shadow-transform leading-geist-form-line-height hover:bg-accent hover:border-accent-900 hover:text-accent-900",
       },
       dataActive: {
         true: '',
       },
       fullWidth: {
         true: 'w-full',
+      },
+      textSize: {
+        default: 'text-sm',
+        md: 'text-base'
       },
       size: {
         default: 'py-2 px-3',
@@ -42,8 +49,9 @@ const linkVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'default',
-      size: 'default',
+      variant: "default",
+      size: "default",
+      textSize: "default"
     },
   },
 );
@@ -56,41 +64,19 @@ export interface NavigationLinkProps
   target?: string;
 }
 const NavigationLink = forwardRef<HTMLAnchorElement, NavigationLinkProps>(
-  (
-    {
-      className,
-      variant,
-      size,
-      fullWidth,
-      children,
-      dataActive,
-      target = '',
-      ...props
-    },
-    ref,
-  ) => {
+  ({ className, variant, size, fullWidth, textSize, children, dataActive, target = '', ...props }, ref) => {
     const segment = useSelectedLayoutSegment();
     const isActive = props.href === `/${segment}`;
-    const activeLinkClasses = `${
-      isActive && dataActive === true
-        ? 'bg-experimental-gray-a-100 text-experimental-gray-a-900 dark:bg-experimental-gray-a-dark-100 dark:text-experimental-gray-a-dark-900'
-        : ''
-    }`;
-    return (
-      <Link
-        className={`${cn(
-          linkVariants({ variant, size, fullWidth, className }),
-        )} ${activeLinkClasses}`}
-        ref={ref}
-        target={target}
-        aria-label="social"
-        {...props}
-      >
-        {children}
-      </Link>
-    );
-  },
-);
-NavigationLink.displayName = 'Link';
+    const activeLinkClasses = `${isActive && dataActive===true? 'bg-experimental-gray-a-100 text-experimental-gray-a-900 dark:bg-experimental-gray-a-dark-100 dark:text-experimental-gray-a-dark-900' : ''}`
+    return <Link
+      className={`${cn(linkVariants({ variant, size, textSize, fullWidth, className }))} ${activeLinkClasses}`}
+      ref={ref}
+      target={target}
+      aria-label="social"
+      {...props}
+    >{children}</Link>
+  } 
+)
+NavigationLink.displayName = "Link"
 
 export { NavigationLink, linkVariants };

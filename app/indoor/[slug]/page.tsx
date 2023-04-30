@@ -1,5 +1,15 @@
-import { fetchAllTubes, fetchIndoorSEO, fetchTube } from '@/api-service/indoor';
-import Page from '@/components/ui/page';
+import { fetchIndoorSEO, fetchTube } from '@/api-service/indoor';
+import { Icons } from '@/components/icons';
+import LargeHeading from '@/components/ui/large-heading';
+import { Page } from '@/components/ui/page';
+import { IndoorDataItemInterface } from '@/types/nav';
+import Link from 'next/link';
+import Image from 'next/image';
+import { CustomMap } from '@/components/ui/google-map';
+import YouTubeSection from '@/components/youtube-section';
+import GooglePlacesSection from '@/components/googlePlaces-section';
+import { Suspense } from 'react';
+
 import { Metadata } from 'next';
 
 export const dynamicParams = true;

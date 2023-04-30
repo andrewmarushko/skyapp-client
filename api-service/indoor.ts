@@ -21,27 +21,24 @@ export async function getIndoorPageData() {
 }
 
 export async function fetchAllTubes(searchParam: string = '') {
-  const INDOOR_SEARCH_QUERY = qs.stringify(
-    {
-      filters: {
-        slug: {
-          $containsi: searchParam,
-        },
-      },
-      populate: ['cover,location,tube_logo'],
-    },
-    {
-      encodeValuesOnly: true,
-    },
-  );
 
-  const indoors = await request<any>(
-    `${API_URL}/indoors?${INDOOR_SEARCH_QUERY}`,
-    { cache: CACHE_DISABLED },
-    (error) => {
-      console.error(error);
+  const INDOOR_SEARCH_QUERY = qs.stringify({
+    filters: {
+      slug: {
+        $containsi: searchParam
+      }
     },
-  );
+    populate: [
+      'cover,location',
+    ]
+  
+  }, {
+      encodeValuesOnly: true,
+    })
+
+  const indoors = await request<any>(`${API_URL}/indoors?${searchParam === "" ? `${INDOOR_QUERY}` : `${INDOOR_SEARCH_QUERY}`}`, { cache: CACHE_DISABLED}, error => {
+    console.error(error)
+  })
 
   return indoors.data;
 }
