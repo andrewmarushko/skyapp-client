@@ -16,7 +16,7 @@ export const BecomePartner: FunctionComponent<BecomePartnerPropsInterface> = ({d
         </h2>
       </div>
       {link &&
-        <NavigationLink variant={'black'} textSize={'md'} href={link.href} target={link.target}>
+        <NavigationLink className='' variant={'ghostWhite'} textSize={'md'} href={link.href} target={link.target}>
           {link.label}
         </NavigationLink>
       }

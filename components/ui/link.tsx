@@ -28,8 +28,9 @@ const linkVariants = cva(
           transition-background-color ease focus-visible:shadow-sm-gray focus-visible:shadow-experimental-gray-600
           dark:bg-experimental-gray-a-dark dark:hover:bg-experimental-gray-a-dark-200 hover:text-experimental-gray-dark-700`,
         logo: 'flex cursor-pointer items-center gap-1 hover:text-current',
-        socialNetwork:
-          "text-accent-400 dark:text-accent-500 dark:hover:text-accent-900 transition-all duration-200 ease"
+        socialNetwork: "text-accent-400 dark:text-accent-500 dark:hover:text-accent-900 transition-all duration-200 ease",
+        ghostWhite: 
+          "flex items-center justify-center h-12 border leading-6 bg-sk-light text-accent border-accent-900 rounded font-medium px-geist-gap-half duration-150 ease transition-colors-shadow-transform leading-geist-form-line-height hover:bg-accent hover:border-accent-900 hover:text-accent-900",
       },
       dataActive: {
         true: ''
