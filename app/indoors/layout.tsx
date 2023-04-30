@@ -5,7 +5,7 @@ export default function IndoorsLayout({
 }: {
   children: React.ReactNode,
 }) {
-  return <main className="grid grid-cols-4 gap-12">{children}</main>;
+  return <main>{children}</main>;
 }
 
 // <div className="col-span-1 mt-10 w-full">

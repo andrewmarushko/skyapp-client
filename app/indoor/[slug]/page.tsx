@@ -1,7 +1,7 @@
 import { fetchIndoorSEO, fetchTube } from '@/api-service/indoor';
 import { Icons } from '@/components/icons';
 import LargeHeading from '@/components/ui/large-heading';
-import Page from '@/components/ui/page';
+import { Page } from '@/components/ui/page';
 import { IndoorDataItemInterface } from '@/types/nav';
 import Link from 'next/link';
 import Image from 'next/image';
