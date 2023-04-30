@@ -6,6 +6,7 @@ import { getPageSeo } from '@/api-service/seo';
 import { IndoorContentLayout } from '@/app/indoors/components/content-layout';
 import { Hero } from '@/components/hero';
 import { Content } from '@/components/content';
+import { BecomePartner } from '@/components/become-partner';
 
 const defaultSeo = {
   title: "Indoor",
@@ -41,14 +42,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const IndoorPage = async () => {
-  const { hero: {title, subtitle} } = await getIndoorPageData();
-
+  const { hero: {title, subtitle}, become_partner } = await getIndoorPageData();
   return (
     <Page>
       <Hero title={title} subtitle={subtitle} />
       <Content>
         <IndoorContentLayout />
       </Content>
+      <BecomePartner data={become_partner} />
     </Page>
   );
 };

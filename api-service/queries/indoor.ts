@@ -2,7 +2,7 @@ import qs from 'qs'
 
 export const INDOOR_PAGE_QUERY = qs.stringify({
     populate: [
-    'hero',
+    'hero,become_partner,become_partner.link',
     ],
 },
 {

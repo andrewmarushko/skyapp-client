@@ -172,6 +172,7 @@
   --geist-space-3x: 6px;
   --geist-space-4x: 8px;
   --geist-space-5x: 10px;
+  --geist-space-7x: 14px;
   --geist-space-8x: 16px;
   --geist-space-16x: 32px;
   --geist-space-32x: 64px;
@@ -275,8 +276,9 @@
   --font-size-64: 64px;
 
   /* Line height */
-  --line-height-74: 74px;
-  --line-height-14: 14px;
+  --line-height-74px: 74px;
+  --line-height-14: 56px;
+  --line-height-14px: 14px;
   --line-height-0: 0;
 
   /* Letter spacing */

@@ -8,12 +8,12 @@ import Link, {LinkProps} from 'next/link';
 import { useSelectedLayoutSegment } from "next/navigation";
 
 const linkVariants = cva(
-  "text-sm leading-14 outline-none hover:text-accent no-underline",
+  "leading-14px outline-none hover:text-accent no-underline",
   {
     variants: {
       variant: {
         default: 
-          'text-inherit',
+          '',
         headerNav: 
           "block text-accent-400 rounded-full duration-200 transition-bg-and-color dark:text-experimental-gray-dark-800 dark:hover:text-experimental-gray-dark-900",
         footer:
@@ -37,6 +37,10 @@ const linkVariants = cva(
       fullWidth: {
         true: 'w-full' 
       },
+      textSize: {
+        default: 'text-sm',
+        md: 'text-base'
+      },
       size: {
         default: "py-2 px-3",
         sm: "p-0",
@@ -46,6 +50,7 @@ const linkVariants = cva(
     defaultVariants: {
       variant: "default",
       size: "default",
+      textSize: "default"
     },
   }
 )
@@ -57,12 +62,12 @@ export interface NavigationLinkProps
     target?: string;
   }
 const NavigationLink = forwardRef<HTMLAnchorElement, NavigationLinkProps>(
-  ({ className, variant, size, fullWidth, children, dataActive, target = '', ...props }, ref) => {
+  ({ className, variant, size, fullWidth, textSize, children, dataActive, target = '', ...props }, ref) => {
     const segment = useSelectedLayoutSegment();
     const isActive = props.href === `/${segment}`;
     const activeLinkClasses = `${isActive && dataActive===true? 'bg-experimental-gray-a-100 text-experimental-gray-a-900 dark:bg-experimental-gray-a-dark-100 dark:text-experimental-gray-a-dark-900' : ''}`
     return <Link
-      className={`${cn(linkVariants({ variant, size, fullWidth, className }))} ${activeLinkClasses}`}
+      className={`${cn(linkVariants({ variant, size, textSize, fullWidth, className }))} ${activeLinkClasses}`}
       ref={ref}
       target={target}
       aria-label="social"

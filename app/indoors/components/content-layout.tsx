@@ -35,22 +35,21 @@ export const IndoorContentLayout = () => {
     // Отобразить сообщение об ошибке или выполнить другую логику
     return <div>Cant load indoors</div>;
   }
-
+  
+  
   return (
     <div className='container grid grid-cols-2 gap-5'>
       <div>
-          <Search onChange={(e: any) => setSearch(e.target.value)}/>
+        <Search onChange={(e: any) => setSearch(e.target.value)}/>
       </div>
-
       <div>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'> 
-        {isLoading && <p>Loading</p>}
-        {!data && <p>No records found</p>}
-        {data && data.map(({ attributes, id }: any) => (
-          <IndoorCard key={id} data={attributes}/>
-        ))}
-        {data && data.length === 0 && <p>No Results</p>}
-
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'> 
+          {isLoading && <p>Loading</p>}
+          {!data && <p>No records found</p>}
+          {data && data.map(({ attributes, id }: any) => (
+            <IndoorCard key={id} data={attributes}/>
+          ))}
+          {data && data.length === 0 && <p>No Results</p>}
         </div>
         <div className="mt-4 flex w-full justify-center">
           <Button>Load More</Button>
