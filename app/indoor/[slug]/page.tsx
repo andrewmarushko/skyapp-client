@@ -1,4 +1,4 @@
-import { fetchIndoorSEO, fetchTube } from '@/api-service/indoor';
+import { fetchAllTubes, fetchIndoorSEO, fetchTube } from '@/api-service/indoor';
 import { Icons } from '@/components/icons';
 import LargeHeading from '@/components/ui/large-heading';
 import Page from '@/components/ui/page';
@@ -48,6 +48,16 @@ export async function generateMetadata({ params }: IndoorTubePageProps): Promise
       nocache: seo.robots.nocache,
     }
   }
+}
+
+export async function generateStaticParams() {
+  const indoor = await fetchAllTubes()
+
+  return indoor.map((indoor: any) => {
+    return {
+      slug: indoor.attributes.slug
+    }
+  })
 }
 
   // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
@@ -226,3 +236,4 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
 };
 
 export default IndoorTubePage;
+
