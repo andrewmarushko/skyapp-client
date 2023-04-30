@@ -1,3 +1,4 @@
+
 import { Metadata } from "next"
 import { getPageSeo } from "@/api-service/seo"
 import { Hero } from "@/components/hero"
@@ -12,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getPageSeo('contacts-page')
 
   if (!seo) return defaultSeo
+
 
   return {
     metadataBase: new URL(`${seo.metadataBase}`),

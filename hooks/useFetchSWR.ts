@@ -1,4 +1,4 @@
-import useSWR, { SWRConfiguration, SWRResponse } from "swr";
+import useSWR, { SWRConfiguration, SWRResponse } from 'swr';
 
 type Fetcher<T> = () => Promise<T>;
 
@@ -13,7 +13,7 @@ export const useFetchSWR = <T, E = any>(
   fetcher: Fetcher<T>,
   deps: any,
   config?: SWRConfiguration,
-  errorHandler?: ErrorHandler<E>
+  errorHandler?: ErrorHandler<E>,
 ): UseFetchSWRResponse<T, E> => {
   const { data, error, ...rest } = useSWR<T, E>([key, deps], fetcher, config);
 

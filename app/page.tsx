@@ -5,13 +5,13 @@ import { Metadata } from 'next';
 
 const defaultSeo = {
   title: 'Home Page',
-  description: 'Home page description'
-}
+  description: 'Home page description',
+};
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('home-page')
+  const { seo } = await getPageSeo('home-page');
 
-  if (!seo) return defaultSeo
+  if (!seo) return defaultSeo;
 
   return {
     metadataBase: new URL(`${seo.metadataBase}`),
@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
     formatDetection: {
       email: seo.format_description.email,
       telephone: seo.format_description.telephone,
-      address: seo.format_description.address
+      address: seo.format_description.address,
     },
     viewport: {
       width: seo.viewport.width,
@@ -32,8 +32,8 @@ export async function generateMetadata(): Promise<Metadata> {
       index: seo.robots.index,
       follow: seo.robots.follow,
       nocache: seo.robots.nocache,
-    }
-  }
+    },
+  };
 }
 
 export default function Home() {

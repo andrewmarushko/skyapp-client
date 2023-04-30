@@ -9,24 +9,30 @@ import { CustomMap } from '@/components/ui/google-map';
 import YouTubeSection from '@/components/youtube-section';
 import GooglePlacesSection from '@/components/googlePlaces-section';
 import { Suspense } from 'react';
+
 import { Metadata } from 'next';
+
+export const dynamicParams = true;
 
 interface IndoorTubePageProps {
   params: {
-    slug: string,
+    slug: string;
   };
 }
 
 const defaultSeo = {
   title: 'Indooe',
-  description: "Indoor Page"
-}
+  description: 'Indoor Page',
+};
 
-export async function generateMetadata({ params }: IndoorTubePageProps): Promise<Metadata> {
-  const seo = await fetchIndoorSEO(params.slug)
+export async function generateMetadata({
+  params,
+}: IndoorTubePageProps): Promise<Metadata> {
+  const seo = await fetchIndoorSEO(params.slug);
 
-  if (!seo) return defaultSeo
+  if (!seo) return defaultSeo;
 
+  console.log(seo);
   return {
     metadataBase: new URL(`${seo.metadataBase}`),
     title: seo.metaTitle,
@@ -34,9 +40,9 @@ export async function generateMetadata({ params }: IndoorTubePageProps): Promise
     applicationName: seo.applicationName,
     keywords: seo.keywords,
     formatDetection: {
-      email: seo.format_description.email,
+      email: seo.format_description?.email,
       telephone: seo.format_description.telephone,
-      address: seo.format_description.address
+      address: seo.format_description.address,
     },
     viewport: {
       width: seo.viewport.width,
@@ -46,15 +52,16 @@ export async function generateMetadata({ params }: IndoorTubePageProps): Promise
       index: seo.robots.index,
       follow: seo.robots.follow,
       nocache: seo.robots.nocache,
-    }
-  }
+    },
+  };
 }
 
-  // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
-  // const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
+// const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
+// const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
   // const indoorsList: any = await getIndoorsByID(slug);
-  const indoor = await fetchTube(slug)
+  const indoor = await fetchTube(slug);
+  console.log(slug);
   // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
   // const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
 
@@ -224,5 +231,15 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     </Page>
   );
 };
+
+export async function generateStaticParams() {
+  const indoor = await fetchAllTubes();
+
+  return indoor.map((indoor: any) => {
+    return {
+      slug: indoor.attributes.slug,
+    };
+  });
+}
 
 export default IndoorTubePage;
