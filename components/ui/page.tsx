@@ -1,13 +1,40 @@
-import { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
+import { VariantProps, cva } from 'class-variance-authority';
+import { forwardRef } from 'react';
 
-interface PageProps {
-  children: ReactNode;
-}
+const pageVariants = cva(
+  "container flex w-full flex-col",
+  {
+    variants: {
+      variant: {
+        default: 
+          "container",
+        noContainer:
+          ""
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
 
-const Page = ({ children }: PageProps) => {
+interface PagePropsInterface
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof pageVariants> {}
+
+const Page = forwardRef<HTMLDivElement, PagePropsInterface>(({ className, variant, children, ...props }, ref) => {
   return (
-    <div className="container flex w-screen flex-col items-start gap-2">{children}</div>
+    <div
+      className={cn(pageVariants({ variant, className }))}
+      ref={ref}
+      {...props}
+      >
+        {children}
+    </div>
   );
-};
+});
 
-export default Page;
+Page.displayName = "Page"
+
+export { Page, pageVariants }
