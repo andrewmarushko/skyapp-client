@@ -6,7 +6,8 @@ interface BecomePartnerPropsInterface {
   data: BecomePartnerInterface;
 }
 
-export const BecomePartner: FunctionComponent<BecomePartnerPropsInterface> = ({data: {link, title}}) => {
+export const BecomePartner: FunctionComponent<BecomePartnerPropsInterface> = ({data}) => {
+  const { link, title } = data || {};
   return (
     <div className='p-8 lg:p-16 mt-8 rounded-2xl font-bold border border-accent-200 bg-accent-100 text-accent-900 w-full flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-0'>
       <div className='basis-3/5'>
@@ -14,9 +15,11 @@ export const BecomePartner: FunctionComponent<BecomePartnerPropsInterface> = ({d
           {title}
         </h2>
       </div>
-      <NavigationLink variant={'black'} textSize={'md'} href={link.href} target={link.target}>
-        {link.label}
-      </NavigationLink>
+      {link &&
+        <NavigationLink variant={'black'} textSize={'md'} href={link.href} target={link.target}>
+          {link.label}
+        </NavigationLink>
+      }
     </div>
   );
 }

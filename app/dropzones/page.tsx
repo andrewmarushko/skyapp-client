@@ -1,9 +1,10 @@
 import { fetchDropzonePageData } from '@/api-service/dropzone';
 import { getPageSeo } from '@/api-service/seo';
-import LargeHeading from '@/components/ui/large-heading';
-import Paragraph from '@/components/ui/paragraph';
 import { Metadata } from 'next';
 import { DropzonesContentLayout } from './components/content-layout';
+import { Hero } from '@/components/hero';
+import { BecomePartner } from '@/components/become-partner';
+import { Page } from '@/components/ui/page';
 
 const defaultSeo = {
   title: 'Dropzone',
@@ -39,20 +40,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const DropzonePage = async () => {
-  const {hero} = await fetchDropzonePageData()
+  const { hero, become_partner } = await fetchDropzonePageData()
 
   return (
-    <div>
-      <div className="flex w-full flex-col items-center">
-        <LargeHeading size={'title'} headingStyles={'title'}>
-          {hero.title}
-        </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>
-          {hero.subtitle}
-        </Paragraph>
-      </div>
+    <Page>
+      <Hero title={hero.title} subtitle={hero.subtitle} />
       <DropzonesContentLayout />
-    </div>
+      <BecomePartner data={become_partner} />
+    </Page>
   );
 };
 
