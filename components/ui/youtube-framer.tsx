@@ -4,12 +4,12 @@ import { useRef } from 'react';
 import Image from 'next/image';
 
 export type Props = {
-  video: string,
-  width: number,
-  height: number,
-  containerClassName?: string,
-  thumbnailClassName?: string,
-  thumbnailQuality: 'default' | 'hqdefault' | 'mqdefault' | 'sddefault',
+  video: string;
+  width: number;
+  height: number;
+  containerClassName?: string;
+  thumbnailClassName?: string;
+  thumbnailQuality: 'default' | 'hqdefault' | 'mqdefault' | 'sddefault';
 };
 
 export default function YouTubeFrame({

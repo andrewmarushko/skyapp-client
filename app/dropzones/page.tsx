@@ -7,13 +7,13 @@ import { DropzonesContentLayout } from './components/content-layout';
 
 const defaultSeo = {
   title: 'Dropzone',
-  description: "Dropzone Page"
-}
+  description: 'Dropzone Page',
+};
 
 export async function generateMetadata(): Promise<Metadata> {
-  const {seo} = await getPageSeo('dropzone-page')
+  const { seo } = await getPageSeo('dropzone-page');
 
-  if (!seo) return defaultSeo
+  if (!seo) return defaultSeo;
 
   return {
     metadataBase: new URL(`${seo.metadataBase}`),
@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     formatDetection: {
       email: seo.format_description.email,
       telephone: seo.format_description.telephone,
-      address: seo.format_description.address
+      address: seo.format_description.address,
     },
     viewport: {
       width: seo.viewport.width,
@@ -34,12 +34,12 @@ export async function generateMetadata(): Promise<Metadata> {
       index: seo.robots.index,
       follow: seo.robots.follow,
       nocache: seo.robots.nocache,
-    }
-  }
+    },
+  };
 }
 
 const DropzonePage = async () => {
-  const {hero} = await fetchDropzonePageData()
+  const { hero } = await fetchDropzonePageData();
 
   return (
     <div>
@@ -47,9 +47,7 @@ const DropzonePage = async () => {
         <LargeHeading size={'title'} headingStyles={'title'}>
           {hero.title}
         </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>
-          {hero.subtitle}
-        </Paragraph>
+        <Paragraph paragraphStyles={'subtitle'}>{hero.subtitle}</Paragraph>
       </div>
       <DropzonesContentLayout />
     </div>

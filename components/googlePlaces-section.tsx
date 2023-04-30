@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import Image from 'next/image';
 
 export type GooglePlacesSectionProps = {
-  googlePlaceId: string,
+  googlePlaceId: string;
 };
 
 export default function GooglePlacesSection({
