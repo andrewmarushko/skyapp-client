@@ -5,7 +5,6 @@ import { DialogProps } from '@radix-ui/react-alert-dialog';
 import { File, Laptop, Moon, SunMedium } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
-import { docsConfig } from '@/config/docs';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
