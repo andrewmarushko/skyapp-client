@@ -251,9 +251,10 @@ module.exports = {
         'geist-form-font': 'var(--geist-form-font)'
       },
       lineHeight: {
+        '14px': 'var(--line-height-14px)',
+        '74px': 'var(--line-height-74px)',
         14: 'var(--line-height-14)',
-        14: 'var(--line-height-14)',
-        74: 'var(--line-height-74)',
+
         'geist-action-large-line-height': 'var(--geist-action-large-line-height)',
         'geist-action-small-line-height': 'var(--geist-action-small-line-height)',
         'geist-action-line-height': 'var(--geist-action-line-height)',
@@ -297,10 +298,8 @@ module.exports = {
         '60vh': 'var(--height-60vh)',
       },
       letterSpacing: {
-        tight: {
-          title: 'var(--letter-spacing-title)',
-          subtitle: 'var(--letter-spacing-subtitle)'
-        }
+        'tight-title':'var(--letter-spacing-title)',
+        'tight-subtitle': 'var(--letter-spacing-subtitle)'
       },
       gridTemplateColumns: {
         '1-3': 'var(--grid-template-columns-1-3)'

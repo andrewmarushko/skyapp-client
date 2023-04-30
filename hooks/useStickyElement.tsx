@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 const useStickyElement = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -8,7 +8,10 @@ const useStickyElement = () => {
 
   const handleScroll = () => {
     if (elementRef.current) {
-      setIsSticky(elementRef.current.getBoundingClientRect().top <= 0 && window.pageYOffset > 0);
+      setIsSticky(
+        elementRef.current.getBoundingClientRect().top <= 0 &&
+          window.pageYOffset > 0,
+      );
     }
   };
 

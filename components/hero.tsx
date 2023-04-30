@@ -1,17 +1,20 @@
-import LargeHeading from './ui/large-heading';
-import Paragraph from './ui/paragraph';
 import { FunctionComponent } from 'react';
+import LargeHeading from '@/components/ui/large-heading';
+import Paragraph from '@/components/ui/paragraph';
 
 interface HeroPropsInterface {
-  title?: string
-  subtitle?: string
+  title: string
+  subtitle: string
 }
 
-export const Hero: FunctionComponent<HeroPropsInterface> = ({title = '', subtitle = ''}) => {
+export const Hero: FunctionComponent<HeroPropsInterface> = ({
+  title = '',
+  subtitle = '',
+}) => {
   return (
-    <div className='flex gap-4 flex-col items-center py-12'>
+    <div className='flex flex-col gap-4 w-full items-center px-0 sm:px-6 mt-12 md:mt-16'>
       <LargeHeading size={"title"} headingStyles={"title"}>{title}</LargeHeading>
       <Paragraph size={"lg"} paragraphStyles={"subtitle"}>{subtitle}</Paragraph>
     </div>
   );
-}
+};

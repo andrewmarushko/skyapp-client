@@ -48,6 +48,7 @@ export const IndoorCard: FunctionComponent<IndoorCardPropsInterface> = ({
             width={tube_logo.data.attributes.formats.thumbnail.width} 
             height={tube_logo.data.attributes.formats.thumbnail.height}
             className='h-full w-full object-cover rounded-full'
+
             quality={100}
           />
         </div>
