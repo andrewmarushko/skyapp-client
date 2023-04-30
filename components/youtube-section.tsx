@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import YouTubeFrame from './ui/youtube-framer';
 
 export type YouTubeSectionProps = {
-  youtubeChannelId: string,
+  youtubeChannelId: string;
 };
 
 export default function YouTubeSection({

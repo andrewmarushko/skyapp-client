@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { FunctionComponent, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,9 @@ interface SubscriptionFormProps {
   buttonLabel: string;
 }
 
-export const SubscriptionForm : FunctionComponent<SubscriptionFormProps> = ({buttonLabel}) => {
+export const SubscriptionForm: FunctionComponent<SubscriptionFormProps> = ({
+  buttonLabel,
+}) => {
   const [formState, setFormState] = useState<SubscriptionFormState>({
     email: '',
   });
@@ -29,7 +31,7 @@ export const SubscriptionForm : FunctionComponent<SubscriptionFormProps> = ({but
 
   return (
     // When the subscribe route is ready on the server, it seems the functions handleInputChange and handleSubmit can be deleted as it is shown here https://nextjs.org/docs/guides/building-forms
-    <form className='h-8 relative' onSubmit={handleSubmit}>
+    <form className="relative h-8" onSubmit={handleSubmit}>
       <Input
         type="email"
         id="email"
@@ -39,13 +41,9 @@ export const SubscriptionForm : FunctionComponent<SubscriptionFormProps> = ({but
         onChange={handleInputChange}
         required
       />
-      <Button 
-        variant={'subscribe'}
-        size={'xs'}
-        type="submit"
-      >
+      <Button variant={'subscribe'} size={'xs'} type="submit">
         {buttonLabel}
       </Button>
     </form>
   );
-}
+};
