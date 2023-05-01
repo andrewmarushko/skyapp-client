@@ -32,7 +32,6 @@ export async function generateMetadata({
 
   if (!seo) return defaultSeo;
 
-  console.log(seo);
   return {
     metadataBase: new URL(`${seo.metadataBase}`),
     title: seo.metaTitle,
@@ -61,7 +60,7 @@ export async function generateMetadata({
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
   // const indoorsList: any = await getIndoorsByID(slug);
   const indoor = await fetchTube(slug);
-  console.log(slug);
+
   // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
   // const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
 
