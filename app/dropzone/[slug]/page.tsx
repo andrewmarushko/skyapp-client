@@ -1,21 +1,28 @@
-import { fetchAllDropzones, fetchDropzone, fetchDropzoneSEO } from '@/api-service/dropzone';
+import {
+  fetchAllDropzones,
+  fetchDropzone,
+  fetchDropzoneSEO,
+} from '@/api-service/dropzone';
 import LargeHeading from '@/components/ui/large-heading';
 import { Page } from '@/components/ui/page';
 import { Metadata } from 'next';
 
 interface DropzoneDzPageProps {
   params: {
-    slug: string,
+    slug: string;
   };
 }
 
 const defaultSeo = {
-  title: "Indoor",
-  description: "Indoor Page"
-}
+  title: 'Indoor',
+  description: 'Indoor Page',
+};
 
-
-export async function generateMetadata({ params}: {params: { slug: string}}): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
   const seo = await fetchDropzoneSEO(params.slug);
 
   if (!seo) return defaultSeo;
@@ -29,7 +36,7 @@ export async function generateMetadata({ params}: {params: { slug: string}}): Pr
     formatDetection: {
       email: seo.format_description.email,
       telephone: seo.format_description.telephone,
-      address: seo.format_description.address
+      address: seo.format_description.address,
     },
     viewport: {
       width: seo.viewport.width,
@@ -39,15 +46,24 @@ export async function generateMetadata({ params}: {params: { slug: string}}): Pr
       index: seo.robots.index,
       follow: seo.robots.follow,
       nocache: seo.robots.nocache,
-    }
-  }
+    },
+  };
 }
 
+export async function generateStaticParams() {
+  const dropzones = await fetchAllDropzones();
+
+  return dropzones.map((dropzone: any) => {
+    return {
+      slug: dropzone.attributes.slug,
+    };
+  });
+}
 
 // TODO: add also seo for this generated page
 
 const DropzonePage = async ({ params }: DropzoneDzPageProps) => {
-  const dropzone = await fetchDropzone(params.slug)
+  const dropzone = await fetchDropzone(params.slug);
 
   return (
     <Page>

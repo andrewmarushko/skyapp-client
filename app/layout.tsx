@@ -6,7 +6,11 @@ import { Header } from '@/components/header';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
-import { getFooterData, getLogoData, getNavigationData } from '@/api-service/general';
+import {
+  getFooterData,
+  getLogoData,
+  getNavigationData,
+} from '@/api-service/general';
 
 interface RootLayoutProps {
   children: React.ReactNode;

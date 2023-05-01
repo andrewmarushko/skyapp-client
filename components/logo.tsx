@@ -9,20 +9,16 @@ interface LogoPropsInterface {
 }
 
 export const Logo: FunctionComponent<LogoPropsInterface> = ({
-  href, companyName = '', isCompanyName=true
+  href,
+  companyName = '',
+  isCompanyName = true,
 }) => {
   return (
-    <NavigationLink
-      href={href}
-      variant={'logo'}
-    >
+    <NavigationLink href={href} variant={'logo'}>
       <Icons.logo className="h-8 hover:bg-current" />
-      {
-        isCompanyName && 
-        <span className="text-xl font-bold uppercase">
-          {companyName}
-        </span>
-      }
+      {isCompanyName && (
+        <span className="text-xl font-bold uppercase">{companyName}</span>
+      )}
     </NavigationLink>
   );
 };

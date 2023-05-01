@@ -1,4 +1,4 @@
-'use client'
+'use client';
 /*
     This component is just a wrapper for Inddor and Dropzones content where should be a filters and result items.
     The main reason why it's neede it's becouse nextjs cant render client component inside SSR
@@ -7,6 +7,7 @@
     
     Author: @andrewmarushko
 */
+
 
 import { Button } from '@/components/ui/button'
 import { useFetchSWR } from '@/hooks/useFetchSWR';
@@ -22,6 +23,7 @@ import { PromotedIndoors } from './promoted-indoors';
 export const IndoorContentLayout = () => {
   const { search, setSearch } = useIndoorState()
   const debouncedSearch = useDebounce(search, 500); 
+
   const { data, error, isLoading, handleError } = useFetchSWR<any, Error>(
     `indoors`,
     () => fetchAllTubes(debouncedSearch),

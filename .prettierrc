@@ -6,17 +6,5 @@
   "trailingComma": "all",
   "jsxBracketSameLine": false,
   "arrowParens": "always",
-  "printWidth": 80,
-  "overrides": [
-    {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js"
-      ],
-      "options": {
-        "parser": "babel"
-      }
-    }
-  ]
+  "printWidth": 80
 }

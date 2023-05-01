@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import useStickyElement from '@/hooks/useStickyElement';
 import useOpen from '@/hooks/useOpen';
@@ -15,7 +15,7 @@ interface HeaderProps {
   navigationData: NavDataInterface;
 }
 
-const onScrollHeaderClasses = `before:w-full before:h-full before:absolute before:content-[''] before:-z-1 before:backdrop-saturate-180 before:backdrop-blur-md before:-top-1px shadow-header-border-bottom dark:shadow-header-border-bottom-dark`
+const onScrollHeaderClasses = `before:w-full before:h-full before:absolute before:content-[''] before:-z-1 before:backdrop-saturate-180 before:backdrop-blur-md before:-top-1px shadow-header-border-bottom dark:shadow-header-border-bottom-dark`;
 
 export function Header({ logoData, navigationData }: HeaderProps) {
   const { logo } = logoData;
@@ -26,22 +26,29 @@ export function Header({ logoData, navigationData }: HeaderProps) {
   return (
     <header
       ref={elementRef}
-      className={`flex min-h-header-height justify-center bg-transparent sticky top-0 z-40 w-full max-w-full transition-background-color-and-box-shadow ease duration-200 dark:border-b-stone-700 ${isSticky ? `${onScrollHeaderClasses}` : ''}`}>
+      className={`ease sticky top-0 z-40 flex min-h-header-height w-full max-w-full justify-center bg-transparent transition-background-color-and-box-shadow duration-200 dark:border-b-stone-700 ${
+        isSticky ? `${onScrollHeaderClasses}` : ''
+      }`}
+    >
       <div className="container flex items-center justify-between">
-        <div className='flex justify-between items-center flex-1'>
+        <div className="flex flex-1 items-center justify-between">
           <Logo href={logo.href} companyName={logo.companyName} />
           <BurgerMenu isOpen={isOpen} toggleBurgerMenu={toggle} />
         </div>
         <MainNav mainNavigationData={mainNavigation} />
-        <div className='hidden lg:flex gap-2 flex-1 justify-end'>
+        <div className="hidden flex-1 justify-end gap-2 lg:flex">
           {/* TODO: create side menu api */}
-          <NavigationLink variant={'white'} href={'/contacts'}>Contacts</NavigationLink>
-          <NavigationLink variant={'black'} href={'/feedback'}>Feedback</NavigationLink>
+          <NavigationLink variant={'white'} href={'/contacts'}>
+            Contacts
+          </NavigationLink>
+          <NavigationLink variant={'black'} href={'/feedback'}>
+            Feedback
+          </NavigationLink>
         </div>
-        <MobileNav 
-          navigationData={mainNavigation} 
-          isMobileNavOpen={isOpen} 
-          hideMobileNav={hide} 
+        <MobileNav
+          navigationData={mainNavigation}
+          isMobileNavOpen={isOpen}
+          hideMobileNav={hide}
         />
       </div>
     </header>

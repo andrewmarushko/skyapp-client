@@ -1,11 +1,11 @@
-"use client"
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const lgBreakpoint = 950;
 
 const useOpen = () => {
-  const [ isOpen, setIsOpen ] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const show = () => {
     setIsOpen(() => true);
@@ -26,7 +26,7 @@ const useOpen = () => {
       if (screenWidth >= lgBreakpoint && isOpen) {
         setIsOpen(false);
       }
-    }
+    };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   });
