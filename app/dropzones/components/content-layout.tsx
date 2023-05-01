@@ -29,6 +29,7 @@ export const DropzonesContentLayout = () => {
   // TODO: Create skeleton for card component
   if (isLoading) return <p>...LOADING...</p>
 
+
   // TODO: Create error message component
   if (error) {
     handleError(error);
@@ -38,7 +39,6 @@ export const DropzonesContentLayout = () => {
 
   // TODO: Create no found component
   if (!data) return <p>No records found</p>;
-
 
     return (
       <div className='container grid grid-cols-2 gap-5'>

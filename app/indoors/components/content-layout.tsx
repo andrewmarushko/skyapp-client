@@ -40,7 +40,7 @@ export const IndoorContentLayout = () => {
     // Отобразить сообщение об ошибке или выполнить другую логику
     return <div>Cant load indoors</div>;
   }
-
+  
   return (
     <div>
       {promotedIndoorsList?.length>0 &&

@@ -75,6 +75,5 @@ export const IndoorCard : FunctionComponent<IndoorCardPropsInterface> = (({ clas
       </Card>
     </Link>
   );
-});
 
 IndoorCard.displayName = "IndoorCard";
