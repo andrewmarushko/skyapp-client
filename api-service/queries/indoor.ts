@@ -14,6 +14,11 @@ export const INDOOR_QUERY = qs.stringify({
     'cover,location,tube_logo,marketing',
   ]
 
-}, {
+
+export const INDOOR_QUERY = qs.stringify(
+  {
+    populate: ['cover,location,tube_logo'],
+  },
+  {
     encodeValuesOnly: true,
   })

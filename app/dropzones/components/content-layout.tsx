@@ -47,6 +47,7 @@ export const DropzonesContentLayout = () => {
             throw new Error('Function not implemented.');
           } } />
         </div>
+
       <div>
         <div className="grid grid-cols-3 gap-4">
           {data.map(({ attributes, id }: any) => {
