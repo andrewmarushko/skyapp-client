@@ -42,10 +42,6 @@ const linkVariants = cva(
         default: 'text-sm',
         md: 'text-base'
       },
-      textSize: {
-        default: 'text-sm',
-        md: 'text-base'
-      },
       size: {
         default: 'py-2 px-3',
         sm: 'p-0',
