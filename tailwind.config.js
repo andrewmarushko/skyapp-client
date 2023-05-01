@@ -254,7 +254,6 @@ module.exports = {
         '14px': 'var(--line-height-14px)',
         '74px': 'var(--line-height-74px)',
         14: 'var(--line-height-14)',
-
         'geist-action-large-line-height': 'var(--geist-action-large-line-height)',
         'geist-action-small-line-height': 'var(--geist-action-small-line-height)',
         'geist-action-line-height': 'var(--geist-action-line-height)',
@@ -300,9 +299,6 @@ module.exports = {
       letterSpacing: {
         'tight-title':'var(--letter-spacing-title)',
         'tight-subtitle': 'var(--letter-spacing-subtitle)'
-      },
-      gridTemplateColumns: {
-        '1-3': 'var(--grid-template-columns-1-3)'
       },
       gridTemplateColumns: {
         '1-3': 'var(--grid-template-columns-1-3)'

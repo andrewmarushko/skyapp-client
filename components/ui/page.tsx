@@ -3,7 +3,7 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { forwardRef } from 'react';
 
 const pageVariants = cva(
-  "container flex w-full flex-col",
+  "flex w-full flex-col",
   {
     variants: {
       variant: {
