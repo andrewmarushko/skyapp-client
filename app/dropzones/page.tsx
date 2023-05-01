@@ -40,13 +40,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const DropzonePage = async () => {
-
   const { hero, become_partner } = await fetchDropzonePageData()
 
   return (
     <Page>
       <Hero title={hero.title} subtitle={hero.subtitle} />
-
       <DropzonesContentLayout />
       <BecomePartner data={become_partner} />
     </Page>
