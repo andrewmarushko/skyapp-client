@@ -1,4 +1,4 @@
-import { fetchIndoorSEO, fetchTube } from '@/api-service/indoor';
+import { fetchAllTubes, fetchIndoorSEO, fetchTube } from '@/api-service/indoor';
 import { Icons } from '@/components/icons';
 import LargeHeading from '@/components/ui/large-heading';
 import { Page } from '@/components/ui/page';

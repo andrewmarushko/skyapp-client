@@ -26,16 +26,8 @@ export const DropzonesContentLayout = () => {
     handleFetchError,
   );
 
-    const { data, error, isLoading, handleError } = useFetchSWR<any, Error>(
-        `indoors`,
-        () => fetchAllDropzones(),
-        [],
-        undefined,
-        handleFetchError
-    );
-
-    // TODO: Create skeleton for card component
-    if (isLoading) return <p>...LOADING...</p>
+  // TODO: Create skeleton for card component
+  if (isLoading) return <p>...LOADING...</p>
 
   // TODO: Create error message component
   if (error) {
@@ -49,14 +41,12 @@ export const DropzonesContentLayout = () => {
 
 
     return (
-        <div className='container grid grid-cols-2 gap-5'>
-            <div>
-                <Search onChange={function (e: any): void {
-                    throw new Error('Function not implemented.');
-                } } />
-            </div>
-
-
+      <div className='container grid grid-cols-2 gap-5'>
+        <div>
+          <Search onChange={function (e: any): void {
+            throw new Error('Function not implemented.');
+          } } />
+        </div>
       <div>
         <div className="grid grid-cols-3 gap-4">
           {data.map(({ attributes, id }: any) => {

@@ -44,12 +44,14 @@ export async function generateMetadata(): Promise<Metadata> {
 const IndoorPage = async () => {
   const { hero: {title, subtitle}, become_partner } = await getIndoorPageData();
   return (
-    <Page>
+    <Page variant={'noContainer'}>
       <Hero title={title} subtitle={subtitle} />
       <Content>
         <IndoorContentLayout />
       </Content>
-      <BecomePartner data={become_partner} />
+      <div className='container'>
+        <BecomePartner data={become_partner} />
+      </div>
     </Page>
   );
 };

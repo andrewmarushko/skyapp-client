@@ -18,6 +18,7 @@ import { useIndoorState } from '@/store/indoors';
 import { useDebounce } from '@/hooks/useDebounce';
 
 import { IndoorCard } from '@/components/indoor-card';
+import { PromotedIndoors } from './promoted-indoors';
 
 export const IndoorContentLayout = () => {
   const { search, setSearch } = useIndoorState()
@@ -31,30 +32,36 @@ export const IndoorContentLayout = () => {
     handleFetchError
   );
 
+  const promotedIndoorsList = data?.filter((item : any) => item.attributes.marketing.promoted === true);
+
   // TODO: Create error message component
   if (error) {
     handleError(error);
     // Отобразить сообщение об ошибке или выполнить другую логику
     return <div>Cant load indoors</div>;
   }
-  
-  return (
-    <div className='container grid grid-cols-2 gap-5'>
-      <div>
-        <Search onChange={(e: any) => setSearch(e.target.value)}/>
-      </div>
-      <div>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'> 
-          {isLoading && <p>Loading</p>}
-          {!data && <p>No records found</p>}
-          {data && data.map(({ attributes, id }: any) => (
-            <IndoorCard key={id} data={attributes}/>
-          ))}
-          {data && data.length === 0 && <p>No Results</p>}
 
+  return (
+    <div>
+      {promotedIndoorsList?.length>0 &&
+        <PromotedIndoors data={promotedIndoorsList} />
+      }
+      <div className='container flex flex-col lg:grid lg:grid-cols-4 gap-7'>
+        <div className='col-span-1'>
+          <Search onChange={(e: any) => setSearch(e.target.value)}/>
         </div>
-        <div className="mt-4 flex w-full justify-center">
-          <Button>Load More</Button>
+        <div className='col-span-3'>
+          <div className='grid justify-center sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-4'> 
+            {isLoading && <p>Loading</p>}
+            {!data && <p>No records found</p>}
+            {data && data.map(({ attributes, id }: any) => (
+              <IndoorCard key={id} data={attributes}/>
+            ))}
+            {data && data.length === 0 && <p>No Results</p>}
+          </div>
+          <div className="mt-7 flex w-full justify-center">
+            <Button>Load More</Button>
+          </div>
         </div>
       </div>
     </div>
