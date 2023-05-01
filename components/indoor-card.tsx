@@ -1,20 +1,40 @@
 import { FunctionComponent } from 'react';
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icons } from '@/components/icons';
 import { Card } from '@/components/ui/card';
+import { VariantProps, cva } from 'class-variance-authority';
 
-interface IndoorCardPropsInterface {
-  // TODO: Add typization
-  data: any;
-}
+const indoorCardVariants = cva(
+  "relative",
+  {
+    variants: {
+      variant: {
+        default: "",
+        promoted: "w-96 flex-shrink-0 snap-start mx-3", 
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
 
-export const IndoorCard: FunctionComponent<IndoorCardPropsInterface> = ({
-  data
-}) => {
+interface IndoorCardPropsInterface
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof indoorCardVariants> {
+      // TODO: Add typization
+      data: any;
+    }
+
+export const IndoorCard : FunctionComponent<IndoorCardPropsInterface> = (({ className, data, variant }) => {
   const { slug, title, cover, location, diameter, tube_logo } = data;
   return (
-    <Link className='relative' href={`indoor/${slug}`}>
+    <Link 
+      className={cn(indoorCardVariants({ variant, className }))}
+      href={`indoor/${slug}`}
+    >
       <Card >
         <div className='h-44'>
           <Image 
@@ -54,4 +74,6 @@ export const IndoorCard: FunctionComponent<IndoorCardPropsInterface> = ({
       </Card>
     </Link>
   );
-};
+});
+
+IndoorCard.displayName = "IndoorCard";
