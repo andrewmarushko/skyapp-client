@@ -20,19 +20,19 @@ export async function fetchDropzonePageData() {
 }
 
 export async function fetchAllDropzones(searchParam: string) {
-  const DROPZONE_SEARCH_QUERY = qs.stringify({
-    filters: {
-      slug: {
-        $containsi: searchParam
-      }
+  const DROPZONE_SEARCH_QUERY = qs.stringify(
+    {
+      filters: {
+        slug: {
+          $containsi: searchParam,
+        },
+      },
+      populate: ['cover', 'location', 'logo'],
     },
-    populate: [
-      'cover,location,logo',
-    ]
-  
-  }, {
+    {
       encodeValuesOnly: true,
-    })
+    },
+  );
 
   const dropzones = await request<any>(
     `${API_URL}/dropzones?${DROPZONE_SEARCH_QUERY}`,
@@ -83,10 +83,13 @@ export async function fetchDropzoneSEO(slug: string) {
 }
 
 export async function fetchPromotedDropzone() {
-  const promoted = await request<any>(`${API_URL}/dropzones?${PROMOTED_DROPZONE_QUERY}`, { cache: CACHE_DISABLED}, error => {
-    console.error(error)
-  })
+  const promoted = await request<any>(
+    `${API_URL}/dropzones?${PROMOTED_DROPZONE_QUERY}`,
+    { cache: CACHE_DISABLED },
+    (error) => {
+      console.error(error);
+    },
+  );
 
-  return promoted.data
-
+  return promoted.data;
 }

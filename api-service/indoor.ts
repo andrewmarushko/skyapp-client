@@ -5,7 +5,11 @@ import {
   REVALIDATE_TIME,
 } from '@/constants/api';
 import { request } from '@/lib/request';
-import { INDOOR_PAGE_QUERY, INDOOR_QUERY, PROMOTED_INDOORS_QUERY } from './queries/indoor';
+import {
+  INDOOR_PAGE_QUERY,
+  INDOOR_QUERY,
+  PROMOTED_INDOORS_QUERY,
+} from './queries/indoor';
 import qs from 'qs';
 
 export async function getIndoorPageData() {
@@ -21,25 +25,27 @@ export async function getIndoorPageData() {
 }
 
 export async function fetchAllTubes(searchParam: string = '') {
-
-  const INDOOR_SEARCH_QUERY = qs.stringify({
-    filters: {
-      slug: {
-        $containsi: searchParam
-      }
+  const INDOOR_SEARCH_QUERY = qs.stringify(
+    {
+      filters: {
+        slug: {
+          $containsi: searchParam,
+        },
+      },
+      populate: ['cover', 'location', 'logo'],
     },
-    populate: [
-      'cover',
-      'location'
-    ]
-  
-  }, {
+    {
       encodeValuesOnly: true,
-    })
+    },
+  );
 
-  const indoors = await request<any>(`${API_URL}/indoors?${searchParam === "" ? `${INDOOR_QUERY}` : `${INDOOR_SEARCH_QUERY}`}`, { cache: CACHE_DISABLED}, error => {
-    console.error(error)
-  })
+  const indoors = await request<any>(
+    `${API_URL}/indoors?${INDOOR_SEARCH_QUERY}`,
+    { cache: CACHE_DISABLED },
+    (error) => {
+      console.error(error);
+    },
+  );
 
   return indoors.data;
 }
@@ -82,10 +88,13 @@ export async function fetchIndoorSEO(slug: string) {
 }
 
 export async function fetchPromotedIndoors() {
-  const promoted = await request<any>(`${API_URL}/indoors?${PROMOTED_INDOORS_QUERY}`, { cache: CACHE_DISABLED}, error => {
-    console.error(error)
-  })
+  const promoted = await request<any>(
+    `${API_URL}/indoors?${PROMOTED_INDOORS_QUERY}`,
+    { cache: CACHE_DISABLED },
+    (error) => {
+      console.error(error);
+    },
+  );
 
-  return promoted.data
-
+  return promoted.data;
 }
