@@ -6,7 +6,7 @@ import { BecomePartner } from '@/components/become-partner';
 import { Page } from '@/components/ui/page';
 import { Content } from '@/components/content';
 import { DropzonesContentLayout } from './components/content-layout';
-import { PromotedDropzones } from './components/promoted-dropzones';
+import { Promoted } from '@/components/promoted';
 
 const defaultSeo = {
   title: 'Dropzone',
@@ -48,7 +48,7 @@ const DropzonePage = async () => {
   return (
     <Page>
       <Hero title={hero.title} subtitle={hero.subtitle} />
-      <PromotedDropzones data={promoted} />
+      <Promoted location='dropzone' data={promoted} />
       <Content>
         <DropzonesContentLayout />
       </Content>

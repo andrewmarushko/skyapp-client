@@ -29,7 +29,8 @@ export async function fetchAllTubes(searchParam: string = '') {
       }
     },
     populate: [
-      'cover,location',
+      'cover',
+      'location'
     ]
   
   }, {

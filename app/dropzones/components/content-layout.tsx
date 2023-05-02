@@ -8,17 +8,17 @@
     Author: @andrewmarushko
 */
 
-import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useFetchSWR } from '@/hooks/useFetchSWR';
-import Link from 'next/link';
-import Image from 'next/image';
 import { handleFetchError } from '@/lib/handleFetchError';
 import { fetchAllDropzones } from '@/api-service/dropzone';
 import { Search } from '@/components/search';
 import { useIndoorState } from '@/store/indoors';
 import { useDebounce } from '@/hooks/useDebounce';
-import { DropzoneCard } from '@/components/dropzone-card';
+import { NavigationCard } from '@/components/navigation-card';
+
+// TODO: next step make this component more reusable
+
 
 export const DropzonesContentLayout = () => {
   const { search, setSearch } = useIndoorState()
@@ -48,7 +48,7 @@ export const DropzonesContentLayout = () => {
           {isLoading && <p>Loading</p>}
           {!data && <p>No records found</p>}
           {data && data.map(({ attributes, id }: any) => (
-            <DropzoneCard key={id} data={attributes}/>
+            <NavigationCard link_location='dropzone' key={id} data={attributes}/>
           ))}
           {data && data.length === 0 && <p>No Results</p>}
         </div>

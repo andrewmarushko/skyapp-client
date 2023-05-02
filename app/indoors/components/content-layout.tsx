@@ -16,8 +16,8 @@ import { handleFetchError } from '@/lib/handleFetchError';
 import { Search } from '@/components/search';
 import { useIndoorState } from '@/store/indoors';
 import { useDebounce } from '@/hooks/useDebounce';
+import { NavigationCard } from '@/components/navigation-card';
 
-import { IndoorCard } from '@/components/indoor-card';
 
 export const IndoorContentLayout = () => {
   const { search, setSearch } = useIndoorState()
@@ -48,7 +48,7 @@ export const IndoorContentLayout = () => {
           {isLoading && <p>Loading</p>}
           {!data && <p>No records found</p>}
           {data && data.map(({ attributes, id }: any) => (
-            <IndoorCard key={id} data={attributes}/>
+            <NavigationCard link_location='indoor' key={id} data={attributes}/>
           ))}
           {data && data.length === 0 && <p>No Results</p>}
         </div>
