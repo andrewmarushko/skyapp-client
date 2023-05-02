@@ -3,6 +3,7 @@ import { request } from '@/lib/request';
 import {
   DROPZONES_QUERY,
   DROPZONE_PAGE_QUERY,
+  PROMOTED_DROPZONE_QUERY,
 } from '@/api-service/queries/dropzone';
 import qs from 'qs';
 
@@ -18,9 +19,23 @@ export async function fetchDropzonePageData() {
   return data.data.attributes;
 }
 
-export async function fetchAllDropzones() {
+export async function fetchAllDropzones(searchParam: string) {
+  const DROPZONE_SEARCH_QUERY = qs.stringify({
+    filters: {
+      slug: {
+        $containsi: searchParam
+      }
+    },
+    populate: [
+      'cover,location,logo',
+    ]
+  
+  }, {
+      encodeValuesOnly: true,
+    })
+
   const dropzones = await request<any>(
-    `${API_URL}/dropzones?${DROPZONES_QUERY}`,
+    `${API_URL}/dropzones?${DROPZONE_SEARCH_QUERY}`,
     { cache: CACHE_DISABLED },
     (error) => {
       console.error(error);
@@ -65,4 +80,13 @@ export async function fetchDropzoneSEO(slug: string) {
   );
 
   return seo.data[0].attributes.seo;
+}
+
+export async function fetchPromotedDropzone() {
+  const promoted = await request<any>(`${API_URL}/dropzones?${PROMOTED_DROPZONE_QUERY}`, { cache: CACHE_DISABLED}, error => {
+    console.error(error)
+  })
+
+  return promoted.data
+
 }

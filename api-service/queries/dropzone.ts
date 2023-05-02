@@ -17,3 +17,20 @@ export const DROPZONES_QUERY = qs.stringify(
     encodeValuesOnly: true,
   },
 );
+
+export const PROMOTED_DROPZONE_QUERY = qs.stringify({
+  filters: [
+    {
+      marketing: {
+        promoted: {
+          $eq: true
+        }
+      }
+    }
+  ],
+  populate: [
+    'cover',
+    'location',
+    'logo'
+  ]
+}, { encodeValuesOnly: true })

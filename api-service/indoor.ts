@@ -5,7 +5,7 @@ import {
   REVALIDATE_TIME,
 } from '@/constants/api';
 import { request } from '@/lib/request';
-import { INDOOR_PAGE_QUERY, INDOOR_QUERY } from './queries/indoor';
+import { INDOOR_PAGE_QUERY, INDOOR_QUERY, PROMOTED_INDOORS_QUERY } from './queries/indoor';
 import qs from 'qs';
 
 export async function getIndoorPageData() {
@@ -78,4 +78,13 @@ export async function fetchIndoorSEO(slug: string) {
   );
 
   return seo.data[0].attributes.seo;
+}
+
+export async function fetchPromotedIndoors() {
+  const promoted = await request<any>(`${API_URL}/indoors?${PROMOTED_INDOORS_QUERY}`, { cache: CACHE_DISABLED}, error => {
+    console.error(error)
+  })
+
+  return promoted.data
+
 }

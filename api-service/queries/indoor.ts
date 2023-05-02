@@ -16,3 +16,20 @@ export const INDOOR_QUERY = qs.stringify(
   {
     encodeValuesOnly: true,
   })
+
+export const PROMOTED_INDOORS_QUERY = qs.stringify({
+    filters: [
+      {
+        marketing: {
+          promoted: {
+            $eq: true
+          }
+        }
+      }
+    ],
+    populate: [
+      'cover',
+      'location',
+      'tube_logo'
+    ]
+}, { encodeValuesOnly: true })

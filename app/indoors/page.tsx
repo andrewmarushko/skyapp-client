@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
 
-import { getIndoorPageData } from '@/api-service/indoor';
+import { fetchPromotedIndoors, getIndoorPageData } from '@/api-service/indoor';
 import { Page } from '@/components/ui/page';
 import { getPageSeo } from '@/api-service/seo';
 import { IndoorContentLayout } from '@/app/indoors/components/content-layout';
 import { Hero } from '@/components/hero';
 import { Content } from '@/components/content';
 import { BecomePartner } from '@/components/become-partner';
+import { PromotedIndoors } from './components/promoted-indoors';
 
 const defaultSeo = {
   title: 'Indoor',
@@ -43,9 +44,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const IndoorPage = async () => {
   const { hero: {title, subtitle}, become_partner } = await getIndoorPageData();
+  const promoted = await fetchPromotedIndoors()
+
   return (
     <Page variant={'noContainer'}>
       <Hero title={title} subtitle={subtitle} />
+      <PromotedIndoors data={promoted} />
       <Content>
         <IndoorContentLayout />
       </Content>

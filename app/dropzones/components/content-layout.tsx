@@ -16,19 +16,20 @@ import Image from 'next/image';
 import { handleFetchError } from '@/lib/handleFetchError';
 import { fetchAllDropzones } from '@/api-service/dropzone';
 import { Search } from '@/components/search';
+import { useIndoorState } from '@/store/indoors';
+import { useDebounce } from '@/hooks/useDebounce';
+import { DropzoneCard } from '@/components/dropzone-card';
 
 export const DropzonesContentLayout = () => {
+  const { search, setSearch } = useIndoorState()
+  const debouncedSearch = useDebounce(search, 500); 
   const { data, error, isLoading, handleError } = useFetchSWR<any, Error>(
     `indoors`,
-    () => fetchAllDropzones(),
-    [],
+    () => fetchAllDropzones(debouncedSearch),
+    [debouncedSearch],
     undefined,
     handleFetchError,
   );
-
-  // TODO: Create skeleton for card component
-  if (isLoading) return <p>...LOADING...</p>
-
 
   // TODO: Create error message component
   if (error) {
@@ -37,45 +38,21 @@ export const DropzonesContentLayout = () => {
     return <div>Cant load indoors</div>;
   }
 
-  // TODO: Create no found component
-  if (!data) return <p>No records found</p>;
-
     return (
-      <div className='container grid grid-cols-2 gap-5'>
-        <div>
-          <Search onChange={function (e: any): void {
-            throw new Error('Function not implemented.');
-          } } />
+      <div className='container flex flex-col lg:grid lg:grid-cols-4 gap-7'>
+      <div className='col-span-1'>
+        <Search onChange={(e: any) => setSearch(e.target.value)}/>
+      </div>
+      <div className='col-span-3'>
+        <div className='grid justify-center sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-4'> 
+          {isLoading && <p>Loading</p>}
+          {!data && <p>No records found</p>}
+          {data && data.map(({ attributes, id }: any) => (
+            <DropzoneCard key={id} data={attributes}/>
+          ))}
+          {data && data.length === 0 && <p>No Results</p>}
         </div>
-
-      <div>
-        <div className="grid grid-cols-3 gap-4">
-          {data.map(({ attributes, id }: any) => {
-            return (
-              <Link key={id} href={`dropzone/${attributes.slug}`}>
-                <Card>
-                  <Image
-                    loading="lazy"
-                    src={attributes.cover.data.attributes.formats.thumbnail.url}
-                    alt={attributes.cover.data.attributes.alternativeText}
-                    width={
-                      attributes.cover.data.attributes.formats.thumbnail.width
-                    }
-                    height={
-                      attributes.cover.data.attributes.formats.thumbnail.height
-                    }
-                  />
-                  <h1>{attributes.title}</h1>
-                  <span>
-                    Location: {attributes.location.city},{' '}
-                    {attributes.location.country}
-                  </span>
-                </Card>
-              </Link>
-            );
-          })}
-        </div>
-        <div className="mt-4 flex w-full justify-center">
+        <div className="mt-7 flex w-full justify-center">
           <Button>Load More</Button>
         </div>
       </div>
