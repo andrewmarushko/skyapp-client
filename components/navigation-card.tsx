@@ -1,3 +1,4 @@
+'use client';
 import { FunctionComponent } from 'react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
@@ -6,7 +7,7 @@ import { Icons } from '@/components/icons';
 import { Card } from '@/components/ui/card';
 import { VariantProps, cva } from 'class-variance-authority';
 
-const indoorCardVariants = cva('relative', {
+const navigationCardVariants = cva('relative', {
   variants: {
     variant: {
       default: '',
@@ -18,36 +19,35 @@ const indoorCardVariants = cva('relative', {
   },
 });
 
-interface IndoorCardPropsInterface
+interface NavigationCardPropsInterface
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof indoorCardVariants> {
+    VariantProps<typeof navigationCardVariants> {
   // TODO: Add typization
   data: any;
   link_location?: string;
 }
 
-export const NavigationCard: FunctionComponent<IndoorCardPropsInterface> = ({
-  className,
-  data,
-  variant,
-  link_location
-}) => {
+export const NavigationCard: FunctionComponent<
+  NavigationCardPropsInterface
+> = ({ className, data, variant, link_location }) => {
   const { slug, title, cover, diameter, logo, location } = data;
   return (
     <Link
-      className={cn(indoorCardVariants({ variant, className }))}
+      className={cn(navigationCardVariants({ variant, className }))}
       href={`${link_location}/${slug}`}
     >
       <Card>
         <div className="h-44">
           <Image
             loading="lazy"
-            src={cover.data.attributes.formats.thumbnail.url}
+            src={cover.data.attributes.url}
             alt={cover.data.attributes.alternativeText}
-            width={cover.data.attributes.formats.thumbnail.width}
-            height={cover.data.attributes.formats.thumbnail.height}
+            width={cover.data.attributes.width}
+            height={cover.data.attributes.height}
             className="h-full w-full object-cover"
             quality={100}
+            placeholder="blur"
+            blurDataURL={cover.data.attributes.url}
           />
         </div>
         <div className="flex flex-col gap-3 px-2 py-3 sm:px-4 sm:py-6">
@@ -61,24 +61,27 @@ export const NavigationCard: FunctionComponent<IndoorCardPropsInterface> = ({
                 {location.city} / {location.country}
               </span>
             </div>
-            {diameter && <div className="flex items-center gap-1">
-              <Icons.circleSlash className="h-5 w-5" />
-              <span className="text-xs text-accent-400 dark:text-accent-500">
-                {diameter} ft.
-              </span>
-            </div>           
-            }
+            {diameter && (
+              <div className="flex items-center gap-1">
+                <Icons.circleSlash className="h-5 w-5" />
+                <span className="text-xs text-accent-400 dark:text-accent-500">
+                  {diameter} ft.
+                </span>
+              </div>
+            )}
           </div>
         </div>
         <div className="absolute left-2 top-28 z-1 flex h-14 w-14 items-center justify-center rounded-full bg-sk-light p-1 dark:bg-sk-dark">
           <Image
             loading="lazy"
-            src={logo.data.attributes.formats.thumbnail.url}
+            src={logo.data.attributes.url}
             alt={logo.data.attributes.alternativeText}
-            width={logo.data.attributes.formats.thumbnail.width}
-            height={logo.data.attributes.formats.thumbnail.height}
+            width={logo.data.attributes.width}
+            height={logo.data.attributes.height}
             className="h-full w-full rounded-full object-cover"
             quality={100}
+            placeholder="blur"
+            blurDataURL={logo.data.attributes.url}
           />
         </div>
       </Card>

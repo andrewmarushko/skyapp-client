@@ -1,11 +1,14 @@
-import { fetchDropzonePageData, fetchPromotedDropzone } from '@/api-service/dropzone';
+import {
+  fetchDropzonePageData,
+  fetchPromotedDropzone,
+} from '@/api-service/dropzone';
 import { getPageSeo } from '@/api-service/seo';
 import { Metadata } from 'next';
 import { Hero } from '@/components/hero';
 import { BecomePartner } from '@/components/become-partner';
 import { Page } from '@/components/ui/page';
 import { Content } from '@/components/content';
-import { DropzonesContentLayout } from './components/content-layout';
+import { ContentLayout } from '../../components/content-layout';
 import { Promoted } from '@/components/promoted';
 
 const defaultSeo = {
@@ -42,15 +45,15 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const DropzonePage = async () => {
-  const { hero, become_partner } = await fetchDropzonePageData()
-  const promoted = await fetchPromotedDropzone()
+  const { hero, become_partner } = await fetchDropzonePageData();
+  const promoted = await fetchPromotedDropzone();
 
   return (
     <Page>
       <Hero title={hero.title} subtitle={hero.subtitle} />
-      <Promoted location='dropzone' data={promoted} />
+      <Promoted location="dropzone" data={promoted} />
       <Content>
-        <DropzonesContentLayout />
+        <ContentLayout locationParam={'dropzone'} />
       </Content>
       <BecomePartner data={become_partner} />
     </Page>
