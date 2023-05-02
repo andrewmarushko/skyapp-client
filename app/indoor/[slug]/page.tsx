@@ -12,8 +12,6 @@ import { Suspense } from 'react';
 
 import { Metadata } from 'next';
 
-export const dynamicParams = true;
-
 interface IndoorTubePageProps {
   params: {
     slug: string;
@@ -231,14 +229,14 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
   );
 };
 
-export async function generateStaticParams() {
-  const indoor = await fetchAllTubes();
+// export async function generateStaticParams() {
+//   const indoor = await fetchAllTubes();
 
-  return indoor.map((indoor: any) => {
-    return {
-      slug: indoor.attributes.slug,
-    };
-  });
-}
+//   return indoor.map((indoor: any) => {
+//     return {
+//       slug: indoor.attributes.slug,
+//     };
+//   });
+// }
 
 export default IndoorTubePage;
