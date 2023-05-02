@@ -46,6 +46,8 @@ export const NavigationCard: FunctionComponent<
             height={cover.data.attributes.height}
             className="h-full w-full object-cover"
             quality={100}
+            placeholder="blur"
+            blurDataURL={cover.data.attributes.url}
           />
         </div>
         <div className="flex flex-col gap-3 px-2 py-3 sm:px-4 sm:py-6">
@@ -78,6 +80,8 @@ export const NavigationCard: FunctionComponent<
             height={logo.data.attributes.height}
             className="h-full w-full rounded-full object-cover"
             quality={100}
+            placeholder="blur"
+            blurDataURL={logo.data.attributes.url}
           />
         </div>
       </Card>
