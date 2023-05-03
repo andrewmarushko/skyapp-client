@@ -32,3 +32,5 @@ export const PROMOTED_INDOORS_QUERY = qs.stringify({
       'location',
       'logo'
     ]
+  }
+)

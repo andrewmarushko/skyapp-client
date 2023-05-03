@@ -22,7 +22,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 export const CardList = ({ locationParam }: { locationParam: string }) => {
   const { data, meta, search, currentPage, setCurrentPage, setData, setMeta } =
     useIndoorState();
-  const isHasMore = meta.pagination?.total >= meta.pagination?.start ? true : false
+  const isHasMore = meta.pagination?.total > meta.pagination?.start ? true : false
 
   const { error, isLoading, handleError } = useFetchSWR<
     any,
