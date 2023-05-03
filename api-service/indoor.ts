@@ -54,7 +54,7 @@ export async function fetchAllTubes(
     },
   );
 
-  return indoors.data;
+  return {data: indoors.data, meta: indoors.meta};
 }
 
 export async function fetchTube(slug: string) {

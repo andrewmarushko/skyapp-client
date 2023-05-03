@@ -19,12 +19,12 @@ export async function fetchDropzonePageData() {
   return data.data.attributes;
 }
 
-export async function fetchAllDropzones(searchParam: string) {
+export async function fetchAllDropzones(searchParam: string, currentPage: number) {
   const DROPZONE_SEARCH_QUERY = qs.stringify(
     {
       pagination: {
-        start: 0,
-        limit: 1,
+        start: currentPage,
+        limit: !!searchParam ? 300 : 2,
       },
       filters: {
         slug: {
@@ -46,7 +46,7 @@ export async function fetchAllDropzones(searchParam: string) {
     },
   );
 
-  return dropzones.data;
+  return {data: dropzones.data, meta: dropzones.meta};
 }
 
 export async function fetchDropzone(slug: string) {

@@ -7,6 +7,8 @@ interface IndoorState {
   setCurrentPage: (e: number) => void;
   data: any[];
   setData: (data: any) => void;
+  meta: any,
+  setMeta: (meta: any) => void
 }
 
 const CURRENT_PAGE = 0;
@@ -18,4 +20,6 @@ export const useIndoorState = create<IndoorState>()((set) => ({
   setCurrentPage: (page) => set({ currentPage: page }),
   data: [],
   setData: (data) => set({ data }),
+  meta: {},
+  setMeta: meta => set({ meta })
 }));

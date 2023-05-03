@@ -52,7 +52,7 @@ const DropzonePage = async () => {
     <Page>
       <Hero title={hero.title} subtitle={hero.subtitle} />
       <Promoted location="dropzone" data={promoted} />
-      <Content>{/* <ContentLayout locationParam={'dropzone'} /> */}</Content>
+      <Content><ContentLayout locationParam={'dropzone'} /></Content>
       <BecomePartner data={become_partner} />
     </Page>
   );

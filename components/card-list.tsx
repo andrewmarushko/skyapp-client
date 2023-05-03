@@ -16,36 +16,44 @@ import { useIndoorState } from '@/store/indoors';
 import { NavigationCard } from '@/components/navigation-card';
 import { fetchAllTubes } from '@/api-service/indoor';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { SetStateAction, useState } from 'react';
 
 // TODO: next step make this component more reusable
 
 export const CardList = ({ locationParam }: { locationParam: string }) => {
-  const { data, search, currentPage, setCurrentPage, setData } =
+  const { data, meta, search, currentPage, setCurrentPage, setData, setMeta } =
     useIndoorState();
+  const isHasMore = meta.pagination?.total >= meta.pagination?.start ? true : false
 
-  const { error, isLoading, handleError, handleSuccess } = useFetchSWR<
+  const { error, isLoading, handleError } = useFetchSWR<
     any,
     Error
   >(
-    `indoors`,
+    locationParam,
     () =>
       locationParam === 'indoor'
         ? fetchAllTubes(search, currentPage)
-        : fetchAllDropzones(search),
+        : fetchAllDropzones(search, currentPage),
     [search, currentPage],
     undefined,
     {
       onSuccess: (responce) => {
-        if (search) return setData([...responce]);
+        if (search)  {
+          setData(responce.data);
+          setMeta(responce.meta)
+          return
+        } 
 
-        return setData([...data, ...responce]);
+         setData([...data, ...responce.data]);
+         setMeta(responce.meta)
+         return 
       },
       onError: (error) => {
         handleError(error);
       },
     },
   );
+
+  if (error) return <p>somethig goes wrong</p>
 
   function fetchMoreData(): void {
     setCurrentPage(data.length);
@@ -56,9 +64,8 @@ export const CardList = ({ locationParam }: { locationParam: string }) => {
       <InfiniteScroll
         dataLength={data.length}
         next={fetchMoreData}
-        hasMore={true}
-        loader={<h4>Loading...</h4>}
-        endMessage={<p>No more item</p>}
+        hasMore={isHasMore && meta.pagination?.limit !== 100}
+        loader={<h4>...Loading...</h4>}
       >
         {data.map(({ attributes, id }: any, index) => (
           <NavigationCard
@@ -68,7 +75,7 @@ export const CardList = ({ locationParam }: { locationParam: string }) => {
           />
         ))}
       </InfiniteScroll>
-      {data.length === 0 && <p>No Results</p>}
+      {data.length === 0 && !isLoading && <p>No Results</p>}
     </div>
   );
 };
