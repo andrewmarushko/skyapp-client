@@ -10,7 +10,6 @@
 */
 
 import { useFetchSWR } from '@/hooks/useFetchSWR';
-import { handleFetchError } from '@/lib/handleFetchError';
 import { fetchAllDropzones } from '@/api-service/dropzone';
 import { useIndoorState } from '@/store/indoors';
 import { NavigationCard } from '@/components/navigation-card';

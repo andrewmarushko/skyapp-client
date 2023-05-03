@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
 import {
-  fetchAllTubes,
   fetchPromotedIndoors,
   getIndoorPageData,
 } from '@/api-service/indoor';
@@ -12,7 +11,7 @@ import { Content } from '@/components/content';
 import { BecomePartner } from '@/components/become-partner';
 import { Promoted } from '@/components/promoted';
 import { ContentLayout } from '@/components/content-layout';
-import { Suspense } from 'react';
+
 
 const defaultSeo = {
   title: 'Indoor',
