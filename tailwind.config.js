@@ -35,129 +35,80 @@ module.exports = {
           400: 'var(--accents-4)',
           500: 'var(--accents-5)',
           600: 'var(--accents-6)',
+          // TODO: check using accent-700 and accent-800 in the project as I have set up the values from vercel palette for accent 800
           700: 'var(--accents-7)',
           800: 'var(--accents-8)',
           900: 'var(--accents-9)',
         },
         //bg-colors
         sk: {
-          light: 'var(--geist-background-light)',
-          dark: 'var(--geist-background-dark)',
-          'menu-dark': 'var(--geist-menu-bg-dark)'
-        },
-        //link
-        link: 'var(--geist-link-color)',
-        //secondary colors
-        secondary: {
-          lighter: 'var(--geist-secondary-lighter)',
-          light: 'var(--geist-secondary-light)',
-          DEFAULT: 'var(--geist-secondary)',
-          dark: 'var(--geist-secondary-dark)'
+          light: 'var(--background-light)',
+          dark: 'var(--background-dark)',
+          // TODO: remove this class in the component
+          // 'menu-dark': 'var(--geist-menu-bg-dark)'
         },
         //custom colors from geist pallette
         error: {
-          lighter: 'var(--geist-error-lighter)',
-          light: 'var(--geist-error-light)',
-          DEFAULT: 'var(--geist-error)',
-          dark: 'var(--geist-error-dark)',
+          lighter: 'var(--error-lighter)',
+          light: 'var(--error-light)',
+          DEFAULT: 'var(--error)',
+          dark: 'var(--error-dark)',
         },
         success: {
-          lighter: 'var(--geist-success-lighter)',
-          light: 'var(--geist-success-light)',
-          DEFAULT: 'var(--geist-success)',
-          dark: 'var(--geist-success-dark)',
+          lighter: 'var(--success-lighter)',
+          light: 'var(--success-light)',
+          DEFAULT: 'var(--success)',
+          dark: 'var(--success-dark)',
         },
         warning: {
-          lighter: 'var(--geist-warning-lighter)',
-          light: 'var(--geist-warning-light)',
-          DEFAULT: 'var(--geist-warning)',
-          dark: 'var(--geist-warning-dark)',
+          lighter: 'var(--warning-lighter)',
+          light: 'var(--warning-light)',
+          DEFAULT: 'var(--warning)',
+          dark: 'var(--warning-dark)',
         },
         violet: {
-          lighter: 'var(--geist-violet-lighter)',
-          light: 'var(--geist-violet-light)',
-          DEFAULT: 'var(--geist-violet)',
-          dark: 'var(--geist-violet-dark)',
-        },
-        cyan: {
-          lighter: 'var(--geist-cyan-lighter)',
-          light: 'var(--geist-cyan-light)',
-          DEFAULT: 'var(--geist-cyan)',
-          dark: 'var(--geist-cyan-dark)',
+          lighter: 'var(--violet-lighter)',
+          light: 'var(--violet-light)',
+          DEFAULT: 'var(--violet)',
+          dark: 'var(--violet-dark)',
         },
         hightlight: {
-          purple: 'var(--geist-highlight-purple)',
-          magenta: 'var(--geist-highlight-magenta)',
-          pink: 'var(--geist-highlight-pink)',
-          yellow: 'var(--geist-highlight-yellow)',
+          purple: 'var(--highlight-purple)',
+          magenta: 'var(--highlight-magenta)',
+          pink: 'var(--highlight-pink)',
+          yellow: 'var(--highlight-yellow)',
         },
+        // TODO: replace experimental gray classes with accent colors
         //experimental gray
-        'experimental-gray': {
-          DEFAULT: 'var(--geist-experimental-color-gray-1)',
-          100: 'var(--geist-experimental-color-gray-2)',
-          200: 'var(--geist-experimental-color-gray-3)',
-          300: 'var(--geist-experimental-color-gray-4)',
-          400: 'var(--geist-experimental-color-gray-5)',
-          500: 'var(--geist-experimental-color-gray-6)',
-          600: 'var(--geist-experimental-color-gray-7)',
-          700: 'var(--geist-experimental-color-gray-8)',
-          800: 'var(--geist-experimental-color-gray-9)',
-          900: 'var(--geist-experimental-color-gray-10)',
-        },
-        //experimental gray dark
-        'experimental-gray-dark': {
-          DEFAULT: 'var(--geist-experimental-color-gray-1-dark)',
-          100: 'var(--geist-experimental-color-gray-2-dark)',
-          200: 'var(--geist-experimental-color-gray-3-dark)',
-          300: 'var(--geist-experimental-color-gray-4-dark)',
-          400: 'var(--geist-experimental-color-gray-5-dark)',
-          500: 'var(--geist-experimental-color-gray-6-dark)',
-          600: 'var(--geist-experimental-color-gray-7-dark)',
-          700: 'var(--geist-experimental-color-gray-8-dark)',
-          800: 'var(--geist-experimental-color-gray-9-dark)',
-          900: 'var(--geist-experimental-color-gray-10-dark)',
-        },
-        //experimental gray a for dark theme
-        'experimental-gray-a-dark': {
-          DEFAULT: 'var(--geist-experimental-color-gray-a1-dark)',
-          100: 'var(--geist-experimental-color-gray-a2-dark)',
-          200: 'var(--geist-experimental-color-gray-a3-dark)',
-          300: 'var(--geist-experimental-color-gray-a4-dark)',
-          400: 'var(--geist-experimental-color-gray-a5-dark)',
-          500: 'var(--geist-experimental-color-gray-a6-dark)',
-          600: 'var(--geist-experimental-color-gray-a7-dark)',
-          700: 'var(--geist-experimental-color-gray-a8-dark)',
-          800: 'var(--geist-experimental-color-gray-a9-dark)',
-          900: 'var(--geist-experimental-color-gray-a10-dark)',
-        },
-        //experimental gray a for light theme
-        'experimental-gray-a': {
-          DEFAULT: 'var(--geist-experimental-color-gray-a1)',
-          100: 'var(--geist-experimental-color-gray-a2)',
-          200: 'var(--geist-experimental-color-gray-a3)',
-          300: 'var(--geist-experimental-color-gray-a4)',
-          400: 'var(--geist-experimental-color-gray-a5)',
-          500: 'var(--geist-experimental-color-gray-a6)',
-          600: 'var(--geist-experimental-color-gray-a7)',
-          700: 'var(--geist-experimental-color-gray-a8)',
-          800: 'var(--geist-experimental-color-gray-a9)',
-          900: 'var(--geist-experimental-color-gray-a10)',
-        },
+        // 'experimental-gray': {
+        //   DEFAULT: 'var(--geist-experimental-color-gray-1)',
+        //   100: 'var(--geist-experimental-color-gray-2)',
+        //   200: 'var(--geist-experimental-color-gray-3)',
+        //   300: 'var(--geist-experimental-color-gray-4)',
+        //   400: 'var(--geist-experimental-color-gray-5)',
+        //   500: 'var(--geist-experimental-color-gray-6)',
+        //   600: 'var(--geist-experimental-color-gray-7)',
+        //   700: 'var(--geist-experimental-color-gray-8)',
+        //   800: 'var(--geist-experimental-color-gray-9)',
+        //   900: 'var(--geist-experimental-color-gray-10)',
+        // },
+        // TODO: replace button default classes with accent colors
         //button custom colors
-        button: {
-          default: {
-            fg: 'var(--button-custom-fg)',
-            bg: 'var(--button-custom-bg)',
-            border: 'var(--button-custom-border)',
-            'fg-active': 'var(--button-custom-fg-active)',
-            'bg-active': 'var(--button-custom-bg-active)',
-            'border-active': 'var(--button-custom-border-active)',
-            'fg-hover': 'var(--button-custom-fg-hover)',
-            'bg-hover': 'var(--button-custom-bg-hover)',
-            'border-hover': 'var(--button-custom-border-hover)',
-          }
-        },
-        'geist-foreground': 'var(--geist-foreground)'
+        // button: {
+        //   default: {
+        //     fg: 'var(--button-custom-fg)',
+        //     bg: 'var(--button-custom-bg)',
+        //     border: 'var(--button-custom-border)',
+        //     'fg-active': 'var(--button-custom-fg-active)',
+        //     'bg-active': 'var(--button-custom-bg-active)',
+        //     'border-active': 'var(--button-custom-border-active)',
+        //     'fg-hover': 'var(--button-custom-fg-hover)',
+        //     'bg-hover': 'var(--button-custom-bg-hover)',
+        //     'border-hover': 'var(--button-custom-border-hover)',
+        //   }
+        // },
+        // TODO: remove this class from the components
+        // 'geist-foreground': 'var(--geist-foreground)'
       },
       // TODO: remove these spaces from the components and change them to the usual sizes
       spacing: {
@@ -176,47 +127,48 @@ module.exports = {
         xs: 'var(--border-radius-xs)',
         // 100: 'var(--border-radius-100)',
         // 50: 'var(--border-radius-50)',
-        // xs: 'var(--border-radius-xs)',
       },
       fontSize: {
         '4rem': 'var(--font-size-4rem)',
-        // TODO: remove font word from components
-        'geist-action-large': 'var(--geist-action-large-font)',
-        'geist-action-small': 'var(--geist-action-small-font)',
-        'geist-action': 'var(--geist-action-font)',
-        'geist-form': 'var(--geist-form-font)',
+        // TODO: use tailwind classnames for this purpose
+        // 'geist-action-large': 'var(--geist-action-large-font)',
+        // 'geist-action-small': 'var(--geist-action-small-font)',
+        // 'geist-action': 'var(--geist-action-font)',
+        // 'geist-form': 'var(--geist-form-font)',
       },
       lineHeight: {
         0: 'var(--line-height-0)',
         // TODO: change 14px and 74px in components
-        3.5: 'var(--line-height-3x-half)',
+        // 3.5: 'var(--line-height-3x-half)',
         18.5: 'var(--line-height-18x-half)',
         // '14px': 'var(--line-height-3x-half)',
         // '74px': 'var(--line-height-18x-half)',
         14: 'var(--line-height-14)',
-        // TODO: remove line-height word from components
-        'geist-action-large': 'var(--geist-action-large-line-height)',
-        'geist-action-small': 'var(--geist-action-small-line-height)',
-        'geist-action': 'var(--geist-action-line-height)',
-        'geist-form': 'var(--geist-form-line-height)',
+        // TODO: use tailwind classnames for this purpose
+        // 'geist-action-large': 'var(--geist-action-large-line-height)',
+        // 'geist-action-small': 'var(--geist-action-small-line-height)',
+        // 'geist-action': 'var(--geist-action-line-height)',
+        // 'geist-form': 'var(--geist-form-line-height)',
       },
       height: {
-        // TODO: remove height word from components
-        'geist-action-large': 'var(--geist-action-large-height)',
-        'geist-action-small': 'var(--geist-action-small-height)',
-        'geist-action': 'var(--geist-action-height)',
-        'geist-form': 'var(--geist-form-height)',
+        // TODO: remove these classes from the components
+        // 'geist-action-large': 'var(--geist-action-large-height)',
+        // 'geist-action-small': 'var(--geist-action-small-height)',
+        // 'geist-action': 'var(--geist-action-height)',
+        // 'geist-form': 'var(--geist-form-height)',
         // TODO: change 1px to px in the components
         // '1px': 'var(--header-1px)',
-        'geist-gap-x2': 'var(--geist-gap-x2)',
+        // TODO: use tailwind classnames for this purpose
+        // 'geist-gap-x2': 'var(--geist-gap-x2)',
       },
       minHeight: {
         'header-height': 'var(--header-height)',
       },
       maxHeight: {
         '60vh': 'var(--height-60vh)',
-        'geist-action-height': 'var(--geist-action-height)',
-        'geist-form-height': 'var(--geist-form-height)',
+        // TODO: use tailwind classnames for this purpose
+        // 'geist-action-height': 'var(--geist-action-height)',
+        // 'geist-form-height': 'var(--geist-form-height)',
         // TODO: change 1px to px in the components
         // '1px': 'var(--header-1px)',
       },
@@ -230,16 +182,19 @@ module.exports = {
         '1-2': 'var(--grid-template-columns-1-2)'
       },
       boxShadow: {
-        // TODO: remove shadow word from components
-        'geist-sm': 'var(--shadow-small)',
-        'geist-md': 'var(--shadow-medium)',
-        'geist-sm-dark': 'var(--shadow-small-dark)',
-        'geist-border-white': 'var(--shadow-medium)',
-        'focus': 'var(--next-focus-shadow)',
+        // TODO: remove geist word from components
+        'custom-sm': 'var(--shadow-small)',
+        'custom-md': 'var(--shadow-medium)',
+        'custom-sm-dark': 'var(--shadow-small-dark)',
+        // TODO: use custom-md instead geist-border-white
+        // 'geist-border-white': 'var(--shadow-medium)',
+        'focus': 'var(--shadow-focus)',
         '3xl': 'var(--shadow-3xl)',
-        'header-border-bottom': 'var(--header-border-bottom)',
-        'header-border-bottom-dark': 'var(--header-border-bottom-dark)',
-        'sm-gray': 'var(--shadow-sm-gray)',
+        // TODO: the names are changed here as well
+        'header': 'var(--shadow-header)',
+        'header-dark': 'var(--shadow-header-dark)',
+        // TODO: replace sm-gray with tailwind styles in the components
+        // 'sm-gray': 'var(--shadow-sm-gray)',
       },
       transitionTimingFunction: {
         DEFAULT: 'var(--transition-timing-function-default-ease)'
