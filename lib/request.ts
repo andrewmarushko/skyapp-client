@@ -1,8 +1,8 @@
-interface FetchOptions extends RequestInit {
+export interface FetchOptions extends RequestInit {
   // Fetch settings will goes here
 }
 
-type FetchErrorHandler = (error: Error) => void;
+export type FetchErrorHandler = (error: Error) => void;
 
 export async function request<T>(
   url: string,

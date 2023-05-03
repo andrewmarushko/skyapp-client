@@ -24,9 +24,16 @@ export async function getIndoorPageData() {
   return data.data.attributes;
 }
 
-export async function fetchAllTubes(searchParam: string = '') {
+export async function fetchAllTubes(
+  searchParam: string = '',
+  currentPage: number,
+) {
   const INDOOR_SEARCH_QUERY = qs.stringify(
     {
+      pagination: {
+        start: currentPage,
+        limit: !!searchParam ? 300 : 2,
+      },
       filters: {
         slug: {
           $containsi: searchParam,
