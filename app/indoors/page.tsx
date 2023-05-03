@@ -1,6 +1,10 @@
 import { Metadata } from 'next';
 
-import { fetchPromotedIndoors, getIndoorPageData } from '@/api-service/indoor';
+import {
+  fetchAllTubes,
+  fetchPromotedIndoors,
+  getIndoorPageData,
+} from '@/api-service/indoor';
 import { Page } from '@/components/ui/page';
 import { getPageSeo } from '@/api-service/seo';
 import { Hero } from '@/components/hero';
@@ -8,6 +12,7 @@ import { Content } from '@/components/content';
 import { BecomePartner } from '@/components/become-partner';
 import { Promoted } from '@/components/promoted';
 import { ContentLayout } from '@/components/content-layout';
+import { Suspense } from 'react';
 
 const defaultSeo = {
   title: 'Indoor',

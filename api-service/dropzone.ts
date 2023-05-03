@@ -22,6 +22,10 @@ export async function fetchDropzonePageData() {
 export async function fetchAllDropzones(searchParam: string) {
   const DROPZONE_SEARCH_QUERY = qs.stringify(
     {
+      pagination: {
+        start: 0,
+        limit: 1,
+      },
       filters: {
         slug: {
           $containsi: searchParam,
