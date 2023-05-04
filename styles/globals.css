@@ -49,22 +49,19 @@
   --highlight-yellow: #fff500;
 
   /* Shadows */
-  --shadow-none	: 0 0 #0000;
-  --shadow-default: 0 0 0 1px rgba(0, 0, 0, 0.05);
   --shadow-smallest: 0px 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-extra-small: 0px 4px 8px rgba(0, 0, 0, 0.12);
-  --shadow-small: 0 5px 10px rgba(0, 0, 0, 0.12);
+  --shadow-small: 0 5px 30px rgba(0, 0, 0, 0.12);
   --shadow-large: 0 30px 60px rgba(0, 0, 0, 0.12);
   --shadow-3xl: 0 50px 100px -20px rgba(0,0,0,.12), 0 30px 60px -30px rgba(0,0,0,.15);
   --shadow-focus: 0 0 0 2px var(--success);
   /* --shadow-sm-gray: 0 0 0 2px var(--geist-experimental-color-gray-7); */
-  --shadow-header: inset 0 -1px 0 0 rgba(0,0,0,.1);
-  --shadow-header-dark: inset 0 -1px 0 0 hsla(0,0%,100%,.1);
+  --shadow-scroll: inset 0 -1px 0 0 rgba(0,0,0,.1);
+  --shadow-scroll-dark: inset 0 -1px 0 0 hsla(0,0%,100%,.1);
 
   /* Radius */
   --border-radius-xs: 0.25rem;
   --base-radius: 0.3125rem;
-  --border-radius-25x: 6.25rem;
 
   /* Spaces */
   /* --geist-space-small: 2rem;
@@ -98,16 +95,13 @@
   /* Grid template columns */
   /* --grid-template-columns-1-2: 1fr 2fr; */
 
-  /* Z-index */
-  --z-index-2000: 2000;
-
   /* Backdrop saturate */
   --backdrop-saturate-180: 1.8;
 
   /* Line height */
   --line-height-0: 0;
   --line-height-14: 3.5rem;
-  --line-height-18x: 4.5rem;
+  --line-height-18: 4.5rem;
 
   /* Letter spacing */
   --letter-spacing-title: -0.04em;

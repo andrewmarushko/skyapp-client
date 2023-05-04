@@ -14,12 +14,6 @@ module.exports = {
         '2xl': '1440px',
       },
     },
-    boxShadow: {
-      none: 'var(--shadow-none)',
-      DEFAULT: 'var(--shadow-default)',
-      // TODO: remove geist word from components
-      sm: 'var(--shadow-small)',
-    },
     extend: {
       screens: {
         //Please keep in mind, that this breakpoint has 1150px value on vercel.com site
@@ -128,7 +122,7 @@ module.exports = {
       },
       borderRadius: {
         DEFAULT: 'var(--geist-radius)',
-        // TODO: modify the classes names in the components
+        // TODO: remove 6.25rem in the components.
         '6.25rem': 'var(--border-radius-25x)',
         xs: 'var(--border-radius-xs)',
         // 100: 'var(--border-radius-100)',
@@ -147,7 +141,7 @@ module.exports = {
         0: 'var(--line-height-0)',
         // TODO: change 14px to the default tailwind value and change 74px to 18 in components
         // 3.5: 'var(--line-height-3x-half)',
-        18: 'var(--line-height-18x)',
+        18: 'var(--line-height-18)',
         // '14px': 'var(--line-height-3x-half)',
         // '74px': 'var(--line-height-18x-half)',
         14: 'var(--line-height-14)',
@@ -192,11 +186,13 @@ module.exports = {
       boxShadow: {
         // TODO: use custom-md instead geist-border-white
         // 'geist-border-white': 'var(--shadow-medium)',
+        // TODO: remove geist word from components
+        sm: 'var(--shadow-small)',
         'focus': 'var(--shadow-focus)',
         '3xl': 'var(--shadow-3xl)',
         // TODO: the names are changed here as well
-        'header': 'var(--shadow-header)',
-        'header-dark': 'var(--shadow-header-dark)',
+        'scroll': 'var(--shadow-scroll)',
+        'scroll-dark': 'var(--shadow-scroll-dark)',
         // TODO: replace sm-gray with tailwind styles in the components
         // 'sm-gray': 'var(--shadow-sm-gray)',
       },
@@ -233,9 +229,9 @@ module.exports = {
         // 'header-height': 'var(--inset-header-height)'
       },
       zIndex: {
-        // TODO: replace z-1 with z-10 in the components
+        // TODO: replace z-1 with z-10 and z-2000 with z-50 in the components
         // 1: 'var(--z-index-1)',
-        2000: 'var(--z-index-2000)'
+        // 2000: 'var(--z-index-2000)'
       },
       backdropSaturate: {
         180: 'var(--backdrop-saturate-180)',
