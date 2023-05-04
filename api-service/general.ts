@@ -14,7 +14,7 @@ import {
 export async function getFooterData() {
   const data = await request<any>(
     `${API_URL}/general?${FOOTER_QUERY}`,
-    { cache: CACHE_DISABLED, next: { revalidate: REVALIDATE_TIME } },
+    { cache: CACHE_DISABLED },
     (error) => {
       console.error(error);
     },
@@ -38,7 +38,7 @@ export async function getLogoData() {
 export async function getNavigationData() {
   const data = await request<any>(
     `${API_URL}/general?${NAVIGATION_QUERY}`,
-    { cache: CACHE_ENABLED, next: { revalidate: REVALIDATE_TIME } },
+    { cache: CACHE_DISABLED },
     (error) => {
       console.error(error);
     },
