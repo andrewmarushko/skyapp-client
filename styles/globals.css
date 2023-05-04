@@ -55,45 +55,12 @@
   --shadow-large: 0 30px 60px rgba(0, 0, 0, 0.12);
   --shadow-3xl: 0 50px 100px -20px rgba(0,0,0,.12), 0 30px 60px -30px rgba(0,0,0,.15);
   --shadow-focus: 0 0 0 2px var(--success);
-  /* --shadow-sm-gray: 0 0 0 2px var(--geist-experimental-color-gray-7); */
   --shadow-scroll: inset 0 -1px 0 0 rgba(0,0,0,.1);
   --shadow-scroll-dark: inset 0 -1px 0 0 hsla(0,0%,100%,.1);
 
   /* Radius */
   --border-radius-xs: 0.25rem;
   --base-radius: 0.3125rem;
-
-  /* Spaces */
-  /* --geist-space-small: 2rem;
-  --geist-space-medium: 2.5rem;
-  --geist-space-large: 3rem;
-  --geist-space-gap: 1.5rem;
-  --geist-space-gap-half: 0.75rem;
-  --geist-space-gap-quarter: 0.375rem;
-  
-  --geist-gap: var(--geist-space-gap);
-  --geist-gap-half: var(--geist-space-gap-half);
-  --geist-gap-quarter: var(--geist-space-gap-quarter);
-  --geist-gap-double: var(--geist-space-large);
-  --geist-gap-section: var(--geist-space-small);
-  --geist-gap-x2: calc(2 * var(--geist-gap));
-
-  --geist-action-large-font: 1rem;
-  --geist-action-large-line-height: 1.5rem;
-  --geist-action-large-height: var(--geist-space-large);
-  --geist-action-small-font: 0.875rem;
-  --geist-action-small-line-height: 0.875rem;
-  --geist-action-small-height: var(--geist-space-small);
-  --geist-action-font: 0.875rem;
-  --geist-action-line-height: 1.25rem;
-  --geist-action-height: var(--geist-space-medium);
-
-  --geist-form-font: 0.875rem;
-  --geist-form-line-height: 1.25rem;
-  --geist-form-height: var(--geist-space-medium); */
-
-  /* Grid template columns */
-  /* --grid-template-columns-1-2: 1fr 2fr; */
 
   /* Backdrop saturate */
   --backdrop-saturate-180: 1.8;
