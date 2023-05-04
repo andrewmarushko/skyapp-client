@@ -14,6 +14,12 @@ module.exports = {
         '2xl': '1440px',
       },
     },
+    boxShadow: {
+      none: 'var(--shadow-none)',
+      DEFAULT: 'var(--shadow-default)',
+      // TODO: remove geist word from components
+      sm: 'var(--shadow-small)',
+    },
     extend: {
       screens: {
         //Please keep in mind, that this breakpoint has 1150px value on vercel.com site
@@ -129,7 +135,8 @@ module.exports = {
         // 50: 'var(--border-radius-50)',
       },
       fontSize: {
-        '4rem': 'var(--font-size-4rem)',
+        // TODO: remove 4rem from the components. It is not used anymore.
+        // '4rem': 'var(--font-size-4rem)',
         // TODO: use tailwind classnames for this purpose
         // 'geist-action-large': 'var(--geist-action-large-font)',
         // 'geist-action-small': 'var(--geist-action-small-font)',
@@ -138,9 +145,9 @@ module.exports = {
       },
       lineHeight: {
         0: 'var(--line-height-0)',
-        // TODO: change 14px and 74px in components
+        // TODO: change 14px to the default tailwind value and change 74px to 18 in components
         // 3.5: 'var(--line-height-3x-half)',
-        18.5: 'var(--line-height-18x-half)',
+        18: 'var(--line-height-18x)',
         // '14px': 'var(--line-height-3x-half)',
         // '74px': 'var(--line-height-18x-half)',
         14: 'var(--line-height-14)',
@@ -162,10 +169,12 @@ module.exports = {
         // 'geist-gap-x2': 'var(--geist-gap-x2)',
       },
       minHeight: {
-        'header-height': 'var(--header-height)',
+      // TODO: change to h-16 in the components
+      // 'header-height': 'var(--header-height)',
       },
       maxHeight: {
-        '60vh': 'var(--height-60vh)',
+        // TODO: Remove this class from the components
+        // '60vh': 'var(--height-60vh)',
         // TODO: use tailwind classnames for this purpose
         // 'geist-action-height': 'var(--geist-action-height)',
         // 'geist-form-height': 'var(--geist-form-height)',
@@ -177,15 +186,10 @@ module.exports = {
         'tight-subtitle': 'var(--letter-spacing-subtitle)'
       },
       gridTemplateColumns: {
-        // TODO change 1-3 to 1-2 in the component
+        // TODO remove it from the component
         // '1-3': 'var(--grid-template-columns-1-2)' 
-        '1-2': 'var(--grid-template-columns-1-2)'
       },
       boxShadow: {
-        // TODO: remove geist word from components
-        'custom-sm': 'var(--shadow-small)',
-        'custom-md': 'var(--shadow-medium)',
-        'custom-sm-dark': 'var(--shadow-small-dark)',
         // TODO: use custom-md instead geist-border-white
         // 'geist-border-white': 'var(--shadow-medium)',
         'focus': 'var(--shadow-focus)',
@@ -197,7 +201,7 @@ module.exports = {
         // 'sm-gray': 'var(--shadow-sm-gray)',
       },
       transitionTimingFunction: {
-        DEFAULT: 'var(--transition-timing-function-default-ease)'
+        DEFAULT: 'var(--transition-timing-ease)'
       },
       transitionProperty: {
         'background-color-and-box-shadow': 'var(--transition-property-background-color-and-box-shadow)',
@@ -212,25 +216,26 @@ module.exports = {
       transformOrigin: {
         'top-center': 'var(--transform-origin-top-center)',
       },
-      // TODO change minWidth and maxWidth 164 to custom-10.25rem in the component
-      minWidth: {
-        'custom-10.25rem': "var(--min-width-custom-41x)"
-      },
+      // TODO remove it from the component
+      // minWidth: {
+      //   'custom-10.25rem': "var(--min-width-custom-41x)"
+      // },
       maxWidth: {
-        'custom-10.25rem': "var(--max-width-custom-41x)",
-        '100vw': "var(--max-width-100vw)"
+        // TODO remove 100vw from the component
+        // 'custom-10.25rem': "var(--max-width-custom-41x)",
+        // TODO remove 100vw from the component
+        // '100vw': "var(--max-width-100vw)"
       },
       inset: {
         // TODO: change 1px to px in the components
         // '1px': 'var(--inset-1px)',
-        'header-height': 'var(--inset-header-height)'
+        // TODO: change to top-16
+        // 'header-height': 'var(--inset-header-height)'
       },
       zIndex: {
-        1: 'var(--z-index-1)',
+        // TODO: replace z-1 with z-10 in the components
+        // 1: 'var(--z-index-1)',
         2000: 'var(--z-index-2000)'
-      },
-      backdropSaturate: {
-        180: 'var(--backdrop-saturate-180)',
       },
       backdropSaturate: {
         180: 'var(--backdrop-saturate-180)',
