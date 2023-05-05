@@ -20,17 +20,15 @@ interface MainNavigationProps {
 export function MainNav({ mainNavigationData }: MainNavigationProps) {
   const { panel, navigationLinks } = mainNavigationData;
 
-  console.log('mainnavigation', mainNavigationData.panel);
   return (
     <NavigationMenu className="hidden flex-1 justify-center lg:flex">
       <NavigationMenuList className="flex items-center gap-2">
         {panel.map((panelItem) => {
-          console.log('panelItem', panelItem.links);
           return (
             <NavigationMenuItem key={panelItem.id}>
               <NavigationMenuTrigger>{panelItem.label}</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="z-0 m-0 grid w-125 list-none grid-cols-1-3 gap-x-1.5 p-1.5">
+                <ul className="w-125 grid-cols-1-3 z-0 m-0 grid list-none gap-x-1.5 p-1.5">
                   <li>
                     <NavigationMenuLink asChild>
                       <NavigationLink
@@ -41,16 +39,16 @@ export function MainNav({ mainNavigationData }: MainNavigationProps) {
                       >
                         <div className="flex items-stretch justify-between">
                           {/* TODO: Add the field for this span on the server */}
-                          <span className="flex items-center justify-center text-sm font-normal leading-4 text-experimental-gray-dark-700">
+                          <span className="text-experimental-gray-dark-700 flex items-center justify-center text-sm font-normal leading-4">
                             Start flying
                           </span>
                           <Icons.arrowUpRight className="h-4 w-4" />
                         </div>
                         <div>
-                          <span className="mb-1.5 flex items-center gap-2 text-base font-medium text-accent dark:text-experimental-gray-dark-900">
+                          <span className="dark:text-experimental-gray-dark-900 mb-1.5 flex items-center gap-2 text-base font-medium text-accent">
                             {panelItem.push.link.label}
                           </span>
-                          <p className="text-sm font-normal text-experimental-gray-800 dark:text-experimental-gray-dark-800">
+                          <p className="text-experimental-gray-800 dark:text-experimental-gray-dark-800 text-sm font-normal">
                             {panelItem.push.description}
                           </p>
                         </div>
@@ -67,7 +65,6 @@ export function MainNav({ mainNavigationData }: MainNavigationProps) {
                           href: string;
                         };
                       }) => {
-                        console.log('link Item', linkItem);
                         return (
                           <ListItem
                             key={linkItem.id}
