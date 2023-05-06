@@ -4,7 +4,7 @@ import {
   DROPZONES_QUERY,
   DROPZONE_PAGE_QUERY,
   PROMOTED_DROPZONE_QUERY,
-} from '@/api-service/queries/dropzone';
+} from '@/query/dropzone';
 import qs from 'qs';
 
 export async function fetchDropzonePageData() {

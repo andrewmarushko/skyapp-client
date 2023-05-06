@@ -10,10 +10,10 @@
 */
 
 import { useFetchSWR } from '@/hooks/useFetchSWR';
-import { fetchAllDropzones } from '@/api-service/dropzone';
+import { fetchAllDropzones } from '@/api/dropzone';
 import { useIndoorState } from '@/store/indoors';
 import { NavigationCard } from '@/components/navigation-card';
-import { fetchAllTubes } from '@/api-service/indoor';
+import { fetchAllTubes } from '@/api/indoor';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 // TODO: next step make this component more reusable

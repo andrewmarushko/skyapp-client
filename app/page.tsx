@@ -1,4 +1,4 @@
-import { getPageSeo } from '@/api-service/seo';
+import { getPageSeo } from '@/api/seo';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
 import { Metadata } from 'next';
@@ -39,7 +39,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <Page>
-      <Hero title={'Home page'} subtitle={'Here is a place where you can fly'} />
+      <Hero
+        title={'Home page'}
+        subtitle={'Here is a place where you can fly'}
+      />
     </Page>
   );
 }

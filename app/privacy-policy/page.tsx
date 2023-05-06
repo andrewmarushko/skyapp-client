@@ -1,6 +1,6 @@
 
 import { Hero } from "@/components/hero"
-import { Page } from "@/components/ui/page"
+import { Page } from "@/ui/page"
 
 const LegalPage = async () => {
   return(

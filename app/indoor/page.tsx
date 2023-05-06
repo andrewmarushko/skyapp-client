@@ -1,11 +1,8 @@
 import { Metadata } from 'next';
 
-import { getIndoorPageData } from '@/api-service/indoor';
+import { getIndoorPageData } from '@/api/indoor';
 import { Page } from '@/components/ui/page';
-import Paragraph from '@/components/ui/paragraph';
-import LargeHeading from '@/components/ui/large-heading';
-
-import { getPageSeo } from '@/api-service/seo';
+import { getPageSeo } from '@/api/seo';
 
 const defaultSeo = {
   title: 'Indoor',
@@ -46,30 +43,6 @@ const IndoorPage = async () => {
   return (
     <Page>
       <h1>Indoor Page</h1>
-      {/* <div className="flex w-full flex-col items-center">
-        <LargeHeading size={'title'} headingStyles={'title'}>
-          {pageIndoorData.hero.title}
-        </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>
-          {pageIndoorData.hero.subtitle}
-        </Paragraph>
-      <div className="flex w-full flex-col items-center">
-        <LargeHeading size={'title'} headingStyles={'title'}>
-          {pageIndoorData.hero.title}
-        </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>
-          {pageIndoorData.hero.subtitle}
-        </Paragraph>
-      <div className="flex w-full flex-col items-center">
-        <LargeHeading size={'title'} headingStyles={'title'}>
-          {pageIndoorData.hero.title}
-        </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>
-          {pageIndoorData.hero.subtitle}
-        </Paragraph>
-      </div>
-      <ContentLayout />
-      </div> */}
     </Page>
   );
 };

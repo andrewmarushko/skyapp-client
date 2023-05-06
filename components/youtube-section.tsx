@@ -1,7 +1,7 @@
 'use client';
 import useSWR from 'swr';
 
-import YouTubeFrame from './ui/youtube-framer';
+import YouTubeFrame from '@/ui/youtube-framer';
 
 export type YouTubeSectionProps = {
   youtubeChannelId: string;
@@ -11,6 +11,7 @@ export default function YouTubeSection({
   youtubeChannelId,
 }: YouTubeSectionProps) {
   // TODO: use useFetchSWR hook here
+  // ! Need to refactore using request function
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   const { data, error } = useSWR(`/api/youtube/${youtubeChannelId}`, fetcher, {

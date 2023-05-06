@@ -3,7 +3,7 @@ import {
   FOOTER_QUERY,
   LOGO_QUERY,
   NAVIGATION_QUERY,
-} from '@/api-service/queries/general';
+} from '@/query/general';
 import {
   API_URL,
   CACHE_DISABLED,

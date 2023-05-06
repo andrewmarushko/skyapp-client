@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { BecomePartnerInterface } from '@/types/general';
-import { NavigationLink } from '@/components/ui/link';
+import { NavigationLink } from '@/ui/link';
 
 interface BecomePartnerPropsInterface {
   data: BecomePartnerInterface;
@@ -16,7 +16,7 @@ export const BecomePartner: FunctionComponent<BecomePartnerPropsInterface> = ({ 
         </h2>
       </div>
       {link &&
-        <NavigationLink className='' variant={'ghostWhite'} textSize={'md'} href={link.href} target={link.target}>
+        <NavigationLink variant={'ghostWhite'} textSize={'md'} href={link.href} target={link.target}>
           {link.label}
         </NavigationLink>
       }

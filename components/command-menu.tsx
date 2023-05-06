@@ -1,12 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { DialogProps } from '@radix-ui/react-alert-dialog';
 import { Laptop, Moon, SunMedium } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/ui/button';
 import {
   CommandDialog,
   CommandEmpty,
@@ -15,11 +14,10 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@/components/ui/command';
+} from '@/ui/command';
 import { useCallback, useEffect, useState } from 'react';
 
 export function CommandMenu({ ...props }: DialogProps) {
-  const router = useRouter();
   const [open, setOpen] = useState(false);
   const { setTheme } = useTheme();
 

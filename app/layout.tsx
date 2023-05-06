@@ -10,7 +10,7 @@ import {
   getFooterData,
   getLogoData,
   getNavigationData,
-} from '@/api-service/general';
+} from '@/api/general';
 
 interface RootLayoutProps {
   children: React.ReactNode;

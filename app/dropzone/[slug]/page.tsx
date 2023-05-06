@@ -2,7 +2,7 @@ import {
   fetchAllDropzones,
   fetchDropzone,
   fetchDropzoneSEO,
-} from '@/api-service/dropzone';
+} from '@/api/dropzone';
 import LargeHeading from '@/components/ui/large-heading';
 import { Page } from '@/components/ui/page';
 import { Metadata } from 'next';

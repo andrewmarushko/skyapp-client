@@ -1,6 +1,6 @@
 
 import { Metadata } from "next"
-import { getPageSeo } from "@/api-service/seo"
+import { getPageSeo } from "@/api/seo"
 import { Hero } from "@/components/hero"
 import { Page } from "@/components/ui/page"
 

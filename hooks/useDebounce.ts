@@ -17,7 +17,7 @@ export const useDebounce = (
         callback(...args);
       }, delay);
     },
-    [...dependencies, delay],
+    [callback, delay],
   );
 
   useEffect(() => {

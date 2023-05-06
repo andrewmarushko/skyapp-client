@@ -3,9 +3,9 @@ import { Metadata } from 'next';
 import {
   fetchPromotedIndoors,
   getIndoorPageData,
-} from '@/api-service/indoor';
+} from '@/api/indoor';
 import { Page } from '@/components/ui/page';
-import { getPageSeo } from '@/api-service/seo';
+import { getPageSeo } from '@/api/seo';
 import { Hero } from '@/components/hero';
 import { Content } from '@/components/content';
 import { BecomePartner } from '@/components/become-partner';
@@ -54,7 +54,7 @@ const IndoorPage = async () => {
   const promoted = await fetchPromotedIndoors();
 
   return (
-    <Page variant={'noContainer'}>
+    <Page variant={'fluid'}>
       <Hero title={title} subtitle={subtitle} />
       <Promoted data={promoted} location="indoor" />
       <Content>

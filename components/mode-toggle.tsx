@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useTheme } from 'next-themes';
 
-import { Icons } from '@/components/icons';
-import { ToggleItem, ToggleMenu } from '@/components/ui/toogle-group';
+import { Icons } from '@/icons';
+import { ToggleItem, ToggleMenu } from '@/ui/toogle-group';
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();
@@ -12,7 +12,7 @@ export function ModeToggle() {
       if (value) setTheme(value);
       return;
     },
-    [theme],
+    [setTheme],
   );
 
   return (

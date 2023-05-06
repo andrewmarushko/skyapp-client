@@ -1,8 +1,8 @@
 import {
   fetchDropzonePageData,
   fetchPromotedDropzone,
-} from '@/api-service/dropzone';
-import { getPageSeo } from '@/api-service/seo';
+} from '@/api/dropzone';
+import { getPageSeo } from '@/api/seo';
 import { Metadata } from 'next';
 import { Hero } from '@/components/hero';
 import { BecomePartner } from '@/components/become-partner';

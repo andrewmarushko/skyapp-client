@@ -3,8 +3,8 @@ import { FunctionComponent } from 'react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Icons } from '@/components/icons';
-import { Card } from '@/components/ui/card';
+import { Icons } from '@/icons';
+import { Card } from '@/ui/card';
 import { VariantProps, cva } from 'class-variance-authority';
 
 const navigationCardVariants = cva('relative', {
