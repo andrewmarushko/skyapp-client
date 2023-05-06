@@ -13,6 +13,9 @@ interface IndoorState {
 
 const CURRENT_PAGE = 0;
 
+
+// ! Think should we have any state in our application or we can use just in-component state approche
+
 export const useIndoorState = create<IndoorState>()((set) => ({
   search: '',
   currentPage: CURRENT_PAGE,

@@ -32,27 +32,22 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({
         isMobileNavOpen ? 'block' : 'hidden'
       } visible fixed bottom-0 left-0 right-0 top-header-height z-2000 w-full max-w-100vw overflow-y-scroll bg-sk-light px-geist-gap py-0 pb-geist-gap dark:bg-sk-dark lg:hidden`}
     >
-      <ul>
-        <li className="border-none py-geist-gap-quarter">
           <NavigationLink
             variant={'white'}
             href={'/contacts'}
+            className="border-none py-geist-gap-quarter"
             onClick={hideMobileNav}
           >
             Contacts
           </NavigationLink>
-        </li>
-        <li className="border-none py-geist-gap-quarter">
           <NavigationLink
             variant={'black'}
             href={'/feedback'}
+            className="border-none py-geist-gap-quarter"
             onClick={hideMobileNav}
           >
             Feedback
           </NavigationLink>
-        </li>
-      </ul>
-      <ul>
         <Accordion type="single" collapsible>
           <AccordionItem className="dark:border-b-accent-200" value="item-1">
             <AccordionTrigger>
@@ -94,7 +89,6 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({
             <List fullWidth>{label}</List>
           </NavigationLink>
         ))}
-      </ul>
     </nav>
   );
 };

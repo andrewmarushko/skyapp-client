@@ -39,20 +39,20 @@ export function Footer({ footerData, logoData }: FooterProps) {
             <div key={id}>
               <div className="hidden md:block">
                 <span className="mb-3 text-sm font-medium">{label}</span>
-                <ul className="flex list-none flex-col">
+                <nav className="flex list-none flex-col">
                   {links.map(({ id, label, target, href }) => (
-                    <li key={id} className="py-2 text-accent-400">
-                      <NavigationLink
-                        target={target}
-                        variant={'footer'}
-                        size={'sm'}
-                        href={href}
-                      >
-                        {label}
-                      </NavigationLink>
-                    </li>
+                    <NavigationLink
+                      key={id} 
+                      className="py-2 text-accent-400"
+                      target={target}
+                      variant={'footer'}
+                      size={'sm'}
+                      href={href}
+                    >
+                      {label}
+                    </NavigationLink>
                   ))}
-                </ul>
+                </nav>
               </div>
               <Accordion className="md:hidden" type="single" collapsible>
                 <AccordionItem
@@ -63,12 +63,13 @@ export function Footer({ footerData, logoData }: FooterProps) {
                     <span className="mb-3 text-sm font-medium">{label}</span>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <div className={`max-h-60vh overflow-y-auto text-base`}>
+                    <div className='max-h-60vh overflow-y-auto text-base'>
                       <div className="overflow-y-hidden">
-                        <ul className="mb-3">
+                        <nav className="mb-3">
                           {links.map(({ id, label, target, href }) => (
-                            <li key={id} className="py-2 text-accent-400">
                               <NavigationLink
+                                key={id} 
+                                className="py-2 text-accent-400"
                                 target={target}
                                 variant={'footer'}
                                 size={'sm'}
@@ -76,9 +77,8 @@ export function Footer({ footerData, logoData }: FooterProps) {
                               >
                                 {label}
                               </NavigationLink>
-                            </li>
                           ))}
-                        </ul>
+                        </nav>
                       </div>
                     </div>
                   </AccordionContent>
@@ -98,14 +98,11 @@ export function Footer({ footerData, logoData }: FooterProps) {
           <span className="text-sm text-accent-400 dark:text-accent-500">
             {copyright.companyName} {copyright.reserved} {copyright.copyright}
           </span>
-          <div className="flex w-full flex-col items-center justify-between gap-6 md:flex-row md:gap-0">
-            <ul className="flex">
+            <nav className="flex w-full flex-col items-center justify-between gap-6 md:flex-row md:gap-0">
               {social.map(({ id, type, link }) => (
-                <li
-                  className="mr-4 border-r border-r-accent-800 pr-4 leading-0 last:mr-0 last:border-r-0 last:pr-0 dark:border-r-accent-200"
-                  key={id}
-                >
                   <NavigationLink
+                    className="mr-4 border-r border-r-accent-800 pr-4 leading-0 last:mr-0 last:border-r-0 last:pr-0 dark:border-r-accent-200"
+                    key={id}
                     variant={'socialNetwork'}
                     size={'sm'}
                     href={link.href}
@@ -124,11 +121,9 @@ export function Footer({ footerData, logoData }: FooterProps) {
                       <Icons.youtube className="h-5 w-5" />
                     )}
                   </NavigationLink>
-                </li>
               ))}
-            </ul>
+            </nav>
             <ModeToggle />
-          </div>
         </div>
       </div>
     </footer>
