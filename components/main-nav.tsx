@@ -8,9 +8,9 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu';
-import { NavigationLink } from '@/components/ui/link';
-import { Icons } from '@/components/icons';
+} from '@/ui/navigation-menu';
+import { NavigationLink } from '@/ui/link';
+import { Icons } from '@/icons';
 import { MainNavInterface } from '@/types/nav';
 
 interface MainNavigationProps {

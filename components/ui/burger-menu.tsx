@@ -1,13 +1,14 @@
 'use client';
 
 import { FunctionComponent } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/ui/button';
 
 interface BurgerMenuInterface {
   isOpen: boolean;
   toggleBurgerMenu: () => void;
 }
 
+// !: Props must be serializable for components in the "use client" entry file, "toggleBurgerMenu" is invalid.
 export const BurgerMenu: FunctionComponent<BurgerMenuInterface> = ({
   isOpen,
   toggleBurgerMenu,

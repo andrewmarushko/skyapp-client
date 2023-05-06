@@ -1,7 +1,7 @@
 import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { forwardRef } from 'react';
-import ButtonLoading from '@/components/ui/button-loading';
+import ButtonLoading from '@/ui/button-loading';
 
 const buttonVariants = cva(
   'flex items-center justify-center rounded font-medium transition-shadow transition-colors disabled:opacity-50 disabled:pointer-events-none',

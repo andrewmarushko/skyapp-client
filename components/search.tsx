@@ -2,7 +2,7 @@
 
 import { FunctionComponent } from 'react';
 import { Icons } from '@/components/icons';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/ui/input';
 import { useIndoorState } from '@/store/indoors';
 import { useDebounce } from '@/hooks/useDebounce';
 

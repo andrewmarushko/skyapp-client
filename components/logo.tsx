@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
-import { NavigationLink } from './ui/link';
-import { Icons } from '@/components/icons';
+import { NavigationLink } from '@/ui/link';
+import { Icons } from '@/icons';
 
 interface LogoPropsInterface {
   href: string;

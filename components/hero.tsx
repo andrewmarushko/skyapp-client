@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
-import LargeHeading from '@/components/ui/large-heading';
-import Paragraph from '@/components/ui/paragraph';
+import LargeHeading from '@/ui/large-heading';
+import Paragraph from '@/ui/paragraph';
 
 interface HeroPropsInterface {
   title: string

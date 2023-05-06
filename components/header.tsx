@@ -3,8 +3,8 @@
 import useStickyElement from '@/hooks/useStickyElement';
 import useOpen from '@/hooks/useOpen';
 import { MainNav } from '@/components/main-nav';
-import { BurgerMenu } from '@/components/ui/burger-menu';
-import { NavigationLink } from '@/components/ui/link';
+import { BurgerMenu } from '@/ui/burger-menu';
+import { NavigationLink } from '@/ui/link';
 import { MobileNav } from '@/components/mobile-nav';
 import { NavDataInterface } from '@/types/nav';
 import { Logo } from '@/components/logo';

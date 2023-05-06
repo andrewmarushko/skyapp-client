@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { Icons } from '@/components/icons';
-import { NavigationLink } from '@/components/ui/link';
+import { Icons } from '@/icons';
+import { NavigationLink } from '@/ui/link';
 import { Logo } from '@/components/logo';
 import { FooterInterface } from '@/types/footer';
 import { LogoInterface } from '@/types/logo';
@@ -12,7 +12,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from '@/ui/accordion';
 
 const ModeToggle = dynamic(
   () => import('@/components/mode-toggle').then((mod) => mod.ModeToggle),

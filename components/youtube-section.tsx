@@ -1,7 +1,7 @@
 'use client';
 import useSWR from 'swr';
 
-import YouTubeFrame from './ui/youtube-framer';
+import YouTubeFrame from '@/ui/youtube-framer';
 
 export type YouTubeSectionProps = {
   youtubeChannelId: string;

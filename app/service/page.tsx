@@ -1,4 +1,4 @@
-import { getPageSeo } from '@/api-service/seo';
+import { getPageSeo } from '@/api/seo';
 import LargeHeading from '@/components/ui/large-heading';
 import Paragraph from '@/components/ui/paragraph';
 import { Metadata } from 'next';

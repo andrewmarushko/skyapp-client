@@ -3,14 +3,14 @@
 import { FunctionComponent, MouseEventHandler } from 'react';
 
 import { MainNavInterface } from '@/types/nav';
-import { NavigationLink } from '@/components/ui/link';
-import { List } from '@/components/ui/list';
+import { NavigationLink } from '@/ui/link';
+import { List } from '@/ui/list';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from '@/ui/accordion';
 
 interface MobileNavInterface {
   navigationData: MainNavInterface;
