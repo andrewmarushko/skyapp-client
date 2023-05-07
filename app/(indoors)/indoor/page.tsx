@@ -1,7 +1,9 @@
-import { getPageSeo } from '@/api/seo';
-import LargeHeading from '@/components/ui/large-heading';
-import Paragraph from '@/components/ui/paragraph';
 import { Metadata } from 'next';
+
+import { getIndoorPageData } from '@/api/indoor';
+import { Page } from '@/components/ui/page';
+import { getPageSeo } from '@/api/seo';
+import { Hero } from '@/components/hero';
 
 const defaultSeo = {
   title: 'Indoor',
@@ -9,7 +11,7 @@ const defaultSeo = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('services-page');
+  const { seo } = await getPageSeo('indoor-page');
 
   if (!seo) return defaultSeo;
 
@@ -36,19 +38,14 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const ServicePage = () => {
+const IndoorPage = async () => {
+  const pageIndoorData = await getIndoorPageData();
+
   return (
-    <div>
-      <div className="flex w-full flex-col items-center">
-        <LargeHeading size={'title'} headingStyles={'title'}>
-          Service Landing Page
-        </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>
-          Here you can find services where you can make your dreams come true.
-        </Paragraph>
-      </div>
-    </div>
+    <Page>
+      <Hero title={'Indoor Landing Page'} subtitle={'Some cool subtitle'} />
+    </Page>
   );
 };
 
-export default ServicePage;
+export default IndoorPage;

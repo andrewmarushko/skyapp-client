@@ -4,12 +4,12 @@ import { Page } from '@/components/ui/page';
 import { Metadata } from 'next';
 
 const defaultSeo = {
-  title: 'Home Page',
-  description: 'Home page description',
+  title: 'Indoor',
+  description: 'Indoor Page',
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('home-page');
+  const { seo } = await getPageSeo('services-page');
 
   if (!seo) return defaultSeo;
 
@@ -36,13 +36,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Home() {
+const ServicePage = () => {
   return (
     <Page>
-      <Hero
-        title={'Home page landing'}
-        subtitle={'Here is a place where you can fly'}
-      />
+      <Hero title='Services landing page' subtitle='Landing subtitle' />
     </Page>
   );
-}
+};
+
+export default ServicePage;

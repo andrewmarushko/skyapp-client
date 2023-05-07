@@ -1,6 +1,6 @@
 import { getPageSeo } from '@/api/seo';
-import LargeHeading from '@/components/ui/large-heading';
-import Paragraph from '@/components/ui/paragraph';
+import { Hero } from '@/components/hero';
+import { Page } from '@/components/ui/page';
 import { Metadata } from 'next';
 
 const defaultSeo = {
@@ -38,17 +38,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const DropzonePage = () => {
   return (
-    <div>
-      <div className="flex w-full flex-col items-center">
-        <LargeHeading size={'title'} headingStyles={'title'}>
-          Find you dropzone
-        </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>
-          Here you can find perfect spot for you skydiving and place to have
-          fun.
-        </Paragraph>
-      </div>
-    </div>
+    <Page>
+      <Hero title='Dropzone Landing Page' subtitle='Landing subtitle' />
+    </Page>
   );
 };
 

@@ -8,7 +8,7 @@ import { Hero } from '@/components/hero';
 import { BecomePartner } from '@/components/become-partner';
 import { Page } from '@/components/ui/page';
 import { Content } from '@/components/content';
-import { ContentLayout } from '../../components/content-layout';
+import { ContentLayout } from '../../../components/content-layout';
 import { Promoted } from '@/components/promoted';
 
 const defaultSeo = {
