@@ -1,8 +1,7 @@
-import { Metadata } from 'next';
-
-import { getIndoorPageData } from '@/api/indoor';
-import { Page } from '@/components/ui/page';
 import { getPageSeo } from '@/api/seo';
+import { Hero } from '@/components/hero';
+import { Page } from '@/components/ui/page';
+import { Metadata } from 'next';
 
 const defaultSeo = {
   title: 'Indoor',
@@ -10,7 +9,7 @@ const defaultSeo = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('indoor-page');
+  const { seo } = await getPageSeo('services-page');
 
   if (!seo) return defaultSeo;
 
@@ -37,14 +36,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const IndoorPage = async () => {
-  const pageIndoorData = await getIndoorPageData();
-
+const ServicePage = () => {
   return (
     <Page>
-      <h1>Indoor Page</h1>
+      <Hero title='Services landing page' subtitle='Landing subtitle' />
     </Page>
   );
 };
 
-export default IndoorPage;
+export default ServicePage;

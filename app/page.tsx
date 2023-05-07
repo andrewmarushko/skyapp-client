@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <Page>
       <Hero
-        title={'Home page'}
+        title={'Home page landing'}
         subtitle={'Here is a place where you can fly'}
       />
     </Page>
