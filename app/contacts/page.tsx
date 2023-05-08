@@ -11,7 +11,6 @@ const defaultSeo = {
   description: 'Contacts Page',
 };
 
-export const revalidate = 1;
 export async function generateMetadata(): Promise<Metadata> {
   const client = getClient();
   const {
@@ -24,11 +23,6 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   } = await client.query({
     query: contactsPageSeoQuery,
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 },
-      },
-    },
   });
 
   if (!seo) return defaultSeo;

@@ -7,11 +7,13 @@ export const generalQuery = gql`
         attributes {
           mainNavigation {
             navigationLinks {
+              id
               label
               href
               target
             }
             panel {
+              id
               label
               push {
                 coverTitle
@@ -30,6 +32,7 @@ export const generalQuery = gql`
                 description
               }
               links {
+                id
                 link {
                   label
                   href
@@ -45,8 +48,10 @@ export const generalQuery = gql`
           }
           footer {
             navigation {
+              id
               label
               links {
+                id
                 label
                 href
                 target
@@ -66,6 +71,7 @@ export const generalQuery = gql`
               }
             }
             social {
+              id
               type
               link {
                 label

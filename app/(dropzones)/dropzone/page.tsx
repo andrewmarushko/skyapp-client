@@ -9,7 +9,6 @@ const defaultSeo = {
   description: 'Dropzone Page',
 };
 
-export const revalidate = 1;
 export async function generateMetadata(): Promise<Metadata> {
   const {
     data: {

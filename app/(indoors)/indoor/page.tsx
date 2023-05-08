@@ -10,7 +10,6 @@ const defaultSeo = {
   description: 'Indoor Page',
 };
 
-export const revalidate = 60;
 export async function generateMetadata(): Promise<Metadata> {
   const {
     data: {
