@@ -204,3 +204,101 @@ export const servicesPageSeoQuery = gql`
     }
   }
 `;
+
+export const indoorLandingPageSeoQuery = gql`
+  query {
+    indoorLanding {
+      data {
+        attributes {
+          seo {
+            metaTitle
+            metaDescription
+            applicationName
+            keywords
+            format_description {
+              email
+              telephone
+              address
+            }
+            metadataBase
+            robots {
+              index
+              follow
+              nocache
+            }
+            google_bot {
+              index
+              follow
+              no_image_index
+              max_video_preview
+              max_snippet
+              max_image_preview
+            }
+            manifest
+            twitter {
+              card
+              title
+              description
+              image
+            }
+            referrer
+            viewport {
+              width
+              initial_scale
+              maximum_scale
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const dropzoneLandingPageSeoQuery = gql`
+  query {
+    dropzoneLanding {
+      data {
+        attributes {
+          seo {
+            metaTitle
+            metaDescription
+            applicationName
+            keywords
+            format_description {
+              email
+              telephone
+              address
+            }
+            metadataBase
+            robots {
+              index
+              follow
+              nocache
+            }
+            google_bot {
+              index
+              follow
+              no_image_index
+              max_video_preview
+              max_snippet
+              max_image_preview
+            }
+            manifest
+            twitter {
+              card
+              title
+              description
+              image
+            }
+            referrer
+            viewport {
+              width
+              initial_scale
+              maximum_scale
+            }
+          }
+        }
+      }
+    }
+  }
+`;

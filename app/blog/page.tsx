@@ -1,6 +1,5 @@
 import { blogPageQuery } from '@/api/queries/blog';
 import { blogPageSeoQuery } from '@/api/queries/seo';
-import { getPageSeo } from '@/api/seo';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
 import { apiClient } from '@/lib/graphql/apollo';

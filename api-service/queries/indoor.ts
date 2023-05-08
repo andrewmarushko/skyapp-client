@@ -46,3 +46,18 @@ export const indoorsPageQuery = gql`
     }
   }
 `;
+
+export const indoorLandingPageQuery = gql`
+  query {
+    indoorLanding {
+      data {
+        attributes {
+          hero {
+            title
+            subtitle
+          }
+        }
+      }
+    }
+  }
+`;

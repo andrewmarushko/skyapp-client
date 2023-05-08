@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
-import { fetchPromotedIndoors, getIndoorPageData } from '@/api/indoor';
+// import { fetchPromotedIndoors, getIndoorPageData } from '@/api/indoor';
 import { Page } from '@/components/ui/page';
-import { getPageSeo } from '@/api/seo';
+// import { getPageSeo } from '@/api/seo';
 import { Hero } from '@/components/hero';
 import { Content } from '@/components/content';
 import { BecomePartner } from '@/components/become-partner';
@@ -17,39 +17,39 @@ const defaultSeo = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('indoor-page');
+  // const { seo } = await getPageSeo('indoor-page');
 
-  if (!seo) return defaultSeo;
+  // if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
-    title: seo.metaTitle,
-    description: seo.metaDescription,
-    applicationName: seo.applicationName,
-    keywords: seo.keywords,
-    formatDetection: {
-      email: seo.format_description.email,
-      telephone: seo.format_description.telephone,
-      address: seo.format_description.address,
-    },
-    viewport: {
-      width: seo.viewport.width,
-      initialScale: seo.viewport.initial_scale,
-    },
-    robots: {
-      index: seo.robots.index,
-      follow: seo.robots.follow,
-      nocache: seo.robots.nocache,
-    },
+    // metadataBase: new URL(`${seo.metadataBase}`),
+    // title: seo.metaTitle,
+    // description: seo.metaDescription,
+    // applicationName: seo.applicationName,
+    // keywords: seo.keywords,
+    // formatDetection: {
+    //   email: seo.format_description.email,
+    //   telephone: seo.format_description.telephone,
+    //   address: seo.format_description.address,
+    // },
+    // viewport: {
+    //   width: seo.viewport.width,
+    //   initialScale: seo.viewport.initial_scale,
+    // },
+    // robots: {
+    //   index: seo.robots.index,
+    //   follow: seo.robots.follow,
+    //   nocache: seo.robots.nocache,
+    // },
   };
 }
 
 const IndoorPage = async () => {
-  const {
-    hero: { title, subtitle },
-    become_partner,
-  } = await getIndoorPageData();
-  const promoted = await fetchPromotedIndoors();
+  // const {
+  //   hero: { title, subtitle },
+  //   become_partner,
+  // } = await getIndoorPageData();
+  // const promoted = await fetchPromotedIndoors();
 
   const {
     data: {
@@ -64,13 +64,13 @@ const IndoorPage = async () => {
   return (
     <Page variant={'fluid'}>
       <Hero title={hero.title} subtitle={hero.subtitle} />
-      <Promoted data={promoted} location="indoor" />
+      {/* <Promoted data={promoted} location="indoor" />
       <Content>
         <ContentLayout locationParam={'indoor'} />
       </Content>
       <div className="container">
         <BecomePartner data={become_partner} />
-      </div>
+      </div> */}
     </Page>
   );
 };
