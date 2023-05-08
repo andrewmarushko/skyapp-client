@@ -60,7 +60,7 @@
 
   /* Radius */
   --border-radius-xs: 0.25rem;
-  --base-radius: 0.3125rem;
+  --border-radius-default: 0.3125rem;
 
   /* Backdrop saturate */
   --backdrop-saturate-180: 1.8;

@@ -19,9 +19,9 @@ const linkVariants = cva(
         footer:
           'inline text-accent-400 rounded-full transition-color dark:text-accent-500 dark:hover:text-accent-900',
         white:
-          'flex border border-accent-800 rounded font-medium px-geist-gap-half max-w-full justify-center items-center duration-150 ease transition-colors-shadow-transform text-geist-form-font leading-geist-form-line-height h-geist-form-height dark:text-accent-500 dark:border-accent-200 hover:border-accent hover:text-accent hover:dark:border-accent-900 hover:dark:text-accent-900',
+          'flex border border-accent-800 rounded font-medium px-3 duration-150 ease transition-colors-shadow-transform text-sm dark:text-accent-500 dark:border-accent-200 hover:border-accent hover:text-accent hover:dark:border-accent-900 hover:dark:text-accent-900',
         black:
-          'flex border bg-sk-dark dark:bg-sk-light text-accent-900 dark:text-accent border-accent-800 rounded font-medium px-geist-gap-half max-w-full justify-center items-center duration-150 ease transition-colors-shadow-transform leading-geist-form-line-height h-geist-form-height dark:border-accent-200 hover:bg-accent-900 hover:border-accent hover:text-accent hover:dark:bg-accent hover:dark:border-accent-900 hover:dark:text-accent-900',
+          'flex border bg-sk-dark dark:bg-sk-light text-accent-900 dark:text-accent border-accent-800 rounded font-medium px-3 duration-150 ease transition-colors-shadow-transform text-sm dark:border-accent-200 hover:bg-accent-900 hover:border-accent hover:text-accent hover:dark:bg-sk-light hover:dark:border-accent-900 hover:dark:text-accent-900',
         featuredNav: `flex h-full w-full select-none flex-col justify-between rounded-lg bg-accent-800 
           hover:bg-accent-700 no-underline outline-none text-accent-500 
           transition-background-color ease focus-visible:shadow-focus focus-visible:shadow-accent-500

@@ -77,7 +77,7 @@ module.exports = {
         },
       },
       borderRadius: {
-        DEFAULT: 'var(--geist-radius)',
+        DEFAULT: 'var(--border-radius-default)',
         xs: 'var(--border-radius-xs)',
       },
       lineHeight: {
