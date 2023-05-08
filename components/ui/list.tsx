@@ -6,11 +6,11 @@ import { cn } from '@/lib/utils';
 import { ReactNode, forwardRef } from 'react';
 
 const listVariants = cva(
-  'select-none flex items-center text-base h-geist-gap-x2 transition-background-color duration-200 ease-in-out dark:hover:bg-accent-100 dark:focus:bg-accent-100 dark:focus-visible:border-accent-900',
+  'select-none flex items-center py-3 text-base transition-background-color duration-200 ease-in-out hover:bg-accent-800 dark:hover:bg-accent-100 dark:focus:bg-accent-100 dark:focus-visible:border-accent-900',
   {
     variants: {
       variant: {
-        menu: 'text-accent-300 dark:text-accent-600 border-b-accent-800 dark:border-b-accent-200 border-b',
+        menu: 'text-accent-300 dark:text-accent-600 border-b-accent-700 dark:border-b-accent-200 border-b',
         subMenu: 'text-accent-400 dark:text-accent-500',
       },
       fullWidth: {

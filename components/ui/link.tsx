@@ -21,7 +21,7 @@ const linkVariants = cva(
         white:
           'flex border border-accent-800 rounded font-medium px-3 duration-150 ease transition-colors-shadow-transform text-sm dark:text-accent-500 dark:border-accent-200 hover:border-accent hover:text-accent hover:dark:border-accent-900 hover:dark:text-accent-900',
         black:
-          'flex border bg-sk-dark dark:bg-sk-light text-accent-900 dark:text-accent border-accent-800 rounded font-medium px-3 duration-150 ease transition-colors-shadow-transform text-sm dark:border-accent-200 hover:bg-accent-900 hover:border-accent hover:text-accent hover:dark:bg-sk-light hover:dark:border-accent-900 hover:dark:text-accent-900',
+          'flex border bg-sk-dark dark:bg-sk-light text-accent-900 dark:text-accent border-accent-800 rounded font-medium px-3 duration-150 ease transition-colors-shadow-transform text-sm dark:border-accent-200 hover:bg-accent-900 hover:border-accent hover:text-accent hover:dark:bg-sk-dark hover:dark:border-accent-900 hover:dark:text-accent-900',
         featuredNav: `flex h-full w-full select-none flex-col justify-between rounded-lg bg-accent-800 
           hover:bg-accent-700 no-underline outline-none text-accent-500 
           transition-background-color ease focus-visible:shadow-focus focus-visible:shadow-accent-500

@@ -30,65 +30,63 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({
     <nav
       className={`${
         isMobileNavOpen ? 'block' : 'hidden'
-      } visible fixed bottom-0 left-0 right-0 top-header-height z-2000 w-full max-w-100vw overflow-y-scroll bg-sk-light px-geist-gap py-0 pb-geist-gap dark:bg-sk-dark lg:hidden`}
+      } visible fixed bottom-0 left-0 right-0 top-16 z-50 w-full max-w-full overflow-y-scroll bg-sk-light px-6 py-0 pb-6 dark:bg-sk-dark lg:hidden`}
     >
-          <NavigationLink
-            variant={'white'}
-            href={'/contacts'}
-            className="border-none py-geist-gap-quarter"
-            onClick={hideMobileNav}
-          >
-            Contacts
-          </NavigationLink>
-          <NavigationLink
-            variant={'black'}
-            href={'/feedback'}
-            className="border-none py-geist-gap-quarter"
-            onClick={hideMobileNav}
-          >
-            Feedback
-          </NavigationLink>
-        <Accordion type="single" collapsible>
-          <AccordionItem className="dark:border-b-accent-200" value="item-1">
-            <AccordionTrigger>
-              <span className="flex items-center justify-between py-geist-gap-half font-normal text-accent dark:text-accent-900">
-                {label}
-              </span>
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className={`max-h-60vh overflow-y-auto text-base`}>
-                <div className="overflow-y-hidden">
-                  <ul className="mb-3">
-                    {links.map(({ link, id }) => (
-                      <NavigationLink
-                        key={id}
-                        size={'sm'}
-                        variant={'headerNav'}
-                        href={link.href}
-                        onClick={hideMobileNav}
-                      >
-                        <List variant={'subMenu'} fullWidth>
-                          {link.label}
-                        </List>
-                      </NavigationLink>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        {navigationLinks.map(({ href, id, label }) => (
-          <NavigationLink
-            key={id}
-            variant={'headerNav'}
-            size={'sm'}
-            href={href}
-            onClick={hideMobileNav}
-          >
-            <List fullWidth>{label}</List>
-          </NavigationLink>
-        ))}
+      <div className='flex flex-col gap-2'>
+        <NavigationLink
+          variant={'white'}
+          href={'/contacts'}
+          className='justify-center border-accent-700'
+          onClick={hideMobileNav}
+        >
+          Contacts
+        </NavigationLink>
+        <NavigationLink
+          variant={'black'}
+          href={'/feedback'}
+          className='justify-center'
+          onClick={hideMobileNav}
+        >
+          Feedback
+        </NavigationLink>
+      </div>
+      <Accordion type="single" collapsible>
+        <AccordionItem className="dark:border-b-accent-200" value="item-1">
+          <AccordionTrigger>
+            <span className="flex items-center justify-between py-3 text-accent dark:text-accent-800">
+              {label}
+            </span>
+          </AccordionTrigger>
+          <AccordionContent>
+            <ul className="mb-3">
+              {links.map(({ link, id }) => (
+                <NavigationLink
+                  key={id}
+                  size={'sm'}
+                  variant={'headerNav'}
+                  href={link.href}
+                  onClick={hideMobileNav}
+                >
+                  <List variant={'subMenu'} fullWidth>
+                    {link.label}
+                  </List>
+                </NavigationLink>
+              ))}
+            </ul>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+      {navigationLinks.map(({ href, id, label }) => (
+        <NavigationLink
+          key={id}
+          variant={'headerNav'}
+          size={'sm'}
+          href={href}
+          onClick={hideMobileNav}
+        >
+          <List fullWidth>{label}</List>
+        </NavigationLink>
+      ))}
     </nav>
   );
 };

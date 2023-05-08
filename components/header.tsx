@@ -15,7 +15,7 @@ interface HeaderProps {
   navigationData: NavDataInterface;
 }
 
-const onScrollHeaderClasses = `before:w-full before:h-full before:absolute before:content-[''] before:-z-1 before:backdrop-saturate-180 before:backdrop-blur-md before:-top-1px shadow-header-border-bottom dark:shadow-header-border-bottom-dark`;
+const onScrollHeaderClasses = `before:w-full before:h-full before:absolute before:content-[''] before:-z-1 before:backdrop-saturate-180 before:backdrop-blur-md before:-top-1px shadow-scroll dark:shadow-scroll-dark`;
 
 export function Header({ logoData, navigationData }: HeaderProps) {
   const { logo } = logoData;
@@ -32,11 +32,11 @@ export function Header({ logoData, navigationData }: HeaderProps) {
     >
       <div className="container flex items-center justify-between">
         <div className="flex flex-1 items-center justify-between">
-          <Logo href={logo.href} companyName={logo.companyName} />
+          <Logo className='z-50' href={logo.href} companyName={logo.companyName} />
           <BurgerMenu isOpen={isOpen} toggleBurgerMenu={toggle} />
         </div>
         <MainNav mainNavigationData={mainNavigation} />
-        <div className="hidden flex-1 justify-end gap-2 lg:flex">
+        <div className="hidden flex-1 z-50 justify-end gap-2 lg:flex">
           {/* TODO: create side menu api */}
           <NavigationLink variant={'white'} href={'/contacts'}>
             Contacts
