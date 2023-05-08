@@ -1,9 +1,6 @@
 import { Metadata } from 'next';
 
-import {
-  fetchPromotedIndoors,
-  getIndoorPageData,
-} from '@/api/indoor';
+import { fetchPromotedIndoors, getIndoorPageData } from '@/api/indoor';
 import { Page } from '@/components/ui/page';
 import { getPageSeo } from '@/api/seo';
 import { Hero } from '@/components/hero';
@@ -11,7 +8,8 @@ import { Content } from '@/components/content';
 import { BecomePartner } from '@/components/become-partner';
 import { Promoted } from '@/components/promoted';
 import { ContentLayout } from '@/components/content-layout';
-
+import { apiClient } from '@/lib/graphql/apollo';
+import { indoorsPageQuery } from '@/api/queries/indoor';
 
 const defaultSeo = {
   title: 'Indoor',
@@ -53,9 +51,19 @@ const IndoorPage = async () => {
   } = await getIndoorPageData();
   const promoted = await fetchPromotedIndoors();
 
+  const {
+    data: {
+      indoors: {
+        data: {
+          attributes: { hero },
+        },
+      },
+    },
+  } = await apiClient.query({ query: indoorsPageQuery });
+
   return (
     <Page variant={'fluid'}>
-      <Hero title={title} subtitle={subtitle} />
+      <Hero title={hero.title} subtitle={hero.subtitle} />
       <Promoted data={promoted} location="indoor" />
       <Content>
         <ContentLayout locationParam={'indoor'} />

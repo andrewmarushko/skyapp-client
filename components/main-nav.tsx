@@ -13,17 +13,13 @@ import { NavigationLink } from '@/ui/link';
 import { Icons } from '@/icons';
 import { MainNavInterface } from '@/types/nav';
 
-interface MainNavigationProps {
-  mainNavigationData: MainNavInterface;
-}
-
-export function MainNav({ mainNavigationData }: MainNavigationProps) {
+export function MainNav({ mainNavigationData }: any) {
   const { panel, navigationLinks } = mainNavigationData;
 
   return (
     <NavigationMenu className="hidden flex-1 justify-center lg:flex">
       <NavigationMenuList className="flex items-center gap-2">
-        {panel.map((panelItem) => {
+        {panel.map((panelItem: any) => {
           return (
             <NavigationMenuItem key={panelItem.id}>
               <NavigationMenuTrigger>{panelItem.label}</NavigationMenuTrigger>

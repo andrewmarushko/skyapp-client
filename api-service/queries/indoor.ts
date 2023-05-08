@@ -1,36 +1,48 @@
-import qs from 'qs'
+import { gql } from '@apollo/client';
+import qs from 'qs';
 
-export const INDOOR_PAGE_QUERY = qs.stringify({
-    populate: [
-    'hero,become_partner,become_partner.link',
-    ],
-},
-{
-    encodeValuesOnly: true,
-});
-
-export const INDOOR_QUERY = qs.stringify(
+export const INDOOR_PAGE_QUERY = qs.stringify(
   {
-    populate: ['cover','location','logo','marketing'],
+    populate: ['hero,become_partner,become_partner.link'],
   },
   {
     encodeValuesOnly: true,
-  })
+  },
+);
+
+export const INDOOR_QUERY = qs.stringify(
+  {
+    populate: ['cover', 'location', 'logo', 'marketing'],
+  },
+  {
+    encodeValuesOnly: true,
+  },
+);
 
 export const PROMOTED_INDOORS_QUERY = qs.stringify({
-    filters: [
-      {
-        marketing: {
-          promoted: {
-            $eq: true
+  filters: [
+    {
+      marketing: {
+        promoted: {
+          $eq: true,
+        },
+      },
+    },
+  ],
+  populate: ['cover', 'location', 'logo'],
+});
+
+export const indoorsPageQuery = gql`
+  query {
+    indoors {
+      data {
+        attributes {
+          hero {
+            title
+            subtitle
           }
         }
       }
-    ],
-    populate: [
-      'cover',
-      'location',
-      'logo'
-    ]
+    }
   }
-)
+`;

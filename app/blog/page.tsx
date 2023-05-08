@@ -1,15 +1,26 @@
+import { blogPageQuery } from '@/api/queries/blog';
+import { blogPageSeoQuery } from '@/api/queries/seo';
 import { getPageSeo } from '@/api/seo';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
+import { apiClient } from '@/lib/graphql/apollo';
 
 import { Metadata } from 'next';
 const defaultSeo = {
-  title: "Blog",
-  description: "Blog page"
-}
+  title: 'Blog',
+  description: 'Blog page',
+};
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('blog-page');
+  const {
+    data: {
+      blogPage: {
+        data: {
+          attributes: { seo },
+        },
+      },
+    },
+  } = await apiClient.query({ query: blogPageSeoQuery });
 
   if (!seo) return defaultSeo;
 
@@ -36,10 +47,20 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const BlogPage = () => {
+const BlogPage = async () => {
+  const {
+    data: {
+      blogPage: {
+        data: {
+          attributes: { hero },
+        },
+      },
+    },
+  } = await apiClient.query({ query: blogPageQuery });
+
   return (
     <Page>
-      <Hero title={'Blog page'} subtitle={'Here is a contact page for collaborations.'} />
+      <Hero title={hero.title} subtitle={hero.subtitle} />
     </Page>
   );
 };

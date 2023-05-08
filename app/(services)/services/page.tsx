@@ -1,6 +1,8 @@
-import { getPageSeo } from '@/api/seo';
-import LargeHeading from '@/components/ui/large-heading';
-import Paragraph from '@/components/ui/paragraph';
+import { servicesPageSeoQuery } from '@/api/queries/seo';
+import { servicesPageQuery } from '@/api/queries/services';
+import { Hero } from '@/components/hero';
+import { Page } from '@/components/ui/page';
+import { apiClient } from '@/lib/graphql/apollo';
 import { Metadata } from 'next';
 
 const defaultSeo = {
@@ -9,7 +11,15 @@ const defaultSeo = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('services-page');
+  const {
+    data: {
+      servicesPage: {
+        data: {
+          attributes: { seo },
+        },
+      },
+    },
+  } = await apiClient.query({ query: servicesPageSeoQuery });
 
   if (!seo) return defaultSeo;
 
@@ -36,18 +46,20 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const ServicePage = () => {
+const ServicePage = async () => {
+  const {
+    data: {
+      servicesPage: {
+        data: {
+          attributes: { hero },
+        },
+      },
+    },
+  } = await apiClient.query({ query: servicesPageQuery });
   return (
-    <div>
-      <div className="flex w-full flex-col items-center">
-        <LargeHeading size={'title'} headingStyles={'title'}>
-          Want learn how to?
-        </LargeHeading>
-        <Paragraph paragraphStyles={'subtitle'}>
-          Here you can find services where you can make your dreams come true.
-        </Paragraph>
-      </div>
-    </div>
+    <Page>
+      <Hero title={hero.title} subtitle={hero.subtitle} />
+    </Page>
   );
 };
 

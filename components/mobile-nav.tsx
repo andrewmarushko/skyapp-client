@@ -18,7 +18,7 @@ interface MobileNavInterface {
   hideMobileNav: MouseEventHandler<HTMLAnchorElement>;
 }
 
-export const MobileNav: FunctionComponent<MobileNavInterface> = ({
+export const MobileNav: FunctionComponent<any> = ({
   navigationData,
   isMobileNavOpen,
   hideMobileNav,
@@ -30,65 +30,65 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({
     <nav
       className={`${
         isMobileNavOpen ? 'block' : 'hidden'
-      } visible fixed bottom-0 left-0 right-0 top-header-height z-2000 w-full max-w-100vw overflow-y-scroll bg-sk-light px-geist-gap py-0 pb-geist-gap dark:bg-sk-dark lg:hidden`}
+      } top-header-height z-2000 max-w-100vw px-geist-gap pb-geist-gap visible fixed bottom-0 left-0 right-0 w-full overflow-y-scroll bg-sk-light py-0 dark:bg-sk-dark lg:hidden`}
     >
-          <NavigationLink
-            variant={'white'}
-            href={'/contacts'}
-            className="border-none py-geist-gap-quarter"
-            onClick={hideMobileNav}
-          >
-            Contacts
-          </NavigationLink>
-          <NavigationLink
-            variant={'black'}
-            href={'/feedback'}
-            className="border-none py-geist-gap-quarter"
-            onClick={hideMobileNav}
-          >
-            Feedback
-          </NavigationLink>
-        <Accordion type="single" collapsible>
-          <AccordionItem className="dark:border-b-accent-200" value="item-1">
-            <AccordionTrigger>
-              <span className="flex items-center justify-between py-geist-gap-half font-normal text-accent dark:text-accent-900">
-                {label}
-              </span>
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className={`max-h-60vh overflow-y-auto text-base`}>
-                <div className="overflow-y-hidden">
-                  <ul className="mb-3">
-                    {links.map(({ link, id }) => (
-                      <NavigationLink
-                        key={id}
-                        size={'sm'}
-                        variant={'headerNav'}
-                        href={link.href}
-                        onClick={hideMobileNav}
-                      >
-                        <List variant={'subMenu'} fullWidth>
-                          {link.label}
-                        </List>
-                      </NavigationLink>
-                    ))}
-                  </ul>
-                </div>
+      <NavigationLink
+        variant={'white'}
+        href={'/contacts'}
+        className="py-geist-gap-quarter border-none"
+        onClick={hideMobileNav}
+      >
+        Contacts
+      </NavigationLink>
+      <NavigationLink
+        variant={'black'}
+        href={'/feedback'}
+        className="py-geist-gap-quarter border-none"
+        onClick={hideMobileNav}
+      >
+        Feedback
+      </NavigationLink>
+      <Accordion type="single" collapsible>
+        <AccordionItem className="dark:border-b-accent-200" value="item-1">
+          <AccordionTrigger>
+            <span className="py-geist-gap-half flex items-center justify-between font-normal text-accent dark:text-accent-900">
+              {label}
+            </span>
+          </AccordionTrigger>
+          <AccordionContent>
+            <div className={`max-h-60vh overflow-y-auto text-base`}>
+              <div className="overflow-y-hidden">
+                <ul className="mb-3">
+                  {links.map(({ link, id }: any) => (
+                    <NavigationLink
+                      key={id}
+                      size={'sm'}
+                      variant={'headerNav'}
+                      href={link.href}
+                      onClick={hideMobileNav}
+                    >
+                      <List variant={'subMenu'} fullWidth>
+                        {link.label}
+                      </List>
+                    </NavigationLink>
+                  ))}
+                </ul>
               </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        {navigationLinks.map(({ href, id, label }) => (
-          <NavigationLink
-            key={id}
-            variant={'headerNav'}
-            size={'sm'}
-            href={href}
-            onClick={hideMobileNav}
-          >
-            <List fullWidth>{label}</List>
-          </NavigationLink>
-        ))}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+      {navigationLinks.map(({ href, id, label }: any) => (
+        <NavigationLink
+          key={id}
+          variant={'headerNav'}
+          size={'sm'}
+          href={href}
+          onClick={hideMobileNav}
+        >
+          <List fullWidth>{label}</List>
+        </NavigationLink>
+      ))}
     </nav>
   );
 };
