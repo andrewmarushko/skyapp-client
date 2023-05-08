@@ -20,7 +20,7 @@ export const Logo: FunctionComponent<LogoPropsInterface> = ({
     <NavigationLink className={className} href={href} variant={'logo'}>
       <Icons.logo className="h-8 hover:bg-current" />
       {isCompanyName && (
-        <span className="text-xl font-bold uppercase hidden md:inline-block">{companyName}</span>
+        <span className="text-xl font-bold uppercase hidden md:inline">{companyName}</span>
       )}
     </NavigationLink>
   );
