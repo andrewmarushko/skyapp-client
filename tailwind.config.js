@@ -28,7 +28,7 @@ module.exports = {
 
         //accents
         accent: {
-          DEFAULT: 'var(--accent)',
+          DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
           100: 'var(--accents-1)',
           200: 'var(--accents-2)',
           300: 'var(--accents-3)',
@@ -37,12 +37,12 @@ module.exports = {
           600: 'var(--accents-6)',
           700: 'var(--accents-7)',
           800: 'var(--accents-8)',
-          900: 'var(--accents-9)',
+          900: 'rgb(var(--accents-9) / <alpha-value>)',
         },
         //bg-colors
         sk: {
-          light: 'var(--background-light)',
-          dark: 'var(--background-dark)',
+          light: 'rgb(var(--background-light) / <alpha-value>)',
+          dark: 'rgb(var(--background-dark) / <alpha-value>)',
         },
         //custom colors
         error: {
@@ -77,7 +77,7 @@ module.exports = {
         },
       },
       borderRadius: {
-        DEFAULT: 'var(--geist-radius)',
+        DEFAULT: 'var(--border-radius-default)',
         xs: 'var(--border-radius-xs)',
       },
       lineHeight: {
