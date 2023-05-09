@@ -31,7 +31,7 @@ export default async function Layout({ children }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-sk-light font-sans text-stone-900 antialiased dark:bg-sk-dark dark:text-stone-50',
+          'min-h-screen bg-sk-light font-sans text-accent-200 antialiased dark:bg-sk-dark dark:text-accent-800',
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
