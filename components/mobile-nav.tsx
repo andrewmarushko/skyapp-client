@@ -62,7 +62,7 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({
               {links.map(({ link, id }) => (
                 <NavigationLink
                   key={id}
-                  size={'sm'}
+                  size={'noPadding'}
                   variant={'headerNav'}
                   href={link.href}
                   onClick={hideMobileNav}
@@ -80,7 +80,7 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({
         <NavigationLink
           key={id}
           variant={'headerNav'}
-          size={'sm'}
+          size={'noPadding'}
           href={href}
           onClick={hideMobileNav}
         >

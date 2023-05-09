@@ -43,10 +43,9 @@ export function Footer({ footerData, logoData }: FooterProps) {
                   {links.map(({ id, label, target, href }) => (
                     <NavigationLink
                       key={id} 
-                      className="py-2 text-accent-400"
                       target={target}
                       variant={'footer'}
-                      size={'sm'}
+                      size={'md'}
                       href={href}
                     >
                       {label}
@@ -67,16 +66,15 @@ export function Footer({ footerData, logoData }: FooterProps) {
                       <div className="overflow-y-hidden">
                         <nav className="mb-3">
                           {links.map(({ id, label, target, href }) => (
-                              <NavigationLink
-                                key={id} 
-                                className="py-2 text-accent-400"
-                                target={target}
-                                variant={'footer'}
-                                size={'sm'}
-                                href={href}
-                              >
-                                {label}
-                              </NavigationLink>
+                            <NavigationLink
+                              key={id} 
+                              target={target}
+                              variant={'footer'}
+                              size={'md'}
+                              href={href}
+                            >
+                              {label}
+                            </NavigationLink>
                           ))}
                         </nav>
                       </div>
@@ -100,27 +98,27 @@ export function Footer({ footerData, logoData }: FooterProps) {
           </span>
             <nav className="flex w-full flex-col items-center justify-between gap-6 md:flex-row md:gap-0">
               {social.map(({ id, type, link }) => (
-                  <NavigationLink
-                    className="mr-4 border-r border-r-accent-800 pr-4 leading-0 last:mr-0 last:border-r-0 last:pr-0 dark:border-r-accent-200"
-                    key={id}
-                    variant={'socialNetwork'}
-                    size={'sm'}
-                    href={link.href}
-                    target={link.target}
-                  >
-                    {type === 'instagram' && (
-                      <Icons.instagram className="h-5 w-5" />
-                    )}
-                    {type === 'facebook' && (
-                      <Icons.facebook className="h-5 w-5" />
-                    )}
-                    {type === 'twitter' && (
-                      <Icons.twitter className="h-5 w-5" />
-                    )}
-                    {type === 'youtube' && (
-                      <Icons.youtube className="h-5 w-5" />
-                    )}
-                  </NavigationLink>
+                <NavigationLink
+                  className="mr-4 border-r border-r-accent-800 pr-4 leading-0 last:mr-0 last:border-r-0 last:pr-0 dark:border-r-accent-200"
+                  key={id}
+                  variant={'socialNetwork'}
+                  size={'noPadding'}
+                  href={link.href}
+                  target={link.target}
+                >
+                  {type === 'instagram' && (
+                    <Icons.instagram className="h-5 w-5" />
+                  )}
+                  {type === 'facebook' && (
+                    <Icons.facebook className="h-5 w-5" />
+                  )}
+                  {type === 'twitter' && (
+                    <Icons.twitter className="h-5 w-5" />
+                  )}
+                  {type === 'youtube' && (
+                    <Icons.youtube className="h-5 w-5" />
+                  )}
+                </NavigationLink>
               ))}
             </nav>
             <ModeToggle />

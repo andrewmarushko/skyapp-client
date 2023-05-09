@@ -43,8 +43,9 @@ const linkVariants = cva(
       },
       size: {
         default: 'py-2 px-3',
-        sm: 'p-0',
-        md: 'p-3',
+        noPadding: 'p-0',
+        md: 'py-2',
+        lg: 'p-3',
       },
     },
     defaultVariants: {
