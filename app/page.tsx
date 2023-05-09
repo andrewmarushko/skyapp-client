@@ -21,7 +21,6 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
   } = await client.query({ query: homePageSeoQuery });
-  console.log(seo);
 
   if (!seo) return defaultSeo;
 
