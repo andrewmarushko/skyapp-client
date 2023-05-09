@@ -53,7 +53,7 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({
       <Accordion type="single" collapsible>
         <AccordionItem className="dark:border-b-accent-200" value="item-1">
           <AccordionTrigger>
-            <span className="flex items-center justify-between py-3 text-accent dark:text-accent-800">
+            <span className="flex items-center justify-between text-accent dark:text-accent-800">
               {label}
             </span>
           </AccordionTrigger>
