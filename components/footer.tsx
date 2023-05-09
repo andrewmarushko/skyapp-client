@@ -29,7 +29,7 @@ export function Footer({ footerData, logoData }: FooterProps) {
   const { navigation, social, subscribe, copyright } = footerData.footer;
 
   return (
-    <footer className="w-full bg-accent-800 dark:bg-accent-100 border-t border-t-accent-700 py-16 dark:border-t-accent-200">
+    <footer className="mt-auto w-full bg-accent-800 dark:bg-accent-100 border-t border-t-accent-700 py-10 dark:border-t-accent-200">
       <div className="container flex flex-col gap-10 lg:gap-6">
         <div className="grid gap-10 lg:gap-4 lg:grid-cols-5">
           <div className="flex items-start justify-center md:justify-start">
