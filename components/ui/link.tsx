@@ -8,25 +8,24 @@ import Link, { LinkProps } from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
 
 const linkVariants = cva(
-  "leading-14px outline-none hover:text-accent no-underline",
+  "leading-4 outline-none hover:text-accent no-underline",
   {
     variants: {
       variant: {
         default: 
           '',
         headerNav: 
-          "block text-accent-400 rounded-full duration-200 transition-bg-and-color dark:text-experimental-gray-dark-800 dark:hover:text-experimental-gray-dark-900",
-
+          "block text-accent-400 rounded-full duration-200 transition-bg-and-color dark:text-accent-600 dark:hover:text-accent-700",
         footer:
-          'inline text-accent-400 rounded-full transition-color dark:text-accents-5 dark:hover:text-geist-foreground',
+          'inline text-accent-400 rounded-full transition-color dark:text-accent-500 dark:hover:text-accent-900',
         white:
-          'flex border border-accent-800 rounded font-medium px-geist-gap-half max-w-full justify-center items-center duration-150 ease transition-colors-shadow-transform text-geist-form-font leading-geist-form-line-height h-geist-form-height dark:text-accent-500 dark:border-accent-200 hover:border-accent hover:text-accent hover:dark:border-accent-900 hover:dark:text-accent-900',
+          'flex border border-accent-800 rounded font-medium px-3 duration-150 ease transition-colors-shadow-transform text-sm dark:text-accent-500 dark:border-accent-200 hover:border-accent hover:text-accent hover:dark:border-accent-900 hover:dark:text-accent-900',
         black:
-          'flex border bg-sk-dark dark:bg-sk-light text-accent-900 dark:text-accent border-accent-800 rounded font-medium px-geist-gap-half max-w-full justify-center items-center duration-150 ease transition-colors-shadow-transform leading-geist-form-line-height h-geist-form-height dark:border-accent-200 hover:bg-accent-900 hover:border-accent hover:text-accent hover:dark:bg-accent hover:dark:border-accent-900 hover:dark:text-accent-900',
-        skydivingCenter: `flex h-full w-full select-none flex-col justify-between rounded-lg bg-experimental-gray 
-          hover:bg-experimental-gray-200 no-underline outline-none text-experimental-gray-700 
-          transition-background-color ease focus-visible:shadow-sm-gray focus-visible:shadow-experimental-gray-600
-          dark:bg-experimental-gray-a-dark dark:hover:bg-experimental-gray-a-dark-200 hover:text-experimental-gray-dark-700`,
+          'flex border bg-sk-dark dark:bg-sk-light text-accent-900 dark:text-accent border-accent-800 rounded font-medium px-3 duration-150 ease transition-colors-shadow-transform text-sm dark:border-accent-200 hover:bg-accent-900 hover:border-accent hover:text-accent hover:dark:bg-sk-dark hover:dark:border-accent-900 hover:dark:text-accent-900',
+        featuredNav: `flex h-full w-full select-none flex-col justify-between rounded-lg bg-accent-800 
+          hover:bg-accent-700 no-underline outline-none text-accent-500 
+          transition-background-color ease focus-visible:shadow-focus focus-visible:shadow-accent-500
+          dark:bg-accent-200 dark:hover:bg-accent-100 hover:text-accent-500`,
         logo: 'flex cursor-pointer items-center gap-1 hover:text-current',
         socialNetwork: "text-accent-400 dark:text-accent-500 dark:hover:text-accent-900 transition-all duration-200 ease",
         ghostWhite: 
@@ -66,8 +65,9 @@ export interface NavigationLinkProps
 const NavigationLink = forwardRef<HTMLAnchorElement, NavigationLinkProps>(
   ({ className, variant, size, fullWidth, textSize, children, dataActive, target = '', ...props }, ref) => {
     const segment = useSelectedLayoutSegment();
-    const isActive = props.href === `/${segment}`;
-    const activeLinkClasses = `${isActive && dataActive===true? 'bg-experimental-gray-a-100 text-experimental-gray-a-900 dark:bg-experimental-gray-a-dark-100 dark:text-experimental-gray-a-dark-900' : ''}`
+    const formattedHref = props.href.toString().replace("/", "")
+    const isActive = formattedHref === segment || `(${formattedHref})` === `${segment}`;
+    const activeLinkClasses = `${isActive && dataActive ? 'text-accent-100 bg-accent-700 dark:bg-accent-100 dark:text-accent-800' : ''}`
     return <Link
       className={`${cn(linkVariants({ variant, size, textSize, fullWidth, className }))} ${activeLinkClasses}`}
       ref={ref}
