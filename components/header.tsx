@@ -25,7 +25,7 @@ export function Header({ logoData, navigationData }: HeaderProps) {
   return (
     <header
       ref={elementRef}
-      className={`ease min-h-header-height sticky top-0 z-40 flex w-full max-w-full justify-center bg-transparent transition-background-color-and-box-shadow duration-200 dark:border-b-stone-700 ${
+      className={`ease sticky h-16 top-0 z-40 flex w-full max-w-full justify-center bg-transparent transition-background-color-and-box-shadow duration-200 dark:border-b-accent-500 ${
         isSticky ? `${onScrollHeaderClasses}` : ''
       }`}
     >
