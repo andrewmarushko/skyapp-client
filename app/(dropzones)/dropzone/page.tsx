@@ -45,7 +45,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const DropzonePage = () => {
+const DropzonePage = async () => {
   return (
     <Page>
       <Hero title="Dropzone Landing Page" subtitle="Landing subtitle" />
