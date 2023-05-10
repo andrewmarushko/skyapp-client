@@ -1,15 +1,18 @@
-import {
-  fetchDropzonePageData,
-  fetchPromotedDropzone,
-} from '@/api/dropzone';
-import { getPageSeo } from '@/api/seo';
+// import {
+//   fetchDropzonePageData,
+//   fetchPromotedDropzone,
+// } from '@/api/dropzone';
+// import { getPageSeo } from '@/api/seo';
 import { Metadata } from 'next';
 import { Hero } from '@/components/hero';
 import { BecomePartner } from '@/components/become-partner';
-import { Page } from '@/components/ui/page';
+import { Page } from '@/ui/page';
 import { Content } from '@/components/content';
 import { ContentLayout } from '../../../components/content-layout';
 import { Promoted } from '@/components/promoted';
+import { apiClient } from '@/lib/graphql/apollo';
+import { dropzonesPageQuery, promotedDropzonesQuery } from '@/query/dropzone';
+import { dropzonesPageSeoQuery } from '@/query/seo';
 
 const defaultSeo = {
   title: 'Dropzone',
@@ -17,7 +20,15 @@ const defaultSeo = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('dropzone-page');
+  const {
+    data: {
+      dropzonesPage: {
+        data: {
+          attributes: { seo },
+        },
+      },
+    },
+  } = await apiClient.query({ query: dropzonesPageSeoQuery });
 
   if (!seo) return defaultSeo;
 
@@ -45,14 +56,29 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const DropzonePage = async () => {
-  const { hero, become_partner } = await fetchDropzonePageData();
-  const promoted = await fetchPromotedDropzone();
+  const {
+    data: {
+      dropzonesPage: {
+        data: {
+          attributes: { hero, become_partner },
+        },
+      },
+    },
+  } = await apiClient.query({ query: dropzonesPageQuery });
+
+  const {
+    data: {
+      dropzones: { data },
+    },
+  } = await apiClient.query({ query: promotedDropzonesQuery });
 
   return (
     <Page>
       <Hero title={hero.title} subtitle={hero.subtitle} />
-      <Promoted location="dropzone" data={promoted} />
-      <Content><ContentLayout locationParam={'dropzone'} /></Content>
+      <Promoted location="dropzone" data={data} />
+      <Content>
+        <ContentLayout locationParam={'dropzone'} />
+      </Content>
       <BecomePartner data={become_partner} />
     </Page>
   );

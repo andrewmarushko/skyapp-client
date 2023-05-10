@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
-
-import { getIndoorPageData } from '@/api/indoor';
 import { Page } from '@/components/ui/page';
-import { getPageSeo } from '@/api/seo';
 import { Hero } from '@/components/hero';
+import { apiClient } from '@/lib/graphql/apollo';
+import { indoorLandingPageSeoQuery } from '@/api/queries/seo';
+import { indoorLandingPageQuery } from '@/api/queries/indoor';
 
 const defaultSeo = {
   title: 'Indoor',
@@ -11,7 +11,15 @@ const defaultSeo = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('indoor-page');
+  const {
+    data: {
+      indoorLanding: {
+        data: {
+          attributes: { seo },
+        },
+      },
+    },
+  } = await apiClient.query({ query: indoorLandingPageSeoQuery });
 
   if (!seo) return defaultSeo;
 
@@ -39,11 +47,19 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const IndoorPage = async () => {
-  const pageIndoorData = await getIndoorPageData();
+  const {
+    data: {
+      indoorLanding: {
+        data: {
+          attributes: { hero },
+        },
+      },
+    },
+  } = await apiClient.query({ query: indoorLandingPageQuery });
 
   return (
     <Page>
-      <Hero title={'Indoor Landing Page'} subtitle={'Some cool subtitle'} />
+      <Hero title={hero.title} subtitle={hero.subtitle} />
     </Page>
   );
 };

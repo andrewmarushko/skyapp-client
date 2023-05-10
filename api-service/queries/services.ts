@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const contactsPageQuery = gql`
+export const servicesPageQuery = gql`
   query {
-    contactsPage {
+    servicesPage {
       data {
         attributes {
           hero {

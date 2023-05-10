@@ -18,7 +18,7 @@ interface MobileNavInterface {
   hideMobileNav: MouseEventHandler<HTMLAnchorElement>;
 }
 
-export const MobileNav: FunctionComponent<MobileNavInterface> = ({
+export const MobileNav: FunctionComponent<any> = ({
   navigationData,
   isMobileNavOpen,
   hideMobileNav,
@@ -32,11 +32,11 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({
         isMobileNavOpen ? 'block' : 'hidden'
       } visible fixed bottom-0 left-0 right-0 top-16 z-50 w-full max-w-full overflow-y-scroll bg-sk-light px-6 py-0 pb-6 dark:bg-sk-dark lg:hidden`}
     >
-      <div className='flex flex-col gap-2'>
+      <div className="flex flex-col gap-2">
         <NavigationLink
           variant={'white'}
           href={'/contacts'}
-          className='justify-center border-accent-700'
+          className="justify-center border-accent-700"
           onClick={hideMobileNav}
         >
           Contacts
@@ -44,7 +44,7 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({
         <NavigationLink
           variant={'black'}
           href={'/feedback'}
-          className='justify-center'
+          className="justify-center"
           onClick={hideMobileNav}
         >
           Feedback
@@ -59,7 +59,7 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({
           </AccordionTrigger>
           <AccordionContent>
             <ul className="mb-3">
-              {links.map(({ link, id }) => (
+              {links.map(({ link, id }: any) => (
                 <NavigationLink
                   key={id}
                   size={'noPadding'}
@@ -76,7 +76,7 @@ export const MobileNav: FunctionComponent<MobileNavInterface> = ({
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      {navigationLinks.map(({ href, id, label }) => (
+      {navigationLinks.map(({ href, id, label }: any) => (
         <NavigationLink
           key={id}
           variant={'headerNav'}

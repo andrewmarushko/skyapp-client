@@ -11,15 +11,14 @@ import { Logo } from '@/components/logo';
 import { LogoInterface } from '@/types/logo';
 
 interface HeaderProps {
-  logoData: LogoInterface;
+  logoData: any;
   navigationData: NavDataInterface;
 }
 
 const onScrollHeaderClasses = `before:w-full before:h-full before:absolute before:content-[''] before:-z-1 before:backdrop-saturate-180 before:backdrop-blur-md before:-top-1px shadow-scroll dark:shadow-scroll-dark`;
 
 export function Header({ logoData, navigationData }: HeaderProps) {
-  const { logo } = logoData;
-  const { mainNavigation } = navigationData;
+  const { href, companyName } = logoData;
   const { elementRef, isSticky } = useStickyElement();
   const { isOpen, toggle, hide } = useOpen();
 
@@ -32,11 +31,11 @@ export function Header({ logoData, navigationData }: HeaderProps) {
     >
       <div className="container flex items-center justify-between">
         <div className="flex flex-1 items-center justify-between">
-          <Logo className='z-50' href={logo.href} companyName={logo.companyName} />
+          <Logo className="z-50" href={href} companyName={companyName} />
           <BurgerMenu isOpen={isOpen} toggleBurgerMenu={toggle} />
         </div>
-        <MainNav mainNavigationData={mainNavigation} />
-        <div className="hidden flex-1 z-50 justify-end gap-2 lg:flex">
+        <MainNav mainNavigationData={navigationData} />
+        <div className="z-50 hidden flex-1 justify-end gap-2 lg:flex">
           {/* TODO: create side menu api */}
           <NavigationLink variant={'white'} href={'/contacts'}>
             Contacts
@@ -46,7 +45,7 @@ export function Header({ logoData, navigationData }: HeaderProps) {
           </NavigationLink>
         </div>
         <MobileNav
-          navigationData={mainNavigation}
+          navigationData={navigationData}
           isMobileNavOpen={isOpen}
           hideMobileNav={hide}
         />

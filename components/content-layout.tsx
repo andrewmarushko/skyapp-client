@@ -1,5 +1,6 @@
 import { Search } from '@/components/search';
 import { CardList } from './card-list';
+import { Suspense } from 'react';
 
 export const ContentLayout = ({ locationParam }: { locationParam: string }) => {
   return (
@@ -8,6 +9,7 @@ export const ContentLayout = ({ locationParam }: { locationParam: string }) => {
         <Search />
       </div>
       <div className="col-span-3">
+        {/* @ts-expect-error Server Component */}
         <CardList locationParam={locationParam} />
       </div>
     </div>

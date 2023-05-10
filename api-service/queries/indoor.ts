@@ -1,36 +1,118 @@
-import qs from 'qs'
+import { gql } from '@apollo/client';
 
-export const INDOOR_PAGE_QUERY = qs.stringify({
-    populate: [
-    'hero,become_partner,become_partner.link',
-    ],
-},
-{
-    encodeValuesOnly: true,
-});
-
-export const INDOOR_QUERY = qs.stringify(
-  {
-    populate: ['cover','location','logo','marketing'],
-  },
-  {
-    encodeValuesOnly: true,
-  })
-
-export const PROMOTED_INDOORS_QUERY = qs.stringify({
-    filters: [
-      {
-        marketing: {
-          promoted: {
-            $eq: true
+export const indoorsPageQuery = gql`
+  query {
+    indoorsPage {
+      data {
+        attributes {
+          hero {
+            title
+            subtitle
+          }
+          become_partner {
+            title
+            subtitle
+            link {
+              label
+              href
+              target
+            }
           }
         }
       }
-    ],
-    populate: [
-      'cover',
-      'location',
-      'logo'
-    ]
+    }
   }
-)
+`;
+
+export const indoorLandingPageQuery = gql`
+  query {
+    indoorLanding {
+      data {
+        attributes {
+          hero {
+            title
+            subtitle
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const promotedIndoorsQuery = gql`
+  query {
+    indoors(filters: { marketing: { promoted: { eq: true } } }) {
+      data {
+        attributes {
+          title
+          slug
+          diameter
+          location {
+            city
+            country
+            address
+          }
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+                width
+                height
+              }
+            }
+          }
+          cover {
+            data {
+              attributes {
+                url
+                alternativeText
+                width
+                height
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const allTubesQuery = gql`
+  query {
+    indoors {
+      data {
+        attributes {
+          title
+          slug
+          diameter
+          location {
+            city
+            country
+            address
+          }
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+                width
+                height
+              }
+            }
+          }
+          cover {
+            data {
+              attributes {
+                url
+                alternativeText
+                width
+                height
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

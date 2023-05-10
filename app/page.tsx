@@ -1,6 +1,8 @@
-import { getPageSeo } from '@/api/seo';
+import { homePageQuery } from '@/api/queries/home';
+import { homePageSeoQuery } from '@/api/queries/seo';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
+import { getClient } from '@/lib/graphql/apollo';
 import { Metadata } from 'next';
 
 const defaultSeo = {
@@ -9,7 +11,16 @@ const defaultSeo = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getPageSeo('home-page');
+  const client = getClient();
+  const {
+    data: {
+      homePage: {
+        data: {
+          attributes: { seo },
+        },
+      },
+    },
+  } = await client.query({ query: homePageSeoQuery });
 
   if (!seo) return defaultSeo;
 
@@ -36,13 +47,21 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Home() {
+export default async function Home() {
+  const client = getClient();
+  const {
+    data: {
+      homePage: {
+        data: {
+          attributes: { hero },
+        },
+      },
+    },
+  } = await client.query({ query: homePageQuery });
+
   return (
     <Page>
-      <Hero
-        title={'Home page landing'}
-        subtitle={'Here is a place where you can fly'}
-      />
+      <Hero title={hero.title} subtitle={hero.subtitle} />
     </Page>
   );
 }
