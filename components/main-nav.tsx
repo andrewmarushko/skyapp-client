@@ -11,10 +11,11 @@ import {
 } from '@/ui/navigation-menu';
 import { NavigationLink } from '@/ui/link';
 import { Icons } from '@/icons';
-import { MainNavInterface } from '@/types/nav';
+import { usePathname } from 'next/navigation';
 
 export function MainNav({ mainNavigationData }: any) {
   const { panel, navigationLinks } = mainNavigationData;
+  const pathName = usePathname();
 
   return (
     <NavigationMenu className="hidden flex-1 justify-center lg:flex">
@@ -25,7 +26,7 @@ export function MainNav({ mainNavigationData }: any) {
               <NavigationMenuTrigger>{panelItem.label}</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <nav className="w-125 z-0 m-0 flex list-none gap-x-1.5 p-1.5">
-                  <div className='basis-1/3'>
+                  <div className="basis-1/3">
                     <NavigationMenuLink asChild>
                       <NavigationLink
                         variant={'featuredNav'}
@@ -35,23 +36,23 @@ export function MainNav({ mainNavigationData }: any) {
                       >
                         <div className="flex items-stretch justify-between">
                           {/* TODO: Add Start flying title to the server */}
-                          <span className="text-accent-500 flex items-center justify-center text-sm font-normal leading-4">
+                          <span className="flex items-center justify-center text-sm font-normal leading-4 text-accent-500">
                             Start flying
                           </span>
                           <Icons.arrowUpRight className="h-4 w-4" />
                         </div>
                         <div>
-                          <span className="dark:text-accent-900 mb-1.5 flex items-center gap-2 text-base font-medium text-accent">
+                          <span className="mb-1.5 flex items-center gap-2 text-base font-medium text-accent dark:text-accent-900">
                             {panelItem.push.link.label}
                           </span>
-                          <p className="text-accent-500 text-sm font-normal">
+                          <p className="text-sm font-normal text-accent-500">
                             {panelItem.push.description}
                           </p>
                         </div>
                       </NavigationLink>
                     </NavigationMenuLink>
                   </div>
-                  <div className='grid basis-2/3 grid-cols-2'>
+                  <div className="grid basis-2/3 grid-cols-2">
                     {panelItem.links.map(
                       (linkItem: {
                         id: number;
@@ -85,6 +86,7 @@ export function MainNav({ mainNavigationData }: any) {
                 variant={'headerNav'}
                 dataActive
                 href={navigation.href}
+                isActive={pathName === navigation.href}
               >
                 {navigation.label}
               </NavigationLink>
