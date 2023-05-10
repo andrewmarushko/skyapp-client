@@ -10,7 +10,7 @@ const toggleMenuVariants = cva('', {
   variants: {
     variant: {
       themesSwitcher:
-        'dark:border-accent-200 bg-none w-max rounded-100 flex items-center relative border border-accent-800 max-w-full h-10 text-sm select-none',
+        'dark:border-accent-200 bg-none rounded-full flex items-center border border-accent-700 h-10 select-none',
     },
     size: {
       default: 'p-1',
@@ -26,10 +26,9 @@ const toggleItemVariants = cva('', {
   variants: {
     variant: {
       themesSwitcher: `
-          bg-none rounded-50 font-medium border-none outline-accent text-accent-500 transition-colors 
-          aria-checked:text-accent aria-checked:bg-accent-800
-          dark:text-accent-400 dark:aria-checked:text-accent-900 dark:aria-checked:bg-accent-200 
-        `,
+        bg-none rounded-full text-accent-500 transition-colors aria-checked:text-accent aria-checked:bg-accent-700
+        dark:aria-checked:text-accent-900 dark:aria-checked:bg-accent-200 
+      `,
     },
     size: {
       default: 'w-8 h-8',

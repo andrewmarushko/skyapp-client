@@ -29,7 +29,7 @@ export function MainNav({ mainNavigationData }: any) {
                     <NavigationMenuLink asChild>
                       <NavigationLink
                         variant={'featuredNav'}
-                        size={'md'}
+                        size={'lg'}
                         href={panelItem.push.link.href}
                         target={panelItem.push.link.target}
                       >

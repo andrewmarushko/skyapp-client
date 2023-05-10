@@ -33,14 +33,14 @@ export function Footer({ footerData, logoData }: any) {
       <div className="container flex flex-col gap-4">
         <div className="grid max-w-full gap-6 md:grid-cols-3 lg:grid-cols-4">
           <div className="flex items-start justify-center gap-0 md:justify-between">
-            <Logo href={href} companyName={companyName} />
+            <Logo href={logo.href} companyName={logo.companyName} />
           </div>
-          {navigation.map(({ id, label, links }: any) => (
+          {navigation.map(({ id, label, links }) => (
             <div key={id}>
               <div className="hidden md:block">
                 <span className="mb-3 text-sm font-medium">{label}</span>
                 <nav className="flex list-none flex-col">
-                  {links.map(({ id, label, target, href }: any) => (
+                  {links.map(({ id, label, target, href }) => (
                     <NavigationLink
                       key={id}
                       className="py-2 text-accent-400"
@@ -66,7 +66,7 @@ export function Footer({ footerData, logoData }: any) {
                     <div className="max-h-60vh overflow-y-auto text-base">
                       <div className="overflow-y-hidden">
                         <nav className="mb-3">
-                          {links.map(({ id, label, target, href }: any) => (
+                          {links.map(({ id, label, target, href }) => (
                             <NavigationLink
                               key={id}
                               className="py-2 text-accent-400"
@@ -87,19 +87,21 @@ export function Footer({ footerData, logoData }: any) {
             </div>
           ))}
           <div className="col-span-full lg:col-span-1">
-            <span className="mb-3 text-sm font-medium">{subscribe.title}</span>
+            <div className="pb-3">
+              <span className="text-sm font-medium">{subscribe.title}</span>
+            </div>
             <p className="pb-4 pt-2 text-sm text-accent-400">
               {subscribe.subtitle}
             </p>
             <SubscriptionForm buttonLabel={subscribe.submitButton.label} />
           </div>
         </div>
-        <div className="mt-6 flex flex-col items-center justify-between gap-4 md:items-start md:gap-1">
+        <div className="flex flex-col items-center justify-between gap-4 lg:items-start lg:gap-1">
           <span className="text-sm text-accent-400 dark:text-accent-500">
             {copyright.companyName} {copyright.reserved} {copyright.copyright}
           </span>
           <nav className="flex w-full flex-col items-center justify-between gap-6 md:flex-row md:gap-0">
-            {social.map(({ id, type, link }: any) => (
+            {social.map(({ id, type, link }) => (
               <NavigationLink
                 className="mr-4 border-r border-r-accent-800 pr-4 leading-0 last:mr-0 last:border-r-0 last:pr-0 dark:border-r-accent-200"
                 key={id}

@@ -53,7 +53,7 @@ export const MobileNav: FunctionComponent<any> = ({
       <Accordion type="single" collapsible>
         <AccordionItem className="dark:border-b-accent-200" value="item-1">
           <AccordionTrigger>
-            <span className="flex items-center justify-between py-3 text-accent dark:text-accent-800">
+            <span className="flex items-center justify-between text-accent dark:text-accent-800">
               {label}
             </span>
           </AccordionTrigger>
@@ -62,7 +62,7 @@ export const MobileNav: FunctionComponent<any> = ({
               {links.map(({ link, id }: any) => (
                 <NavigationLink
                   key={id}
-                  size={'sm'}
+                  size={'noPadding'}
                   variant={'headerNav'}
                   href={link.href}
                   onClick={hideMobileNav}
@@ -80,7 +80,7 @@ export const MobileNav: FunctionComponent<any> = ({
         <NavigationLink
           key={id}
           variant={'headerNav'}
-          size={'sm'}
+          size={'noPadding'}
           href={href}
           onClick={hideMobileNav}
         >
