@@ -9,7 +9,7 @@ const cardVariants = cva(
       variant: {
         default: 
           `relative pointer ease w-full flex flex-col overflow-hidden rounded bg-sk-light shadow-md transition-box-shadow duration-200 hover:shadow-lg focus:shadow-lg 
-          dark:bg-sk-dark dark:shadow-sm dark:shadow-accent-300 dark:focus-within:shadow-accent-900 dark:hover:shadow-accent-900 dark:focus:shadow-accent-900`, 
+          dark:bg-accent-100 dark:border dark:border-accent-300 dark:focus-within:border-accent-900 dark:hover:border-accent-900 dark:focus:border-accent-900`, 
       },
       fullWidth: {
         true: 'w-full' 
