@@ -90,10 +90,10 @@ module.exports = {
         'tight-subtitle': 'var(--letter-spacing-subtitle)'
       },
       boxShadow: {
-        sm: 'var(--shadow-small)',
-        'focus': 'var(--shadow-focus)',
+        lg: 'var(--shadow-large)',
+        focus: 'var(--shadow-focus)',
         '3xl': 'var(--shadow-3xl)',
-        'scroll': 'var(--shadow-scroll)',
+        scroll: 'var(--shadow-scroll)',
         'scroll-dark': 'var(--shadow-scroll-dark)',
       },
       transitionTimingFunction: {

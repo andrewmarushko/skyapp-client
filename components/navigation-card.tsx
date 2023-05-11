@@ -55,23 +55,23 @@ export const NavigationCard: FunctionComponent<
             {title}
           </h3>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1">
-              <Icons.mapPin className="h-5 w-5" />
-              <span className="text-xs text-accent-400 dark:text-accent-500">
+            <div className="flex items-center gap-1 text-accent-400 dark:text-accent-500">
+              <Icons.mapPin className="h-4 w-4" />
+              <span className="text-sm">
                 {location.city} / {location.country}
               </span>
             </div>
             {diameter && (
-              <div className="flex items-center gap-1">
-                <Icons.circleSlash className="h-5 w-5" />
-                <span className="text-xs text-accent-400 dark:text-accent-500">
+              <div className="flex items-center gap-1 text-accent-400 dark:text-accent-500">
+                <Icons.circleSlash className="h-4 w-4" />
+                <span className="text-sm">
                   {diameter} ft.
                 </span>
               </div>
             )}
           </div>
         </div>
-        <div className="absolute left-2 top-28 z-1 flex h-14 w-14 items-center justify-center rounded-full bg-sk-light p-1 dark:bg-sk-dark">
+        <div className="absolute left-2 top-28 z-1 flex h-12 w-12 sm:h-14 sm:w-14  items-center justify-center rounded-full bg-sk-light p-0.5 dark:bg-sk-dark">
           <Image
             loading="lazy"
             src={logo.data.attributes.url}

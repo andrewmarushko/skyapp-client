@@ -8,7 +8,8 @@ const cardVariants = cva(
     variants: {
       variant: {
         default: 
-          "pointer ease flex h-full w-full max-w-sm flex-col overflow-hidden rounded bg-sk-light text-inherit no-underline shadow-geist-shadow-sm transition-box-shadow duration-200 focus-within:shadow-geist-border-shadow-white hover:shadow-geist-border-shadow-white focus:shadow-geist-border-shadow-white dark:bg-sk-dark dark:shadow-geist-shadow-sm-dark dark:focus-within:shadow-geist-border-shadow-white-dark dark:hover:shadow-geist-border-shadow-white-dark dark:focus:shadow-geist-border-shadow-white-dark", 
+          `relative pointer ease w-full flex flex-col overflow-hidden rounded bg-sk-light shadow-md transition-box-shadow duration-200 hover:shadow-lg focus:shadow-lg 
+          dark:bg-sk-dark dark:shadow-sm dark:shadow-accent-300 dark:focus-within:shadow-accent-900 dark:hover:shadow-accent-900 dark:focus:shadow-accent-900`, 
       },
       fullWidth: {
         true: 'w-full' 
