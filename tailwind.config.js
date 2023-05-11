@@ -29,14 +29,14 @@ module.exports = {
         //accents
         accent: {
           DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
-          100: 'var(--accents-1)',
-          200: 'var(--accents-2)',
-          300: 'var(--accents-3)',
-          400: 'var(--accents-4)',
-          500: 'var(--accents-5)',
-          600: 'var(--accents-6)',
-          700: 'var(--accents-7)',
-          800: 'var(--accents-8)',
+          100: 'rgb(var(--accents-1) / <alpha-value>)',
+          200: 'rgb(var(--accents-2) / <alpha-value>)',
+          300: 'rgb(var(--accents-3) / <alpha-value>)',
+          400: 'rgb(var(--accents-4) / <alpha-value>)',
+          500: 'rgb(var(--accents-5) / <alpha-value>)',
+          600: 'rgb(var(--accents-6) / <alpha-value>)',
+          700: 'rgb(var(--accents-7) / <alpha-value>)',
+          800: 'rgb(var(--accents-8) / <alpha-value>)',
           900: 'rgb(var(--accents-9) / <alpha-value>)',
         },
         //bg-colors
@@ -76,6 +76,9 @@ module.exports = {
           yellow: 'var(--highlight-yellow)',
         },
       },
+      spacing: {
+        120: 'var(--spacing-120)'
+      },
       borderRadius: {
         DEFAULT: 'var(--border-radius-default)',
         xs: 'var(--border-radius-xs)',
@@ -90,10 +93,10 @@ module.exports = {
         'tight-subtitle': 'var(--letter-spacing-subtitle)'
       },
       boxShadow: {
-        sm: 'var(--shadow-small)',
-        'focus': 'var(--shadow-focus)',
+        lg: 'var(--shadow-large)',
+        focus: 'var(--shadow-focus)',
         '3xl': 'var(--shadow-3xl)',
-        'scroll': 'var(--shadow-scroll)',
+        scroll: 'var(--shadow-scroll)',
         'scroll-dark': 'var(--shadow-scroll-dark)',
       },
       transitionTimingFunction: {

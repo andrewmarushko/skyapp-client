@@ -1,12 +1,31 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { cn } from '@/lib/utils';
+import { VariantProps, cva } from 'class-variance-authority';
+import { FunctionComponent } from 'react';
 
-interface ContentPropsInterface {
-  children: ReactNode;
-}
+const contentVariants = cva(
+  "my-6 md:my-8",
+  {
+    variants: {
+      variant: {
+        default: 
+          "container",
+        fluid:
+          ""
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
 
-export const Content: FunctionComponent<ContentPropsInterface> = ({children}) => {
+interface ContentPropsInterface
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof contentVariants> {}
+
+export const Content: FunctionComponent<ContentPropsInterface> = ({children, variant, className}) => {
   return (
-    <div className='mt-12 md:mt-16'>
+    <div className={cn(contentVariants({ variant, className }))}>
       {children}
     </div>
   );

@@ -15,7 +15,7 @@ interface HeaderProps {
   navigationData: NavDataInterface;
 }
 
-const onScrollHeaderClasses = `before:w-full before:h-full before:absolute before:content-[''] before:-z-1 before:backdrop-saturate-180 before:backdrop-blur-md before:-top-1px shadow-scroll dark:shadow-scroll-dark`;
+const onScrollHeaderClasses = `before:w-full before:h-full before:absolute before:content-[''] before:-z-1 before:backdrop-saturate-180 lg:before:backdrop-blur-md before:-top-1px shadow-scroll dark:shadow-scroll-dark`;
 
 export function Header({ logoData, navigationData }: HeaderProps) {
   const { href, companyName } = logoData;
@@ -25,11 +25,11 @@ export function Header({ logoData, navigationData }: HeaderProps) {
   return (
     <header
       ref={elementRef}
-      className={`ease sticky h-16 top-0 z-40 flex w-full max-w-full justify-center bg-transparent transition-background-color-and-box-shadow duration-200 dark:border-b-accent-500 ${
+      className={`ease sticky h-16 top-0 z-50 flex w-full max-w-full justify-center bg-sk-light dark:bg-sk-dark lg:bg-transparent transition-background-color-and-box-shadow duration-200 dark:border-b-accent-500 ${
         isSticky ? `${onScrollHeaderClasses}` : ''
       }`}
     >
-      <div className="container flex items-center justify-between">
+      <div className="container flex items-center justify-between z-50">
         <div className="flex flex-1 items-center justify-between">
           <Logo className="z-50" href={href} companyName={companyName} />
           <BurgerMenu isOpen={isOpen} toggleBurgerMenu={toggle} />

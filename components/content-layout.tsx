@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 
 export const ContentLayout = ({ locationParam }: { locationParam: string }) => {
   return (
-    <div className="container flex flex-col gap-7 lg:grid lg:grid-cols-4">
+    <div className="flex flex-col gap-7 lg:grid lg:grid-cols-4">
       <div className="col-span-1">
         <Search />
       </div>

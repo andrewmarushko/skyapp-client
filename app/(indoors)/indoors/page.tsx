@@ -77,9 +77,9 @@ const IndoorPage = async () => {
       <Content>
         <ContentLayout locationParam={'indoor'} />
       </Content>
-      <div className="container">
+      <Content>
         <BecomePartner data={become_partner} />
-      </div>
+      </Content>
     </Page>
   );
 };

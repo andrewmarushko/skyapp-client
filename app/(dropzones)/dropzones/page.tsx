@@ -73,13 +73,15 @@ const DropzonePage = async () => {
   } = await apiClient.query({ query: promotedDropzonesQuery });
 
   return (
-    <Page>
+    <Page variant={'fluid'}>
       <Hero title={hero.title} subtitle={hero.subtitle} />
       <Promoted location="dropzone" data={data} />
       <Content>
         <ContentLayout locationParam={'dropzone'} />
       </Content>
-      <BecomePartner data={become_partner} />
+      <Content>
+        <BecomePartner data={become_partner} />
+      </Content>
     </Page>
   );
 };

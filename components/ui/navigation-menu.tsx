@@ -76,7 +76,7 @@ const NavigationMenuViewport = forwardRef<
   <div className="absolute left-0 top-full flex justify-center">
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        `relative mt-5 w-full origin-top-center overflow-hidden rounded-xl border border-accent-800 bg-sk-light/60 shadow-3xl dark:shadow-none
+        `relative mt-5 w-full origin-top-center overflow-hidden rounded-xl border border-accent-700 bg-sk-light shadow-3xl dark:shadow-none
         transition-width-height duration-300 data-[state=closed]:animate-navigation-menu-scale-out data-[state=open]:animate-navigation-menu-scale-in
         dark:border-accent-300 dark:bg-sk-dark/60 backdrop-blur-2xl`,
         className,
@@ -94,8 +94,7 @@ const NavigationMenuIndicator = forwardRef<
   <NavigationMenuPrimitive.Indicator
     ref={ref}
     className={cn(
-      `ease absolute left-0 top-[118%] z-10
-      flex h-7 translate-x-0
+      `ease absolute left-0 top-[118%] z-10 flex h-7 translate-x-0
       justify-center overflow-hidden transition-width-transform 
       duration-200 data-[state=closed]:animate-fade-out data-[state=visible]:animate-fade-in`,
       className,
@@ -116,7 +115,7 @@ const ListItem = forwardRef<
         ref={ref}
         className={cn(
           `ease block select-none space-y-1 rounded-lg p-3 text-sm leading-none no-underline outline-none transition-colors
-          focus-within:shadow-focus focus-within:shadow-accent-500 hover:bg-accent-700 dark:hover:bg-accent-100`,
+          focus-within:shadow-focus focus-within:shadow-accent-500 hover:bg-accent-700/60 dark:hover:bg-accent-200/40`,
           className,
         )}
         {...props}
