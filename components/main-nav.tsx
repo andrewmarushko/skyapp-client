@@ -25,7 +25,7 @@ export function MainNav({ mainNavigationData }: any) {
             <NavigationMenuItem key={panelItem.id}>
               <NavigationMenuTrigger>{panelItem.label}</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <nav className="w-125 z-0 m-0 flex list-none gap-x-1.5 p-1.5">
+                <nav className="z-0 m-0 flex list-none gap-x-1.5 p-1.5">
                   <div className="basis-1/3">
                     <NavigationMenuLink asChild>
                       <NavigationLink
@@ -52,7 +52,7 @@ export function MainNav({ mainNavigationData }: any) {
                       </NavigationLink>
                     </NavigationMenuLink>
                   </div>
-                  <div className="grid basis-2/3 grid-cols-2">
+                  <div className="grid basis-2/3 grid-cols-2 w-120">
                     {panelItem.links.map(
                       (linkItem: {
                         id: number;

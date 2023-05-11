@@ -5,14 +5,14 @@
 :root {
   /* Primary */
   --accent: 0 0 0;
-  --accents-1: #111;
-  --accents-2: #333;
-  --accents-3: #444;
-  --accents-4: #666;
-  --accents-5: #888;
-  --accents-6: #999;
-  --accents-7: #eaeaea;
-  --accents-8: #fafafa;
+  --accents-1: 17 17 17;
+  --accents-2: 51 51 51;
+  --accents-3: 68 68 68;
+  --accents-4: 102 102 102;
+  --accents-5: 136 136 136;
+  --accents-6: 153 153 153;
+  --accents-7: 234 234 234;
+  --accents-8: 250 250 250;
   --accents-9: 255 255 255;
 
   --background-light: var(--accents-9);
@@ -57,6 +57,10 @@
   --shadow-focus: 0 0 0 2px var(--success);
   --shadow-scroll: inset 0 -1px 0 0 rgba(0,0,0,.1);
   --shadow-scroll-dark: inset 0 -1px 0 0 hsla(0,0%,100%,.1);
+
+  /* Spacing */
+
+  --spacing-120: 30rem;
 
   /* Radius */
   --border-radius-xs: 0.25rem;
