@@ -231,3 +231,27 @@ export const getIndoorBySlug = gql`
     }
   }
 `;
+
+export const indoorPageQuery = gql`
+  query {
+    indoorPage {
+      data {
+        attributes {
+          related_dropzone_title
+          related_dropzone_subtitle
+          price_title
+          price_subtitle
+          become_partner {
+            title
+            subtitle
+            link {
+              target
+              href
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+`;
