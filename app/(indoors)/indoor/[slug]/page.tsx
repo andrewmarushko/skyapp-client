@@ -1,5 +1,7 @@
 // import {  fetchIndoorSEO, fetchTube } from '@/api/indoor';
+import { getIndoorBySlug } from '@/api/queries/indoor';
 import { Page } from '@/components/ui/page';
+import { apiClient } from '@/lib/graphql/apollo';
 import { Metadata } from 'next';
 
 interface IndoorTubePageProps {
@@ -52,6 +54,12 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
   // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
   // const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
 
+  // const { data } = await apiClient.query({
+  //   query: getIndoorBySlug,
+  //   variables: { slug: 'test' },
+  // });
+
+  console.log(slug);
   return (
     <Page>
       {/* {indoor.attributes.title} */}
