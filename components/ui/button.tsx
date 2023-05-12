@@ -4,12 +4,12 @@ import { forwardRef } from 'react';
 import ButtonLoading from '@/ui/button-loading';
 
 const buttonVariants = cva(
-  'flex items-center justify-center rounded font-medium transition-shadow transition-colors disabled:opacity-50 disabled:pointer-events-none',
+  'flex items-center justify-center rounded font-medium transition-colors disabled:opacity-50 disabled:pointer-events-none',
   {
     variants: {
       variant: {
         default:
-          'text-geist-action-large-font bg-button-default-bg border text-button-default-fg border-button-default-border hover:bg-button-default-bg-hover hover:text-button-default-fg-hover hover:border-button-default-border-hover active:select-none active:shadow-none active:bg-button-default-bg-active active:text-button-default-fg-active active:border-button-custom-fg-hover',
+          'bg-button-accent-200 border text-accent-900 border-accent-200 hover:bg-accent-400 hover:text-accent-900 hover:border-accent-400',
         ghost: 'bg-transparent hover:bg-accent-800 dark:hover:bg-accent-200',
         action:
           'bg-violet text-accent-900 border border-violet text-sm min-w-164 max-w-164 hover:text-violet hover:bg-sk-light active:select-none active:bg-accent-700 active:dark:bg-accent-100 dark:active:bg-accent-100 dark:hover:text-hightlight-purple dark:hover:border-hightlight-purple dark:hover:bg-sk-dark disabled:bg-accent-100 disabled:text-accent-300 disabled:border-accent-300',
@@ -19,6 +19,10 @@ const buttonVariants = cva(
         mobileNav: 'font-normal inline-block',
         subscribe:
           'bg-sk-light dark:bg-accent-100 text-accent-400 dark:text-accent-400 hover:text-accent dark:hover:text-accent-800 focus-visible:outline-none focus-visible:shadow-focus text-xs rounded-xs absolute right-1 top-1/2 -translate-y-1/2 border border-accent-700 hover:border-accent-200 dark:border-accent-400 dark:hover:border-accent-800',
+        reset: 
+          `text-accent-400 dark:text-accent-500 transition-colors duration-200 hover:text-accent dark:hover:text-accent-900
+          border border-accent-700 hover:border-accent-500 dark:border-accent-400 dark:hover:border-accent-700 lg:border-none
+          `
       },
       fullWidth: {
         true: 'w-full',
@@ -27,12 +31,10 @@ const buttonVariants = cva(
         true: '',
       },
       size: {
-        default:
-          'h-geist-action-height leading-geist-action-height px-geist-gap-half',
-        lg: 'h-geist-action-large-height leading-geist-action-large-height px-geist-gap-half',
-        sm: 'h-geist-action-small-height leading-geist-action-small-height px-geist-gap-half',
-        xs: 'py-0.5 px-1.5',
         noPaddings: 'p-0',
+        xs: 'py-0.5 px-1.5',
+        sm: 'p-2',
+        default:'px-3',
       },
     },
     defaultVariants: {
