@@ -1,5 +1,5 @@
 import { CardList } from './card-list';
-import { Filters } from '@/components/filters';
+import { Filters } from '@/components/filters/filters';
 
 export const ContentLayout = ({ locationParam }: { locationParam: string }) => {
   return (

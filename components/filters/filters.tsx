@@ -1,14 +1,14 @@
 import { FunctionComponent } from 'react';
 import { Search } from '@/components/search';
 import { Button } from '@/components/ui/button';
+import { FilterCategory } from '@/components/filters/filter-category';
+import { FilterItem } from '@/components/filters/filter-item';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/ui/accordion';
-import { Checkbox } from './ui/checkbox';
-import { FilterItem } from './filter-item';
 
 interface FiltersInterface {
 }
@@ -23,8 +23,16 @@ export const Filters: FunctionComponent<FiltersInterface> = ({}) => {
           <Button variant={'reset'} size={'sm'}>Reset</Button>
         </div>
         <div className='flex flex-col'>
-          <FilterItem />
-          <FilterItem />
+          <FilterCategory>
+            <FilterItem />
+            <FilterItem />
+            <FilterItem />
+          </FilterCategory>
+          <FilterCategory>
+            <FilterItem />
+            <FilterItem />
+            <FilterItem />
+          </FilterCategory>
         </div>
       </div>
       <div className='lg:hidden'>
@@ -40,9 +48,21 @@ export const Filters: FunctionComponent<FiltersInterface> = ({}) => {
               <div className='flex flex-col px-6 py-4 bg-sk-light dark:bg-accent gap-4'>
                 <Button fullWidth variant={'reset'} size={'sm'}>Reset</Button>
                 <div className='flex flex-col'>
-                  <FilterItem />
-                  <FilterItem />
-                  <FilterItem />
+                  <FilterCategory>
+                    <FilterItem />
+                    <FilterItem />
+                    <FilterItem />
+                  </FilterCategory>
+                  <FilterCategory>
+                    <FilterItem />
+                    <FilterItem />
+                    <FilterItem />
+                  </FilterCategory>
+                  <FilterCategory>
+                    <FilterItem />
+                    <FilterItem />
+                    <FilterItem />
+                  </FilterCategory>
                 </div>
               </div>
             </AccordionContent>

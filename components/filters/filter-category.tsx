@@ -1,6 +1,5 @@
 import { VariantProps, cva } from 'class-variance-authority';
 import { FunctionComponent } from 'react';
-import { Checkbox } from '@/components/ui/checkbox';
 
 import {
   Accordion,
@@ -9,8 +8,8 @@ import {
   AccordionTrigger,
 } from '@/ui/accordion';
 
-const filterItemVariants = cva(
-  "my-6 md:my-8",
+const filterCategoryVariants = cva(
+  "",
   {
     variants: {
       variant: {
@@ -26,9 +25,9 @@ const filterItemVariants = cva(
 
 interface FilterItemPropsInterface
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof filterItemVariants> {}
+    VariantProps<typeof filterCategoryVariants> {}
 
-export const FilterItem: FunctionComponent<FilterItemPropsInterface> = () => {
+export const FilterCategory: FunctionComponent<FilterItemPropsInterface> = ({children}) => {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem
@@ -40,15 +39,7 @@ export const FilterItem: FunctionComponent<FilterItemPropsInterface> = () => {
         </AccordionTrigger>
         <AccordionContent>
           <div className='flex flex-col ml-4 gap-3 mb-3'>
-            <div className='flex items-center gap-2'>
-              <Checkbox id='filter_1' />
-              <label
-                htmlFor="filter_1"
-                className='text-accent dark:text-accent-900'
-              >
-                Aerodium
-              </label>
-            </div>
+            {children}
           </div>
         </AccordionContent>
       </AccordionItem>
