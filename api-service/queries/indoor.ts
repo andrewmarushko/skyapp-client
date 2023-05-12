@@ -116,3 +116,142 @@ export const allTubesQuery = gql`
     }
   }
 `;
+
+export const getIndoorBySlug = gql`
+  query getBySlug($slug: String!) {
+    indoors(filters: { slug: { eq: $slug } }) {
+      data {
+        attributes {
+          title
+          location {
+            lat
+            lng
+            city
+            continent
+            address
+            zipcode
+            country
+          }
+          diameter
+          speed
+          height
+          description
+          facilities
+          opening_hours {
+            weekday_text
+            period {
+              open {
+                day
+                time
+              }
+              close {
+                day
+                time
+              }
+            }
+          }
+          contacts {
+            phone
+            email
+            website
+          }
+          social {
+            youtubeId
+            placeId
+            links {
+              type
+              link {
+                label
+                target
+                href
+              }
+            }
+          }
+          cover {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          building_status
+          company_name
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          prices {
+            price {
+              type
+              price
+              currency
+              link_to_prices
+              vendor_text
+            }
+            price_link {
+              target
+              href
+              label
+            }
+          }
+          related_dropzones {
+            data {
+              attributes {
+                title
+                location {
+                  city
+                  country
+                }
+                logo {
+                  data {
+                    attributes {
+                      url
+                      alternativeText
+                    }
+                  }
+                }
+                cover {
+                  data {
+                    attributes {
+                      url
+                      alternativeText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const indoorPageQuery = gql`
+  query {
+    indoorPage {
+      data {
+        attributes {
+          related_dropzone_title
+          related_dropzone_subtitle
+          price_title
+          price_subtitle
+          become_partner {
+            title
+            subtitle
+            link {
+              target
+              href
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+`;

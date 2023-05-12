@@ -400,3 +400,52 @@ export const dropzonesPageSeoQuery = gql`
     }
   }
 `;
+
+export const getIndoorSeoBySlug = gql`
+  query getBySlug($slug: String!) {
+    indoors(filters: { slug: { eq: $slug } }) {
+      data {
+        attributes {
+          seo {
+            metaTitle
+            metaDescription
+            applicationName
+            keywords
+            format_description {
+              email
+              telephone
+              address
+            }
+            metadataBase
+            robots {
+              index
+              follow
+              nocache
+            }
+            google_bot {
+              index
+              follow
+              no_image_index
+              max_video_preview
+              max_snippet
+              max_image_preview
+            }
+            manifest
+            twitter {
+              card
+              title
+              description
+              image
+            }
+            referrer
+            viewport {
+              width
+              initial_scale
+              maximum_scale
+            }
+          }
+        }
+      }
+    }
+  }
+`;
