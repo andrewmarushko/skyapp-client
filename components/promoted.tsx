@@ -1,13 +1,26 @@
-import { FunctionComponent, ReactNode } from 'react';
+import { NavigationCard } from '@/components/navigation-card';
+import { FunctionComponent } from 'react';
 
-interface PromotedPropsInterface {
-  children: ReactNode;
+interface PromotedIndoorsPropsInterface {
+  // TODO: Add typization
+  data: any;
+  location: string;
 }
 
-export const Promoted: FunctionComponent<PromotedPropsInterface> = ({children}) => {
+export const Promoted: FunctionComponent<PromotedIndoorsPropsInterface> = ({
+  data,
+  location,
+}) => {
   return (
-    <div className='flex justify-start mb-16 -mt-8 py-8 overflow-x-auto snap-mandatory lg:container'>
-      {children}
+    <div className="-mt-8 mb-16 flex snap-mandatory justify-start overflow-x-auto py-8 lg:container">
+      {data.map(({ attributes, id }: any) => (
+        <NavigationCard
+          link_location={location}
+          variant={'promoted'}
+          key={id}
+          data={attributes}
+        />
+      ))}
     </div>
   );
-}
+};

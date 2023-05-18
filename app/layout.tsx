@@ -6,39 +6,38 @@ import { Header } from '@/components/header';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
-import {
-  getFooterData,
-  getLogoData,
-  getNavigationData,
-} from '@/api-service/general';
+import { getClient } from '@/lib/graphql/apollo';
+import { generalQuery } from '@/api/queries/general';
 
 interface RootLayoutProps {
   children: React.ReactNode;
 }
 
 export default async function Layout({ children }: RootLayoutProps) {
-  const logoResponse = getLogoData();
-  const navigationMenuResponse = getNavigationData();
-  const footerResponse = getFooterData();
+  const client = getClient();
 
-  const [logoData, navigationMenuData, footerData] = await Promise.all([
-    logoResponse,
-    navigationMenuResponse,
-    footerResponse,
-  ]);
+  const {
+    data: {
+      general: {
+        data: {
+          attributes: { mainNavigation, logo, footer },
+        },
+      },
+    },
+  } = await client.query({ query: generalQuery });
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-sk-light font-sans text-stone-900 antialiased dark:bg-sk-dark dark:text-stone-50',
+          'min-h-screen bg-sk-light font-sans text-accent-200 antialiased dark:bg-sk-dark dark:text-accent-800',
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="flex min-h-screen flex-col">
-            <Header logoData={logoData} navigationData={navigationMenuData} />
+            <Header logoData={logo} navigationData={mainNavigation} />
             <div className="flex-1">{children}</div>
-            <Footer logoData={logoData} footerData={footerData} />
+            <Footer logoData={logo} footerData={footer} />
           </main>
         </ThemeProvider>
         <Analytics />

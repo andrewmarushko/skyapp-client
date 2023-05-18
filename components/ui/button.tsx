@@ -1,7 +1,7 @@
 import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { forwardRef } from 'react';
-import ButtonLoading from '@/components/ui/button-loading';
+import ButtonLoading from '@/ui/button-loading';
 
 const buttonVariants = cva(
   'flex items-center justify-center rounded font-medium transition-shadow transition-colors disabled:opacity-50 disabled:pointer-events-none',
@@ -18,7 +18,7 @@ const buttonVariants = cva(
           'w-6 h-10 flex justify-center items-center rounded bg-transparent border-none transition-background-color duration-200 ease select-none',
         mobileNav: 'font-normal inline-block',
         subscribe:
-          'bg-sk-light dark:bg-sk-dark text-accent-400 dark:text-accent-800 hover:text-accent dark:hover:text-accent-400 focus-visible:outline-none focus-visible:shadow-focus-shadow text-xs rounded-xs absolute right-1 top-1/2 -translate-y-1/2 border border-experimental-gray-a-200',
+          'bg-sk-light dark:bg-accent-100 text-accent-400 dark:text-accent-400 hover:text-accent dark:hover:text-accent-800 focus-visible:outline-none focus-visible:shadow-focus text-xs rounded-xs absolute right-1 top-1/2 -translate-y-1/2 border border-accent-700 hover:border-accent-200 dark:border-accent-400 dark:hover:border-accent-800',
       },
       fullWidth: {
         true: 'w-full',

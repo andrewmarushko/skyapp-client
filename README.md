@@ -7,3 +7,4 @@ yarn dev
 # or
 pnpm dev
 ```
+And have fun!
