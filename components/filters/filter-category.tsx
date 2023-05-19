@@ -38,7 +38,7 @@ export const FilterCategory: FunctionComponent<FilterItemPropsInterface> = ({chi
           <span className="text-sm font-medium">{'Company name'}</span>
         </AccordionTrigger>
         <AccordionContent>
-          <div className='flex flex-col ml-4 gap-3 mb-3'>
+          <div className='flex flex-col gap-2 mb-3'>
             {children}
           </div>
         </AccordionContent>

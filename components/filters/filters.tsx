@@ -45,7 +45,7 @@ export const Filters: FunctionComponent<FiltersInterface> = ({}) => {
               <span className="text-sm font-medium uppercase">{'Filter by'}</span>
             </AccordionTrigger>
             <AccordionContent>
-              <div className='flex flex-col px-10 py-4 bg-sk-light dark:bg-accent gap-4'>
+              <div className='flex flex-col px-4 md:px-10 py-4 bg-sk-light dark:bg-accent gap-4'>
                 <Button fullWidth variant={'reset'} size={'sm'}>Reset</Button>
                 <div className='flex flex-col'>
                   <FilterCategory>
