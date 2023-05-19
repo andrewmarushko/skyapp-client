@@ -8,9 +8,9 @@ import { Content } from '@/components/content';
 import { BecomePartner } from '@/components/become-partner';
 import { Promoted } from '@/components/promoted';
 import { ContentLayout } from '@/components/content-layout';
-import { apiClient } from '@/lib/graphql/apollo';
 import { indoorsPageQuery, promotedIndoorsQuery } from '@/query/indoor';
 import { indoorsPageSeoQuery } from '@/query/seo';
+import { client } from '@/lib/graphql/apollo-server';
 
 const defaultSeo = {
   title: 'Indoor',
@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
         },
       },
     },
-  } = await apiClient.query({ query: indoorsPageSeoQuery });
+  } = await client.query({ query: indoorsPageSeoQuery });
 
   if (!seo) return defaultSeo;
 
@@ -62,13 +62,13 @@ const IndoorPage = async () => {
         },
       },
     },
-  } = await apiClient.query({ query: indoorsPageQuery });
+  } = await client.query({ query: indoorsPageQuery });
 
   const {
     data: {
       indoors: { data },
     },
-  } = await apiClient.query({ query: promotedIndoorsQuery });
+  } = await client.query({ query: promotedIndoorsQuery });
 
   return (
     <Page variant={'fluid'}>

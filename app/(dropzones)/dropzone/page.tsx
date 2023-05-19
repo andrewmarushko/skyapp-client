@@ -1,7 +1,7 @@
 import { dropzoneLandingPageSeoQuery } from '@/api/queries/seo';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
-import { apiClient } from '@/lib/graphql/apollo';
+import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 
 const defaultSeo = {
@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
         },
       },
     },
-  } = await apiClient.query({ query: dropzoneLandingPageSeoQuery });
+  } = await client.query({ query: dropzoneLandingPageSeoQuery });
 
   if (!seo) return defaultSeo;
 

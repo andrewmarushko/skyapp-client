@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { Page } from '@/components/ui/page';
 import { Hero } from '@/components/hero';
-import { apiClient } from '@/lib/graphql/apollo';
 import { indoorLandingPageSeoQuery } from '@/api/queries/seo';
 import { indoorLandingPageQuery } from '@/api/queries/indoor';
+import { client } from '@/lib/graphql/apollo-server';
 
 const defaultSeo = {
   title: 'Indoor',
@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
         },
       },
     },
-  } = await apiClient.query({ query: indoorLandingPageSeoQuery });
+  } = await client.query({ query: indoorLandingPageSeoQuery });
 
   if (!seo) return defaultSeo;
 
@@ -55,7 +55,7 @@ const IndoorPage = async () => {
         },
       },
     },
-  } = await apiClient.query({ query: indoorLandingPageQuery });
+  } = await client.query({ query: indoorLandingPageQuery });
 
   return (
     <Page>

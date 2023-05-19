@@ -11,9 +11,9 @@ import { useIndoorState } from '@/store/indoors';
 import { NavigationCard } from '@/components/navigation-card';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { apiClient } from '@/lib/graphql/apollo';
 import { allTubesQuery } from '@/query/indoor';
 import { allDropzonesQuery } from '@/api/queries/dropzone';
+import { client } from '@/lib/graphql/apollo-server';
 
 // TODO: next step make this component more reusable
 
@@ -29,14 +29,14 @@ export const CardList = async ({
       data: {
         dropzones: { data: dropzoneData },
       },
-    } = await apiClient.query({ query: allDropzonesQuery });
+    } = await client.query({ query: allDropzonesQuery });
     data = dropzoneData;
   } else {
     const {
       data: {
         indoors: { data: indoorData },
       },
-    } = await apiClient.query({ query: allTubesQuery });
+    } = await client.query({ query: allTubesQuery });
     data = indoorData;
   }
 

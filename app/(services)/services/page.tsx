@@ -2,7 +2,7 @@ import { servicesPageSeoQuery } from '@/api/queries/seo';
 import { servicesPageQuery } from '@/api/queries/services';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
-import { apiClient } from '@/lib/graphql/apollo';
+import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 
 const defaultSeo = {
@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
         },
       },
     },
-  } = await apiClient.query({ query: servicesPageSeoQuery });
+  } = await client.query({ query: servicesPageSeoQuery });
 
   if (!seo) return defaultSeo;
 
@@ -55,7 +55,7 @@ const ServicePage = async () => {
         },
       },
     },
-  } = await apiClient.query({ query: servicesPageQuery });
+  } = await client.query({ query: servicesPageQuery });
   return (
     <Page>
       <Hero title={hero.title} subtitle={hero.subtitle} />

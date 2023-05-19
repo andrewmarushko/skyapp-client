@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
-import { getClient } from '@/lib/graphql/apollo';
 import { contactsPageSeoQuery } from '@/api/queries/seo';
 
 import { contactsPageQuery } from '@/api/queries/contacts';
+import { client } from '@/lib/graphql/apollo-server';
 
 const defaultSeo = {
   title: 'Contacts',
@@ -12,7 +12,6 @@ const defaultSeo = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const client = getClient();
   const {
     data: {
       contactsPage: {
@@ -51,7 +50,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const ContactsPage = async () => {
-  const client = getClient();
   const {
     data: {
       contactsPage: {

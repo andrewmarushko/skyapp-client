@@ -5,10 +5,10 @@ import LargeHeading from '@/ui/large-heading';
 import { Page } from '@/ui/page';
 import Paragraph from '@/ui/paragraph';
 import { Separator } from '@/ui/separator';
-import { apiClient } from '@/lib/graphql/apollo';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { getIndoorSeoBySlug } from '@/api/queries/seo';
+import { client } from '@/lib/graphql/apollo-server';
 
 interface IndoorTubePageProps {
   params: {
@@ -28,7 +28,7 @@ export async function generateMetadata({
     data: {
       indoors: { data },
     },
-  } = await apiClient.query({
+  } = await client.query({
     query: getIndoorSeoBySlug,
     variables: { slug },
   });
@@ -74,7 +74,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     data: {
       indoors: { data },
     },
-  } = await apiClient.query({
+  } = await client.query({
     query: getIndoorBySlug,
     variables: { slug: slug },
   });
@@ -93,7 +93,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
         },
       },
     },
-  } = await apiClient.query({ query: indoorPageQuery });
+  } = await client.query({ query: indoorPageQuery });
 
   const {
     attributes: {

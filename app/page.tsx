@@ -2,7 +2,7 @@ import { homePageQuery } from '@/api/queries/home';
 import { homePageSeoQuery } from '@/api/queries/seo';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
-import { getClient } from '@/lib/graphql/apollo';
+import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 
 const defaultSeo = {
@@ -11,7 +11,6 @@ const defaultSeo = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const client = getClient();
   const {
     data: {
       homePage: {
@@ -48,7 +47,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const client = getClient();
   const {
     data: {
       homePage: {
