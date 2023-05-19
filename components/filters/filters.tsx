@@ -19,7 +19,7 @@ export const Filters: FunctionComponent<FiltersInterface> = ({}) => {
       <Search />
       <div className='hidden lg:flex flex-col gap-5'>
         <div className='flex justify-between items-center'>
-          <h4 className='leading-5 font-bold uppercase'>Filter by</h4>
+          <span className='leading-5 font-bold uppercase'>Filter by</span>
           <Button variant={'reset'} size={'sm'}>Reset</Button>
         </div>
         <div className='flex flex-col'>
