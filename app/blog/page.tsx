@@ -2,7 +2,7 @@ import { blogPageQuery } from '@/api/queries/blog';
 import { blogPageSeoQuery } from '@/api/queries/seo';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
-import { apiClient } from '@/lib/graphql/apollo';
+import { client } from '@/lib/graphql/apollo-server';
 
 import { Metadata } from 'next';
 const defaultSeo = {
@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
         },
       },
     },
-  } = await apiClient.query({ query: blogPageSeoQuery });
+  } = await client.query({ query: blogPageSeoQuery });
 
   if (!seo) return defaultSeo;
 
@@ -46,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const BlogPage = async () => {
+export default async function BlogPage() {
   const {
     data: {
       blogPage: {
@@ -55,7 +55,7 @@ const BlogPage = async () => {
         },
       },
     },
-  } = await apiClient.query({ query: blogPageQuery });
+  } = await client.query({ query: blogPageQuery });
 
   return (
     <Page>
@@ -63,5 +63,3 @@ const BlogPage = async () => {
     </Page>
   );
 };
-
-export default BlogPage;
