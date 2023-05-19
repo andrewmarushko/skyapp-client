@@ -60,7 +60,7 @@ export function Footer({ footerData, logoData }: any) {
                 </div>
                 <Accordion className="lg:hidden" type="single" collapsible>
                   <AccordionItem
-                    className="dark:border-b-accent-200"
+                    className="border-b dark:border-b-accent-200"
                     value="item-1"
                   >
                     <AccordionTrigger>
