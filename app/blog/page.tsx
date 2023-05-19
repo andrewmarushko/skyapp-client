@@ -46,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const BlogPage = async () => {
+export default async function BlogPage() {
   const {
     data: {
       blogPage: {
@@ -63,5 +63,3 @@ const BlogPage = async () => {
     </Page>
   );
 };
-
-export default BlogPage;
