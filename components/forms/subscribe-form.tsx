@@ -40,7 +40,7 @@ export const SubscriptionForm: FunctionComponent<SubscriptionFormProps> = ({
         onChange={handleInputChange}
         required
       />
-      <Button variant={'subscribe'} size={'xs'} type="submit">
+      <Button className='' variant={'subscribe'} size={'xs'} type="submit">
         {buttonLabel}
       </Button>
     </form>

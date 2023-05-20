@@ -6,15 +6,17 @@ import { Header } from '@/components/header';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
-import { getClient } from '@/lib/graphql/apollo';
 import { generalQuery } from '@/api/queries/general';
+import { ApolloWrapper} from '@/lib/graphql/apollo-client';
+import { client } from '@/lib/graphql/apollo-server';
+
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  pageProps: any
 }
 
-export default async function Layout({ children }: RootLayoutProps) {
-  const client = getClient();
+export default async function Layout({ children, pageProps }: RootLayoutProps) {
 
   const {
     data: {
@@ -25,7 +27,7 @@ export default async function Layout({ children }: RootLayoutProps) {
       },
     },
   } = await client.query({ query: generalQuery });
-
+ 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -34,11 +36,13 @@ export default async function Layout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <main className="flex min-h-screen flex-col">
-            <Header logoData={logo} navigationData={mainNavigation} />
-            <div className="flex-1">{children}</div>
-            <Footer logoData={logo} footerData={footer} />
-          </main>
+        <ApolloWrapper>
+            <main className="flex min-h-screen flex-col">
+              <Header logoData={logo} navigationData={mainNavigation} />
+                <div className="flex-1">{children}</div>
+              <Footer logoData={logo} footerData={footer} />
+            </main>
+            </ApolloWrapper>
         </ThemeProvider>
         <Analytics />
         <Toaster />

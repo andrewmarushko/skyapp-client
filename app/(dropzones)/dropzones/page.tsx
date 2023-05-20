@@ -10,9 +10,9 @@ import { Page } from '@/ui/page';
 import { Content } from '@/components/content';
 import { ContentLayout } from '../../../components/content-layout';
 import { Promoted } from '@/components/promoted';
-import { apiClient } from '@/lib/graphql/apollo';
 import { dropzonesPageQuery, promotedDropzonesQuery } from '@/query/dropzone';
 import { dropzonesPageSeoQuery } from '@/query/seo';
+import { client } from '@/lib/graphql/apollo-server';
 
 const defaultSeo = {
   title: 'Dropzone',
@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
         },
       },
     },
-  } = await apiClient.query({ query: dropzonesPageSeoQuery });
+  } = await client.query({ query: dropzonesPageSeoQuery });
 
   if (!seo) return defaultSeo;
 
@@ -64,13 +64,13 @@ const DropzonePage = async () => {
         },
       },
     },
-  } = await apiClient.query({ query: dropzonesPageQuery });
+  } = await client.query({ query: dropzonesPageQuery });
 
   const {
     data: {
       dropzones: { data },
     },
-  } = await apiClient.query({ query: promotedDropzonesQuery });
+  } = await client.query({ query: promotedDropzonesQuery });
 
   return (
     <Page variant={'fluid'}>
