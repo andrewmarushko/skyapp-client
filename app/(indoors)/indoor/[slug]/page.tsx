@@ -9,6 +9,11 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { getIndoorSeoBySlug } from '@/api/queries/seo';
 import { client } from '@/lib/graphql/apollo-server';
+import { GoogleMap } from 'react-google-maps';
+import { CustomMap } from '@/components/ui/google-map';
+import { Suspense } from 'react';
+import GooglePlacesSection from '@/components/googlePlaces-section';
+import { BecomePartner } from '@/components/become-partner';
 
 interface IndoorTubePageProps {
   params: {
@@ -60,16 +65,8 @@ export async function generateMetadata({
   };
 }
 
-export const revalidate = 1;
-// const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
-// const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
-  // const indoorsList: any = await getIndoorsByID(slug);
-  // const indoor = await fetchTube(slug);
-
-  // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
-  // const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
-
+  console.log('slug', slug);
   const {
     data: {
       indoors: { data },
@@ -78,6 +75,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     query: getIndoorBySlug,
     variables: { slug: slug },
   });
+  console.log('data by slug', data);
 
   const {
     data: {
@@ -98,149 +96,114 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
   const {
     attributes: {
       title,
-      location,
+      description,
       diameter,
       speed,
       height,
-      description,
-      facilities,
-      opening_hours,
-      contacts,
       social,
       cover,
-      building_status,
       company_name,
       logo,
-      prices,
-      price_link,
+      contacts,
       related_dropzones,
+      location: { places },
     },
   } = data[0];
+  console.log(places);
 
   return (
     <Page>
-      <Content>
-        <Image
-          src={cover.data.attributes.url}
-          alt={cover.data.attributes.alternativeText}
-          width={500}
-          height={500}
-        />
-        <LargeHeading>
+      <Content className="flex flex-col gap-2">
+        <div>
           <Image
-            src={logo.data?.attributes.url}
+            src={cover.data.attributes.url}
+            alt={cover.data.attributes.alternativeText}
+            width={600}
+            height={300}
+          />
+        </div>
+        <h1>Title - {title}</h1>
+        <p className="purge">{description}</p>
+        <ul>
+          <li>diameter - {diameter}</li>
+          <li>speed - {speed}</li>
+          <li>height - {height}</li>
+        </ul>
+
+        <div>YoutubeId - {social.youtubeId}</div>
+        <div>
+          {social.links.map((item: any, index: any) => (
+            <li key={index}>
+              type - {item.type}, linkLabel - {item.link.label}, href -{' '}
+              {item.link.href}
+            </li>
+          ))}
+        </div>
+        <p>Company Name: {company_name}</p>
+        <div>
+          <span>LOGO</span>
+          <Image
+            src={logo.data.attributes.url}
+            alt={logo.data.attributes.alternativeText}
             width={100}
             height={100}
-            alt={logo.data.attributes.alternativeText}
           />
-          {title} - {company_name}
-        </LargeHeading>
-        <Paragraph>{description}</Paragraph>
-        <Separator />
-        <p>Diameter: {diameter}</p>
-        <p>Speed: {speed}</p>
-        <p>Height: {height}</p>
-        <p>
-          Location: {location.city} / {location.country}, {location.lat},{' '}
-          {location.lng}, {location.continent}, {location.address},{' '}
-          {location.zipcode}
-        </p>
-        <Separator />
-        <p>Facilities: {facilities.join(' ')}</p>
-        <p>
-          Opening Hours:{' '}
-          {opening_hours.period?.map(
-            ({ item, index }: { item: any; index: number }) => (
-              <div key={index}>
-                <span>Open: {item.open.time}</span>
-                <span>Close: {item.close.time}</span>
-              </div>
-            ),
-          )}
-        </p>
-        <p>
-          Contacts: {contacts.phone}, {contacts.email}, {contacts.website}
-        </p>
-        <div>
-          <span>
-            Social:{' '}
-            <ul>
-              <li>Youtube Chanel Id{social.youtubeId}</li>
-              <li>Place Id{social.placeId}</li>
-            </ul>
-          </span>
         </div>
-        <p>
-          {' '}
-          Prices:{' '}
-          {prices.price.map(({ item, index }: { item: any; index: number }) => (
-            <div key={index}>
-              <span>{item.type}</span> -{' '}
-              <span>
-                {item.price}
-                {item.currency}
-              </span>
-              <span>
-                <span>{item.vendor_text}</span> - {item.link_to_prices}
-              </span>
-            </div>
-          ))}
-        </p>
-        <p>Building status - `${building_status}`</p>
+        <ul>
+          <li>Phone - {contacts.phone}</li>
+          <li>Email - {contacts.email}</li>
+          <li>Website - {contacts.website}</li>
+        </ul>
 
         <div>
-          <h1>Related Dropzones</h1>
-          {related_dropzones.data.map(
-            ({ item, index }: { item: any; index: number }) => {
-              return (
-                <div key={index}>
-                  <Card>
-                    <Image
-                      src={item.attributes.cover.data.attributes.url}
-                      width={500}
-                      height={500}
-                      alt={
-                        item.attributes.cover.data.attributes.alternativeText
-                      }
-                    />
-                    <h1>
-                      <Image
-                        src={item.attributes.logo.data.attributes.url}
-                        width={100}
-                        height={100}
-                        alt={
-                          item.attributes.logo.data.attributes.alternativeText
-                        }
-                      />
-                      {item.attributes.title}
-                    </h1>
-                  </Card>
-                </div>
-              );
-            },
+          <p>{related_dropzone_title}</p>
+          <p>{related_dropzone_subtitle}</p>
+          {related_dropzones.data.length ? (
+            related_dropzones.data.map((item: any, index: number) => (
+              <div key={index}>{item.attributes.title}</div>
+            ))
+          ) : (
+            <div>No dropzone found</div>
           )}
         </div>
-        <Separator />
+
         <div>
-          Data from page for a titles etc
-          <div>
-            become_partner - {become_partner.title}, {become_partner.subtitle},{' '}
-            {become_partner.link.label}
-          </div>
-          <div>
-            Related Dropzones = {related_dropzone_title},{' '}
-            {related_dropzone_subtitle}
-          </div>
-          <div>
-            Prices - {price_title}, {price_subtitle}
+          <p>Latitude - {places.lat}</p>
+          <p>Lontitude - {places.lng}</p>
+
+          <p>Raiting - {places.details.rating}</p>
+          <CustomMap long={places.lng} lat={places} />
+        </div>
+
+        <div>
+          <p>Photos</p>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {places.details.photos.map((item: any, index: any) => (
+              <div className="h-auto w-full">
+                <Image
+                  key={index}
+                  src={item.url}
+                  className="pointer-events-none h-full w-full object-cover"
+                  width={720}
+                  height={480}
+                  sizes="(max-width: 640px) 100vw,
+                  (max-width: 1280px) 50vw,
+                  (max-width: 1536px) 33vw,
+                  25vw"
+                />
+              </div>
+            ))}
           </div>
         </div>
+        <Suspense fallback={<h1>loading comments</h1>}>
+          <GooglePlacesSection googlePlaceId={places.place_id} />
+        </Suspense>
+        <BecomePartner data={become_partner} />
       </Content>
-      {/* TODO: Refactor this no map needed anymore */}
       {/* {indoorsList &&
         indoorsList.data.map((item: IndoorDataItemInterface) => (
       {indoorsList.data.attributes.title}
-      {/* TODO: Refactor this no map needed anymore */}
       {/* {indoorsList &&
         indoorsList.data.map((item: IndoorDataItemInterface) => (
           <div className="flex w-full flex-col gap-14" key={item.id}>
@@ -401,3 +364,5 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
 };
 
 export default IndoorTubePage;
+
+//
