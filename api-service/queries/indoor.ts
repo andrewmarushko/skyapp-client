@@ -49,7 +49,6 @@ export const promotedIndoorsQuery = gql`
           diameter
           location {
             city
-            country
             address
           }
           logo {
@@ -88,7 +87,6 @@ export const allTubesQuery = gql`
           diameter
           location {
             city
-            country
             address
           }
           logo {
@@ -181,7 +179,6 @@ export const getIndoorBySlug = gql`
           }
           location {
             city
-            country
             continent
             address
             places
