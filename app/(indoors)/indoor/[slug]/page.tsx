@@ -1,15 +1,10 @@
 import { getIndoorBySlug, indoorPageQuery } from '@/query/indoor';
 import { Content } from '@/components/content';
-import { Card } from '@/ui/card';
-import LargeHeading from '@/ui/large-heading';
 import { Page } from '@/ui/page';
-import Paragraph from '@/ui/paragraph';
-import { Separator } from '@/ui/separator';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { getIndoorSeoBySlug } from '@/api/queries/seo';
 import { client } from '@/lib/graphql/apollo-server';
-import { GoogleMap } from 'react-google-maps';
 import { CustomMap } from '@/components/ui/google-map';
 import { Suspense } from 'react';
 import GooglePlacesSection from '@/components/googlePlaces-section';
@@ -66,7 +61,6 @@ export async function generateMetadata({
 }
 
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
-  console.log('slug', slug);
   const {
     data: {
       indoors: { data },
@@ -75,8 +69,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     query: getIndoorBySlug,
     variables: { slug: slug },
   });
-  console.log('data by slug', data);
-
+  // TODO: Display prices and youtube shit
   const {
     data: {
       indoorPage: {
@@ -140,6 +133,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
           ))}
         </div>
         <p>Company Name: {company_name}</p>
+
         <div>
           <span>LOGO</span>
           <Image
@@ -155,6 +149,10 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
           <li>Website - {contacts.website}</li>
         </ul>
 
+        <div>
+          <p>{price_title}</p>
+          <p>{price_subtitle}</p>
+        </div>
         <div>
           <p>{related_dropzone_title}</p>
           <p>{related_dropzone_subtitle}</p>
