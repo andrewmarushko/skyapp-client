@@ -183,7 +183,6 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                   key={index}
                   alt={'Google Photo'}
                   src={item.url}
-                  alt={item.alternativeText}
                   className="pointer-events-none h-full w-full object-cover"
                   width={720}
                   height={480}
