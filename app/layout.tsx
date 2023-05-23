@@ -13,10 +13,9 @@ import { client } from '@/lib/graphql/apollo-server';
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  pageProps: any
 }
 
-export default async function Layout({ children, pageProps }: RootLayoutProps) {
+export default async function Layout({ children }: RootLayoutProps) {
 
   const {
     data: {

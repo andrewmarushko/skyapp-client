@@ -178,10 +178,11 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {places.details.photos.map((item: any, index: any) => (
-              <div className="h-auto w-full">
+              <div className="h-auto w-full" key={index}>
                 <Image
                   key={index}
                   src={item.url}
+                  alt={item.alternativeText}
                   className="pointer-events-none h-full w-full object-cover"
                   width={720}
                   height={480}
