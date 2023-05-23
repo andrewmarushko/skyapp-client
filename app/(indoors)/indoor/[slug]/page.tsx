@@ -156,7 +156,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
         <div>
           <p>{related_dropzone_title}</p>
           <p>{related_dropzone_subtitle}</p>
-          {related_dropzones.data.length ? (
+          {related_dropzones.data.length > 0 ? (
             related_dropzones.data.map((item: any, index: number) => (
               <div key={index}>{item.attributes.title}</div>
             ))
@@ -181,6 +181,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               <div className="h-auto w-full" key={index}>
                 <Image
                   key={index}
+                  alt={'Google Photo'}
                   src={item.url}
                   alt={item.alternativeText}
                   className="pointer-events-none h-full w-full object-cover"
