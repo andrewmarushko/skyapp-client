@@ -1,4 +1,6 @@
+import { dropzonesPageQuery } from '@/api/queries/dropzone';
 import { dropzoneLandingPageSeoQuery } from '@/api/queries/seo';
+import { BecomePartner } from '@/components/become-partner';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
 import { client } from '@/lib/graphql/apollo-server';
@@ -46,9 +48,19 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const DropzonePage = async () => {
+  const {
+    data: {
+      dropzonesPage: {
+        data: {
+          attributes: { hero, become_partner },
+        },
+      },
+    },
+  } = await client.query({ query: dropzonesPageQuery });
   return (
     <Page>
-      <Hero title="Dropzone Landing Page" subtitle="Landing subtitle" />
+      <Hero title={hero.title} subtitle={hero.subtitle} />
+      <BecomePartner data={become_partner} />
     </Page>
   );
 };

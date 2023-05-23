@@ -34,7 +34,6 @@ export const promotedDropzonesQuery = gql`
           slug
           location {
             city
-            country
             address
           }
           logo {
@@ -42,8 +41,6 @@ export const promotedDropzonesQuery = gql`
               attributes {
                 url
                 alternativeText
-                width
-                height
               }
             }
           }
@@ -52,8 +49,6 @@ export const promotedDropzonesQuery = gql`
               attributes {
                 url
                 alternativeText
-                width
-                height
               }
             }
           }
@@ -72,7 +67,6 @@ export const allDropzonesQuery = gql`
           slug
           location {
             city
-            country
             address
           }
           logo {
@@ -80,8 +74,6 @@ export const allDropzonesQuery = gql`
               attributes {
                 url
                 alternativeText
-                width
-                height
               }
             }
           }
@@ -90,8 +82,110 @@ export const allDropzonesQuery = gql`
               attributes {
                 url
                 alternativeText
-                width
-                height
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const getDropzoneBySlug = gql`
+  query getDzBySlug($slug: String!) {
+    dropzones(filters: { slug: { eq: $slug } }) {
+      data {
+        attributes {
+          title
+          slug
+          description
+          facilities
+          contacts {
+            phone
+            email
+            website
+          }
+          opening_hours {
+            weekday_text
+          }
+          prices {
+            price {
+              type
+              price
+              currency
+            }
+            price_link {
+              href
+              label
+              target
+            }
+          }
+          requirements {
+            jump_requirement
+          }
+          social {
+            youtubeId
+            links {
+              type
+              link {
+                label
+                href
+                target
+              }
+            }
+          }
+          cover {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          logo {
+            data {
+              attributes {
+                url
+                alternativeText
+              }
+            }
+          }
+          marketing {
+            promoted
+          }
+          location {
+            city
+            continent
+            address
+            # places
+          }
+          indoor {
+            data {
+              attributes {
+                title
+                slug
+                diameter
+                location {
+                  address
+                  city
+                  continent
+                }
+                logo {
+                  data {
+                    attributes {
+                      url
+                      alternativeText
+                    }
+                  }
+                }
+                cover {
+                  data {
+                    attributes {
+                      url
+                      alternativeText
+                    }
+                  }
+                }
               }
             }
           }

@@ -42,8 +42,8 @@ export const NavigationCard: FunctionComponent<
             loading="lazy"
             src={cover.data.attributes.url}
             alt={cover.data.attributes.alternativeText}
-            width={cover.data.attributes.width}
-            height={cover.data.attributes.height}
+            width={300}
+            height={300}
             className="h-full w-full object-cover"
             quality={100}
             placeholder="blur"
@@ -57,27 +57,23 @@ export const NavigationCard: FunctionComponent<
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1 text-accent-400 dark:text-accent-600">
               <Icons.mapPin className="h-4 w-4" />
-              <span className="text-sm">
-                {location.city} / {location.country}
-              </span>
+              <span className="text-sm">{location.city}</span>
             </div>
             {diameter && (
               <div className="flex items-center gap-1 text-accent-400 dark:text-accent-600">
                 <Icons.circleSlash className="h-4 w-4" />
-                <span className="text-sm">
-                  {diameter} ft.
-                </span>
+                <span className="text-sm">{diameter} ft.</span>
               </div>
             )}
           </div>
         </div>
-        <div className="absolute left-2 top-28 z-1 flex h-12 w-12 sm:h-14 sm:w-14  items-center justify-center rounded-full bg-sk-light p-0.5 dark:bg-sk-dark">
+        <div className="z-1 absolute left-2 top-28 flex h-12 w-12 items-center justify-center  rounded-full bg-sk-light p-0.5 dark:bg-sk-dark sm:h-14 sm:w-14">
           <Image
             loading="lazy"
             src={logo.data.attributes.url}
             alt={logo.data.attributes.alternativeText}
-            width={logo.data.attributes.width}
-            height={logo.data.attributes.height}
+            width={300}
+            height={300}
             className="h-full w-full rounded-full object-cover"
             quality={100}
             placeholder="blur"

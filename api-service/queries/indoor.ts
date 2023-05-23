@@ -49,7 +49,6 @@ export const promotedIndoorsQuery = gql`
           diameter
           location {
             city
-            country
             address
           }
           logo {
@@ -88,7 +87,6 @@ export const allTubesQuery = gql`
           diameter
           location {
             city
-            country
             address
           }
           logo {
@@ -118,52 +116,25 @@ export const allTubesQuery = gql`
 `;
 
 export const getIndoorBySlug = gql`
-  query getBySlug($slug: String!) {
+  query getIndoorBySlug($slug: String!) {
     indoors(filters: { slug: { eq: $slug } }) {
       data {
         attributes {
           title
-          location {
-            lat
-            lng
-            city
-            continent
-            address
-            zipcode
-            country
-          }
+          slug
+          description
           diameter
           speed
           height
-          description
           facilities
-          opening_hours {
-            weekday_text
-            period {
-              open {
-                day
-                time
-              }
-              close {
-                day
-                time
-              }
-            }
-          }
-          contacts {
-            phone
-            email
-            website
-          }
           social {
             youtubeId
-            placeId
             links {
               type
               link {
                 label
-                target
                 href
+                target
               }
             }
           }
@@ -175,7 +146,9 @@ export const getIndoorBySlug = gql`
               }
             }
           }
-          building_status
+          marketing {
+            promoted
+          }
           company_name
           logo {
             data {
@@ -191,30 +164,30 @@ export const getIndoorBySlug = gql`
               price
               currency
               link_to_prices
-              vendor_text
             }
             price_link {
-              target
-              href
               label
+              href
+              target
             }
+          }
+
+          contacts {
+            phone
+            email
+            website
+          }
+          location {
+            city
+            continent
+            address
+            places
           }
           related_dropzones {
             data {
               attributes {
                 title
-                location {
-                  city
-                  country
-                }
-                logo {
-                  data {
-                    attributes {
-                      url
-                      alternativeText
-                    }
-                  }
-                }
+                slug
                 cover {
                   data {
                     attributes {

@@ -56,6 +56,7 @@ export default async function Home() {
       },
     },
   } = await client.query({ query: homePageQuery });
+  console.log('hero', hero)
 
   return (
     <Page>

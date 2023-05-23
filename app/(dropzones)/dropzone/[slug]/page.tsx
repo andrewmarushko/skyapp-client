@@ -1,10 +1,6 @@
-// import {
-//   fetchAllDropzones,
-//   fetchDropzone,
-//   fetchDropzoneSEO,
-// } from '@/api/dropzone';
-import LargeHeading from '@/components/ui/large-heading';
+import { getDropzoneSeoBySlug } from '@/api/queries/seo';
 import { Page } from '@/components/ui/page';
+import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 
 interface DropzoneDzPageProps {
@@ -19,34 +15,41 @@ const defaultSeo = {
 };
 
 export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  // const seo = await fetchDropzoneSEO(params.slug);
+  params: { slug },
+}: DropzoneDzPageProps): Promise<Metadata> {
+  const {
+    data: {
+      dropzones: { data },
+    },
+  } = await client.query({
+    query: getDropzoneSeoBySlug,
+    variables: { slug },
+  });
 
-  // if (!seo) return defaultSeo;
+  const { seo } = data[0].attributes;
+
+  if (!seo) return defaultSeo;
 
   return {
-    // metadataBase: new URL(`${seo.metadataBase}`),
-    // title: seo.metaTitle,
-    // description: seo.metaDescription,
-    // applicationName: seo.applicationName,
-    // keywords: seo.keywords,
-    // formatDetection: {
-    //   email: seo.format_description.email,
-    //   telephone: seo.format_description.telephone,
-    //   address: seo.format_description.address,
-    // },
-    // viewport: {
-    //   width: seo.viewport.width,
-    //   initialScale: seo.viewport.initial_scale,
-    // },
-    // robots: {
-    //   index: seo.robots.index,
-    //   follow: seo.robots.follow,
-    //   nocache: seo.robots.nocache,
-    // },
+    metadataBase: new URL(`${seo.metadataBase}`),
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    applicationName: seo.applicationName,
+    keywords: seo.keywords,
+    formatDetection: {
+      email: seo.format_description.email,
+      telephone: seo.format_description.telephone,
+      address: seo.format_description.address,
+    },
+    viewport: {
+      width: seo.viewport.width,
+      initialScale: seo.viewport.initial_scale,
+    },
+    robots: {
+      index: seo.robots.index,
+      follow: seo.robots.follow,
+      nocache: seo.robots.nocache,
+    },
   };
 }
 
