@@ -12,6 +12,8 @@ import { indoorsPageQuery, promotedIndoorsQuery } from '@/query/indoor';
 import { indoorsPageSeoQuery } from '@/query/seo';
 import { client } from '@/lib/graphql/apollo-server';
 
+// export const dynamic = 'force-dynamic'
+
 const defaultSeo = {
   title: 'Indoor',
   description: 'Indoor Page',

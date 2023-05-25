@@ -127,6 +127,9 @@ export const getIndoorBySlug = gql`
           speed
           height
           facilities
+          opening_hours {
+            weekday_text
+          }
           social {
             youtubeId
             links {
@@ -163,7 +166,6 @@ export const getIndoorBySlug = gql`
               type
               price
               currency
-              link_to_prices
             }
             price_link {
               label
@@ -171,7 +173,6 @@ export const getIndoorBySlug = gql`
               target
             }
           }
-
           contacts {
             phone
             email
