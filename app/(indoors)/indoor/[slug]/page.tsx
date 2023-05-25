@@ -71,7 +71,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     query: getIndoorBySlug,
     variables: { slug: slug },
   });
-
+  // TODO: Display prices and youtube shit
   const {
     data: {
       indoorPage: {
