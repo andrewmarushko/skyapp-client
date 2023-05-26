@@ -7,16 +7,16 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
 import { generalQuery } from '@/api/queries/general';
-import { ApolloWrapper} from '@/lib/graphql/apollo-client';
+import { ApolloWrapper } from '@/lib/graphql/apollo-client';
 import { client } from '@/lib/graphql/apollo-server';
 
+export const dynamic = 'force-dynamic';
 
 interface RootLayoutProps {
   children: React.ReactNode;
 }
 
 export default async function Layout({ children }: RootLayoutProps) {
-
   const {
     data: {
       general: {
@@ -26,7 +26,7 @@ export default async function Layout({ children }: RootLayoutProps) {
       },
     },
   } = await client.query({ query: generalQuery });
- 
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -35,13 +35,13 @@ export default async function Layout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <ApolloWrapper>
+          <ApolloWrapper>
             <main className="flex min-h-screen flex-col">
               <Header logoData={logo} navigationData={mainNavigation} />
-                <div className="flex-1">{children}</div>
+              <div className="flex-1">{children}</div>
               <Footer logoData={logo} footerData={footer} />
             </main>
-            </ApolloWrapper>
+          </ApolloWrapper>
         </ThemeProvider>
         <Analytics />
         <Toaster />

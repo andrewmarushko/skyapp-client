@@ -14,6 +14,8 @@ import { dropzonesPageQuery, promotedDropzonesQuery } from '@/query/dropzone';
 import { dropzonesPageSeoQuery } from '@/query/seo';
 import { client } from '@/lib/graphql/apollo-server';
 
+export const dynamic = 'force-dynamic';
+
 const defaultSeo = {
   title: 'Dropzone',
   description: 'Dropzone Page',

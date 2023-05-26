@@ -11,10 +11,12 @@ export const generalQuery = gql`
               label
               href
               target
+              hide
             }
             panel {
               id
               label
+              showPannel
               push {
                 coverTitle
                 cover {
@@ -28,6 +30,7 @@ export const generalQuery = gql`
                   label
                   href
                   target
+                  hide
                 }
                 description
               }
@@ -37,6 +40,7 @@ export const generalQuery = gql`
                   label
                   href
                   target
+                  hide
                 }
                 description
               }
@@ -55,6 +59,7 @@ export const generalQuery = gql`
                 label
                 href
                 target
+                hide
               }
             }
             copyright {
@@ -77,6 +82,7 @@ export const generalQuery = gql`
                 label
                 href
                 target
+                hide
               }
             }
           }

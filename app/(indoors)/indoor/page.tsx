@@ -5,7 +5,7 @@ import { indoorLandingPageSeoQuery } from '@/api/queries/seo';
 import { indoorLandingPageQuery } from '@/api/queries/indoor';
 import { client } from '@/lib/graphql/apollo-server';
 
-// export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
 
 const defaultSeo = {
   title: 'Indoor',
