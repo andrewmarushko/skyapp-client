@@ -17,6 +17,7 @@ import SmallHeading from '@/components/ui/small-heading';
 import { SocialLink } from '@/components/social-link';
 import { NavigationLink } from '@/components/ui/link';
 import { Icons } from '@/components/icons';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 export const dynamic = 'force-dynamic';
 
@@ -52,7 +53,6 @@ export async function generateMetadata({
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
-    keywords: seo.keywords,
     formatDetection: {
       email: seo.format_description?.email,
       telephone: seo.format_description.telephone,
@@ -113,36 +113,47 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
   } = data[0].attributes;
 
   return (
-    <Page variant='fluid'>
-      <Content variant='fluid' className='lg:container relative h-80 lg:h-96'>
+    <Page variant="fluid">
+      <Content variant="fluid" className="relative h-80 lg:container lg:h-96">
         <Image
           src={cover.data.attributes.url}
           alt={cover.data.attributes.alternativeText}
           width={600}
           height={100}
-          className='w-full h-full object-cover lg:rounded-lg'
+          className="h-full w-full object-cover lg:rounded-lg"
           quality={100}
         />
       </Content>
-      <Content className='flex justify-between items-center container'>
-        <div className='flex gap-4 items-center'>
+      <Content className="container flex items-center justify-between">
+        <div className="flex items-center gap-4">
           <Image
             src={logo.data.attributes.url}
             alt={logo.data.attributes.alternativeText}
             width={80}
             height={80}
-            className='rounded-full border border-accent-700 aspect-square'
+            className="aspect-square rounded-full border border-accent-700"
           />
-          <h1 className='text-4xl sm:text-5xl tracking-tight-title font-semibold'>{title}</h1>
+          <h1 className="text-4xl font-semibold tracking-tight-title sm:text-5xl">
+            {title}
+          </h1>
         </div>
         {/* TODO:  Expand website data with target and link label values*/}
-        <NavigationLink size={'lg'} variant={'black'} target='_blank' href={contacts.website}>Get in touch</NavigationLink>
+        <NavigationLink
+          size={'lg'}
+          variant={'black'}
+          target="_blank"
+          href={contacts.website}
+        >
+          Get in touch
+        </NavigationLink>
       </Content>
       <Content className="flex gap-20">
-        <div className='flex flex-col basis-2/3 py-6 gap-10'>
-          <div className='flex flex-col gap-6'>
+        <div className="flex basis-2/3 flex-col gap-10 py-6">
+          <div className="prose prose-stone flex flex-col gap-6">
             <MediumHeading>Overview</MediumHeading>
-            <Paragraph paragraphStyles={'description'}>{description}</Paragraph>
+            <ReactMarkdown className="prose prose-stone">
+              {description}
+            </ReactMarkdown>
           </div>
           <div>
             <p>{price_title}</p>
@@ -197,72 +208,84 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
         </div>
-        <div className='flex flex-col basis-1/3 sticky self-start top-16 py-6 gap-10'>
+        <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
           <div>
             <MediumHeading>Details</MediumHeading>
             <div>
-              {diameter>0 && 
+              {diameter > 0 && (
                 <div>
-                  <Separator className='my-6' />
-                  <div className='flex justify-between'>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
                     <SmallHeading>Diameter</SmallHeading>
                     <span>{diameter} ft.</span>
                   </div>
                 </div>
-              }
-              {speed>0 &&
+              )}
+              {speed > 0 && (
                 <div>
-                  <Separator className='my-6' />
-                  <div className='flex justify-between'>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
                     <SmallHeading>Speed</SmallHeading>
                     <span>{speed} mph.</span>
                   </div>
                 </div>
-              }
-              {height>0 &&
+              )}
+              {height > 0 && (
                 <div>
-                  <Separator className='my-6' />
-                  <div className='flex justify-between'>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
                     <SmallHeading>Height</SmallHeading>
                     <span>{height} ft.</span>
                   </div>
                 </div>
-              }
-              {company_name &&
+              )}
+              {company_name && (
                 <div>
-                  <Separator className='my-6' />
-                  <div className='flex justify-between'>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
                     <SmallHeading>Company</SmallHeading>
                     <span>{company_name}</span>
                   </div>
                 </div>
-              }
+              )}
             </div>
           </div>
-          <div className='flex'>
+          <div className="flex">
             {social.links.map((data: any, index: any) => (
               // TODO: Add Id instead of index at Strapi
               <SocialLink key={index} data={data} />
             ))}
           </div>
-          <div className='flex flex-col gap-6'>
+          <div className="flex flex-col gap-6">
             <MediumHeading>Schedule</MediumHeading>
-            <div className='flex flex-col'>
+            <div className="flex flex-col">
               {opening_hours.weekday_text.map((item: any, index: any) => (
-                <Paragraph paragraphStyles={'description'} key={index}>{item}</Paragraph>
+                <Paragraph paragraphStyles={'description'} key={index}>
+                  {item}
+                </Paragraph>
               ))}
             </div>
           </div>
-          <div className='flex flex-col gap-6'>
+          <div className="flex flex-col gap-6">
             <MediumHeading>Contact {title} indoor</MediumHeading>
-            <div className='flex justify-between'>
-              <div className='flex gap-2 items-center'>
+            <div className="flex justify-between">
+              <div className="flex items-center gap-2">
                 <Icons.mail className="h-6 w-6" />
-                <NavigationLink className='hover:underline hover:transition-all' href={`mailto: ${contacts.email}`}>{contacts.email}</NavigationLink>
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`mailto: ${contacts.email}`}
+                >
+                  {contacts.email}
+                </NavigationLink>
               </div>
-              <div className='flex gap-2 items-center'>
+              <div className="flex items-center gap-2">
                 <Icons.phone className="h-6 w-6" />
-                <NavigationLink className='hover:underline hover:transition-all' href={`tel: ${contacts.phone}`}>{contacts.phone}</NavigationLink>
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`tel: ${contacts.phone}`}
+                >
+                  {contacts.phone}
+                </NavigationLink>
               </div>
             </div>
           </div>

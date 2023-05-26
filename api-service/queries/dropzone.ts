@@ -1,14 +1,14 @@
 import { gql } from '@apollo/client';
 
-export const dropzonesPageQuery = gql`
+export const dropzonePageQuery = gql`
   query {
-    dropzonesPage {
+    dropzonePage {
       data {
         attributes {
-          hero {
-            title
-            subtitle
-          }
+          price_title
+          price_subtitle
+          related_tubes_title
+          relates_tubes_subtitle
           become_partner {
             title
             subtitle
@@ -157,9 +157,9 @@ export const getDropzoneBySlug = gql`
             city
             continent
             address
-            # places
+            places
           }
-          indoor {
+          related_indoors {
             data {
               attributes {
                 title
