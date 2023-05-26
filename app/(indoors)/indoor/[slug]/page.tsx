@@ -10,6 +10,11 @@ import { Suspense } from 'react';
 import GooglePlacesSection from '@/components/googlePlaces-section';
 import { BecomePartner } from '@/components/become-partner';
 import YouTubeSection from '@/components/youtube-section';
+import { Separator } from '@/components/ui/separator';
+import Paragraph from '@/components/ui/paragraph';
+import MediumHeading from '@/components/ui/medium-heading';
+import SmallHeading from '@/components/ui/small-heading';
+import { SocialLink } from '@/components/social-link';
 
 // export const dynamic = 'force-dynamic'
 interface IndoorTubePageProps {
@@ -104,106 +109,151 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     location: { places },
 } = data[0].attributes;
 
+  console.log(social.links, 'social.links')
+
   return (
-    <Page>
-      <Content className="flex flex-col gap-2">
-        <div>
-          <Image
-            src={cover.data.attributes.url}
-            alt={cover.data.attributes.alternativeText}
-            width={600}
-            height={300}
-          />
-        </div>
-        <h1>Title - {title}</h1>
-        <p className="purge">{description}</p>
-        <ul>
-          <li>diameter - {diameter}</li>
-          <li>speed - {speed}</li>
-          <li>height - {height}</li>
-        </ul>
+    <Page variant='fluid'>
+      <Content variant='fluid' className='lg:container relative h-80 lg:h-96'>
+        <Image
+          src={cover.data.attributes.url}
+          alt={cover.data.attributes.alternativeText}
+          width={600}
+          height={100}
+          className='w-full h-full object-cover lg:rounded-lg'
+          quality={100}
+        />
+      </Content>
+      <Content className='flex gap-4 items-center container'>
+        <Image
+          src={logo.data.attributes.url}
+          alt={logo.data.attributes.alternativeText}
+          width={80}
+          height={80}
+          className='rounded-full border border-accent-700 aspect-square'
+        />
+        <h1 className='text-4xl sm:text-5xl tracking-tight-title font-semibold'>{title}</h1>
+      </Content>
+      <Content className="flex gap-20">
+        <div className='flex flex-col basis-2/3 py-6'>
+          <div className='flex flex-col gap-6'>
+            <MediumHeading>Overview</MediumHeading>
+            <Paragraph paragraphStyles={'description'}>{description}</Paragraph>
+          </div>
+          
+          {/* <div>YoutubeId - {social.youtubeId}</div> */}
+          <p>Company Name: {company_name}</p>
 
-        <div>YoutubeId - {social.youtubeId}</div>
-        <div>
-          {social.links.map((item: any, index: any) => (
-            <li key={index}>
-              type - {item.type}, linkLabel - {item.link.label}, href -{' '}
-              {item.link.href}
-            </li>
-          ))}
-        </div>
-        <p>Company Name: {company_name}</p>
+          <div>
+            {opening_hours.weekday_text}
+          </div>
+          <div>
+            <span>LOGO</span>
+            <Image
+              src={logo.data.attributes.url}
+              alt={logo.data.attributes.alternativeText}
+              width={100}
+              height={100}
+            />
+          </div>
+          <ul>
+            <li>Phone - {contacts.phone}</li>
+            <li>Email - {contacts.email}</li>
+            <li>Website - {contacts.website}</li>
+          </ul>
 
-        <div>
-          {opening_hours.weekday_text}
-        </div>
-        <div>
-          <span>LOGO</span>
-          <Image
-            src={logo.data.attributes.url}
-            alt={logo.data.attributes.alternativeText}
-            width={100}
-            height={100}
-          />
-        </div>
-        <ul>
-          <li>Phone - {contacts.phone}</li>
-          <li>Email - {contacts.email}</li>
-          <li>Website - {contacts.website}</li>
-        </ul>
+          <div>
+            <p>{price_title}</p>
+            <p>{price_subtitle}</p>
+          </div>
+          <div>
+            <p>{related_dropzone_title}</p>
+            <p>{related_dropzone_subtitle}</p>
+            {related_dropzones.data.length > 0 ? (
+              related_dropzones.data.map((item: any, index: number) => (
+                <div key={index}>{item.attributes.title}</div>
+              ))
+            ) : (
+              <div>No dropzone found</div>
+            )}
+          </div>
 
-        <div>
-          <p>{price_title}</p>
-          <p>{price_subtitle}</p>
+          <div>
+            <p>Latitude - {places.lat}</p>
+            <p>Lontitude - {places.lng}</p>
+
+            <p>Raiting - {places.details.rating}</p>
+            <CustomMap long={places.lng} lat={places.lat} />
+          </div>
+
+          <div>
+            <p>Photos</p>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {places.details.photos.map((item: any, index: any) => (
+                <div className="h-auto w-full" key={index}>
+                  <Image
+                    key={index}
+                    alt={'Google Photo'}
+                    src={item.url}
+                    className="pointer-events-none h-full w-full object-cover"
+                    width={720}
+                    height={480}
+                    sizes="(max-width: 640px) 100vw,
+                    (max-width: 1280px) 50vw,
+                    (max-width: 1536px) 33vw,
+                    25vw"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          <Suspense fallback={<h1>loading comments</h1>}>
+            <GooglePlacesSection googlePlaceId={places.place_id} />
+          </Suspense>
+          <Suspense fallback={<h1>loading comments</h1>}>
+            <YouTubeSection youtubeChannelId={social.youtubeId} />
+          </Suspense>
         </div>
-        <div>
-          <p>{related_dropzone_title}</p>
-          <p>{related_dropzone_subtitle}</p>
-          {related_dropzones.data.length > 0 ? (
-            related_dropzones.data.map((item: any, index: number) => (
-              <div key={index}>{item.attributes.title}</div>
-            ))
-          ) : (
-            <div>No dropzone found</div>
-          )}
-        </div>
-
-        <div>
-          <p>Latitude - {places.lat}</p>
-          <p>Lontitude - {places.lng}</p>
-
-          <p>Raiting - {places.details.rating}</p>
-          <CustomMap long={places.lng} lat={places.lat} />
-        </div>
-
-        <div>
-          <p>Photos</p>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {places.details.photos.map((item: any, index: any) => (
-              <div className="h-auto w-full" key={index}>
-                <Image
-                  key={index}
-                  alt={'Google Photo'}
-                  src={item.url}
-                  className="pointer-events-none h-full w-full object-cover"
-                  width={720}
-                  height={480}
-                  sizes="(max-width: 640px) 100vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
-                />
+        <div className='flex flex-col basis-1/3 sticky self-start top-16 py-6 gap-6'>
+          <div>
+            <MediumHeading>Details</MediumHeading>
+            {diameter>0 && 
+              <div>
+                <Separator className='my-6' />
+                <div className='flex justify-between'>
+                  <SmallHeading>Diameter</SmallHeading>
+                  <span>{diameter} ft.</span>
+                </div>
               </div>
+            }
+            {speed>0 &&
+              <div>
+                <Separator className='my-6' />
+                <div className='flex justify-between'>
+                  <SmallHeading>Speed</SmallHeading>
+                  <span>{speed} mph.</span>
+                </div>
+              </div>
+            }
+            {height>0 &&
+              <div>
+                <Separator className='my-6' />
+                <div className='flex justify-between'>
+                  <SmallHeading>Height</SmallHeading>
+                  <span>{height} ft.</span>
+                </div>
+              </div>
+            }
+          </div>
+          <div className='flex'>
+            {social.links.map((data: any, index: any) => (
+              // TODO: Add Id instead of index at Strapi
+              <SocialLink key={index} data={data} />
             ))}
           </div>
         </div>
-        <Suspense fallback={<h1>loading comments</h1>}>
-          <GooglePlacesSection googlePlaceId={places.place_id} />
-        </Suspense>
-        <Suspense fallback={<h1>loading comments</h1>}>
-            <YouTubeSection youtubeChannelId={social.youtubeId} />
-          </Suspense>
+      </Content>
+      <Content>
         <BecomePartner data={become_partner} />
       </Content>
       {/* {indoorsList &&

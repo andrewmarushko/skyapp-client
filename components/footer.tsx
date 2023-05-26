@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { Icons } from '@/icons';
 import { NavigationLink } from '@/ui/link';
 import { Logo } from '@/components/logo';
 import { FooterInterface } from '@/types/footer';
@@ -13,6 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/ui/accordion';
+import { SocialLink } from './social-link';
 
 const ModeToggle = dynamic(
   () => import('@/components/mode-toggle').then((mod) => mod.ModeToggle),
@@ -102,28 +102,8 @@ export function Footer({ footerData, logoData }: any) {
           </span>
           <div className='flex flex-col md:flex-row w-full gap-4 md:gap-0 md:justify-between items-center'>
             <nav className="flex h-full">
-              {social.map(({ id, type, link }: any) => (
-                <NavigationLink
-                  className="mr-4 border-r border-r-accent-700 pr-4 leading-0 last:mr-0 last:border-r-0 last:pr-0 dark:border-r-accent-200"
-                  key={id}
-                  variant={'socialNetwork'}
-                  size={'noPadding'}
-                  href={link.href}
-                  target={link.target}
-                >
-                  {type === 'instagram' && (
-                    <Icons.instagram className="h-5 w-5" />
-                  )}
-                  {type === 'facebook' && (
-                    <Icons.facebook className="h-5 w-5" />
-                  )}
-                  {type === 'twitter' && (
-                    <Icons.twitter className="h-5 w-5" />
-                  )}
-                  {type === 'youtube' && (
-                    <Icons.youtube className="h-5 w-5" />
-                  )}
-                </NavigationLink>
+              {social.map((data: any) => (
+                <SocialLink key={data.id} data={data} />
               ))}
             </nav>
             <ModeToggle />

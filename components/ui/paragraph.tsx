@@ -4,16 +4,17 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 export const paragraphVariants = cva(
-  'max-w-prose text-stone-700 dark:text-stone-300 text-center',
+  '',
   {
     variants: {
       size: {
-        default: 'text-base sm:text-lg',
+        default: '',
         sm: 'text-sm sm:text-base',
         lg: 'text-xl md:text-2xl',
       },
       paragraphStyles: {
         subtitle: 'tracking-tight-subtitle text-accent-400',
+        description: 'text-accent-400 dark:text-accent-500 leading-7',
         default: '',
       },
     },
