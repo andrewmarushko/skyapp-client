@@ -14,7 +14,7 @@ export const paragraphVariants = cva(
       },
       paragraphStyles: {
         subtitle: 'tracking-tight-subtitle text-accent-400',
-        description: 'text-accent-400 dark:text-accent-500 leading-7',
+        description: 'text-accent-400 dark:text-accent-500 leading-7 text-justify',
         default: '',
       },
     },

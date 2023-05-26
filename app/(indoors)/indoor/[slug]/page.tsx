@@ -15,6 +15,8 @@ import Paragraph from '@/components/ui/paragraph';
 import MediumHeading from '@/components/ui/medium-heading';
 import SmallHeading from '@/components/ui/small-heading';
 import { SocialLink } from '@/components/social-link';
+import { NavigationLink } from '@/components/ui/link';
+import { Icons } from '@/components/icons';
 
 // export const dynamic = 'force-dynamic'
 interface IndoorTubePageProps {
@@ -109,8 +111,6 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     location: { places },
 } = data[0].attributes;
 
-  console.log(social.links, 'social.links')
-
   return (
     <Page variant='fluid'>
       <Content variant='fluid' className='lg:container relative h-80 lg:h-96'>
@@ -123,44 +123,26 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
           quality={100}
         />
       </Content>
-      <Content className='flex gap-4 items-center container'>
-        <Image
-          src={logo.data.attributes.url}
-          alt={logo.data.attributes.alternativeText}
-          width={80}
-          height={80}
-          className='rounded-full border border-accent-700 aspect-square'
-        />
-        <h1 className='text-4xl sm:text-5xl tracking-tight-title font-semibold'>{title}</h1>
+      <Content className='flex justify-between items-center container'>
+        <div className='flex gap-4 items-center'>
+          <Image
+            src={logo.data.attributes.url}
+            alt={logo.data.attributes.alternativeText}
+            width={80}
+            height={80}
+            className='rounded-full border border-accent-700 aspect-square'
+          />
+          <h1 className='text-4xl sm:text-5xl tracking-tight-title font-semibold'>{title}</h1>
+        </div>
+        {/* TODO:  Expand website data with target and link label values*/}
+        <NavigationLink size={'lg'} variant={'black'} target='_blank' href={contacts.website}>Get in touch</NavigationLink>
       </Content>
       <Content className="flex gap-20">
-        <div className='flex flex-col basis-2/3 py-6'>
+        <div className='flex flex-col basis-2/3 py-6 gap-10'>
           <div className='flex flex-col gap-6'>
             <MediumHeading>Overview</MediumHeading>
             <Paragraph paragraphStyles={'description'}>{description}</Paragraph>
           </div>
-          
-          {/* <div>YoutubeId - {social.youtubeId}</div> */}
-          <p>Company Name: {company_name}</p>
-
-          <div>
-            {opening_hours.weekday_text}
-          </div>
-          <div>
-            <span>LOGO</span>
-            <Image
-              src={logo.data.attributes.url}
-              alt={logo.data.attributes.alternativeText}
-              width={100}
-              height={100}
-            />
-          </div>
-          <ul>
-            <li>Phone - {contacts.phone}</li>
-            <li>Email - {contacts.email}</li>
-            <li>Website - {contacts.website}</li>
-          </ul>
-
           <div>
             <p>{price_title}</p>
             <p>{price_subtitle}</p>
@@ -214,42 +196,74 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
         </div>
-        <div className='flex flex-col basis-1/3 sticky self-start top-16 py-6 gap-6'>
+        <div className='flex flex-col basis-1/3 sticky self-start top-16 py-6 gap-10'>
           <div>
             <MediumHeading>Details</MediumHeading>
-            {diameter>0 && 
-              <div>
-                <Separator className='my-6' />
-                <div className='flex justify-between'>
-                  <SmallHeading>Diameter</SmallHeading>
-                  <span>{diameter} ft.</span>
+            <div>
+              {diameter>0 && 
+                <div>
+                  <Separator className='my-6' />
+                  <div className='flex justify-between'>
+                    <SmallHeading>Diameter</SmallHeading>
+                    <span>{diameter} ft.</span>
+                  </div>
                 </div>
-              </div>
-            }
-            {speed>0 &&
-              <div>
-                <Separator className='my-6' />
-                <div className='flex justify-between'>
-                  <SmallHeading>Speed</SmallHeading>
-                  <span>{speed} mph.</span>
+              }
+              {speed>0 &&
+                <div>
+                  <Separator className='my-6' />
+                  <div className='flex justify-between'>
+                    <SmallHeading>Speed</SmallHeading>
+                    <span>{speed} mph.</span>
+                  </div>
                 </div>
-              </div>
-            }
-            {height>0 &&
-              <div>
-                <Separator className='my-6' />
-                <div className='flex justify-between'>
-                  <SmallHeading>Height</SmallHeading>
-                  <span>{height} ft.</span>
+              }
+              {height>0 &&
+                <div>
+                  <Separator className='my-6' />
+                  <div className='flex justify-between'>
+                    <SmallHeading>Height</SmallHeading>
+                    <span>{height} ft.</span>
+                  </div>
                 </div>
-              </div>
-            }
+              }
+              {company_name &&
+                <div>
+                  <Separator className='my-6' />
+                  <div className='flex justify-between'>
+                    <SmallHeading>Company</SmallHeading>
+                    <span>{company_name}</span>
+                  </div>
+                </div>
+              }
+            </div>
           </div>
           <div className='flex'>
             {social.links.map((data: any, index: any) => (
               // TODO: Add Id instead of index at Strapi
               <SocialLink key={index} data={data} />
             ))}
+          </div>
+          <div className='flex flex-col gap-6'>
+            <MediumHeading>Schedule</MediumHeading>
+            <div className='flex flex-col'>
+              {opening_hours.weekday_text.map((item: any, index: any) => (
+                <Paragraph paragraphStyles={'description'} key={index}>{item}</Paragraph>
+              ))}
+            </div>
+          </div>
+          <div className='flex flex-col gap-6'>
+            <MediumHeading>Contact {title} indoor</MediumHeading>
+            <div className='flex justify-between'>
+              <div className='flex gap-2 items-center'>
+                <Icons.mail className="h-6 w-6" />
+                <NavigationLink className='hover:underline hover:transition-all' href={`mailto: ${contacts.email}`}>{contacts.email}</NavigationLink>
+              </div>
+              <div className='flex gap-2 items-center'>
+                <Icons.phone className="h-6 w-6" />
+                <NavigationLink className='hover:underline hover:transition-all' href={`tel: ${contacts.phone}`}>{contacts.phone}</NavigationLink>
+              </div>
+            </div>
           </div>
         </div>
       </Content>
