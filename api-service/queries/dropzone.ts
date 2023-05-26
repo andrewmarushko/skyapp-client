@@ -58,6 +58,30 @@ export const promotedDropzonesQuery = gql`
   }
 `;
 
+export const dropzonesPageQuery = gql`
+  query {
+    dropzonesPage {
+      data {
+        attributes {
+          hero {
+            title
+            subtitle
+          }
+          become_partner {
+            title
+            subtitle
+            link {
+              href
+              target
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const allDropzonesQuery = gql`
   query {
     dropzones {
