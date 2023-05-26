@@ -157,7 +157,7 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
             <p>{price_subtitle}</p>
             <div>
               {prices.price.map((item: any, index: any) => (
-                <p>
+                <p key={index}>
                   {item.type} - {item.price} {item.currency}
                 </p>
               ))}

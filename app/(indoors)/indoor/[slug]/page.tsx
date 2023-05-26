@@ -161,7 +161,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
             <p>{price_subtitle}</p>
             <div>
               {prices.price.map((item: any, index: any) => (
-                <p>
+                <p key={index}>
                   {item.type} - {item.price} {item.currency}
                 </p>
               ))}
