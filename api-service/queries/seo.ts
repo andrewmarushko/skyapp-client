@@ -18,7 +18,6 @@ export const homePageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
@@ -67,7 +66,6 @@ export const contactsPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
@@ -116,7 +114,6 @@ export const blogPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
@@ -165,7 +162,6 @@ export const servicesPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
@@ -214,7 +210,6 @@ export const indoorLandingPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
@@ -263,7 +258,6 @@ export const dropzoneLandingPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
@@ -312,7 +306,6 @@ export const indoorsPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
@@ -361,7 +354,6 @@ export const dropzonesPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
@@ -410,7 +402,54 @@ export const getIndoorSeoBySlug = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
+            format_description {
+              email
+              telephone
+              address
+            }
+            metadataBase
+            robots {
+              index
+              follow
+              nocache
+            }
+            google_bot {
+              index
+              follow
+              no_image_index
+              max_video_preview
+              max_snippet
+              max_image_preview
+            }
+            manifest
+            twitter {
+              card
+              title
+              description
+              image
+            }
+            referrer
+            viewport {
+              width
+              initial_scale
+              maximum_scale
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const getDropzoneSeoBySlug = gql`
+  query getBySlug($slug: String!) {
+    dropzones(filters: { slug: { eq: $slug } }) {
+      data {
+        attributes {
+          seo {
+            metaTitle
+            metaDescription
+            applicationName
             format_description {
               email
               telephone

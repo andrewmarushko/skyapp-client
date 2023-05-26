@@ -13,8 +13,8 @@ const containerStyle = {
 const apiKey: string | undefined = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
 export const CustomMap: FunctionComponent<CustomMapProps> = ({
-  lat = '',
-  long = '',
+  lat = 0,
+  long = 0,
 }) => {
   const center = {
     lat: +lat,

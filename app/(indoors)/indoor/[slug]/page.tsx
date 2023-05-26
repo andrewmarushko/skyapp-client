@@ -1,14 +1,25 @@
 import { getIndoorBySlug, indoorPageQuery } from '@/query/indoor';
 import { Content } from '@/components/content';
-import { Card } from '@/ui/card';
-import LargeHeading from '@/ui/large-heading';
 import { Page } from '@/ui/page';
-import Paragraph from '@/ui/paragraph';
-import { Separator } from '@/ui/separator';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { getIndoorSeoBySlug } from '@/api/queries/seo';
 import { client } from '@/lib/graphql/apollo-server';
+import { CustomMap } from '@/components/ui/google-map';
+import { Suspense } from 'react';
+import GooglePlacesSection from '@/components/googlePlaces-section';
+import { BecomePartner } from '@/components/become-partner';
+import YouTubeSection from '@/components/youtube-section';
+import { Separator } from '@/components/ui/separator';
+import Paragraph from '@/components/ui/paragraph';
+import MediumHeading from '@/components/ui/medium-heading';
+import SmallHeading from '@/components/ui/small-heading';
+import { SocialLink } from '@/components/social-link';
+import { NavigationLink } from '@/components/ui/link';
+import { Icons } from '@/components/icons';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+
+export const dynamic = 'force-dynamic';
 
 interface IndoorTubePageProps {
   params: {
@@ -42,7 +53,6 @@ export async function generateMetadata({
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
-    keywords: seo.keywords,
     formatDetection: {
       email: seo.format_description?.email,
       telephone: seo.format_description.telephone,
@@ -60,16 +70,7 @@ export async function generateMetadata({
   };
 }
 
-export const revalidate = 1;
-// const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
-// const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
-  // const indoorsList: any = await getIndoorsByID(slug);
-  // const indoor = await fetchTube(slug);
-
-  // const youtubeChannelId = indoorsList.data.attributes.socialMedia?.youtubeChannelId;
-  // const googlePlaceId = indoorsList.data.attributes.socialMedia?.googlePlaceId;
-
   const {
     data: {
       indoors: { data },
@@ -78,7 +79,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     query: getIndoorBySlug,
     variables: { slug: slug },
   });
-
+  // TODO: Display prices and youtube shit
   const {
     data: {
       indoorPage: {
@@ -96,306 +97,212 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
   } = await client.query({ query: indoorPageQuery });
 
   const {
-    attributes: {
-      title,
-      location,
-      diameter,
-      speed,
-      height,
-      description,
-      facilities,
-      opening_hours,
-      contacts,
-      social,
-      cover,
-      building_status,
-      company_name,
-      logo,
-      prices,
-      price_link,
-      related_dropzones,
-    },
-  } = data[0];
+    title,
+    description,
+    diameter,
+    speed,
+    height,
+    social,
+    cover,
+    company_name,
+    logo,
+    contacts,
+    related_dropzones,
+    opening_hours,
+    location: { places },
+    prices,
+  } = data[0].attributes;
 
   return (
-    <Page>
-      <Content>
+    <Page variant="fluid">
+      <Content variant="fluid" className="relative h-80 lg:container lg:h-96">
         <Image
           src={cover.data.attributes.url}
           alt={cover.data.attributes.alternativeText}
-          width={500}
-          height={500}
+          width={600}
+          height={100}
+          className="h-full w-full object-cover lg:rounded-lg"
+          quality={100}
         />
-        <LargeHeading>
+      </Content>
+      <Content className="container flex items-center justify-between">
+        <div className="flex items-center gap-4">
           <Image
-            src={logo.data?.attributes.url}
-            width={100}
-            height={100}
+            src={logo.data.attributes.url}
             alt={logo.data.attributes.alternativeText}
+            width={80}
+            height={80}
+            className="aspect-square rounded-full border border-accent-700"
           />
-          {title} - {company_name}
-        </LargeHeading>
-        <Paragraph>{description}</Paragraph>
-        <Separator />
-        <p>Diameter: {diameter}</p>
-        <p>Speed: {speed}</p>
-        <p>Height: {height}</p>
-        <p>
-          Location: {location.city} / {location.country}, {location.lat},{' '}
-          {location.lng}, {location.continent}, {location.address},{' '}
-          {location.zipcode}
-        </p>
-        <Separator />
-        <p>Facilities: {facilities.join(' ')}</p>
-        <p>
-          Opening Hours:{' '}
-          {opening_hours.period?.map(
-            ({ item, index }: { item: any; index: number }) => (
-              <div key={index}>
-                <span>Open: {item.open.time}</span>
-                <span>Close: {item.close.time}</span>
-              </div>
-            ),
-          )}
-        </p>
-        <p>
-          Contacts: {contacts.phone}, {contacts.email}, {contacts.website}
-        </p>
-        <div>
-          <span>
-            Social:{' '}
-            <ul>
-              <li>Youtube Chanel Id{social.youtubeId}</li>
-              <li>Place Id{social.placeId}</li>
-            </ul>
-          </span>
+          <h1 className="text-4xl font-semibold tracking-tight-title sm:text-5xl">
+            {title}
+          </h1>
         </div>
-        <p>
-          {' '}
-          Prices:{' '}
-          {prices.price.map(({ item, index }: { item: any; index: number }) => (
-            <div key={index}>
-              <span>{item.type}</span> -{' '}
-              <span>
-                {item.price}
-                {item.currency}
-              </span>
-              <span>
-                <span>{item.vendor_text}</span> - {item.link_to_prices}
-              </span>
+        {/* TODO:  Expand website data with target and link label values*/}
+        <NavigationLink
+          size={'lg'}
+          variant={'black'}
+          target="_blank"
+          href={contacts.website}
+        >
+          Get in touch
+        </NavigationLink>
+      </Content>
+      <Content className="flex gap-20">
+        <div className="flex basis-2/3 flex-col gap-10 py-6">
+          <div className="prose prose-stone flex flex-col gap-6">
+            <MediumHeading>Overview</MediumHeading>
+            <ReactMarkdown className="prose prose-stone">
+              {description}
+            </ReactMarkdown>
+          </div>
+          <div>
+            <p>{price_title}</p>
+            <p>{price_subtitle}</p>
+            <div>
+              {prices.price.map((item: any, index: any) => (
+                <p key={index}>
+                  {item.type} - {item.price} {item.currency}
+                </p>
+              ))}
+              <div>{prices.price_link.href}</div>
             </div>
-          ))}
-        </p>
-        <p>Building status - `${building_status}`</p>
+          </div>
+          <div>
+            <p>{related_dropzone_title}</p>
+            <p>{related_dropzone_subtitle}</p>
+            {related_dropzones.data.length > 0 ? (
+              related_dropzones.data.map((item: any, index: number) => (
+                <div key={index}>{item.attributes.title}</div>
+              ))
+            ) : (
+              <div>No dropzone found</div>
+            )}
+          </div>
 
-        <div>
-          <h1>Related Dropzones</h1>
-          {related_dropzones.data.map(
-            ({ item, index }: { item: any; index: number }) => {
-              return (
-                <div key={index}>
-                  <Card>
-                    <Image
-                      src={item.attributes.cover.data.attributes.url}
-                      width={500}
-                      height={500}
-                      alt={
-                        item.attributes.cover.data.attributes.alternativeText
-                      }
-                    />
-                    <h1>
-                      <Image
-                        src={item.attributes.logo.data.attributes.url}
-                        width={100}
-                        height={100}
-                        alt={
-                          item.attributes.logo.data.attributes.alternativeText
-                        }
-                      />
-                      {item.attributes.title}
-                    </h1>
-                  </Card>
+          <div>
+            <p>Latitude - {places.lat}</p>
+            <p>Lontitude - {places.lng}</p>
+
+            <p>Raiting - {places.details.rating}</p>
+            <CustomMap long={places.lng} lat={places.lat} />
+          </div>
+
+          <div>
+            <p>Photos</p>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {places.details.photos.map((item: any, index: any) => (
+                <div className="h-auto w-full" key={index}>
+                  <Image
+                    key={index}
+                    alt={'Google Photo'}
+                    src={item.url}
+                    className="pointer-events-none h-full w-full object-cover"
+                    width={720}
+                    height={480}
+                    sizes="(max-width: 640px) 100vw,
+                    (max-width: 1280px) 50vw,
+                    (max-width: 1536px) 33vw,
+                    25vw"
+                  />
                 </div>
-              );
-            },
-          )}
+              ))}
+            </div>
+          </div>
+          <Suspense fallback={<h1>loading comments</h1>}>
+            <GooglePlacesSection googlePlaceId={places.place_id} />
+          </Suspense>
+          <Suspense fallback={<h1>loading comments</h1>}>
+            <YouTubeSection youtubeChannelId={social.youtubeId} />
+          </Suspense>
         </div>
-        <Separator />
-        <div>
-          Data from page for a titles etc
+        <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
           <div>
-            become_partner - {become_partner.title}, {become_partner.subtitle},{' '}
-            {become_partner.link.label}
+            <MediumHeading>Details</MediumHeading>
+            <div>
+              {diameter > 0 && (
+                <div>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
+                    <SmallHeading>Diameter</SmallHeading>
+                    <span>{diameter} ft.</span>
+                  </div>
+                </div>
+              )}
+              {speed > 0 && (
+                <div>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
+                    <SmallHeading>Speed</SmallHeading>
+                    <span>{speed} mph.</span>
+                  </div>
+                </div>
+              )}
+              {height > 0 && (
+                <div>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
+                    <SmallHeading>Height</SmallHeading>
+                    <span>{height} ft.</span>
+                  </div>
+                </div>
+              )}
+              {company_name && (
+                <div>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
+                    <SmallHeading>Company</SmallHeading>
+                    <span>{company_name}</span>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-          <div>
-            Related Dropzones = {related_dropzone_title},{' '}
-            {related_dropzone_subtitle}
+          <div className="flex">
+            {social.links.map((data: any, index: any) => (
+              // TODO: Add Id instead of index at Strapi
+              <SocialLink key={index} data={data} />
+            ))}
           </div>
-          <div>
-            Prices - {price_title}, {price_subtitle}
+          <div className="flex flex-col gap-6">
+            <MediumHeading>Schedule</MediumHeading>
+            <div className="flex flex-col">
+              {opening_hours.weekday_text.map((item: any, index: any) => (
+                <Paragraph paragraphStyles={'description'} key={index}>
+                  {item}
+                </Paragraph>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col gap-6">
+            <MediumHeading>Contact {title} indoor</MediumHeading>
+            <div className="flex justify-between">
+              <div className="flex items-center gap-2">
+                <Icons.mail className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`mailto: ${contacts.email}`}
+                >
+                  {contacts.email}
+                </NavigationLink>
+              </div>
+              <div className="flex items-center gap-2">
+                <Icons.phone className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`tel: ${contacts.phone}`}
+                >
+                  {contacts.phone}
+                </NavigationLink>
+              </div>
+            </div>
           </div>
         </div>
       </Content>
-      {/* TODO: Refactor this no map needed anymore */}
-      {/* {indoorsList &&
-        indoorsList.data.map((item: IndoorDataItemInterface) => (
-      {indoorsList.data.attributes.title}
-      {/* TODO: Refactor this no map needed anymore */}
-      {/* {indoorsList &&
-        indoorsList.data.map((item: IndoorDataItemInterface) => (
-          <div className="flex w-full flex-col gap-14" key={item.id}>
-            <section className="relative flex w-full flex-col gap-10">
-              <Image
-                src={item.coverImage?.url}
-                alt={item.coverImage?.alternativeText}
-                width={item.coverImage?.width}
-                height={item.coverImage?.height}
-                className="h-[600px] w-full object-cover"
-                priority
-                quality={100}
-              />
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-10 ">
-                  <div className="border-radius-50 relative flex h-56 w-56 items-center shadow-lg">
-                    <Image
-                      src={item.logo?.url}
-                      alt={item.logo?.alternativeText}
-                      width={item.logo?.width}
-                      height={item.logo?.height}
-                      className="border-radius-50 w-full"
-                      priority
-                    />
-                  </div>
-                  <div className="flex flex-col gap-5">
-                    <LargeHeading size="lg">{item.title}</LargeHeading>
-                    <div className="flex items-center gap-3">
-                      <Icons.mapPin className="h-5 w-5" />
-                      <span>
-                        {item.indoorLocation.country},{' '}
-                        {item.indoorLocation.city},{' '}
-                        {item.indoorLocation.zipcode},{' '}
-                        {item.indoorLocation.address}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                {item.websiteUrl && 
-                  <Link
-                  target="_blank"
-                  href={item.websiteUrl}
-                  className="flex h-20 w-24 items-center rounded-lg bg-slate-800 text-center text-white"
-                  >
-                    Go to website
-                  </Link>
-                }
-              </div>
-            </section>
-            <section className="mt-5 flex gap-20">
-              <div className="flex basis-1/2 flex-col gap-10 ">
-                <div className="flex justify-between gap-5">
-                  <div className="flex gap-4">
-                    {item.socialMedia?.list?.map(({ id, link, type }) => (
-                      <Link href={link} key={id} target="_blank">
-                        {type === 'Instagram' && (
-                          <Icons.instagram className="h-9 w-9" />
-                        )}
-                        {type === 'Facebook' && (
-                          <Icons.facebook className="h-9 w-9" />
-                        )}
-                        {type === 'YouTube' && (
-                          <Icons.youtube className="h-9 w-9" />
-                        )}
-                        {type === 'Twitter' && (
-                          <Icons.twitter className="h-9 w-9" />
-                        )}
-                      </Link>
-                    ))}
-                  </div>
-                  <div>
-                    {item.isStillBuilding ? (
-                      <div className="flex items-center gap-2">
-                        <div className="border-radius-50 h-10 w-10 bg-yellow-400"></div>
-                        <span>It is still building. The openning is soon!</span>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-2">
-                        <div className="border-radius-50 h-10 w-10 bg-green-400"></div>
-                        <span>It is already opened!</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <div className="flex flex-col gap-5">
-                  <LargeHeading size="sm">About indoor</LargeHeading>
-                  <p>{item.description}</p>
-                </div>
-                <div className="flex flex-col gap-5">
-                  <LargeHeading size="sm">Working hours</LargeHeading>
-                  <div>
-                    {item.workingHours.map(({ id, day, hours }) => (
-                      <div className="flex justify-between" key={id}>
-                        <span>{day?.map((item) => `${item}, `)}</span>
-                        <span className="font-semibold">{hours}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex flex-col gap-5">
-                  <LargeHeading size="sm">Available facilities</LargeHeading>
-                  <p>{item.facilities}</p>
-                </div>
-              </div>
-              <div className="flex basis-1/2">
-                <div className="flex w-full flex-col gap-5">
-                  <LargeHeading size="sm">
-                    Indoor technical characteristics
-                  </LargeHeading>
-                  <table className="border-2 border-black dark:border-white">
-                    <thead>
-                      <tr>
-                        <th>Characteristic name</th>
-                        <th>Value</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Diameter</td>
-                        <td>{item.diameter}</td>
-                      </tr>
-                      <tr>
-                        <td>Speed</td>
-                        <td>{item.speed}</td>
-                      </tr>
-                      <tr>
-                        <td>Height</td>
-                        <td>{item.height}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-            <Suspense fallback={<h1>loading comments</h1>}>
-              <YouTubeSection youtubeChannelId={youtubeChannelId} />
-            </Suspense>
-            <section className="flex gap-20">
-              <div className="flex basis-1/2 flex-col gap-5 rounded-lg bg-slate-400 p-6">
-                <div className="flex w-full items-center justify-between">
-                  <LargeHeading size="sm">Find us on the map</LargeHeading>
-                  <Icons.map className="h-5 w-5" />
-                </div>
-                <CustomMap
-                  lat={item.indoorLocation.lat}
-                  long={item.indoorLocation.long}
-                />
-              </div>
-              <div className="flex basis-1/2"></div>
-            </section>
-            <Suspense fallback={<h1>loading comments</h1>}>
-              <GooglePlacesSection googlePlaceId={googlePlaceId} />
-            </Suspense>
-          </div>
-        ))} */}
+      <Content>
+        <BecomePartner data={become_partner} />
+      </Content>
     </Page>
   );
 };

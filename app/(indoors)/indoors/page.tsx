@@ -1,8 +1,5 @@
 import { Metadata } from 'next';
-
-// import { fetchPromotedIndoors, getIndoorPageData } from '@/api/indoor';
 import { Page } from '@/components/ui/page';
-// import { getPageSeo } from '@/api/seo';
 import { Hero } from '@/components/hero';
 import { Content } from '@/components/content';
 import { BecomePartner } from '@/components/become-partner';
@@ -11,6 +8,8 @@ import { ContentLayout } from '@/components/content-layout';
 import { indoorsPageQuery, promotedIndoorsQuery } from '@/query/indoor';
 import { indoorsPageSeoQuery } from '@/query/seo';
 import { client } from '@/lib/graphql/apollo-server';
+
+export const dynamic = 'force-dynamic';
 
 const defaultSeo = {
   title: 'Indoor',
@@ -35,7 +34,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
-    keywords: seo.keywords,
     formatDetection: {
       email: seo.format_description.email,
       telephone: seo.format_description.telephone,

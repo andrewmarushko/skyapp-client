@@ -41,7 +41,7 @@ export const CardList = async ({
   }
 
   return (
-    <div className="grid justify-center gap-6 grid-cols-1 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
+    <div className="grid grid-cols-1 justify-center gap-6 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
       {data.map(({ attributes, id }: any, index: number) => (
         <NavigationCard
           link_location={locationParam}

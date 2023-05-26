@@ -1,8 +1,3 @@
-// import {
-//   fetchDropzonePageData,
-//   fetchPromotedDropzone,
-// } from '@/api/dropzone';
-// import { getPageSeo } from '@/api/seo';
 import { Metadata } from 'next';
 import { Hero } from '@/components/hero';
 import { BecomePartner } from '@/components/become-partner';
@@ -13,6 +8,8 @@ import { Promoted } from '@/components/promoted';
 import { dropzonesPageQuery, promotedDropzonesQuery } from '@/query/dropzone';
 import { dropzonesPageSeoQuery } from '@/query/seo';
 import { client } from '@/lib/graphql/apollo-server';
+
+export const dynamic = 'force-dynamic';
 
 const defaultSeo = {
   title: 'Dropzone',
@@ -37,7 +34,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
-    keywords: seo.keywords,
     formatDetection: {
       email: seo.format_description.email,
       telephone: seo.format_description.telephone,

@@ -1,8 +1,12 @@
+import { dropzonesPageQuery } from '@/api/queries/dropzone';
 import { dropzoneLandingPageSeoQuery } from '@/api/queries/seo';
+import { BecomePartner } from '@/components/become-partner';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
 import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
 
 const defaultSeo = {
   title: 'Dropzone',
@@ -27,7 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
-    keywords: seo.keywords,
     formatDetection: {
       email: seo.format_description.email,
       telephone: seo.format_description.telephone,
@@ -46,9 +49,19 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const DropzonePage = async () => {
+  const {
+    data: {
+      dropzonesPage: {
+        data: {
+          attributes: { hero, become_partner },
+        },
+      },
+    },
+  } = await client.query({ query: dropzonesPageQuery });
   return (
     <Page>
-      <Hero title="Dropzone Landing Page" subtitle="Landing subtitle" />
+      <Hero title={hero.title} subtitle={hero.subtitle} />
+      <BecomePartner data={become_partner} />
     </Page>
   );
 };

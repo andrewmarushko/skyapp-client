@@ -7,7 +7,7 @@ export async function GET(
   { params }: { params: { channelId: string } },
 ) {
   const res = await fetch(
-    `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_KEY}&channelId=${params.channelId}&part=snippet&order=viewCount&maxResults=9`,
+    `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_KEY}&channelId=${params.channelId}&part=snippet&order=viewCount&maxResults=6`,
     { next: { revalidate: 7200 } },
   );
   const data = await res.json();
