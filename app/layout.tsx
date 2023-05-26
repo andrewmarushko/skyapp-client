@@ -14,7 +14,9 @@ export const dynamic = 'force-dynamic';
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  pageProps: any
 }
+
 
 export default async function Layout({ children }: RootLayoutProps) {
   const {
@@ -26,7 +28,7 @@ export default async function Layout({ children }: RootLayoutProps) {
       },
     },
   } = await client.query({ query: generalQuery });
-
+ 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
