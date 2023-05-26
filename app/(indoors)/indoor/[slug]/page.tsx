@@ -11,7 +11,8 @@ import GooglePlacesSection from '@/components/googlePlaces-section';
 import { BecomePartner } from '@/components/become-partner';
 import YouTubeSection from '@/components/youtube-section';
 
-// export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
+
 interface IndoorTubePageProps {
   params: {
     slug: string;
@@ -102,7 +103,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     related_dropzones,
     opening_hours,
     location: { places },
-} = data[0].attributes;
+  } = data[0].attributes;
 
   return (
     <Page>
@@ -134,9 +135,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
         </div>
         <p>Company Name: {company_name}</p>
 
-        <div>
-          {opening_hours.weekday_text}
-        </div>
+        <div>{opening_hours.weekday_text}</div>
         <div>
           <span>LOGO</span>
           <Image
@@ -202,8 +201,8 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
           <GooglePlacesSection googlePlaceId={places.place_id} />
         </Suspense>
         <Suspense fallback={<h1>loading comments</h1>}>
-            <YouTubeSection youtubeChannelId={social.youtubeId} />
-          </Suspense>
+          <YouTubeSection youtubeChannelId={social.youtubeId} />
+        </Suspense>
         <BecomePartner data={become_partner} />
       </Content>
       {/* {indoorsList &&

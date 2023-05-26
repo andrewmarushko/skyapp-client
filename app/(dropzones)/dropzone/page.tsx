@@ -6,6 +6,8 @@ import { Page } from '@/components/ui/page';
 import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 const defaultSeo = {
   title: 'Dropzone',
   description: 'Dropzone Page',
