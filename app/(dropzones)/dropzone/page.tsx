@@ -6,6 +6,8 @@ import { Page } from '@/components/ui/page';
 import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 const defaultSeo = {
   title: 'Dropzone',
   description: 'Dropzone Page',
@@ -29,7 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
-    keywords: seo.keywords,
     formatDetection: {
       email: seo.format_description.email,
       telephone: seo.format_description.telephone,

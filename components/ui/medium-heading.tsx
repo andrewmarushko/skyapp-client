@@ -4,18 +4,14 @@ import { cn } from '@/lib/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const headingVariants = cva(
-  'text-sk-dark dark:text-sk-light font-bold leading-tight',
+  '',
   {
     variants: {
       size: {
-        default: 'text-6xl md:text-8xl lg:text-8xl',
-        lg: 'text-7xl md:text-8xl lg:text-9xl',
-        sm: 'text-2xl md:text-3xl lg:text-4xl',
-        title: 'text-4xl md:text-6xl md:leading-18',
+        default: 'text-3xl sm:text-4xl tracking-tight font-bold',
       },
       headingStyles: {
-        title: 'max-w-full md:max-w-[800px] tracking-tight-title text-center',
-        default: 'tracking-tighter',
+        default: '',
       },
     },
     defaultVariants: {
@@ -25,11 +21,11 @@ const headingVariants = cva(
   },
 );
 
-interface LargeHeadingProps
+interface MediumHeadingProps
   extends React.HTMLAttributes<HTMLHeadingElement>,
     VariantProps<typeof headingVariants> {}
 
-const LargeHeading: FunctionComponent<LargeHeadingProps> = ({
+const MediumHeading: FunctionComponent<MediumHeadingProps> = ({
   children,
   className,
   size,
@@ -37,13 +33,13 @@ const LargeHeading: FunctionComponent<LargeHeadingProps> = ({
   ...props
 }) => {
   return (
-    <h1
+    <h2
       {...props}
       className={cn(headingVariants({ size, headingStyles, className }))}
     >
       {children}
-    </h1>
+    </h2>
   );
 };
 
-export default LargeHeading;
+export default MediumHeading;

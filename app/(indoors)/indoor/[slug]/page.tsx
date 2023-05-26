@@ -10,8 +10,17 @@ import { Suspense } from 'react';
 import GooglePlacesSection from '@/components/googlePlaces-section';
 import { BecomePartner } from '@/components/become-partner';
 import YouTubeSection from '@/components/youtube-section';
+import { Separator } from '@/components/ui/separator';
+import Paragraph from '@/components/ui/paragraph';
+import MediumHeading from '@/components/ui/medium-heading';
+import SmallHeading from '@/components/ui/small-heading';
+import { SocialLink } from '@/components/social-link';
+import { NavigationLink } from '@/components/ui/link';
+import { Icons } from '@/components/icons';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
-// export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
+
 interface IndoorTubePageProps {
   params: {
     slug: string;
@@ -44,7 +53,6 @@ export async function generateMetadata({
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
-    keywords: seo.keywords,
     formatDetection: {
       email: seo.format_description?.email,
       telephone: seo.format_description.telephone,
@@ -102,268 +110,199 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     related_dropzones,
     opening_hours,
     location: { places },
-} = data[0].attributes;
+    prices,
+  } = data[0].attributes;
 
   return (
-    <Page>
-      <Content className="flex flex-col gap-2">
-        <div>
-          <Image
-            src={cover.data.attributes.url}
-            alt={cover.data.attributes.alternativeText}
-            width={600}
-            height={300}
-          />
-        </div>
-        <h1>Title - {title}</h1>
-        <p className="purge">{description}</p>
-        <ul>
-          <li>diameter - {diameter}</li>
-          <li>speed - {speed}</li>
-          <li>height - {height}</li>
-        </ul>
-
-        <div>YoutubeId - {social.youtubeId}</div>
-        <div>
-          {social.links.map((item: any, index: any) => (
-            <li key={index}>
-              type - {item.type}, linkLabel - {item.link.label}, href -{' '}
-              {item.link.href}
-            </li>
-          ))}
-        </div>
-        <p>Company Name: {company_name}</p>
-
-        <div>
-          {opening_hours.weekday_text}
-        </div>
-        <div>
-          <span>LOGO</span>
+    <Page variant="fluid">
+      <Content variant="fluid" className="relative h-80 lg:container lg:h-96">
+        <Image
+          src={cover.data.attributes.url}
+          alt={cover.data.attributes.alternativeText}
+          width={600}
+          height={100}
+          className="h-full w-full object-cover lg:rounded-lg"
+          quality={100}
+        />
+      </Content>
+      <Content className="container flex items-center justify-between">
+        <div className="flex items-center gap-4">
           <Image
             src={logo.data.attributes.url}
             alt={logo.data.attributes.alternativeText}
-            width={100}
-            height={100}
+            width={80}
+            height={80}
+            className="aspect-square rounded-full border border-accent-700"
           />
+          <h1 className="text-4xl font-semibold tracking-tight-title sm:text-5xl">
+            {title}
+          </h1>
         </div>
-        <ul>
-          <li>Phone - {contacts.phone}</li>
-          <li>Email - {contacts.email}</li>
-          <li>Website - {contacts.website}</li>
-        </ul>
-
-        <div>
-          <p>{price_title}</p>
-          <p>{price_subtitle}</p>
-        </div>
-        <div>
-          <p>{related_dropzone_title}</p>
-          <p>{related_dropzone_subtitle}</p>
-          {related_dropzones.data.length > 0 ? (
-            related_dropzones.data.map((item: any, index: number) => (
-              <div key={index}>{item.attributes.title}</div>
-            ))
-          ) : (
-            <div>No dropzone found</div>
-          )}
-        </div>
-
-        <div>
-          <p>Latitude - {places.lat}</p>
-          <p>Lontitude - {places.lng}</p>
-
-          <p>Raiting - {places.details.rating}</p>
-          <CustomMap long={places.lng} lat={places.lat} />
-        </div>
-
-        <div>
-          <p>Photos</p>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {places.details.photos.map((item: any, index: any) => (
-              <div className="h-auto w-full" key={index}>
-                <Image
-                  key={index}
-                  alt={'Google Photo'}
-                  src={item.url}
-                  className="pointer-events-none h-full w-full object-cover"
-                  width={720}
-                  height={480}
-                  sizes="(max-width: 640px) 100vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
-                />
-              </div>
-            ))}
+        {/* TODO:  Expand website data with target and link label values*/}
+        <NavigationLink
+          size={'lg'}
+          variant={'black'}
+          target="_blank"
+          href={contacts.website}
+        >
+          Get in touch
+        </NavigationLink>
+      </Content>
+      <Content className="flex gap-20">
+        <div className="flex basis-2/3 flex-col gap-10 py-6">
+          <div className="prose prose-stone flex flex-col gap-6">
+            <MediumHeading>Overview</MediumHeading>
+            <ReactMarkdown className="prose prose-stone">
+              {description}
+            </ReactMarkdown>
           </div>
-        </div>
-        <Suspense fallback={<h1>loading comments</h1>}>
-          <GooglePlacesSection googlePlaceId={places.place_id} />
-        </Suspense>
-        <Suspense fallback={<h1>loading comments</h1>}>
+          <div>
+            <p>{price_title}</p>
+            <p>{price_subtitle}</p>
+            <div>
+              {prices.price.map((item: any, index: any) => (
+                <p key={index}>
+                  {item.type} - {item.price} {item.currency}
+                </p>
+              ))}
+              <div>{prices.price_link.href}</div>
+            </div>
+          </div>
+          <div>
+            <p>{related_dropzone_title}</p>
+            <p>{related_dropzone_subtitle}</p>
+            {related_dropzones.data.length > 0 ? (
+              related_dropzones.data.map((item: any, index: number) => (
+                <div key={index}>{item.attributes.title}</div>
+              ))
+            ) : (
+              <div>No dropzone found</div>
+            )}
+          </div>
+
+          <div>
+            <p>Latitude - {places.lat}</p>
+            <p>Lontitude - {places.lng}</p>
+
+            <p>Raiting - {places.details.rating}</p>
+            <CustomMap long={places.lng} lat={places.lat} />
+          </div>
+
+          <div>
+            <p>Photos</p>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {places.details.photos.map((item: any, index: any) => (
+                <div className="h-auto w-full" key={index}>
+                  <Image
+                    key={index}
+                    alt={'Google Photo'}
+                    src={item.url}
+                    className="pointer-events-none h-full w-full object-cover"
+                    width={720}
+                    height={480}
+                    sizes="(max-width: 640px) 100vw,
+                    (max-width: 1280px) 50vw,
+                    (max-width: 1536px) 33vw,
+                    25vw"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          <Suspense fallback={<h1>loading comments</h1>}>
+            <GooglePlacesSection googlePlaceId={places.place_id} />
+          </Suspense>
+          <Suspense fallback={<h1>loading comments</h1>}>
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
+        </div>
+        <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
+          <div>
+            <MediumHeading>Details</MediumHeading>
+            <div>
+              {diameter > 0 && (
+                <div>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
+                    <SmallHeading>Diameter</SmallHeading>
+                    <span>{diameter} ft.</span>
+                  </div>
+                </div>
+              )}
+              {speed > 0 && (
+                <div>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
+                    <SmallHeading>Speed</SmallHeading>
+                    <span>{speed} mph.</span>
+                  </div>
+                </div>
+              )}
+              {height > 0 && (
+                <div>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
+                    <SmallHeading>Height</SmallHeading>
+                    <span>{height} ft.</span>
+                  </div>
+                </div>
+              )}
+              {company_name && (
+                <div>
+                  <Separator className="my-6" />
+                  <div className="flex justify-between">
+                    <SmallHeading>Company</SmallHeading>
+                    <span>{company_name}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="flex">
+            {social.links.map((data: any, index: any) => (
+              // TODO: Add Id instead of index at Strapi
+              <SocialLink key={index} data={data} />
+            ))}
+          </div>
+          <div className="flex flex-col gap-6">
+            <MediumHeading>Schedule</MediumHeading>
+            <div className="flex flex-col">
+              {opening_hours.weekday_text.map((item: any, index: any) => (
+                <Paragraph paragraphStyles={'description'} key={index}>
+                  {item}
+                </Paragraph>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col gap-6">
+            <MediumHeading>Contact {title} indoor</MediumHeading>
+            <div className="flex justify-between">
+              <div className="flex items-center gap-2">
+                <Icons.mail className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`mailto: ${contacts.email}`}
+                >
+                  {contacts.email}
+                </NavigationLink>
+              </div>
+              <div className="flex items-center gap-2">
+                <Icons.phone className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`tel: ${contacts.phone}`}
+                >
+                  {contacts.phone}
+                </NavigationLink>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Content>
+      <Content>
         <BecomePartner data={become_partner} />
       </Content>
-      {/* {indoorsList &&
-        indoorsList.data.map((item: IndoorDataItemInterface) => (
-      {indoorsList.data.attributes.title}
-      {/* {indoorsList &&
-        indoorsList.data.map((item: IndoorDataItemInterface) => (
-          <div className="flex w-full flex-col gap-14" key={item.id}>
-            <section className="relative flex w-full flex-col gap-10">
-              <Image
-                src={item.coverImage?.url}
-                alt={item.coverImage?.alternativeText}
-                width={item.coverImage?.width}
-                height={item.coverImage?.height}
-                className="h-[600px] w-full object-cover"
-                priority
-                quality={100}
-              />
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-10 ">
-                  <div className="border-radius-50 relative flex h-56 w-56 items-center shadow-lg">
-                    <Image
-                      src={item.logo?.url}
-                      alt={item.logo?.alternativeText}
-                      width={item.logo?.width}
-                      height={item.logo?.height}
-                      className="border-radius-50 w-full"
-                      priority
-                    />
-                  </div>
-                  <div className="flex flex-col gap-5">
-                    <LargeHeading size="lg">{item.title}</LargeHeading>
-                    <div className="flex items-center gap-3">
-                      <Icons.mapPin className="h-5 w-5" />
-                      <span>
-                        {item.indoorLocation.country},{' '}
-                        {item.indoorLocation.city},{' '}
-                        {item.indoorLocation.zipcode},{' '}
-                        {item.indoorLocation.address}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                {item.websiteUrl && 
-                  <Link
-                  target="_blank"
-                  href={item.websiteUrl}
-                  className="flex h-20 w-24 items-center rounded-lg bg-slate-800 text-center text-white"
-                  >
-                    Go to website
-                  </Link>
-                }
-              </div>
-            </section>
-            <section className="mt-5 flex gap-20">
-              <div className="flex basis-1/2 flex-col gap-10 ">
-                <div className="flex justify-between gap-5">
-                  <div className="flex gap-4">
-                    {item.socialMedia?.list?.map(({ id, link, type }) => (
-                      <Link href={link} key={id} target="_blank">
-                        {type === 'Instagram' && (
-                          <Icons.instagram className="h-9 w-9" />
-                        )}
-                        {type === 'Facebook' && (
-                          <Icons.facebook className="h-9 w-9" />
-                        )}
-                        {type === 'YouTube' && (
-                          <Icons.youtube className="h-9 w-9" />
-                        )}
-                        {type === 'Twitter' && (
-                          <Icons.twitter className="h-9 w-9" />
-                        )}
-                      </Link>
-                    ))}
-                  </div>
-                  <div>
-                    {item.isStillBuilding ? (
-                      <div className="flex items-center gap-2">
-                        <div className="border-radius-50 h-10 w-10 bg-yellow-400"></div>
-                        <span>It is still building. The openning is soon!</span>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-2">
-                        <div className="border-radius-50 h-10 w-10 bg-green-400"></div>
-                        <span>It is already opened!</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <div className="flex flex-col gap-5">
-                  <LargeHeading size="sm">About indoor</LargeHeading>
-                  <p>{item.description}</p>
-                </div>
-                <div className="flex flex-col gap-5">
-                  <LargeHeading size="sm">Working hours</LargeHeading>
-                  <div>
-                    {item.workingHours.map(({ id, day, hours }) => (
-                      <div className="flex justify-between" key={id}>
-                        <span>{day?.map((item) => `${item}, `)}</span>
-                        <span className="font-semibold">{hours}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex flex-col gap-5">
-                  <LargeHeading size="sm">Available facilities</LargeHeading>
-                  <p>{item.facilities}</p>
-                </div>
-              </div>
-              <div className="flex basis-1/2">
-                <div className="flex w-full flex-col gap-5">
-                  <LargeHeading size="sm">
-                    Indoor technical characteristics
-                  </LargeHeading>
-                  <table className="border-2 border-black dark:border-white">
-                    <thead>
-                      <tr>
-                        <th>Characteristic name</th>
-                        <th>Value</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Diameter</td>
-                        <td>{item.diameter}</td>
-                      </tr>
-                      <tr>
-                        <td>Speed</td>
-                        <td>{item.speed}</td>
-                      </tr>
-                      <tr>
-                        <td>Height</td>
-                        <td>{item.height}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-            <Suspense fallback={<h1>loading comments</h1>}>
-              <YouTubeSection youtubeChannelId={youtubeChannelId} />
-            </Suspense>
-            <section className="flex gap-20">
-              <div className="flex basis-1/2 flex-col gap-5 rounded-lg bg-slate-400 p-6">
-                <div className="flex w-full items-center justify-between">
-                  <LargeHeading size="sm">Find us on the map</LargeHeading>
-                  <Icons.map className="h-5 w-5" />
-                </div>
-                <CustomMap
-                  lat={item.indoorLocation.lat}
-                  long={item.indoorLocation.long}
-                />
-              </div>
-              <div className="flex basis-1/2"></div>
-            </section>
-            <Suspense fallback={<h1>loading comments</h1>}>
-              <GooglePlacesSection googlePlaceId={googlePlaceId} />
-            </Suspense>
-          </div>
-        ))} */}
     </Page>
   );
 };

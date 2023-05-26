@@ -1,14 +1,14 @@
 import { gql } from '@apollo/client';
 
-export const dropzonesPageQuery = gql`
+export const dropzonePageQuery = gql`
   query {
-    dropzonesPage {
+    dropzonePage {
       data {
         attributes {
-          hero {
-            title
-            subtitle
-          }
+          price_title
+          price_subtitle
+          related_tubes_title
+          relates_tubes_subtitle
           become_partner {
             title
             subtitle
@@ -50,6 +50,30 @@ export const promotedDropzonesQuery = gql`
                 url
                 alternativeText
               }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const dropzonesPageQuery = gql`
+  query {
+    dropzonesPage {
+      data {
+        attributes {
+          hero {
+            title
+            subtitle
+          }
+          become_partner {
+            title
+            subtitle
+            link {
+              href
+              target
+              label
             }
           }
         }
@@ -157,9 +181,9 @@ export const getDropzoneBySlug = gql`
             city
             continent
             address
-            # places
+            places
           }
-          indoor {
+          related_indoors {
             data {
               attributes {
                 title

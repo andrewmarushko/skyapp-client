@@ -161,6 +161,7 @@ module.exports = {
     },
     plugins: [
       require('tailwindcss-animate'),
+      require('@tailwindcss/typography'),
       plugin(({ matchUtilities }) => {
         matchUtilities({
           perspective: (value) => ({

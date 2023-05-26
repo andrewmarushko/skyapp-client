@@ -31,7 +31,6 @@ export async function generateMetadata(): Promise<Metadata> {
     title: seo?.metaTitle,
     description: seo?.metaDescription,
     applicationName: seo?.applicationName,
-    keywords: seo?.keywords,
     formatDetection: {
       email: seo?.format_description?.email,
       telephone: seo?.format_description?.telephone,

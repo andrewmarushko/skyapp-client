@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { Icons } from '@/icons';
 import { NavigationLink } from '@/ui/link';
 import { Logo } from '@/components/logo';
 import { FooterInterface } from '@/types/footer';
@@ -13,6 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/ui/accordion';
+import { SocialLink } from './social-link';
 
 const ModeToggle = dynamic(
   () => import('@/components/mode-toggle').then((mod) => mod.ModeToggle),
@@ -24,38 +24,39 @@ interface FooterProps {
   logoData: LogoInterface;
 }
 
-
 // TODO: add typization here
 export function Footer({ footerData, logoData }: any) {
   const { href, companyName } = logoData;
   const { navigation, social, subscribe, copyright } = footerData;
 
   return (
-    <footer className="mt-auto w-full bg-accent-800 dark:bg-accent-100 border-t border-t-accent-700 py-10 dark:border-t-accent-200">
+    <footer className="mt-auto w-full border-t border-t-accent-700 bg-accent-800 py-10 dark:border-t-accent-200 dark:bg-accent-100">
       <div className="container flex flex-col gap-10 lg:gap-6">
-        <div className="grid gap-10 lg:gap-4 lg:grid-cols-5">
+        <div className="grid gap-10 lg:grid-cols-5 lg:gap-4">
           <div className="flex items-start justify-center md:justify-start">
             <Logo href={href} companyName={companyName} />
           </div>
-          <div className='flex flex-col lg:flex-row gap-2 lg:justify-around lg:col-span-3'>
-            {navigation.map(({ id, label, links } : any) => (
+          <div className="flex flex-col gap-2 lg:col-span-3 lg:flex-row lg:justify-around">
+            {navigation.map(({ id, label, links }: any) => (
               <div key={id}>
                 <div className="hidden lg:block">
-                  <div className='pb-3'>
+                  <div className="pb-3">
                     <span className="text-sm font-medium">{label}</span>
-                  </div>  
+                  </div>
                   <nav className="flex flex-col">
-                    {links.map(({ id, label, target, href }: any) => (
-                      <NavigationLink
-                        key={id} 
-                        target={target}
-                        variant={'footer'}
-                        size={'md'}
-                        href={href}
-                      >
-                        {label}
-                      </NavigationLink>
-                    ))}
+                    {links
+                      .filter((item: any) => !item.hide)
+                      .map(({ id, label, target, href }: any) => (
+                        <NavigationLink
+                          key={id}
+                          target={target}
+                          variant={'footer'}
+                          size={'md'}
+                          href={href}
+                        >
+                          {label}
+                        </NavigationLink>
+                      ))}
                   </nav>
                 </div>
                 <Accordion className="lg:hidden" type="single" collapsible>
@@ -67,10 +68,10 @@ export function Footer({ footerData, logoData }: any) {
                       <span className="text-sm font-medium">{label}</span>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <nav className="flex flex-col mb-3">
+                      <nav className="mb-3 flex flex-col">
                         {links.map(({ id, label, target, href }: any) => (
                           <NavigationLink
-                            key={id} 
+                            key={id}
                             target={target}
                             variant={'footer'}
                             size={'md'}
@@ -87,7 +88,7 @@ export function Footer({ footerData, logoData }: any) {
             ))}
           </div>
           <div className="col-span-full lg:col-span-1">
-            <div className='pb-3'>
+            <div className="pb-3">
               <span className="text-sm font-medium">{subscribe.title}</span>
             </div>
             <p className="pb-4 pt-2 text-sm text-accent-400">
@@ -100,30 +101,10 @@ export function Footer({ footerData, logoData }: any) {
           <span className="text-sm text-accent-400 dark:text-accent-500">
             {copyright.companyName} {copyright.reserved} {copyright.copyright}
           </span>
-          <div className='flex flex-col md:flex-row w-full gap-4 md:gap-0 md:justify-between items-center'>
+          <div className="flex w-full flex-col items-center gap-4 md:flex-row md:justify-between md:gap-0">
             <nav className="flex h-full">
-              {social.map(({ id, type, link }: any) => (
-                <NavigationLink
-                  className="mr-4 border-r border-r-accent-700 pr-4 leading-0 last:mr-0 last:border-r-0 last:pr-0 dark:border-r-accent-200"
-                  key={id}
-                  variant={'socialNetwork'}
-                  size={'noPadding'}
-                  href={link.href}
-                  target={link.target}
-                >
-                  {type === 'instagram' && (
-                    <Icons.instagram className="h-5 w-5" />
-                  )}
-                  {type === 'facebook' && (
-                    <Icons.facebook className="h-5 w-5" />
-                  )}
-                  {type === 'twitter' && (
-                    <Icons.twitter className="h-5 w-5" />
-                  )}
-                  {type === 'youtube' && (
-                    <Icons.youtube className="h-5 w-5" />
-                  )}
-                </NavigationLink>
+              {social.map((data: any) => (
+                <SocialLink key={data.id} data={data} />
               ))}
             </nav>
             <ModeToggle />
