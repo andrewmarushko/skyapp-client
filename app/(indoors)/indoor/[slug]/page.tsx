@@ -110,6 +110,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     related_dropzones,
     opening_hours,
     location: { places },
+    prices,
   } = data[0].attributes;
 
   return (
@@ -158,6 +159,14 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
           <div>
             <p>{price_title}</p>
             <p>{price_subtitle}</p>
+            <div>
+              {prices.price.map((item: any, index: any) => (
+                <p>
+                  {item.type} - {item.price} {item.currency}
+                </p>
+              ))}
+              <div>{prices.price_link.href}</div>
+            </div>
           </div>
           <div>
             <p>{related_dropzone_title}</p>

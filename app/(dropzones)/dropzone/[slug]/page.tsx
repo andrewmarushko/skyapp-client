@@ -104,9 +104,10 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
     location: { places },
     social,
     opening_hours,
+    prices,
   } = data[0].attributes;
 
-  console.log(places);
+  console.log(prices);
 
   return (
     <Page variant="fluid">
@@ -154,6 +155,14 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
           <div>
             <p>{price_title}</p>
             <p>{price_subtitle}</p>
+            <div>
+              {prices.price.map((item: any, index: any) => (
+                <p>
+                  {item.type} - {item.price} {item.currency}
+                </p>
+              ))}
+              <div>{prices.price_link.href}</div>
+            </div>
           </div>
           <div>
             <p>{related_tubes_title}</p>
