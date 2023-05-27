@@ -30,6 +30,7 @@ export default function GooglePlacesSection({
               alt="avatar"
               width={20}
               height={20}
+              unoptimized
               className="border-radius-50"
             />
             <p>{review.relative_time_description}</p>
