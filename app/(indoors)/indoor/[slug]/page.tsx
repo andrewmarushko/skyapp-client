@@ -201,6 +201,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                     className="pointer-events-none h-full w-full object-cover"
                     width={720}
                     height={480}
+                    unoptimized
                     sizes="(max-width: 640px) 100vw,
                     (max-width: 1280px) 50vw,
                     (max-width: 1536px) 33vw,
