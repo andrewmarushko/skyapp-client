@@ -4,7 +4,7 @@ import { BecomePartner } from '@/components/become-partner';
 import { Page } from '@/ui/page';
 import { Content } from '@/components/content';
 import { ContentLayout } from '../../../components/content-layout';
-import { Promoted } from '@/components/promoted';
+import Promoted from '@/components/promoted';
 import { dropzonesPageQuery, promotedDropzonesQuery } from '@/query/dropzone';
 import { dropzonesPageSeoQuery } from '@/query/seo';
 import { client } from '@/lib/graphql/apollo-server';

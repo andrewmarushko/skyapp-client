@@ -175,9 +175,6 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
             )}
           </div>
           <div>
-            {/* <p>Latitude - {places.lat}</p>
-            <p>Lontitude - {places.lng}</p> */}
-
             <p>Raiting - {places.details.rating}</p>
             <CustomMap long={places.lng} lat={places.lat} />
           </div>
@@ -191,7 +188,7 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
           <div className="flex gap-4">
             <div>
               <iframe
-                src={`https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F${social.links[0].link.label}&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId`}
+                src={`https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F${social.links[0]?.link?.label}&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId`}
                 width="340"
                 height="500"
                 style={{ border: 'none', overflow: 'hidden' }}

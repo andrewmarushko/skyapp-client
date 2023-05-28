@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${siteConfig.siteDomen}/dropzone`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/dropzones`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,

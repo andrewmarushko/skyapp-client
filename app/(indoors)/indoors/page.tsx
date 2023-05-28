@@ -3,7 +3,7 @@ import { Page } from '@/components/ui/page';
 import { Hero } from '@/components/hero';
 import { Content } from '@/components/content';
 import { BecomePartner } from '@/components/become-partner';
-import { Promoted } from '@/components/promoted';
+import Promoted from '@/components/promoted';
 import { ContentLayout } from '@/components/content-layout';
 import { indoorsPageQuery, promotedIndoorsQuery } from '@/query/indoor';
 import { indoorsPageSeoQuery } from '@/query/seo';
