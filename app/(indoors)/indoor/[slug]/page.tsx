@@ -19,7 +19,6 @@ import { NavigationLink } from '@/components/ui/link';
 import { Icons } from '@/components/icons';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { siteConfig } from '@/constants/config';
-import Script from 'next/script';
 
 export const dynamic = 'force-dynamic';
 
