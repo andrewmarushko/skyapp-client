@@ -11,6 +11,7 @@ import MediumHeading from '@/components/ui/medium-heading';
 import { Page } from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
 import YouTubeSection from '@/components/youtube-section';
+import { siteConfig } from '@/constants/config';
 import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -47,7 +48,7 @@ export async function generateMetadata({
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/dropzone/${slug}`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,

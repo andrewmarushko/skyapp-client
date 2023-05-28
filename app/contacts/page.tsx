@@ -5,6 +5,7 @@ import { contactsPageSeoQuery } from '@/api/queries/seo';
 
 import { contactsPageQuery } from '@/api/queries/contacts';
 import { client } from '@/lib/graphql/apollo-server';
+import { siteConfig } from '@/constants/config';
 
 const defaultSeo = {
   title: 'Contacts',
@@ -27,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/contacts`),
     title: seo?.metaTitle,
     description: seo?.metaDescription,
     applicationName: seo?.applicationName,

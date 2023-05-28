@@ -18,6 +18,7 @@ import { SocialLink } from '@/components/social-link';
 import { NavigationLink } from '@/components/ui/link';
 import { Icons } from '@/components/icons';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import { siteConfig } from '@/constants/config';
 
 export const dynamic = 'force-dynamic';
 
@@ -49,7 +50,7 @@ export async function generateMetadata({
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/indoor/${slug}`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,

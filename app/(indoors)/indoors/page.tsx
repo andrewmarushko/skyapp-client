@@ -8,6 +8,7 @@ import { ContentLayout } from '@/components/content-layout';
 import { indoorsPageQuery, promotedIndoorsQuery } from '@/query/indoor';
 import { indoorsPageSeoQuery } from '@/query/seo';
 import { client } from '@/lib/graphql/apollo-server';
+import { siteConfig } from '@/constants/config';
 
 export const dynamic = 'force-dynamic';
 
@@ -30,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/indoors`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
