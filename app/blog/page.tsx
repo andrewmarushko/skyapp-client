@@ -2,6 +2,7 @@ import { blogPageQuery } from '@/api/queries/blog';
 import { blogPageSeoQuery } from '@/api/queries/seo';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
+import { siteConfig } from '@/constants/config';
 import { client } from '@/lib/graphql/apollo-server';
 
 import { Metadata } from 'next';
@@ -24,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/blog`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,

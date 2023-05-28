@@ -4,6 +4,7 @@ import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
 import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
+import { siteConfig } from '@/constants/config';
 
 const defaultSeo = {
   title: 'Home Page',
@@ -24,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,

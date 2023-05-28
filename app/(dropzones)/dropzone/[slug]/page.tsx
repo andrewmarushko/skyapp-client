@@ -11,6 +11,7 @@ import MediumHeading from '@/components/ui/medium-heading';
 import { Page } from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
 import YouTubeSection from '@/components/youtube-section';
+import { siteConfig } from '@/constants/config';
 import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -47,7 +48,7 @@ export async function generateMetadata({
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/dropzone/${slug}`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
@@ -106,8 +107,6 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
     opening_hours,
     prices,
   } = data[0].attributes;
-
-  console.log(prices);
 
   return (
     <Page variant="fluid">
@@ -175,7 +174,6 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
               <div>No related indoors found</div>
             )}
           </div>
-
           <div>
             {/* <p>Latitude - {places.lat}</p>
             <p>Lontitude - {places.lng}</p> */}
@@ -183,36 +181,39 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
             <p>Raiting - {places.details.rating}</p>
             <CustomMap long={places.lng} lat={places.lat} />
           </div>
-
-          <div>
-            <p>Photos</p>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {places.details.photos.map((item: any, index: any) => (
-                <div className="h-auto w-full" key={index}>
-                  <Image
-                    key={index}
-                    alt={'Google Photo'}
-                    src={item.url}
-                    className="pointer-events-none h-full w-full object-cover"
-                    width={720}
-                    height={480}
-                    unoptimized
-                    sizes="(max-width: 640px) 100vw,
-                    (max-width: 1280px) 50vw,
-                    (max-width: 1536px) 33vw,
-                    25vw"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
           <Suspense fallback={<h1>loading comments</h1>}>
             <GooglePlacesSection googlePlaceId={places.place_id} />
           </Suspense>
           <Suspense fallback={<h1>loading comments</h1>}>
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
+          Latest news
+          <div className="flex gap-4">
+            <div>
+              <iframe
+                src={`https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F${social.links[0].link.label}&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId`}
+                width="340"
+                height="500"
+                style={{ border: 'none', overflow: 'hidden' }}
+                allowFullScreen
+                allow={
+                  'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share'
+                }
+              ></iframe>
+            </div>
+            <div className="w-full">
+              <a
+                download={<div>...loading....</div>}
+                className="twitter-timeline"
+                data-lang="en"
+                data-height="500"
+                data-theme="dark"
+                href={`https://twitter.com/${title}?ref_src=twsrc%5Etfw`}
+              >
+                Tweets by {title}
+              </a>
+            </div>
+          </div>
         </div>
         <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
           <div>

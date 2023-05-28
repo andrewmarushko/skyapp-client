@@ -18,6 +18,8 @@ import { SocialLink } from '@/components/social-link';
 import { NavigationLink } from '@/components/ui/link';
 import { Icons } from '@/components/icons';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import { siteConfig } from '@/constants/config';
+import Script from 'next/script';
 
 export const dynamic = 'force-dynamic';
 
@@ -49,7 +51,7 @@ export async function generateMetadata({
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/indoor/${slug}`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
@@ -179,7 +181,6 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               <div>No dropzone found</div>
             )}
           </div>
-
           <div>
             <p>Latitude - {places.lat}</p>
             <p>Lontitude - {places.lng}</p>
@@ -187,36 +188,39 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
             <p>Raiting - {places.details.rating}</p>
             <CustomMap long={places.lng} lat={places.lat} />
           </div>
-
-          <div>
-            <p>Photos</p>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {places.details.photos.map((item: any, index: any) => (
-                <div className="h-auto w-full" key={index}>
-                  <Image
-                    key={index}
-                    alt={'Google Photo'}
-                    src={item.url}
-                    className="pointer-events-none h-full w-full object-cover"
-                    width={720}
-                    height={480}
-                    unoptimized
-                    sizes="(max-width: 640px) 100vw,
-                    (max-width: 1280px) 50vw,
-                    (max-width: 1536px) 33vw,
-                    25vw"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
           <Suspense fallback={<h1>loading comments</h1>}>
             <GooglePlacesSection googlePlaceId={places.place_id} />
           </Suspense>
           <Suspense fallback={<h1>loading comments</h1>}>
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
+          Latest news
+          <div className="flex gap-4">
+            <div>
+              <iframe
+                src={`https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F${social.links[0].link.label}&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId`}
+                width="340"
+                height="500"
+                style={{ border: 'none', overflow: 'hidden' }}
+                allowFullScreen
+                allow={
+                  'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share'
+                }
+              ></iframe>
+            </div>
+            <div className="w-full">
+              <a
+                className="twitter-timeline"
+                data-lang="en"
+                data-height="500"
+                data-theme="dark"
+                href={`https://twitter.com/${social.links[3]?.link?.label}?ref_src=twsrc%5Etfw`}
+              >
+                {/* TODO: Make a helper function to fine link type by type */}
+                Tweets by {social.links[3]?.link?.label}
+              </a>
+            </div>
+          </div>
         </div>
         <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
           <div>
@@ -259,43 +263,43 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 </div>
               )}
             </div>
-          </div>
-          <div className="flex">
-            {social.links.map((data: any, index: any) => (
-              // TODO: Add Id instead of index at Strapi
-              <SocialLink key={index} data={data} />
-            ))}
-          </div>
-          <div className="flex flex-col gap-6">
-            <MediumHeading>Schedule</MediumHeading>
-            <div className="flex flex-col">
-              {opening_hours.weekday_text.map((item: any, index: any) => (
-                <Paragraph paragraphStyles={'description'} key={index}>
-                  {item}
-                </Paragraph>
+            <div className="flex">
+              {social.links.map((data: any, index: any) => (
+                // TODO: Add Id instead of index at Strapi
+                <SocialLink key={index} data={data} />
               ))}
             </div>
-          </div>
-          <div className="flex flex-col gap-6">
-            <MediumHeading>Contact {title} indoor</MediumHeading>
-            <div className="flex justify-between">
-              <div className="flex items-center gap-2">
-                <Icons.mail className="h-6 w-6" />
-                <NavigationLink
-                  className="hover:underline hover:transition-all"
-                  href={`mailto: ${contacts.email}`}
-                >
-                  {contacts.email}
-                </NavigationLink>
+            <div className="flex flex-col gap-6">
+              <MediumHeading>Schedule</MediumHeading>
+              <div className="flex flex-col">
+                {opening_hours.weekday_text.map((item: any, index: any) => (
+                  <Paragraph paragraphStyles={'description'} key={index}>
+                    {item}
+                  </Paragraph>
+                ))}
               </div>
-              <div className="flex items-center gap-2">
-                <Icons.phone className="h-6 w-6" />
-                <NavigationLink
-                  className="hover:underline hover:transition-all"
-                  href={`tel: ${contacts.phone}`}
-                >
-                  {contacts.phone}
-                </NavigationLink>
+            </div>
+            <div className="flex flex-col gap-6">
+              <MediumHeading>Contact {title} indoor</MediumHeading>
+              <div className="flex justify-between">
+                <div className="flex items-center gap-2">
+                  <Icons.mail className="h-6 w-6" />
+                  <NavigationLink
+                    className="hover:underline hover:transition-all"
+                    href={`mailto: ${contacts.email}`}
+                  >
+                    {contacts.email}
+                  </NavigationLink>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icons.phone className="h-6 w-6" />
+                  <NavigationLink
+                    className="hover:underline hover:transition-all"
+                    href={`tel: ${contacts.phone}`}
+                  >
+                    {contacts.phone}
+                  </NavigationLink>
+                </div>
               </div>
             </div>
           </div>

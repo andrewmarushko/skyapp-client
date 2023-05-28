@@ -2,7 +2,7 @@ import '@/styles/globals.css';
 import { cn } from '@/lib/utils';
 import { Analytics } from '@/components/analytics';
 import { Header } from '@/components/header';
-
+import Script from 'next/script';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
@@ -14,9 +14,8 @@ export const dynamic = 'force-dynamic';
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  pageProps: any
+  pageProps: any;
 }
-
 
 export default async function Layout({ children }: RootLayoutProps) {
   const {
@@ -28,7 +27,7 @@ export default async function Layout({ children }: RootLayoutProps) {
       },
     },
   } = await client.query({ query: generalQuery });
- 
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -43,6 +42,14 @@ export default async function Layout({ children }: RootLayoutProps) {
               <div className="flex-1">{children}</div>
               <Footer logoData={logo} footerData={footer} />
             </main>
+            <Script
+              src="https://connect.facebook.net/en_US/sdk.js"
+              strategy="lazyOnload"
+            />
+            <Script
+              strategy="lazyOnload"
+              src="https://platform.twitter.com/widgets.js"
+            />
           </ApolloWrapper>
         </ThemeProvider>
         <Analytics />

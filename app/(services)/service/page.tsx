@@ -1,6 +1,7 @@
 // import { getPageSeo } from '@/api/seo';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
+import { siteConfig } from '@/constants/config';
 import { Metadata } from 'next';
 
 const defaultSeo = {
@@ -14,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   // if (!seo) return defaultSeo;
 
   return {
-    // metadataBase: new URL(`${seo.metadataBase}`),
+    // metadataBase: new URL(`${siteConfig.siteDomen}/service`),
     // title: seo.metaTitle,
     // description: seo.metaDescription,
     // applicationName: seo.applicationName,

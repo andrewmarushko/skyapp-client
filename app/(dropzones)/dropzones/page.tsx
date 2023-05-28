@@ -8,6 +8,7 @@ import { Promoted } from '@/components/promoted';
 import { dropzonesPageQuery, promotedDropzonesQuery } from '@/query/dropzone';
 import { dropzonesPageSeoQuery } from '@/query/seo';
 import { client } from '@/lib/graphql/apollo-server';
+import { siteConfig } from '@/constants/config';
 
 export const dynamic = 'force-dynamic';
 
@@ -30,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/dropzones`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
