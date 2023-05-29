@@ -19,6 +19,7 @@ import { NavigationLink } from '@/components/ui/link';
 import { Icons } from '@/components/icons';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { siteConfig } from '@/constants/config';
+import Script from 'next/script';
 
 export const dynamic = 'force-dynamic';
 
@@ -307,6 +308,14 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
       <Content>
         <BecomePartner data={become_partner} />
       </Content>
+      <Script
+        src="https://connect.facebook.net/en_US/sdk.js"
+        strategy="afterInteractive"
+      />
+      <Script
+        strategy="afterInteractive"
+        src="https://platform.twitter.com/widgets.js"
+      />
     </Page>
   );
 };
