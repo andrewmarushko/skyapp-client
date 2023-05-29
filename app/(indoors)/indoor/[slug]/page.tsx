@@ -19,7 +19,6 @@ import { NavigationLink } from '@/components/ui/link';
 import { Icons } from '@/components/icons';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { siteConfig } from '@/constants/config';
-import SocialNews from '@/components/social-news';
 import Script from 'next/script';
 
 export const dynamic = 'force-dynamic';
@@ -71,6 +70,23 @@ export async function generateMetadata({
       nocache: seo.robots.nocache,
     },
   };
+}
+
+enum PricesTypes {
+  tandem = 'Tandem',
+  aff = 'AFF',
+  tandem_course = 'Tandem course',
+  aff_course = 'Aff course',
+  gear = 'Gear',
+  junior_flyer = 'Junior flyer',
+  pro_flyer = 'Pro flyer',
+  kids = 'Kids'
+}
+
+interface PriceInterface {
+  type: keyof typeof PricesTypes,
+  price: number,
+  currency: string,
 }
 
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
@@ -159,18 +175,37 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               {description}
             </ReactMarkdown>
           </div>
-          <div>
-            <p>{price_title}</p>
-            <p>{price_subtitle}</p>
-            <div>
-              {prices.price.map((item: any, index: any) => (
-                <p key={index}>
-                  {item.type} - {item.price} {item.currency}
-                </p>
-              ))}
-              <div>{prices.price_link.href}</div>
+          {prices && 
+            <div className="flex flex-col gap-6">
+              <MediumHeading>{price_title}</MediumHeading>
+              <div className='flex flex-col gap-4'>
+                <SmallHeading>{price_subtitle}</SmallHeading>
+                <div>
+                  {prices.price.map((item: PriceInterface, index: any) => (
+                    <Paragraph key={index}>
+                      {PricesTypes[item.type]} - 
+                      <span className='font-medium'>{item.price} {item.currency}</span>
+                    </Paragraph>
+                  ))}
+                </div>
+                <div className='flex'>
+                  <NavigationLink
+                    variant={'black'}
+                    target={prices.price_link.target}
+                    href={prices.price_link.href}
+                  >
+                    {prices.price_link.label}
+                  </NavigationLink>
+                </div>
+              </div>
             </div>
-          </div>
+          }
+          {places && 
+            <div className="flex flex-col gap-6">
+              <MediumHeading>Find {title} on the map</MediumHeading>
+              <CustomMap long={places.lng} lat={places.lat} />
+            </div>
+          }
           <div>
             <p>{related_dropzone_title}</p>
             <p>{related_dropzone_subtitle}</p>
@@ -187,7 +222,6 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
             <p>Lontitude - {places.lng}</p>
 
             <p>Raiting - {places.details.rating}</p>
-            <CustomMap long={places.lng} lat={places.lat} />
           </div>
           <Suspense fallback={<h1>loading comments</h1>}>
             <GooglePlacesSection googlePlaceId={places.place_id} />
@@ -195,7 +229,6 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
           <Suspense fallback={<h1>loading comments</h1>}>
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
-          <SocialNews label={social.links[0].link.label}/>
         </div>
         <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
           <div>
@@ -205,7 +238,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 <div>
                   <Separator className="my-6" />
                   <div className="flex justify-between">
-                    <SmallHeading>Diameter</SmallHeading>
+                    <SmallHeading headingStyles='uppercase'>Diameter</SmallHeading>
                     <span>{diameter} ft.</span>
                   </div>
                 </div>
@@ -214,7 +247,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 <div>
                   <Separator className="my-6" />
                   <div className="flex justify-between">
-                    <SmallHeading>Speed</SmallHeading>
+                    <SmallHeading headingStyles='uppercase'>Speed</SmallHeading>
                     <span>{speed} mph.</span>
                   </div>
                 </div>
@@ -223,7 +256,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 <div>
                   <Separator className="my-6" />
                   <div className="flex justify-between">
-                    <SmallHeading>Height</SmallHeading>
+                    <SmallHeading headingStyles='uppercase'>Height</SmallHeading>
                     <span>{height} ft.</span>
                   </div>
                 </div>
@@ -232,18 +265,20 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 <div>
                   <Separator className="my-6" />
                   <div className="flex justify-between">
-                    <SmallHeading>Company</SmallHeading>
+                    <SmallHeading headingStyles='uppercase'>Company</SmallHeading>
                     <span>{company_name}</span>
                   </div>
                 </div>
               )}
             </div>
-            <div className="flex">
-              {social.links.map((data: any, index: any) => (
-                // TODO: Add Id instead of index at Strapi
-                <SocialLink key={index} data={data} />
-              ))}
-            </div>
+          </div>
+          <div className="flex">
+            {social.links.map((data: any, index: any) => (
+              // TODO: Add Id instead of index at Strapi
+              <SocialLink key={index} data={data} />
+            ))}
+          </div>
+          {opening_hours && 
             <div className="flex flex-col gap-6">
               <MediumHeading>Schedule</MediumHeading>
               <div className="flex flex-col">
@@ -254,27 +289,28 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 ))}
               </div>
             </div>
-            <div className="flex flex-col gap-6">
-              <MediumHeading>Contact {title} indoor</MediumHeading>
-              <div className="flex justify-between">
-                <div className="flex items-center gap-2">
-                  <Icons.mail className="h-6 w-6" />
-                  <NavigationLink
-                    className="hover:underline hover:transition-all"
-                    href={`mailto: ${contacts.email}`}
-                  >
-                    {contacts.email}
-                  </NavigationLink>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icons.phone className="h-6 w-6" />
-                  <NavigationLink
-                    className="hover:underline hover:transition-all"
-                    href={`tel: ${contacts.phone}`}
-                  >
-                    {contacts.phone}
-                  </NavigationLink>
-                </div>
+          }
+
+          <div className="flex flex-col gap-6">
+            <MediumHeading>Contact {title} indoor</MediumHeading>
+            <div className="flex justify-between">
+              <div className="flex items-center gap-2">
+                <Icons.mail className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`mailto: ${contacts.email}`}
+                >
+                  {contacts.email}
+                </NavigationLink>
+              </div>
+              <div className="flex items-center gap-2">
+                <Icons.phone className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`tel: ${contacts.phone}`}
+                >
+                  {contacts.phone}
+                </NavigationLink>
               </div>
             </div>
           </div>

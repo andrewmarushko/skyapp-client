@@ -12,8 +12,6 @@ import { siteConfig } from '@/constants/config';
 
 export const dynamic = 'force-dynamic';
 
-export const dynamic = 'force-dynamic';
-
 const defaultSeo = {
   title: 'Dropzone',
   description: 'Dropzone Page',

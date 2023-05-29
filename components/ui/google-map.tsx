@@ -6,7 +6,7 @@ import { CustomMapProps } from '@/types/nav';
 
 const containerStyle = {
   width: '100%',
-  height: '400px',
+  height: '600px',
   borderRadius: '8px',
 };
 
@@ -22,8 +22,8 @@ export const CustomMap: FunctionComponent<CustomMapProps> = ({
   };
   return (
     <LoadScriptNext googleMapsApiKey={`${apiKey}`} language="EN">
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={15}>
-        <MarkerF position={center} />
+      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={5}>
+        <MarkerF clickable={true} position={center} />
       </GoogleMap>
     </LoadScriptNext>
   );

@@ -39,6 +39,7 @@ import {
   Search,
   Phone,
   Mail,
+  Star,
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
@@ -141,6 +142,7 @@ export const Icons = {
   circleSlash: CircleSlashed,
   phone: Phone,
   mail: Mail,
+  star: Star,
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

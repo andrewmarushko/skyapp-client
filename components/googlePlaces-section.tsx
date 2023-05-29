@@ -2,6 +2,9 @@
 import useSWR from 'swr';
 import Image from 'next/image';
 import GooglePhoto from './google-place-photo';
+import { Card } from '@/ui/card';
+import Paragraph from '@/ui/paragraph';
+import Rating from '@/components/rating';
 
 export type GooglePlacesSectionProps = {
   googlePlaceId: string;
@@ -18,6 +21,8 @@ export default function GooglePlacesSection({
 
   if (error) return <span> Problem to load videos</span>;
 
+  console.log(data, 'data')
+
   return (
     <>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -30,25 +35,33 @@ export default function GooglePlacesSection({
           />
         ))}
       </div>
-      <section className="grid grid-cols-3 gap-4">
+      <section className="grid lg:grid-cols-3 gap-4">
         {data &&
           data.reviews?.map((review: any) => (
-            <div
+            <Card
               key={`review-${review.time}`}
-              className="w-72 rounded-xl p-5 shadow-lg"
+              variant={'googlePlacesFeedbacks'}
+              className='p-5 gap-4'
             >
-              <Image
-                src={review.profile_photo_url}
-                alt="avatar"
-                width={20}
-                height={20}
-                className="border-radius-50"
-              />
-              <p>{review.relative_time_description}</p>
-              <p>{review.author_name}</p>
-              <p>{review.text}</p>
-              <p>Rating - {review.rating}</p>
-            </div>
+              <div className='flex items-center gap-4'>
+                <div>
+                  <Image
+                    src={review.profile_photo_url}
+                    alt="avatar"
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                  />
+                </div>
+                <div className='flex flex-col'>
+                  <Paragraph>{review.author_name}</Paragraph>
+                  <Paragraph paragraphStyles={'description'}>{review.relative_time_description}</Paragraph>
+                </div>
+              </div>
+              <Rating rating = {review.rating} />
+              {/* <Paragraph>Rating - {review.rating}</Paragraph> */}
+              <Paragraph>{review.text}</Paragraph>
+            </Card>
           ))}
       </section>
     </>

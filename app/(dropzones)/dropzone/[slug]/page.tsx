@@ -5,7 +5,6 @@ import { Content } from '@/components/content';
 import GooglePlacesSection from '@/components/googlePlaces-section';
 import { Icons } from '@/components/icons';
 import { SocialLink } from '@/components/social-link';
-import SocialNews from '@/components/social-news';
 import { CustomMap } from '@/components/ui/google-map';
 import { NavigationLink } from '@/components/ui/link';
 import MediumHeading from '@/components/ui/medium-heading';
@@ -19,8 +18,6 @@ import Image from 'next/image';
 import Script from 'next/script';
 import { Suspense } from 'react';
 import ReactMarkdown from 'react-markdown';
-
-export const dynamic = 'force-dynamic';
 
 export const dynamic = 'force-dynamic';
 
@@ -188,7 +185,6 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
           <Suspense fallback={<h1>loading comments</h1>}>
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
-          <SocialNews label={social.links[0].link.label}/>
           </div>
         <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
           <div>
