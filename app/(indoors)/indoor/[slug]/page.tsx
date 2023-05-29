@@ -19,8 +19,7 @@ import { NavigationLink } from '@/components/ui/link';
 import { Icons } from '@/components/icons';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { siteConfig } from '@/constants/config';
-import SocialNews from '@/components/social-news';
-import Script from 'next/script';
+// import SocialNews from '@/components/social-news';
 
 export const dynamic = 'force-dynamic';
 
@@ -195,7 +194,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
           <Suspense fallback={<h1>loading comments</h1>}>
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
-          <SocialNews label={social.links[0].link.label}/>
+          {/* <SocialNews label={social.links[0].link.label} /> */}
         </div>
         <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
           <div>
@@ -283,14 +282,6 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
       <Content>
         <BecomePartner data={become_partner} />
       </Content>
-      <Script
-        src="https://connect.facebook.net/en_US/sdk.js"
-        strategy="afterInteractive"
-      />
-      <Script
-        strategy="afterInteractive"
-        src="https://platform.twitter.com/widgets.js"
-      />
     </Page>
   );
 };
