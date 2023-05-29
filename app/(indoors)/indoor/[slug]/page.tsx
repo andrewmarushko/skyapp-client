@@ -19,6 +19,7 @@ import { NavigationLink } from '@/components/ui/link';
 import { Icons } from '@/components/icons';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { siteConfig } from '@/constants/config';
+import SocialNews from '@/components/social-news';
 
 export const dynamic = 'force-dynamic';
 
@@ -193,33 +194,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
           <Suspense fallback={<h1>loading comments</h1>}>
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
-          Latest news
-          <div className="flex gap-4">
-            <div>
-              <iframe
-                src={`https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F${social.links[0].link.label}&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId`}
-                width="340"
-                height="500"
-                style={{ border: 'none', overflow: 'hidden' }}
-                allowFullScreen
-                allow={
-                  'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share'
-                }
-              ></iframe>
-            </div>
-            <div className="w-full">
-              <a
-                className="twitter-timeline"
-                data-lang="en"
-                data-height="500"
-                data-theme="dark"
-                href={`https://twitter.com/${social.links[3]?.link?.label}?ref_src=twsrc%5Etfw`}
-              >
-                {/* TODO: Make a helper function to fine link type by type */}
-                Tweets by {social.links[3]?.link?.label}
-              </a>
-            </div>
-          </div>
+          <SocialNews label={social.links[0].link.label}/>
         </div>
         <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
           <div>
