@@ -282,6 +282,14 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
       <Content>
         <BecomePartner data={become_partner} />
       </Content>
+      <Script
+        src="https://connect.facebook.net/en_US/sdk.js"
+        strategy="afterInteractive"
+      />
+      <Script
+        strategy="afterInteractive"
+        src="https://platform.twitter.com/widgets.js"
+      />
     </Page>
   );
 };

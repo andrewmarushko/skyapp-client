@@ -18,7 +18,6 @@ export default function GooglePlacesSection({
 
   if (error) return <span> Problem to load videos</span>;
 
-  console.log(data.photos);
   return (
     <>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -26,8 +25,8 @@ export default function GooglePlacesSection({
           <GooglePhoto
             key={index}
             photo_reference={item.photo_reference}
-            width={400}
-            height={300}
+            width={200}
+            height={200}
           />
         ))}
       </div>

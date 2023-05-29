@@ -16,6 +16,7 @@ import { siteConfig } from '@/constants/config';
 import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import Script from 'next/script';
 import { Suspense } from 'react';
 import ReactMarkdown from 'react-markdown';
 
@@ -273,6 +274,14 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
       <Content>
         <BecomePartner data={become_partner} />
       </Content>
+      <Script
+        src="https://connect.facebook.net/en_US/sdk.js"
+        strategy="afterInteractive"
+      />
+      <Script
+        strategy="afterInteractive"
+        src="https://platform.twitter.com/widgets.js"
+      />
     </Page>
   );
 };
