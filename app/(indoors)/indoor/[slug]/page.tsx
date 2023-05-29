@@ -20,6 +20,7 @@ import { Icons } from '@/components/icons';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { siteConfig } from '@/constants/config';
 import SocialNews from '@/components/social-news';
+import Script from 'next/script';
 
 export const dynamic = 'force-dynamic';
 
