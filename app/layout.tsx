@@ -2,7 +2,6 @@ import '@/styles/globals.css';
 import { cn } from '@/lib/utils';
 import { Analytics } from '@/components/analytics';
 import { Header } from '@/components/header';
-// import Script from 'next/script';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
@@ -42,14 +41,6 @@ export default async function Layout({ children }: RootLayoutProps) {
               <div className="flex-1">{children}</div>
               <Footer logoData={logo} footerData={footer} />
             </main>
-            {/* <Script
-              src="https://connect.facebook.net/en_US/sdk.js"
-              strategy="afterInteractive"
-            />
-            <Script
-              strategy="afterInteractive"
-              src="https://platform.twitter.com/widgets.js"
-            /> */}
           </ApolloWrapper>
         </ThemeProvider>
         <Analytics />
