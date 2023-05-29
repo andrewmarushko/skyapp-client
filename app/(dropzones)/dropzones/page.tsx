@@ -1,18 +1,16 @@
-// import {
-//   fetchDropzonePageData,
-//   fetchPromotedDropzone,
-// } from '@/api/dropzone';
-// import { getPageSeo } from '@/api/seo';
 import { Metadata } from 'next';
 import { Hero } from '@/components/hero';
 import { BecomePartner } from '@/components/become-partner';
 import { Page } from '@/ui/page';
 import { Content } from '@/components/content';
 import { ContentLayout } from '../../../components/content-layout';
-import { Promoted } from '@/components/promoted';
+import Promoted from '@/components/promoted';
 import { dropzonesPageQuery, promotedDropzonesQuery } from '@/query/dropzone';
 import { dropzonesPageSeoQuery } from '@/query/seo';
 import { client } from '@/lib/graphql/apollo-server';
+import { siteConfig } from '@/constants/config';
+
+export const dynamic = 'force-dynamic';
 
 export const dynamic = 'force-dynamic';
 
@@ -35,11 +33,10 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/dropzones`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
-    keywords: seo.keywords,
     formatDetection: {
       email: seo.format_description.email,
       telephone: seo.format_description.telephone,

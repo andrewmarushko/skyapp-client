@@ -2,7 +2,6 @@ import '@/styles/globals.css';
 import { cn } from '@/lib/utils';
 import { Analytics } from '@/components/analytics';
 import { Header } from '@/components/header';
-
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
@@ -14,6 +13,7 @@ export const dynamic = 'force-dynamic';
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  pageProps: any;
 }
 
 export default async function Layout({ children }: RootLayoutProps) {

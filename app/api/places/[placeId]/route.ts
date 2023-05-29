@@ -7,9 +7,12 @@ export async function GET(
   { params }: { params: { placeId: string } },
 ) {
   const res = await fetch(
-    `https://maps.googleapis.com/maps/api/place/details/json?place_id=${params.placeId}&fields=reviews&key=${GOOGLE_KEY}`,
+    `https://maps.googleapis.com/maps/api/place/details/json?place_id=${params.placeId}&fields=reviews,photos&key=${GOOGLE_KEY}`,
   );
   const data = await res.json();
 
-  return NextResponse.json({ reviews: data.result.reviews });
+  return NextResponse.json({
+    reviews: data.result.reviews,
+    photos: data.result.photos,
+  });
 }

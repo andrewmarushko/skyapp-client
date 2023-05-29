@@ -3,6 +3,7 @@ import { dropzoneLandingPageSeoQuery } from '@/api/queries/seo';
 import { BecomePartner } from '@/components/become-partner';
 import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
+import { siteConfig } from '@/constants/config';
 import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 
@@ -27,11 +28,10 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/dropzones`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
-    keywords: seo.keywords,
     formatDetection: {
       email: seo.format_description.email,
       telephone: seo.format_description.telephone,

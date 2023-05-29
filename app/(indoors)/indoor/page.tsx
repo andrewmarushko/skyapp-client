@@ -4,6 +4,7 @@ import { Hero } from '@/components/hero';
 import { indoorLandingPageSeoQuery } from '@/api/queries/seo';
 import { indoorLandingPageQuery } from '@/api/queries/indoor';
 import { client } from '@/lib/graphql/apollo-server';
+import { siteConfig } from '@/constants/config';
 
 export const dynamic = 'force-dynamic';
 
@@ -26,11 +27,10 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${seo.metadataBase}`),
+    metadataBase: new URL(`${siteConfig.siteDomen}/indoor`),
     title: seo.metaTitle,
     description: seo.metaDescription,
     applicationName: seo.applicationName,
-    keywords: seo.keywords,
     formatDetection: {
       email: seo.format_description.email,
       telephone: seo.format_description.telephone,

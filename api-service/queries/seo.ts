@@ -18,13 +18,11 @@ export const homePageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
               address
             }
-            metadataBase
             robots {
               index
               follow
@@ -38,7 +36,6 @@ export const homePageSeoQuery = gql`
               max_snippet
               max_image_preview
             }
-            manifest
             twitter {
               card
               title
@@ -67,13 +64,11 @@ export const contactsPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
               address
             }
-            metadataBase
             robots {
               index
               follow
@@ -87,7 +82,6 @@ export const contactsPageSeoQuery = gql`
               max_snippet
               max_image_preview
             }
-            manifest
             twitter {
               card
               title
@@ -116,13 +110,11 @@ export const blogPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
               address
             }
-            metadataBase
             robots {
               index
               follow
@@ -136,7 +128,6 @@ export const blogPageSeoQuery = gql`
               max_snippet
               max_image_preview
             }
-            manifest
             twitter {
               card
               title
@@ -165,13 +156,11 @@ export const servicesPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
               address
             }
-            metadataBase
             robots {
               index
               follow
@@ -185,7 +174,6 @@ export const servicesPageSeoQuery = gql`
               max_snippet
               max_image_preview
             }
-            manifest
             twitter {
               card
               title
@@ -214,13 +202,11 @@ export const indoorLandingPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
               address
             }
-            metadataBase
             robots {
               index
               follow
@@ -234,7 +220,6 @@ export const indoorLandingPageSeoQuery = gql`
               max_snippet
               max_image_preview
             }
-            manifest
             twitter {
               card
               title
@@ -263,13 +248,11 @@ export const dropzoneLandingPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
               address
             }
-            metadataBase
             robots {
               index
               follow
@@ -283,7 +266,6 @@ export const dropzoneLandingPageSeoQuery = gql`
               max_snippet
               max_image_preview
             }
-            manifest
             twitter {
               card
               title
@@ -312,13 +294,11 @@ export const indoorsPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
               address
             }
-            metadataBase
             robots {
               index
               follow
@@ -332,7 +312,6 @@ export const indoorsPageSeoQuery = gql`
               max_snippet
               max_image_preview
             }
-            manifest
             twitter {
               card
               title
@@ -361,13 +340,11 @@ export const dropzonesPageSeoQuery = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
               address
             }
-            metadataBase
             robots {
               index
               follow
@@ -381,7 +358,6 @@ export const dropzonesPageSeoQuery = gql`
               max_snippet
               max_image_preview
             }
-            manifest
             twitter {
               card
               title
@@ -410,13 +386,11 @@ export const getIndoorSeoBySlug = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
               address
             }
-            metadataBase
             robots {
               index
               follow
@@ -430,7 +404,6 @@ export const getIndoorSeoBySlug = gql`
               max_snippet
               max_image_preview
             }
-            manifest
             twitter {
               card
               title
@@ -459,13 +432,11 @@ export const getDropzoneSeoBySlug = gql`
             metaTitle
             metaDescription
             applicationName
-            keywords
             format_description {
               email
               telephone
               address
             }
-            metadataBase
             robots {
               index
               follow
@@ -479,7 +450,6 @@ export const getDropzoneSeoBySlug = gql`
               max_snippet
               max_image_preview
             }
-            manifest
             twitter {
               card
               title
