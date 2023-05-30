@@ -30,21 +30,21 @@ export async function generateMetadata(): Promise<Metadata> {
     // metadataBase: new URL(`${siteConfig.siteDomen}`),
     title: seo.metaTitle,
     description: seo.metaDescription,
-    applicationName: seo.applicationName,
-    formatDetection: {
-      email: seo.format_description?.email,
-      telephone: seo.format_description?.telephone,
-      address: seo.format_description?.address,
-    },
-    viewport: {
-      width: seo.viewport?.width,
-      initialScale: seo.viewport?.initial_scale,
-    },
-    robots: {
-      index: seo.robots?.index,
-      follow: seo.robots?.follow,
-      nocache: seo.robots?.nocache,
-    },
+    // applicationName: seo.applicationName,
+    // formatDetection: {
+    //   email: seo.format_description?.email,
+    //   telephone: seo.format_description?.telephone,
+    //   address: seo.format_description?.address,
+    // },
+    // viewport: {
+    //   width: seo.viewport?.width,
+    //   initialScale: seo.viewport?.initial_scale,
+    // },
+    // robots: {
+    //   index: seo.robots?.index,
+    //   follow: seo.robots?.follow,
+    //   nocache: seo.robots?.nocache,
+    // },
   };
 }
 

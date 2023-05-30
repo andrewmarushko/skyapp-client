@@ -5,7 +5,7 @@ import { contactsPageSeoQuery } from '@/api/queries/seo';
 
 import { contactsPageQuery } from '@/api/queries/contacts';
 import { client } from '@/lib/graphql/apollo-server';
-import { siteConfig } from '@/constants/config';
+// import { siteConfig } from '@/constants/config';
 
 export const dynamic = 'force-dynamic';
 
@@ -30,24 +30,24 @@ export async function generateMetadata(): Promise<Metadata> {
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${siteConfig.siteDomen}/contacts`),
+    // metadataBase: new URL(`${siteConfig.siteDomen}/contacts`),
     title: seo?.metaTitle,
     description: seo?.metaDescription,
-    applicationName: seo?.applicationName,
-    formatDetection: {
-      email: seo?.format_description?.email,
-      telephone: seo?.format_description?.telephone,
-      address: seo?.format_description?.address,
-    },
-    viewport: {
-      width: seo?.viewport?.width,
-      initialScale: seo?.viewport?.initial_scale,
-    },
-    robots: {
-      index: seo?.robots?.index,
-      follow: seo?.robots?.follow,
-      nocache: seo?.robots?.nocache,
-    },
+    // applicationName: seo?.applicationName,
+    // formatDetection: {
+    //   email: seo?.format_description?.email,
+    //   telephone: seo?.format_description?.telephone,
+    //   address: seo?.format_description?.address,
+    // },
+    // viewport: {
+    //   width: seo?.viewport?.width,
+    //   initialScale: seo?.viewport?.initial_scale,
+    // },
+    // robots: {
+    //   index: seo?.robots?.index,
+    //   follow: seo?.robots?.follow,
+    //   nocache: seo?.robots?.nocache,
+    // },
   };
 }
 

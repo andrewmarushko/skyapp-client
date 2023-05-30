@@ -11,7 +11,7 @@ import MediumHeading from '@/components/ui/medium-heading';
 import { Page } from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
 import YouTubeSection from '@/components/youtube-section';
-import { siteConfig } from '@/constants/config';
+// import { siteConfig } from '@/constants/config';
 import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -49,24 +49,24 @@ export async function generateMetadata({
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${siteConfig.siteDomen}/dropzone/${slug}`),
+    // metadataBase: new URL(`${siteConfig.siteDomen}/dropzone/${slug}`),
     title: seo.metaTitle,
     description: seo.metaDescription,
-    applicationName: seo.applicationName,
-    formatDetection: {
-      email: seo.format_description.email,
-      telephone: seo.format_description.telephone,
-      address: seo.format_description.address,
-    },
-    viewport: {
-      width: seo.viewport.width,
-      initialScale: seo.viewport.initial_scale,
-    },
-    robots: {
-      index: seo.robots.index,
-      follow: seo.robots.follow,
-      nocache: seo.robots.nocache,
-    },
+    // applicationName: seo.applicationName,
+    // formatDetection: {
+    //   email: seo.format_description.email,
+    //   telephone: seo.format_description.telephone,
+    //   address: seo.format_description.address,
+    // },
+    // viewport: {
+    //   width: seo.viewport.width,
+    //   initialScale: seo.viewport.initial_scale,
+    // },
+    // robots: {
+    //   index: seo.robots.index,
+    //   follow: seo.robots.follow,
+    //   nocache: seo.robots.nocache,
+    // },
   };
 }
 
