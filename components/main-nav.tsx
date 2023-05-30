@@ -17,7 +17,6 @@ export function MainNav({ mainNavigationData }: any) {
   const { panel, navigationLinks } = mainNavigationData;
   const pathName = usePathname();
 
-  console.log('panel', panel[0].showPannel);
   return (
     <NavigationMenu className="hidden flex-1 justify-center lg:flex">
       <NavigationMenuList className="flex items-center gap-2">

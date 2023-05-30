@@ -10,7 +10,7 @@ const Rating = ({rating} : any ) => {
           key={index}
         >
           <Icons.star 
-            className={`${star <= rating ? 'fill-warning' : ''}`}
+            className={`text-transparent ${star <= rating ? 'fill-warning' : 'fill-accent-500'}`}
           />
         </div>
       ))}
