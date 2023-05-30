@@ -29,9 +29,8 @@ export default function YouTubeSection({
         <span> Problem to load videos</span>
       </div>
     );
-
   return (
-    <section className="grid grid-cols-3 gap-4">
+    <section className="grid grid-cols-2 md:grid-cols-3 gap-4">
       {data &&
         data.items?.map((youTubeDataItem: any) => (
           <YouTubeFrame

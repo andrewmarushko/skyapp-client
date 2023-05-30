@@ -19,8 +19,8 @@ import { NavigationLink } from '@/components/ui/link';
 import { Icons } from '@/components/icons';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { siteConfig } from '@/constants/config';
-import SocialNews from '@/components/social-news';
-import Script from 'next/script';
+import { Card } from '@/components/ui/card';
+import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
@@ -52,25 +52,42 @@ export async function generateMetadata({
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${siteConfig.siteDomen}/indoor/${slug}`),
+    // metadataBase: new URL(`${siteConfig.siteDomen}/indoor/${slug}`),
     title: seo.metaTitle,
     description: seo.metaDescription,
-    applicationName: seo.applicationName,
-    formatDetection: {
-      email: seo.format_description?.email,
-      telephone: seo.format_description.telephone,
-      address: seo.format_description.address,
-    },
-    viewport: {
-      width: seo.viewport.width,
-      initialScale: seo.viewport.initial_scale,
-    },
-    robots: {
-      index: seo.robots.index,
-      follow: seo.robots.follow,
-      nocache: seo.robots.nocache,
-    },
+    // applicationName: seo.applicationName,
+    // formatDetection: {
+    //   email: seo.format_description?.email,
+    //   telephone: seo.format_description.telephone,
+    //   address: seo.format_description.address,
+    // },
+    // viewport: {
+    //   width: seo.viewport.width,
+    //   initialScale: seo.viewport.initial_scale,
+    // },
+    // robots: {
+    //   index: seo.robots.index,
+    //   follow: seo.robots.follow,
+    //   nocache: seo.robots.nocache,
+    // },
   };
+}
+
+enum PricesTypes {
+  tandem = 'Tandem',
+  aff = 'AFF',
+  tandem_course = 'Tandem course',
+  aff_course = 'Aff course',
+  gear = 'Gear',
+  junior_flyer = 'Junior flyer',
+  pro_flyer = 'Pro flyer',
+  kids = 'Kids',
+}
+
+interface PriceInterface {
+  type: keyof typeof PricesTypes;
+  price: number;
+  currency: string;
 }
 
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
@@ -128,7 +145,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
           quality={100}
         />
       </Content>
-      <Content className="container flex items-center justify-between">
+      <Content className="container flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div className="flex items-center gap-4">
           <Image
             src={logo.data.attributes.url}
@@ -147,57 +164,95 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
           variant={'black'}
           target="_blank"
           href={contacts.website}
+          className="justify-center"
         >
           Get in touch
         </NavigationLink>
       </Content>
-      <Content className="flex gap-20">
-        <div className="flex basis-2/3 flex-col gap-10 py-6">
+      <Content className="flex flex-col gap-10 md:flex-row md:gap-20">
+        <div className="order-2 flex flex-col gap-10 md:order-1 md:basis-2/3 md:py-6">
           <div className="prose prose-stone flex flex-col gap-6">
             <MediumHeading>Overview</MediumHeading>
             <ReactMarkdown className="prose prose-stone">
               {description}
             </ReactMarkdown>
           </div>
-          <div>
-            <p>{price_title}</p>
-            <p>{price_subtitle}</p>
-            <div>
-              {prices.price.map((item: any, index: any) => (
-                <p key={index}>
-                  {item.type} - {item.price} {item.currency}
-                </p>
-              ))}
-              <div>{prices.price_link.href}</div>
+          {prices && (
+            <div className="flex flex-col gap-6">
+              <MediumHeading>{price_title}</MediumHeading>
+              <div className="flex flex-col gap-4">
+                <SmallHeading>{price_subtitle}</SmallHeading>
+                <div>
+                  {prices.price.map((item: PriceInterface, index: any) => (
+                    <Paragraph key={index}>
+                      {PricesTypes[item.type]} -
+                      <span className="font-medium">
+                        {item.price} {item.currency}
+                      </span>
+                    </Paragraph>
+                  ))}
+                </div>
+                <div className="flex">
+                  <NavigationLink
+                    variant={'black'}
+                    target={prices.price_link.target}
+                    href={prices.price_link.href}
+                  >
+                    {prices.price_link.label}
+                  </NavigationLink>
+                </div>
+              </div>
+            </div>
+          )}
+          {places && (
+            <div className="flex flex-col gap-6">
+              <MediumHeading>Find {title} on the map</MediumHeading>
+              <CustomMap long={places.lng} lat={places.lat} />
+            </div>
+          )}
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4">
+              <MediumHeading>{related_dropzone_title}</MediumHeading>
+              <SmallHeading>{related_dropzone_subtitle}</SmallHeading>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+              {related_dropzones.data.length > 0 ? (
+                related_dropzones.data.map((item: any, index: number) => (
+                  <Link key={index} href={`dropzone/${item.attributes.slug}`}>
+                    <Card>
+                      <div className="h-44">
+                        <Image
+                          loading="lazy"
+                          src={item.attributes.cover.data.attributes.url}
+                          alt={
+                            item.attributes.cover.data.attributes
+                              .alternativeText
+                          }
+                          width={300}
+                          height={300}
+                          className="h-full w-full object-cover"
+                          quality={100}
+                        />
+                      </div>
+                      <div className="p-4">
+                        <Paragraph>{item.attributes.title}</Paragraph>
+                      </div>
+                    </Card>
+                  </Link>
+                ))
+              ) : (
+                <div>No dropzone found</div>
+              )}
             </div>
           </div>
-          <div>
-            <p>{related_dropzone_title}</p>
-            <p>{related_dropzone_subtitle}</p>
-            {related_dropzones.data.length > 0 ? (
-              related_dropzones.data.map((item: any, index: number) => (
-                <div key={index}>{item.attributes.title}</div>
-              ))
-            ) : (
-              <div>No dropzone found</div>
-            )}
-          </div>
-          <div>
-            <p>Latitude - {places.lat}</p>
-            <p>Lontitude - {places.lng}</p>
-
-            <p>Raiting - {places.details.rating}</p>
-            <CustomMap long={places.lng} lat={places.lat} />
-          </div>
-          <Suspense fallback={<h1>loading comments</h1>}>
+          <Suspense fallback={<h1>Loading...</h1>}>
             <GooglePlacesSection googlePlaceId={places.place_id} />
           </Suspense>
-          <Suspense fallback={<h1>loading comments</h1>}>
+          <Suspense fallback={<h1>Loading videos...</h1>}>
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
-          <SocialNews label={social.links[0].link.label}/>
         </div>
-        <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
+        <div className="order-1 flex w-full flex-col gap-10 self-start md:sticky md:top-16 md:order-2 md:basis-1/3 md:py-6">
           <div>
             <MediumHeading>Details</MediumHeading>
             <div>
@@ -205,7 +260,9 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 <div>
                   <Separator className="my-6" />
                   <div className="flex justify-between">
-                    <SmallHeading>Diameter</SmallHeading>
+                    <SmallHeading headingStyles="uppercase">
+                      Diameter
+                    </SmallHeading>
                     <span>{diameter} ft.</span>
                   </div>
                 </div>
@@ -214,7 +271,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 <div>
                   <Separator className="my-6" />
                   <div className="flex justify-between">
-                    <SmallHeading>Speed</SmallHeading>
+                    <SmallHeading headingStyles="uppercase">Speed</SmallHeading>
                     <span>{speed} mph.</span>
                   </div>
                 </div>
@@ -223,7 +280,9 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 <div>
                   <Separator className="my-6" />
                   <div className="flex justify-between">
-                    <SmallHeading>Height</SmallHeading>
+                    <SmallHeading headingStyles="uppercase">
+                      Height
+                    </SmallHeading>
                     <span>{height} ft.</span>
                   </div>
                 </div>
@@ -232,18 +291,22 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 <div>
                   <Separator className="my-6" />
                   <div className="flex justify-between">
-                    <SmallHeading>Company</SmallHeading>
+                    <SmallHeading headingStyles="uppercase">
+                      Company
+                    </SmallHeading>
                     <span>{company_name}</span>
                   </div>
                 </div>
               )}
             </div>
-            <div className="flex">
-              {social.links.map((data: any, index: any) => (
-                // TODO: Add Id instead of index at Strapi
-                <SocialLink key={index} data={data} />
-              ))}
-            </div>
+          </div>
+          <div className="flex">
+            {social.links.map((data: any, index: any) => (
+              // TODO: Add Id instead of index at Strapi
+              <SocialLink key={index} data={data} />
+            ))}
+          </div>
+          {opening_hours && (
             <div className="flex flex-col gap-6">
               <MediumHeading>Schedule</MediumHeading>
               <div className="flex flex-col">
@@ -254,27 +317,28 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 ))}
               </div>
             </div>
-            <div className="flex flex-col gap-6">
-              <MediumHeading>Contact {title} indoor</MediumHeading>
-              <div className="flex justify-between">
-                <div className="flex items-center gap-2">
-                  <Icons.mail className="h-6 w-6" />
-                  <NavigationLink
-                    className="hover:underline hover:transition-all"
-                    href={`mailto: ${contacts.email}`}
-                  >
-                    {contacts.email}
-                  </NavigationLink>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icons.phone className="h-6 w-6" />
-                  <NavigationLink
-                    className="hover:underline hover:transition-all"
-                    href={`tel: ${contacts.phone}`}
-                  >
-                    {contacts.phone}
-                  </NavigationLink>
-                </div>
+          )}
+
+          <div className="flex flex-col gap-6">
+            <MediumHeading>Contact {title} indoor</MediumHeading>
+            <div className="flex flex-col justify-between lg:flex-row">
+              <div className="flex items-center gap-1">
+                <Icons.mail className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`mailto: ${contacts.email}`}
+                >
+                  {contacts.email}
+                </NavigationLink>
+              </div>
+              <div className="flex items-center gap-1">
+                <Icons.phone className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`tel: ${contacts.phone}`}
+                >
+                  {contacts.phone}
+                </NavigationLink>
               </div>
             </div>
           </div>
@@ -283,14 +347,6 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
       <Content>
         <BecomePartner data={become_partner} />
       </Content>
-      <Script
-        src="https://connect.facebook.net/en_US/sdk.js"
-        strategy="afterInteractive"
-      />
-      <Script
-        strategy="afterInteractive"
-        src="https://platform.twitter.com/widgets.js"
-      />
     </Page>
   );
 };
