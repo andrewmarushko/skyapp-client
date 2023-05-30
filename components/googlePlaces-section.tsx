@@ -6,6 +6,7 @@ import Paragraph from '@/ui/paragraph';
 import Rating from '@/components/rating';
 import MediumHeading from '@/components/ui/medium-heading';
 import { Avatar, AvatarImage } from '@/ui/avatar';
+import { Slider } from '@/ui/slider';
 
 export type GooglePlacesSectionProps = {
   googlePlaceId: string;
@@ -25,7 +26,7 @@ export default function GooglePlacesSection({
   return (
     <>
       {data.photos.length>0 &&
-        <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <Slider variant={'googlePhotos'}>
           {data.photos.map((item: any, index: number) => (
             <GooglePhoto
               key={index}
@@ -34,17 +35,17 @@ export default function GooglePlacesSection({
               height={200}
             />
           ))}
-        </div>
+        </Slider>
       }
       <section className="flex flex-col gap-6">
         <MediumHeading>Customer Feedback</MediumHeading>
         {data.reviews.length>0 ?
-          <div className="flex p-2 snap-both justify-start overflow-x-auto sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Slider variant={'feedbacks'}>
             {data.reviews.map((review: any) => (
               <Card
                 key={`review-${review.time}`}
                 variant={'googlePlacesFeedbacks'}
-                className='p-5 gap-4 min-w-full sm:min-w-0'
+                className='p-5 gap-4 min-w-3/4 sm:min-w-0'
               >
                 <div className='flex items-center gap-4'>
                   <Avatar>
@@ -62,7 +63,7 @@ export default function GooglePlacesSection({
                 <Paragraph>{review.text}</Paragraph>
               </Card>
             ))}
-          </div>
+          </Slider>
           :
           <Paragraph>There are no feedbacks for now</Paragraph>
         }

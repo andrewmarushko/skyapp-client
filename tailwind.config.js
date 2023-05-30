@@ -99,6 +99,10 @@ module.exports = {
         scroll: 'var(--shadow-scroll)',
         'scroll-dark': 'var(--shadow-scroll-dark)',
       },
+      minWidth: {
+        '1/4': 'var(--min-w-25)',
+        '3/4': 'var(--min-w-75)'
+      },
       transitionTimingFunction: {
         DEFAULT: 'var(--transition-timing-ease)'
       },
