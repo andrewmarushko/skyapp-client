@@ -6,6 +6,8 @@ import { siteConfig } from '@/constants/config';
 import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 const defaultSeo = {
   title: 'Indoor',
   description: 'Indoor Page',

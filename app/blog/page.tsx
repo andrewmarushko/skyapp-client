@@ -4,8 +4,10 @@ import { Hero } from '@/components/hero';
 import { Page } from '@/components/ui/page';
 import { siteConfig } from '@/constants/config';
 import { client } from '@/lib/graphql/apollo-server';
-
 import { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
+
 const defaultSeo = {
   title: 'Blog',
   description: 'Blog page',

@@ -7,6 +7,8 @@ import { contactsPageQuery } from '@/api/queries/contacts';
 import { client } from '@/lib/graphql/apollo-server';
 import { siteConfig } from '@/constants/config';
 
+export const dynamic = 'force-dynamic';
+
 const defaultSeo = {
   title: 'Contacts',
   description: 'Contacts Page',
