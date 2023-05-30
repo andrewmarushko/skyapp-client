@@ -3,13 +3,14 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { forwardRef } from 'react';
 
 const cardVariants = cva(
-  "",
+  "relative pointer ease w-full flex flex-col overflow-hidden rounded bg-sk-light shadow-md transition-box-shadow duration-200 dark:bg-accent-100 dark:border dark:border-accent-300",
   {
     variants: {
       variant: {
         default: 
-          `relative pointer ease w-full flex flex-col overflow-hidden rounded bg-sk-light shadow-md transition-box-shadow duration-200 hover:shadow-lg focus:shadow-lg 
-          dark:bg-accent-100 dark:border dark:border-accent-300 dark:focus-within:border-accent-600 dark:hover:border-accent-600 dark:focus:border-accent-600`, 
+          `hover:shadow-lg focus:shadow-lg 
+          dark:focus-within:border-accent-600 dark:hover:border-accent-600 dark:focus:border-accent-600`,
+        googlePlacesFeedbacks: ''
       },
       fullWidth: {
         true: 'w-full' 

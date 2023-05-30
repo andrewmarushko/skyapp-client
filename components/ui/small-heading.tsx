@@ -11,7 +11,8 @@ const headingVariants = cva(
         default: '',
       },
       headingStyles: {
-        default: 'uppercase font-bold',
+        default: 'font-semibold text-2xl tracking-tight',
+        uppercase: 'uppercase font-bold'
       },
     },
     defaultVariants: {

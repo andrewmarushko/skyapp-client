@@ -4,6 +4,8 @@ import { Page } from '@/components/ui/page';
 import { siteConfig } from '@/constants/config';
 import { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 const defaultSeo = {
   title: 'Indoor',
   description: 'Indoor Page',

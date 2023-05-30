@@ -1,5 +1,6 @@
 'use client';
 import { NavigationCard } from '@/components/navigation-card';
+import { Slider } from '@/ui/slider';
 
 interface PromotedIndoorsPropsInterface {
   // TODO: Add typization
@@ -9,7 +10,7 @@ interface PromotedIndoorsPropsInterface {
 
 const Promoted = ({ data, location }: PromotedIndoorsPropsInterface) => {
   return (
-    <div className="-mt-8 mb-16 flex snap-mandatory justify-start overflow-x-auto py-8 lg:container">
+    <Slider variant={'promoted'}>
       {data &&
         data.map(({ attributes, id }: any) => (
           <NavigationCard
@@ -19,7 +20,7 @@ const Promoted = ({ data, location }: PromotedIndoorsPropsInterface) => {
             data={attributes}
           />
         ))}
-    </div>
+    </Slider>
   );
 };
 

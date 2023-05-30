@@ -5,14 +5,13 @@ import { Content } from '@/components/content';
 import GooglePlacesSection from '@/components/googlePlaces-section';
 import { Icons } from '@/components/icons';
 import { SocialLink } from '@/components/social-link';
-// import SocialNews from '@/components/social-news';
 import { CustomMap } from '@/components/ui/google-map';
 import { NavigationLink } from '@/components/ui/link';
 import MediumHeading from '@/components/ui/medium-heading';
 import { Page } from '@/components/ui/page';
 import Paragraph from '@/components/ui/paragraph';
 import YouTubeSection from '@/components/youtube-section';
-import { siteConfig } from '@/constants/config';
+// import { siteConfig } from '@/constants/config';
 import { client } from '@/lib/graphql/apollo-server';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -49,24 +48,24 @@ export async function generateMetadata({
   if (!seo) return defaultSeo;
 
   return {
-    metadataBase: new URL(`${siteConfig.siteDomen}/dropzone/${slug}`),
+    // metadataBase: new URL(`${siteConfig.siteDomen}/dropzone/${slug}`),
     title: seo.metaTitle,
     description: seo.metaDescription,
-    applicationName: seo.applicationName,
-    formatDetection: {
-      email: seo.format_description.email,
-      telephone: seo.format_description.telephone,
-      address: seo.format_description.address,
-    },
-    viewport: {
-      width: seo.viewport.width,
-      initialScale: seo.viewport.initial_scale,
-    },
-    robots: {
-      index: seo.robots.index,
-      follow: seo.robots.follow,
-      nocache: seo.robots.nocache,
-    },
+    // applicationName: seo.applicationName,
+    // formatDetection: {
+    //   email: seo.format_description.email,
+    //   telephone: seo.format_description.telephone,
+    //   address: seo.format_description.address,
+    // },
+    // viewport: {
+    //   width: seo.viewport.width,
+    //   initialScale: seo.viewport.initial_scale,
+    // },
+    // robots: {
+    //   index: seo.robots.index,
+    //   follow: seo.robots.follow,
+    //   nocache: seo.robots.nocache,
+    // },
   };
 }
 
@@ -185,49 +184,10 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
           <Suspense fallback={<h1>loading comments</h1>}>
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
-          {/* <SocialNews label={social.links[0].link.label} /> */}
         </div>
         <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
           <div>
             <MediumHeading>Details</MediumHeading>
-            <div>
-              {/* {diameter > 0 && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading>Diameter</SmallHeading>
-                    <span>{diameter} ft.</span>
-                  </div>
-                </div>
-              )}
-              {speed > 0 && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading>Speed</SmallHeading>
-                    <span>{speed} mph.</span>
-                  </div>
-                </div>
-              )}
-              {height > 0 && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading>Height</SmallHeading>
-                    <span>{height} ft.</span>
-                  </div>
-                </div>
-              )}
-              {company_name && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading>Company</SmallHeading>
-                    <span>{company_name}</span>
-                  </div>
-                </div>
-              )} */}
-            </div>
           </div>
           <div className="flex">
             {social.links.map((data: any, index: any) => (

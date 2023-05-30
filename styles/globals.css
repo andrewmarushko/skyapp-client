@@ -78,6 +78,10 @@
   --letter-spacing-title: -0.04em;
   --letter-spacing-subtitle: -0.03em;
 
+  /* Min width */
+  --min-w-25: 25%;
+  --min-w-75: 75%;
+
   /* Transition property */
   --transition-property-color: color;
   --transition-property-color-and-background: background, color;
