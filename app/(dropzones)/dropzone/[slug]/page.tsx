@@ -185,48 +185,10 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
           <Suspense fallback={<h1>loading comments</h1>}>
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
-          </div>
+        </div>
         <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
           <div>
             <MediumHeading>Details</MediumHeading>
-            <div>
-              {/* {diameter > 0 && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading>Diameter</SmallHeading>
-                    <span>{diameter} ft.</span>
-                  </div>
-                </div>
-              )}
-              {speed > 0 && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading>Speed</SmallHeading>
-                    <span>{speed} mph.</span>
-                  </div>
-                </div>
-              )}
-              {height > 0 && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading>Height</SmallHeading>
-                    <span>{height} ft.</span>
-                  </div>
-                </div>
-              )}
-              {company_name && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading>Company</SmallHeading>
-                    <span>{company_name}</span>
-                  </div>
-                </div>
-              )} */}
-            </div>
           </div>
           <div className="flex">
             {social.links.map((data: any, index: any) => (
