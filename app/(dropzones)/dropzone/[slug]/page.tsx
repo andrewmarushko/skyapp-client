@@ -107,6 +107,7 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
     social,
     opening_hours,
     prices,
+    youtube_videos
   } = data[0].attributes;
 
   return (
@@ -183,7 +184,7 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
             <GooglePlacesSection googlePlaceId={places.place_id} />
           </Suspense>
           <Suspense fallback={<h1>loading comments</h1>}>
-            <YouTubeSection youtubeChannelId={social.youtubeId} />
+            <YouTubeSection videos={youtube_videos} />
           </Suspense>
         </div>
         <div className="sticky top-16 flex basis-1/3 flex-col gap-10 self-start py-6">
