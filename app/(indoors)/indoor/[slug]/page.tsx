@@ -132,6 +132,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     opening_hours,
     location: { places },
     prices,
+    youtube_videos
   } = data[0].attributes;
 
   return (
@@ -321,7 +322,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
             <GooglePlacesSection googlePlaceId={places.place_id} />
           </Suspense>
           <Suspense fallback={<h1>Loading videos...</h1>}>
-            <YouTubeSection youtubeChannelId={social.youtubeId} />
+            <YouTubeSection videos={youtube_videos} />
           </Suspense>
         </div>
       </Content>
