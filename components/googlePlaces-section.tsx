@@ -31,8 +31,8 @@ export default function GooglePlacesSection({
             <GooglePhoto
               key={index}
               photo_reference={item.photo_reference}
-              width={200}
-              height={200}
+              width={1000}
+              height={1000}
             />
           ))}
         </Slider>

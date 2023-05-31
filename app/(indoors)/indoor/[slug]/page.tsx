@@ -10,7 +10,6 @@ import { Suspense } from 'react';
 import GooglePlacesSection from '@/components/googlePlaces-section';
 import { BecomePartner } from '@/components/become-partner';
 import YouTubeSection from '@/components/youtube-section';
-import { Separator } from '@/components/ui/separator';
 import Paragraph from '@/components/ui/paragraph';
 import MediumHeading from '@/components/ui/medium-heading';
 import SmallHeading from '@/components/ui/small-heading';
@@ -21,6 +20,7 @@ import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { siteConfig } from '@/constants/config';
 import { Card } from '@/components/ui/card';
 import Link from 'next/link';
+import LargeHeading from '@/components/ui/large-heading';
 
 export const dynamic = 'force-dynamic';
 
@@ -135,7 +135,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
 
   return (
     <Page variant="fluid">
-      <Content variant="fluid" className="relative h-80 lg:container lg:h-96">
+      <Content variant="fluid" className="relative h-80 md:hidden">
         <Image
           src={cover.data.attributes.url}
           alt={cover.data.attributes.alternativeText}
@@ -145,32 +145,133 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
           quality={100}
         />
       </Content>
-      <Content className="container flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-        <div className="flex items-center gap-4">
-          <Image
-            src={logo.data.attributes.url}
-            alt={logo.data.attributes.alternativeText}
-            width={80}
-            height={80}
-            className="aspect-square rounded-full border border-accent-700"
-          />
-          <h1 className="text-4xl font-semibold tracking-tight-title sm:text-5xl">
-            {title}
-          </h1>
+      <Content className="flex flex-col md:flex-row gap-10 lg:gap-0 md:divide-x divide-accent-700 dark:divide-accent-200">
+        <div className="flex w-full flex-col pr-0 lg:pr-12 gap-10 self-start md:sticky md:top-16 md:basis-1/3 md:py-6">
+          <div className='flex justify-between items-center gap-2'>
+            <div className="flex items-center gap-2 md:gap-4">
+              <Image
+                src={logo.data.attributes.url}
+                alt={logo.data.attributes.alternativeText}
+                width={60}
+                height={60}
+                className="aspect-square rounded-full border border-accent-700"
+              />
+              <LargeHeading size={'md'}>
+                {title}
+              </LargeHeading>
+            </div>
+            <div>
+              <span className='text-3xl'>
+                {places.details.rating}
+              </span>
+              /5
+              </div>
+            </div>
+
+          <div className='divide-y divide-accent-700 dark:divide-accent-200'>
+            {diameter > 0 && (
+              <div className='py-4 first:pt-0 last:pb-0'>
+                <div className="flex justify-between">
+                  <SmallHeading headingStyles="uppercase">
+                    Diameter
+                  </SmallHeading>
+                  <span>{diameter} ft.</span>
+                </div>
+              </div>
+            )}
+            {speed > 0 && (
+              <div className='py-4 first:pt-0 last:pb-0'>
+                <div className="flex justify-between">
+                  <SmallHeading headingStyles="uppercase">Speed</SmallHeading>
+                  <span>{speed} mph.</span>
+                </div>
+              </div>
+            )}
+            {height > 0 && (
+              <div className='py-4 first:pt-0 last:pb-0'>
+                <div className="flex justify-between">
+                  <SmallHeading headingStyles="uppercase">
+                    Height
+                  </SmallHeading>
+                  <span>{height} ft.</span>
+                </div>
+              </div>
+            )}
+            {company_name && (
+              <div className='py-4 first:pt-0 last:pb-0'>
+                <div className="flex justify-between">
+                  <SmallHeading headingStyles="uppercase">
+                    Company
+                  </SmallHeading>
+                  <span>{company_name}</span>
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-2">
+            <div className='flex h-full'>
+              {social.links.map((data: any, index: any) => (
+                // TODO: Add Id instead of index at Strapi
+                <SocialLink key={index} data={data} />
+              ))}
+            </div>
+            <NavigationLink
+              size={'lg'}
+              variant={'black'}
+              target="_blank"
+              href={contacts.website}
+              className="justify-center"
+            >
+              Get in touch
+            </NavigationLink>
+          </div>
+          {opening_hours && (
+            <div className="flex flex-col gap-6">
+              <MediumHeading>Schedule</MediumHeading>
+              <div className="flex flex-col">
+                {opening_hours.weekday_text.map((item: any, index: any) => (
+                  <Paragraph paragraphStyles={'description'} key={index}>
+                    {item}
+                  </Paragraph>
+                ))}
+              </div>
+            </div>
+          )}
+          <div className="flex flex-col gap-6">
+            <MediumHeading>Contact {title} indoor</MediumHeading>
+            <div className="flex flex-col justify-between lg:flex-row">
+              <div className="flex items-center gap-1">
+                <Icons.mail className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`mailto: ${contacts.email}`}
+                >
+                  {contacts.email}
+                </NavigationLink>
+              </div>
+              <div className="flex items-center gap-1">
+                <Icons.phone className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`tel: ${contacts.phone}`}
+                >
+                  {contacts.phone}
+                </NavigationLink>
+              </div>
+            </div>
+          </div>
         </div>
-        {/* TODO:  Expand website data with target and link label values*/}
-        <NavigationLink
-          size={'lg'}
-          variant={'black'}
-          target="_blank"
-          href={contacts.website}
-          className="justify-center"
-        >
-          Get in touch
-        </NavigationLink>
-      </Content>
-      <Content className="flex flex-col gap-10 md:flex-row md:gap-20">
-        <div className="order-2 flex flex-col gap-10 md:order-1 md:basis-2/3 md:py-6">
+        <div className="flex pl-0 md:pl-12 flex-col gap-10 md:basis-2/3 md:py-6">
+          <div className="relative h-96 hidden md:block">
+            <Image
+              src={cover.data.attributes.url}
+              alt={cover.data.attributes.alternativeText}
+              width={600}
+              height={100}
+              className="h-full w-full object-cover lg:rounded-lg"
+              quality={100}
+            />
+          </div>
           <div className="prose prose-stone flex flex-col gap-6">
             <MediumHeading>Overview</MediumHeading>
             <ReactMarkdown className="prose prose-stone">
@@ -210,41 +311,6 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               <CustomMap long={places.lng} lat={places.lat} />
             </div>
           )}
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-4">
-              <MediumHeading>{related_dropzone_title}</MediumHeading>
-              <SmallHeading>{related_dropzone_subtitle}</SmallHeading>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-              {related_dropzones.data.length > 0 ? (
-                related_dropzones.data.map((item: any, index: number) => (
-                  <Link key={index} href={`dropzone/${item.attributes.slug}`}>
-                    <Card>
-                      <div className="h-44">
-                        <Image
-                          loading="lazy"
-                          src={item.attributes.cover.data.attributes.url}
-                          alt={
-                            item.attributes.cover.data.attributes
-                              .alternativeText
-                          }
-                          width={300}
-                          height={300}
-                          className="h-full w-full object-cover"
-                          quality={100}
-                        />
-                      </div>
-                      <div className="p-4">
-                        <Paragraph>{item.attributes.title}</Paragraph>
-                      </div>
-                    </Card>
-                  </Link>
-                ))
-              ) : (
-                <div>No dropzone found</div>
-              )}
-            </div>
-          </div>
           <Suspense fallback={<h1>Loading...</h1>}>
             <GooglePlacesSection googlePlaceId={places.place_id} />
           </Suspense>
@@ -252,95 +318,41 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
             <YouTubeSection youtubeChannelId={social.youtubeId} />
           </Suspense>
         </div>
-        <div className="order-1 flex w-full flex-col gap-10 self-start md:sticky md:top-16 md:order-2 md:basis-1/3 md:py-6">
-          <div>
-            <MediumHeading>Details</MediumHeading>
-            <div>
-              {diameter > 0 && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading headingStyles="uppercase">
-                      Diameter
-                    </SmallHeading>
-                    <span>{diameter} ft.</span>
-                  </div>
-                </div>
-              )}
-              {speed > 0 && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading headingStyles="uppercase">Speed</SmallHeading>
-                    <span>{speed} mph.</span>
-                  </div>
-                </div>
-              )}
-              {height > 0 && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading headingStyles="uppercase">
-                      Height
-                    </SmallHeading>
-                    <span>{height} ft.</span>
-                  </div>
-                </div>
-              )}
-              {company_name && (
-                <div>
-                  <Separator className="my-6" />
-                  <div className="flex justify-between">
-                    <SmallHeading headingStyles="uppercase">
-                      Company
-                    </SmallHeading>
-                    <span>{company_name}</span>
-                  </div>
-                </div>
-              )}
-            </div>
+      </Content>
+      <Content className='bg-accent-800 dark:bg-accent-100' variant={'fluid'}>
+        <div className="flex flex-col gap-6 container py-10">
+          <div className="flex flex-col gap-4">
+            <MediumHeading>{related_dropzone_title}</MediumHeading>
+            <SmallHeading>{related_dropzone_subtitle}</SmallHeading>
           </div>
-          <div className="flex">
-            {social.links.map((data: any, index: any) => (
-              // TODO: Add Id instead of index at Strapi
-              <SocialLink key={index} data={data} />
-            ))}
-          </div>
-          {opening_hours && (
-            <div className="flex flex-col gap-6">
-              <MediumHeading>Schedule</MediumHeading>
-              <div className="flex flex-col">
-                {opening_hours.weekday_text.map((item: any, index: any) => (
-                  <Paragraph paragraphStyles={'description'} key={index}>
-                    {item}
-                  </Paragraph>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div className="flex flex-col gap-6">
-            <MediumHeading>Contact {title} indoor</MediumHeading>
-            <div className="flex flex-col justify-between lg:flex-row">
-              <div className="flex items-center gap-1">
-                <Icons.mail className="h-6 w-6" />
-                <NavigationLink
-                  className="hover:underline hover:transition-all"
-                  href={`mailto: ${contacts.email}`}
-                >
-                  {contacts.email}
-                </NavigationLink>
-              </div>
-              <div className="flex items-center gap-1">
-                <Icons.phone className="h-6 w-6" />
-                <NavigationLink
-                  className="hover:underline hover:transition-all"
-                  href={`tel: ${contacts.phone}`}
-                >
-                  {contacts.phone}
-                </NavigationLink>
-              </div>
-            </div>
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {related_dropzones.data.length > 0 ? (
+              related_dropzones.data.map((item: any, index: number) => (
+                <Link key={index} href={`dropzone/${item.attributes.slug}`}>
+                  <Card>
+                    <div className="h-44">
+                      <Image
+                        loading="lazy"
+                        src={item.attributes.cover.data.attributes.url}
+                        alt={
+                          item.attributes.cover.data.attributes
+                            .alternativeText
+                        }
+                        width={300}
+                        height={300}
+                        className="h-full w-full object-cover"
+                        quality={100}
+                      />
+                    </div>
+                    <div className="p-4">
+                      <Paragraph>{item.attributes.title}</Paragraph>
+                    </div>
+                  </Card>
+                </Link>
+              ))
+            ) : (
+              <div>No dropzone found</div>
+            )}
           </div>
         </div>
       </Content>
