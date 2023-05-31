@@ -2,6 +2,7 @@ import { dropzonePageQuery, getDropzoneBySlug } from '@/api/queries/dropzone';
 import { getDropzoneSeoBySlug } from '@/api/queries/seo';
 import { BecomePartner } from '@/components/become-partner';
 import { Content } from '@/components/content';
+import GobackLink from '@/components/goback-link';
 import GooglePlacesSection from '@/components/googlePlaces-section';
 import { Icons } from '@/components/icons';
 import { SocialLink } from '@/components/social-link';
@@ -122,6 +123,10 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
         />
       </Content>
       <Content className="container flex items-center justify-between">
+        <GobackLink 
+          href={'/dropzones'}
+          label={'dropzones'}
+        />
         <div className="flex items-center gap-4">
           <Image
             src={logo.data.attributes.url}

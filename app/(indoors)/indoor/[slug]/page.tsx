@@ -21,6 +21,7 @@ import { siteConfig } from '@/constants/config';
 import { Card } from '@/components/ui/card';
 import Link from 'next/link';
 import LargeHeading from '@/components/ui/large-heading';
+import GobackLink from '@/components/goback-link';
 
 export const dynamic = 'force-dynamic';
 
@@ -146,7 +147,11 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
         />
       </Content>
       <Content className="flex flex-col md:flex-row gap-10 lg:gap-0 md:divide-x divide-accent-700 dark:divide-accent-200">
-        <div className="flex w-full flex-col pr-0 lg:pr-12 gap-10 self-start md:sticky md:top-16 md:basis-1/3 md:py-6">
+        <div className="flex w-full flex-col pr-0 lg:pr-12 gap-8 self-start md:sticky md:top-16 md:basis-1/3 md:py-6">
+          <GobackLink 
+            href={'/indoors'}
+            label={'indoors'}
+          />
           <div className='flex justify-between items-center gap-2'>
             <div className="flex items-center gap-2 md:gap-4">
               <Image
@@ -165,9 +170,8 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 {places.details.rating}
               </span>
               /5
-              </div>
             </div>
-
+          </div>
           <div className='divide-y divide-accent-700 dark:divide-accent-200'>
             {diameter > 0 && (
               <div className='py-4 first:pt-0 last:pb-0'>
@@ -208,57 +212,57 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               </div>
             )}
           </div>
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-2">
-            <div className='flex h-full'>
-              {social.links.map((data: any, index: any) => (
-                // TODO: Add Id instead of index at Strapi
-                <SocialLink key={index} data={data} />
-              ))}
-            </div>
+          <div className='flex flex-col md:divide-x dark:divide-accent-200 divide-accent-700 md:flex-row justify-between gap-10 md:gap-0'>
+            {prices && (
+              <div className="flex flex-col gap-6 md:basis-1/2 md:pr-6">
+                <MediumHeading>{price_title}</MediumHeading>
+                <div className="flex flex-col gap-3">
+                  <SmallHeading>{price_subtitle}</SmallHeading>
+                  <div>
+                    {prices.price.map((item: PriceInterface, index: any) => (
+                      <Paragraph key={index}>
+                        {PricesTypes[item.type]} -
+                        <span className="font-medium">
+                          {item.price} {item.currency}
+                        </span>
+                      </Paragraph>
+                    ))}
+                  </div>
+                  <div className="flex">
+                    <NavigationLink
+                      variant={'black'}
+                      target={prices.price_link.target}
+                      href={prices.price_link.href}
+                    >
+                      {prices.price_link.label}
+                    </NavigationLink>
+                  </div>
+                </div>
+              </div>
+            )}
+            {opening_hours && (
+              <div className="flex flex-col gap-6 md:basis-1/2 md:pl-6">
+                <MediumHeading>Schedule</MediumHeading>
+                <div className="flex flex-col gap-2">
+                  {opening_hours.weekday_text.map((item: any, index: any) => (
+                    <Paragraph key={index}>
+                      {item}
+                    </Paragraph>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="flex">
             <NavigationLink
               size={'lg'}
               variant={'black'}
               target="_blank"
               href={contacts.website}
-              className="justify-center"
+              className="justify-center basis-1/2"
             >
               Get in touch
             </NavigationLink>
-          </div>
-          {opening_hours && (
-            <div className="flex flex-col gap-6">
-              <MediumHeading>Schedule</MediumHeading>
-              <div className="flex flex-col">
-                {opening_hours.weekday_text.map((item: any, index: any) => (
-                  <Paragraph paragraphStyles={'description'} key={index}>
-                    {item}
-                  </Paragraph>
-                ))}
-              </div>
-            </div>
-          )}
-          <div className="flex flex-col gap-6">
-            <MediumHeading>Contact {title} indoor</MediumHeading>
-            <div className="flex flex-col justify-between lg:flex-row">
-              <div className="flex items-center gap-1">
-                <Icons.mail className="h-6 w-6" />
-                <NavigationLink
-                  className="hover:underline hover:transition-all"
-                  href={`mailto: ${contacts.email}`}
-                >
-                  {contacts.email}
-                </NavigationLink>
-              </div>
-              <div className="flex items-center gap-1">
-                <Icons.phone className="h-6 w-6" />
-                <NavigationLink
-                  className="hover:underline hover:transition-all"
-                  href={`tel: ${contacts.phone}`}
-                >
-                  {contacts.phone}
-                </NavigationLink>
-              </div>
-            </div>
           </div>
         </div>
         <div className="flex pl-0 md:pl-12 flex-col gap-10 md:basis-2/3 md:py-6">
@@ -278,39 +282,41 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               {description}
             </ReactMarkdown>
           </div>
-          {prices && (
-            <div className="flex flex-col gap-6">
-              <MediumHeading>{price_title}</MediumHeading>
-              <div className="flex flex-col gap-4">
-                <SmallHeading>{price_subtitle}</SmallHeading>
-                <div>
-                  {prices.price.map((item: PriceInterface, index: any) => (
-                    <Paragraph key={index}>
-                      {PricesTypes[item.type]} -
-                      <span className="font-medium">
-                        {item.price} {item.currency}
-                      </span>
-                    </Paragraph>
-                  ))}
-                </div>
-                <div className="flex">
-                  <NavigationLink
-                    variant={'black'}
-                    target={prices.price_link.target}
-                    href={prices.price_link.href}
-                  >
-                    {prices.price_link.label}
-                  </NavigationLink>
-                </div>
-              </div>
-            </div>
-          )}
           {places && (
             <div className="flex flex-col gap-6">
               <MediumHeading>Find {title} on the map</MediumHeading>
               <CustomMap long={places.lng} lat={places.lat} />
             </div>
           )}
+          <div className="flex flex-col gap-6">
+            <MediumHeading>Contact {title} indoor</MediumHeading>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1">
+                <Icons.mail className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`mailto: ${contacts.email}`}
+                >
+                  {contacts.email}
+                </NavigationLink>
+              </div>
+              <div className="flex items-center gap-1">
+                <Icons.phone className="h-6 w-6" />
+                <NavigationLink
+                  className="hover:underline hover:transition-all"
+                  href={`tel: ${contacts.phone}`}
+                >
+                  {contacts.phone}
+                </NavigationLink>
+              </div>
+            </div>
+            <div className='flex h-full'>
+              {social.links.map((data: any, index: any) => (
+                // TODO: Add Id instead of index at Strapi
+                <SocialLink key={index} data={data} />
+              ))}
+            </div>
+          </div>
           <Suspense fallback={<h1>Loading...</h1>}>
             <GooglePlacesSection googlePlaceId={places.place_id} />
           </Suspense>
