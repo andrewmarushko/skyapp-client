@@ -23,6 +23,8 @@ import Link from 'next/link';
 import LargeHeading from '@/components/ui/large-heading';
 import GobackLink from '@/components/goback-link';
 import { Badge } from '@/components/ui/badge';
+import { PriceInterface } from '@/types/general';
+import { PricesTypes } from 'enums/enums';
 
 export const dynamic = 'force-dynamic';
 
@@ -75,22 +77,22 @@ export async function generateMetadata({
   };
 }
 
-enum PricesTypes {
-  tandem = 'Tandem',
-  aff = 'AFF',
-  tandem_course = 'Tandem course',
-  aff_course = 'Aff course',
-  gear = 'Gear',
-  junior_flyer = 'Junior flyer',
-  pro_flyer = 'Pro flyer',
-  kids = 'Kids',
-}
+// enum PricesTypes {
+//   tandem = 'Tandem',
+//   aff = 'AFF',
+//   tandem_course = 'Tandem course',
+//   aff_course = 'Aff course',
+//   gear = 'Gear',
+//   junior_flyer = 'Junior flyer',
+//   pro_flyer = 'Pro flyer',
+//   kids = 'Kids',
+// }
 
-interface PriceInterface {
-  type: keyof typeof PricesTypes;
-  price: number;
-  currency: string;
-}
+// interface PriceInterface {
+//   type: keyof typeof PricesTypes;
+//   price: number;
+//   currency: string;
+// }
 
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
   const {
@@ -305,18 +307,18 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
             <MediumHeading>Contact {title} indoor</MediumHeading>
             <div className="flex flex-col">
               <div className="flex items-center gap-1">
-                <Icons.mail className="h-6 w-6" />
+                <Icons.mail className="h-5 w-5" />
                 <NavigationLink
-                  className="hover:underline hover:transition-all"
+                  variant={'underline'}
                   href={`mailto: ${contacts.email}`}
                 >
                   {contacts.email}
                 </NavigationLink>
               </div>
               <div className="flex items-center gap-1">
-                <Icons.phone className="h-6 w-6" />
+                <Icons.phone className="h-5 w-5" />
                 <NavigationLink
-                  className="hover:underline hover:transition-all"
+                  variant={'underline'}
                   href={`tel: ${contacts.phone}`}
                 >
                   {contacts.phone}
@@ -370,7 +372,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 </Link>
               ))
             ) : (
-              <div>No dropzone found</div>
+              <Paragraph>No dropzone found</Paragraph>
             )}
           </div>
         </div>
