@@ -103,6 +103,9 @@ module.exports = {
         '1/4': 'var(--min-w-25)',
         '3/4': 'var(--min-w-75)'
       },
+      aspectRatio: {
+        '4/3': 'var(--aspect-ratio-4-3)',
+      },
       transitionTimingFunction: {
         DEFAULT: 'var(--transition-timing-ease)'
       },

@@ -22,6 +22,7 @@ import { Card } from '@/components/ui/card';
 import Link from 'next/link';
 import LargeHeading from '@/components/ui/large-heading';
 import GobackLink from '@/components/goback-link';
+import { Badge } from '@/components/ui/badge';
 
 export const dynamic = 'force-dynamic';
 
@@ -132,7 +133,8 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
     opening_hours,
     location: { places },
     prices,
-    youtube_videos
+    youtube_videos,
+    facilities
   } = data[0].attributes;
 
   return (
@@ -283,6 +285,16 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               {description}
             </ReactMarkdown>
           </div>
+          {facilities && (
+            <div className="flex flex-col gap-6">
+              <MediumHeading>Facilities</MediumHeading>
+              <div className='flex flex-wrap gap-2'>
+                {facilities.map((item: any, index: any) => (
+                  <Badge key={index}>{item}</Badge>
+                ))}
+              </div>
+            </div>
+          )}
           {places && (
             <div className="flex flex-col gap-6">
               <MediumHeading>Find {title} on the map</MediumHeading>
