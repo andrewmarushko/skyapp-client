@@ -82,6 +82,9 @@
   --min-w-25: 25%;
   --min-w-75: 75%;
 
+  /* Aspect ratio */
+  --aspect-ratio-4-3: 4 / 3;
+
   /* Transition property */
   --transition-property-color: color;
   --transition-property-color-and-background: background, color;

@@ -183,6 +183,7 @@ export const getDropzoneBySlug = gql`
             address
             places
           }
+          youtube_videos
           related_indoors {
             data {
               attributes {

@@ -127,6 +127,7 @@ export const getIndoorBySlug = gql`
           speed
           height
           facilities
+          youtube_videos
           opening_hours {
             weekday_text
           }

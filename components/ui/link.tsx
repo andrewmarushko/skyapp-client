@@ -7,7 +7,7 @@ import { ReactNode, forwardRef } from 'react';
 import Link, { LinkProps } from 'next/link';
 
 const linkVariants = cva(
-  'leading-4 outline-none hover:text-accent no-underline',
+  'leading-4 outline-none hover:text-accent dark:hover:text-accent-900 no-underline',
   {
     variants: {
       variant: {
@@ -29,6 +29,8 @@ const linkVariants = cva(
           'text-accent-400 dark:text-accent-500 dark:hover:text-accent-900 transition-all duration-200 ease',
         ghostWhite:
           'flex items-center justify-center h-12 border leading-6 bg-sk-light text-accent border-accent-900 rounded font-medium px-geist-gap-half duration-150 ease transition-colors-shadow-transform leading-geist-form-line-height hover:bg-accent hover:border-accent-900 hover:text-accent-900',
+        underline:
+          'hover:underline transition-all duration-300"'
       },
       dataActive: {
         true: '',
