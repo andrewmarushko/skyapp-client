@@ -19,6 +19,8 @@ import SmallHeading from '@/components/ui/small-heading';
 import YouTubeSection from '@/components/youtube-section';
 // import { siteCofig } from '@/constants/config';
 import { client } from '@/lib/graphql/apollo-server';
+import { PriceInterface } from '@/types/general';
+import { PricesTypes } from 'enums/enums';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
