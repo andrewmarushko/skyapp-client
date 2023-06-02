@@ -69,17 +69,20 @@ export function Footer({ footerData, logoData }: any) {
                     </AccordionTrigger>
                     <AccordionContent>
                       <nav className="mb-3 flex flex-col">
-                        {links.map(({ id, label, target, href }: any) => (
-                          <NavigationLink
-                            key={id}
-                            target={target}
-                            variant={'footer'}
-                            size={'md'}
-                            href={href}
-                          >
-                            {label}
-                          </NavigationLink>
-                        ))}
+                        {links
+                          .filter((item: any) => !item.hide)
+                          .map(({ id, label, target, href }: any) => (
+                            <NavigationLink
+                              key={id}
+                              target={target}
+                              variant={'footer'}
+                              size={'md'}
+                              href={href}
+                            >
+                              {label}
+                            </NavigationLink>
+                          ))
+                        }
                       </nav>
                     </AccordionContent>
                   </AccordionItem>

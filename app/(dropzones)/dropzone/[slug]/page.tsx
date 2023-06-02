@@ -1,6 +1,7 @@
 import { dropzonePageQuery, getDropzoneBySlug } from '@/api/queries/dropzone';
 import { getDropzoneSeoBySlug } from '@/api/queries/seo';
 import { BecomePartner } from '@/components/become-partner';
+import CompanyDataTabs from '@/components/companyDataTabs';
 import { Content } from '@/components/content';
 import GobackLink from '@/components/goback-link';
 import GooglePlacesSection from '@/components/googlePlaces-section';
@@ -158,59 +159,12 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
             /5
           </div>
         </div>
-        <div className='divide-y divide-accent-700 dark:divide-accent-200'>
-          {company_name && (
-            <div className='py-4 first:pt-0 last:pb-0'>
-              <div className="flex justify-between">
-                <SmallHeading headingStyles="uppercase">
-                  Company
-                </SmallHeading>
-                <span>{company_name}</span>
-              </div>
-            </div>
-          )}
-        </div>
-        <div className='flex flex-col md:divide-x dark:divide-accent-200 divide-accent-700 md:flex-row justify-between gap-10 md:gap-0'>
-          {prices && (
-            <div className="flex flex-col gap-6 md:basis-1/2 md:pr-6">
-              <MediumHeading>{price_title}</MediumHeading>
-              <div className="flex flex-col gap-3">
-                <SmallHeading>{price_subtitle}</SmallHeading>
-                <div>
-                  {prices.price.map((item: PriceInterface, index: any) => (
-                    <Paragraph key={index}>
-                      {PricesTypes[item.type]} -
-                      <span className="font-medium">
-                        {item.price} {item.currency}
-                      </span>
-                    </Paragraph>
-                  ))}
-                </div>
-                <div className="flex">
-                  <NavigationLink
-                    variant={'black'}
-                    target={prices.price_link.target}
-                    href={prices.price_link.href}
-                  >
-                    {prices.price_link.label}
-                  </NavigationLink>
-                </div>
-              </div>
-            </div>
-          )}
-          {opening_hours && (
-            <div className="flex flex-col gap-6 md:basis-1/2 md:pl-6">
-              <MediumHeading>Schedule</MediumHeading>
-              <div className="flex flex-col gap-2">
-                {opening_hours.weekday_text.map((item: any, index: any) => (
-                  <Paragraph key={index}>
-                    {item}
-                  </Paragraph>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
+        <CompanyDataTabs 
+          price_title={price_title}
+          price_subtitle={price_subtitle}
+          prices={prices}
+          opening_hours={opening_hours}
+        />
         <div className="flex">
           <NavigationLink
             size={'lg'}
@@ -259,7 +213,9 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
         {requirements.jump_requirement && (
           <div className="flex flex-col gap-6">
             <MediumHeading>Jump requirements</MediumHeading>
-            <Paragraph className='max-w-full break-words'>{requirements.jump_requirement}</Paragraph>
+            <ReactMarkdown className='requirements md:text-lg bg-accent-800 dark:bg-accent-100 p-5 rounded'>
+              {requirements.jump_requirement}
+            </ReactMarkdown>
           </div>
         )}
         <div className="flex flex-col gap-6">
@@ -268,8 +224,9 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
             <div className="flex items-center gap-1">
               <Icons.mail className="h-5 w-5" />
               <NavigationLink
-                variant={'underline'}
+                variant={'headerNav'}
                 href={`mailto: ${contacts.email}`}
+                className=''
               >
                 {contacts.email}
               </NavigationLink>
@@ -277,7 +234,7 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
             <div className="flex items-center gap-1">
               <Icons.phone className="h-5 w-5" />
               <NavigationLink
-                variant={'underline'}
+                variant={'headerNav'}
                 href={`tel: ${contacts.phone}`}
               >
                 {contacts.phone}
