@@ -9,6 +9,7 @@ const headingVariants = cva(
     variants: {
       size: {
         default: 'text-3xl sm:text-4xl tracking-tight font-bold',
+        sm: 'font-medium text-xl leading-5'
       },
       headingStyles: {
         default: '',

@@ -23,8 +23,7 @@ import Link from 'next/link';
 import LargeHeading from '@/components/ui/large-heading';
 import GobackLink from '@/components/goback-link';
 import { Badge } from '@/components/ui/badge';
-import { PriceInterface } from '@/types/general';
-import { PricesTypes } from 'enums/enums';
+import CompanyDataTabs from '@/components/companyDataTabs';
 
 export const dynamic = 'force-dynamic';
 
@@ -217,47 +216,12 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               </div>
             )}
           </div>
-          <div className='flex flex-col md:divide-x dark:divide-accent-200 divide-accent-700 md:flex-row justify-between gap-10 md:gap-0'>
-            {prices && (
-              <div className="flex flex-col gap-6 md:basis-1/2 md:pr-6">
-                <MediumHeading>{price_title}</MediumHeading>
-                <div className="flex flex-col gap-3">
-                  <SmallHeading>{price_subtitle}</SmallHeading>
-                  <div>
-                    {prices.price.map((item: PriceInterface, index: any) => (
-                      <Paragraph key={index}>
-                        {PricesTypes[item.type]} -
-                        <span className="font-medium">
-                          {item.price} {item.currency}
-                        </span>
-                      </Paragraph>
-                    ))}
-                  </div>
-                  <div className="flex">
-                    <NavigationLink
-                      variant={'black'}
-                      target={prices.price_link.target}
-                      href={prices.price_link.href}
-                    >
-                      {prices.price_link.label}
-                    </NavigationLink>
-                  </div>
-                </div>
-              </div>
-            )}
-            {opening_hours && (
-              <div className="flex flex-col gap-6 md:basis-1/2 md:pl-6">
-                <MediumHeading>Schedule</MediumHeading>
-                <div className="flex flex-col gap-2">
-                  {opening_hours.weekday_text.map((item: any, index: any) => (
-                    <Paragraph key={index}>
-                      {item}
-                    </Paragraph>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+          <CompanyDataTabs 
+            price_title={price_title}
+            price_subtitle={price_subtitle}
+            prices={prices}
+            opening_hours={opening_hours}
+          />
           <div className="flex">
             <NavigationLink
               size={'lg'}
@@ -309,7 +273,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               <div className="flex items-center gap-1">
                 <Icons.mail className="h-5 w-5" />
                 <NavigationLink
-                  variant={'underline'}
+                  variant={'headerNav'}
                   href={`mailto: ${contacts.email}`}
                 >
                   {contacts.email}
@@ -318,7 +282,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               <div className="flex items-center gap-1">
                 <Icons.phone className="h-5 w-5" />
                 <NavigationLink
-                  variant={'underline'}
+                  variant={'headerNav'}
                   href={`tel: ${contacts.phone}`}
                 >
                   {contacts.phone}
