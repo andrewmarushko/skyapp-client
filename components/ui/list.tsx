@@ -10,7 +10,7 @@ const listVariants = cva(
   {
     variants: {
       variant: {
-        menu: 'text-accent-300 dark:text-accent-600 border-b-accent-700 dark:border-b-accent-200 border-b',
+        menu: 'text-accent-300 dark:text-accent-600',
         subMenu: 'text-accent-400 dark:text-accent-500',
       },
       fullWidth: {

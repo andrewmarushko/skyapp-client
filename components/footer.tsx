@@ -37,7 +37,7 @@ export function Footer({ footerData, logoData }: any) {
             <Logo href={href} companyName={companyName} />
           </div>
           <div className="flex flex-col gap-2 lg:col-span-3 lg:flex-row lg:justify-around">
-            {navigation.map(({ id, label, links }: any) => (
+            {navigation.filter((linkItem: any) => linkItem.showPannel).map(({ id, label, links }: any) => (
               <div key={id}>
                 <div className="hidden lg:block">
                   <div className="pb-3">
@@ -69,17 +69,20 @@ export function Footer({ footerData, logoData }: any) {
                     </AccordionTrigger>
                     <AccordionContent>
                       <nav className="mb-3 flex flex-col">
-                        {links.map(({ id, label, target, href }: any) => (
-                          <NavigationLink
-                            key={id}
-                            target={target}
-                            variant={'footer'}
-                            size={'md'}
-                            href={href}
-                          >
-                            {label}
-                          </NavigationLink>
-                        ))}
+                        {links
+                          .filter((item: any) => !item.hide)
+                          .map(({ id, label, target, href }: any) => (
+                            <NavigationLink
+                              key={id}
+                              target={target}
+                              variant={'footer'}
+                              size={'md'}
+                              href={href}
+                            >
+                              {label}
+                            </NavigationLink>
+                          ))
+                        }
                       </nav>
                     </AccordionContent>
                   </AccordionItem>

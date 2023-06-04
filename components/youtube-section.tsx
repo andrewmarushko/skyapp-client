@@ -1,46 +1,34 @@
-'use client';
-import useSWR from 'swr';
-
 import YouTubeFrame from '@/ui/youtube-framer';
+import MediumHeading from './ui/medium-heading';
 
 export type YouTubeSectionProps = {
-  youtubeChannelId: string;
+  videos: any;
 };
 
 export default function YouTubeSection({
-  youtubeChannelId,
+  videos
 }: YouTubeSectionProps) {
-  // TODO: use useFetchSWR hook here
-  // ! Need to refactore using request function
-
-  const fetcher = (url: string) => fetch(url).then((res) => res.json());
-  const { data, error } = useSWR(`/api/youtube/${youtubeChannelId}`, fetcher);
-
-  if (!data)
-    return (
-      <div>
-        <h1>LOADING.....</h1>
-      </div>
-    );
-
-  if (error)
-    return (
-      <div>
-        <span> Problem to load videos</span>
-      </div>
-    );
+  
   return (
-    <section className="grid grid-cols-2 md:grid-cols-3 gap-4">
-      {data &&
-        data.items?.map((youTubeDataItem: any) => (
-          <YouTubeFrame
-            key={`video-${youTubeDataItem.id.videoId}`}
-            video={youTubeDataItem.id.videoId}
-            width={300}
-            height={300}
-            thumbnailQuality="hqdefault"
-          />
-        ))}
+    <section>
+      {videos &&
+        <div className='flex flex-col gap-6'>
+          <MediumHeading>Check the videos</MediumHeading>
+          <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+            {videos.map((youTubeDataItem: any) => (
+              <YouTubeFrame
+                key={`video-${youTubeDataItem.id.videoId}`}
+                video={youTubeDataItem.id.videoId}
+                width={300}
+                height={300}
+                thumbnailQuality="hqdefault"
+                thumbnailClassName="w-full rounded"
+                containerClassName=''
+              />
+            ))}
+          </div>
+        </div>
+      }
     </section>
   );
 }

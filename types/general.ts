@@ -1,3 +1,5 @@
+import { PricesTypes } from "enums/enums";
+
 export interface ButtonInterface {
   id: number,
   label: string,
@@ -23,4 +25,10 @@ export interface BecomePartnerInterface {
   title: string,
   subtitle?: string,
   link: NavLinksInterface
+}
+
+export interface PriceInterface {
+  type: keyof typeof PricesTypes;
+  price: number;
+  currency: string;
 }

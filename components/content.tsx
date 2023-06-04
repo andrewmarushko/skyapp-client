@@ -3,7 +3,7 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { FunctionComponent } from 'react';
 
 const contentVariants = cva(
-  "my-6 md:my-8",
+  "mb-6 md:mb-8",
   {
     variants: {
       variant: {

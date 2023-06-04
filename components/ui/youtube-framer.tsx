@@ -30,8 +30,9 @@ export default function YouTubeFrame({
       'allow',
       'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
     );
-    iframe.style.width = width.toString();
-    iframe.style.height = height.toString();
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.classList.add("rounded");
     iframe.setAttribute(
       'src',
       `https://www.youtube.com/embed/${video}?rel=0&showinfo=1&autoplay=1`,
@@ -45,12 +46,8 @@ export default function YouTubeFrame({
   return (
     <div
       ref={divRef}
-      className={`youtube-frame position-relative flex ${containerClassName}`}
+      className={`relative rounded dark:border dark:border-accent-200 aspect-4/3 flex ${containerClassName} ${!video && 'hidden'}`}
     >
-      <span
-        onClick={onClick}
-        className="ti-control-play position-absolute display-1 text-white"
-      />
       <Image
         onClick={onClick}
         loading="lazy"
