@@ -37,7 +37,7 @@ export function Footer({ footerData, logoData }: any) {
             <Logo href={href} companyName={companyName} />
           </div>
           <div className="flex flex-col gap-2 lg:col-span-3 lg:flex-row lg:justify-around">
-            {navigation.map(({ id, label, links }: any) => (
+            {navigation.filter((linkItem: any) => linkItem.showPannel).map(({ id, label, links }: any) => (
               <div key={id}>
                 <div className="hidden lg:block">
                   <div className="pb-3">
