@@ -179,12 +179,15 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 {title}
               </LargeHeading>
             </div>
-            <div>
-              <span className='text-3xl'>
-                {places.details.rating}
-              </span>
-              /5
-            </div>
+            {places &&
+              <div>
+                <span className='text-3xl'>
+                  {places?.details.rating}
+                </span>
+                /5
+              </div>
+            }
+
           </div>
           <div className='divide-y divide-accent-700 dark:divide-accent-200'>
             {diameter > 0 && (
@@ -306,12 +309,19 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               ))}
             </div>
           </div>
-          <Suspense fallback={<h1>Loading...</h1>}>
-            <GooglePlacesSection googlePlaceId={places.place_id} />
-          </Suspense>
-          <Suspense fallback={<h1>Loading videos...</h1>}>
-            <YouTubeSection videos={youtube_videos} />
-          </Suspense>
+          {
+            places && 
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <GooglePlacesSection googlePlaceId={places.place_id} />
+            </Suspense>
+          }
+          {
+            youtube_videos &&
+            <Suspense fallback={<h1>Loading videos...</h1>}>
+              <YouTubeSection videos={youtube_videos} />
+            </Suspense>
+          }
+
         </div>
       </Content>
       <Content className='bg-accent-800 dark:bg-accent-100' variant={'fluid'}>

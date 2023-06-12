@@ -78,13 +78,14 @@ export const promotedIndoorsQuery = gql`
 `;
 
 export const allTubesQuery = gql`
-  query {
-    indoors {
+  query getFilteredIndoors($title: String!, $company_name: [String!]!) {
+    indoors(filters: { title: { containsi: $title }, company_name: { in: $company_name } }) {
       data {
         attributes {
           title
           slug
           diameter
+          company_name
           location {
             city
             address

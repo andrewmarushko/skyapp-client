@@ -19,8 +19,6 @@ import SmallHeading from '@/components/ui/small-heading';
 import YouTubeSection from '@/components/youtube-section';
 // import { siteCofig } from '@/constants/config';
 import { client } from '@/lib/graphql/apollo-server';
-import { PriceInterface } from '@/types/general';
-import { PricesTypes } from 'enums/enums';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -152,12 +150,14 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
               {title}
             </LargeHeading>
           </div>
-          <div>
-            <span className='text-3xl'>
-              {places.details.rating}
-            </span>
-            /5
-          </div>
+          {places &&
+            <div>
+              <span className='text-3xl'>
+                {places?.details.rating}
+              </span>
+              /5
+            </div>
+          }
         </div>
         <CompanyDataTabs 
           price_title={price_title}
@@ -248,12 +248,16 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
             ))}
           </div>
         </div>
-        <Suspense fallback={<h1>Loading...</h1>}>
-          <GooglePlacesSection googlePlaceId={places.place_id} />
-        </Suspense>
-        <Suspense fallback={<h1>Loading videos...</h1>}>
-          <YouTubeSection videos={youtube_videos} />
-        </Suspense>
+        {places &&
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <GooglePlacesSection googlePlaceId={places.place_id} />
+          </Suspense>
+        }
+        {youtube_videos &&
+          <Suspense fallback={<h1>Loading videos...</h1>}>
+            <YouTubeSection videos={youtube_videos} />
+          </Suspense>
+        }
       </div>
     </Content>
     <Content className='bg-accent-800 dark:bg-accent-100' variant={'fluid'}>

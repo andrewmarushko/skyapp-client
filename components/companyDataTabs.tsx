@@ -31,16 +31,18 @@ const CompanyDataTabs = ({ price_title, price_subtitle, prices, opening_hours }:
                 </Paragraph>
               ))}
             </div>
-            <div className="flex">
-              <NavigationLink
-                variant={'black'}
-                target={prices.price_link.target}
-                href={prices.price_link.href}
-                className='basis-1/3 justify-center'
-              >
-                {prices.price_link.label}
-              </NavigationLink>
-            </div>
+            {prices.price_link &&
+              <div className="flex">
+                <NavigationLink
+                  variant={'black'}
+                  target={prices.price_link.target}
+                  href={prices.price_link.href}
+                  className='basis-1/3 justify-center'
+                >
+                  {prices.price_link.label || 'Price'} 
+                </NavigationLink>
+              </div>
+            }
           </div>
         ) : <Paragraph>Unfortunately, there are no prices available</Paragraph>}
       </TabsContent>

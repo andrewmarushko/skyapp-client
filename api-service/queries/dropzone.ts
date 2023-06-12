@@ -83,8 +83,8 @@ export const dropzonesPageQuery = gql`
 `;
 
 export const allDropzonesQuery = gql`
-  query {
-    dropzones {
+  query getFilteredDz($title: String!) {
+    dropzones(filters: { title: { containsi: $title } }) {
       data {
         attributes {
           title

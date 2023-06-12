@@ -1,10 +1,25 @@
+// import { exampleVar } from '@/components/search';
 import { GRAPH_URL } from '@/constants/api';
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache, makeVar } from '@apollo/client';
 import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rsc';
+
+export const exampleVar = makeVar('initial value');
 
 export const { getClient } = registerApolloClient(() => {
   return new ApolloClient({
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            searchValue: {
+              read() {
+                return exampleVar();
+              },
+            },
+          },
+        },
+      },
+    }),
     link: new HttpLink({
       uri: `${GRAPH_URL}`,
       // you can disable result caching here if you want to

@@ -5,18 +5,32 @@ import { Icons } from '@/components/icons';
 import { Input } from '@/ui/input';
 import { useIndoorState } from '@/store/indoors';
 import { useDebounce } from '@/hooks/useDebounce';
+import { gql, useApolloClient } from '@apollo/client';
 
-interface SearchInterface {}
+interface SearchInterface {
+}
 
 export const Search: FunctionComponent<SearchInterface> = () => {
-  const { search, setSearch, setCurrentPage } = useIndoorState();
+  const { search, setSearch, setCurrentPage, setData } = useIndoorState();
+  const client = useApolloClient();
 
   const debouncedSetSearch = useDebounce(setSearch, 500, [search]);
-
+  
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedSetSearch(e.target.value);
+    // debouncedSetSearch(e.target.value);
+    // if (!!e.target.value) setCurrentPage(0);
+    const searchValue = e.target.value;
 
-    if (!!e.target.value) setCurrentPage(0);
+    client.writeQuery({
+      query: gql`
+        query {
+          searchValue
+        }
+      `,
+      data: {
+        searchValue: searchValue,
+      },
+    });
   };
 
   return (
@@ -31,6 +45,7 @@ export const Search: FunctionComponent<SearchInterface> = () => {
         type="search"
         onChange={handleSearchInput}
       />
+      <span>{search}</span>
     </div>
   );
 };
