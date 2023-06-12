@@ -53,7 +53,8 @@ export const generalQuery = gql`
           footer {
             navigation {
               id
-              label
+              label,
+              showPannel,
               links {
                 id
                 label
