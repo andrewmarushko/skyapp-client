@@ -115,7 +115,6 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
     prices,
     youtube_videos,
     facilities,
-    company_name,
     requirements
   } = data[0].attributes;
 
@@ -194,7 +193,7 @@ const DropzonePage = async ({ params: { slug } }: DropzoneDzPageProps) => {
             {description}
           </ReactMarkdown>
         </div>
-        {facilities && (
+        {facilities.length>0 && (
           <div className="flex flex-col gap-6">
             <MediumHeading>Facilities</MediumHeading>
             <div className='flex flex-wrap gap-2'>

@@ -76,33 +76,6 @@ export async function generateMetadata({
   };
 }
 
-// enum PricesTypes {
-//   tandem = 'Tandem',
-//   aff = 'AFF',
-//   tandem_course = 'Tandem course',
-//   aff_course = 'Aff course',
-//   gear = 'Gear',
-//   junior_flyer = 'Junior flyer',
-//   pro_flyer = 'Pro flyer',
-//   kids = 'Kids',
-// }
-// enum PricesTypes {
-//   tandem = 'Tandem',
-//   aff = 'AFF',
-//   tandem_course = 'Tandem course',
-//   aff_course = 'Aff course',
-//   gear = 'Gear',
-//   junior_flyer = 'Junior flyer',
-//   pro_flyer = 'Pro flyer',
-//   kids = 'Kids',
-// }
-
-// interface PriceInterface {
-//   type: keyof typeof PricesTypes;
-//   price: number;
-//   currency: string;
-// }
-
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
   const {
     data: {
@@ -264,7 +237,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               {description}
             </ReactMarkdown>
           </div>
-          {facilities && (
+          {facilities.length>0 && (
             <div className="flex flex-col gap-6">
               <MediumHeading>Facilities</MediumHeading>
               <div className='flex flex-wrap gap-2'>

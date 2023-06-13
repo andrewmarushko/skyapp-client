@@ -47,7 +47,7 @@ const CompanyDataTabs = ({ price_title, price_subtitle, prices, opening_hours }:
         ) : <Paragraph>Unfortunately, there are no prices available</Paragraph>}
       </TabsContent>
       <TabsContent value="schedule">
-        {opening_hours ? (
+        {opening_hours.weekday_text ? (
           <div className="flex flex-col gap-3">
             {opening_hours.weekday_text.map((item: any, index: any) => (
               <Paragraph key={index}>

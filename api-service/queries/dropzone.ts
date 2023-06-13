@@ -83,8 +83,8 @@ export const dropzonesPageQuery = gql`
 `;
 
 export const allDropzonesQuery = gql`
-  query getFilteredDz($title: String!) {
-    dropzones(filters: { title: { containsi: $title } }) {
+  query getFilteredDz($title: String!, $regions: [String!]) {
+    dropzones(filters: { title: { containsi: $title }, location: {continent: { in: $regions }} }) {
       data {
         attributes {
           title
@@ -92,6 +92,7 @@ export const allDropzonesQuery = gql`
           location {
             city
             address
+            continent
           }
           logo {
             data {
