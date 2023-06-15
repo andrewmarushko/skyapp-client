@@ -1,37 +1,34 @@
 'use client';
 
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { Icons } from '@/components/icons';
 import { Input } from '@/ui/input';
-import { useIndoorState } from '@/store/indoors';
 import { useDebounce } from '@/hooks/useDebounce';
-import { gql, useApolloClient } from '@apollo/client';
+
+import { makeVar } from '@apollo/client';
 
 interface SearchInterface {
+  locationParam: string;
 }
 
-export const Search: FunctionComponent<SearchInterface> = () => {
-  const { search, setSearch, setCurrentPage, setData } = useIndoorState();
-  const client = useApolloClient();
+export const indoorsSearchVar = makeVar('');
+export const dropzonesSearchVar = makeVar('');
 
-  const debouncedSetSearch = useDebounce(setSearch, 500, [search]);
-  
+export const Search: FunctionComponent<SearchInterface> = ({locationParam}) => {
+  // const debouncedSetSearch = useDebounce(setSearch, 1000, [search]);
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // debouncedSetSearch(e.target.value);
-    // if (!!e.target.value) setCurrentPage(0);
     const searchValue = e.target.value;
+    // debouncedSetSearch(e.target.value);
+    // if (!!searchValue) setCurrentPage(0);
 
-    client.writeQuery({
-      query: gql`
-        query {
-          searchValue
-        }
-      `,
-      data: {
-        searchValue: searchValue,
-      },
-    });
+    locationParam === 'dropzone' && dropzonesSearchVar(searchValue)
+    locationParam === 'indoor' && indoorsSearchVar(searchValue)
   };
+
+  useEffect(() => {
+    indoorsSearchVar('')
+    dropzonesSearchVar('')
+  }, [locationParam]);
 
   return (
     <div className="flex h-10 w-full max-w-full items-center rounded border border-accent-700 bg-sk-light text-sm transition-colors focus-within:border-accent-400 dark:border-accent-200 dark:bg-sk-dark dark:focus-within:border-accent-600">
@@ -45,7 +42,6 @@ export const Search: FunctionComponent<SearchInterface> = () => {
         type="search"
         onChange={handleSearchInput}
       />
-      <span>{search}</span>
     </div>
   );
 };

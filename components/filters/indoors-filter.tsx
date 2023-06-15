@@ -1,6 +1,6 @@
 "use client"
 
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Accordion,
@@ -8,8 +8,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/ui/accordion';
-import { RegionFilter } from './filter-types/region-filter';
-import { CompanyFilter } from './filter-types/company-filter';
+import { RegionFilter } from '@/components/filters/filter-types/region-filter';
+import { CompanyFilter } from '@/components/filters/filter-types/company-filter';
+import { ReactiveVar, makeVar } from '@apollo/client';
 
 interface FilterInterface {
   companyNames: any[];
@@ -22,11 +23,19 @@ interface FilterDataInterface {
   region: string[]
 }
 
+export const indoorsCompaniesVar: ReactiveVar<any> = makeVar([]);
+export const indoorsRegionsVar: ReactiveVar<any> = makeVar([]);
+
 export const IndoorFilters: FunctionComponent<FilterInterface> = ({companyNames = [], regionsList = []}) => {
   const [selectedFilters, setSelectedFilters] = useState<FilterDataInterface>({
     companyName: [],
     region: []
   });
+
+  useEffect(() => {
+    indoorsCompaniesVar(selectedFilters.companyName)
+    indoorsRegionsVar(selectedFilters.region)
+  }, [selectedFilters]);
 
   const handleFiltersReset = () => {
     setSelectedFilters({

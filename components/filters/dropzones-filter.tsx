@@ -1,6 +1,6 @@
 "use client"
 
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Accordion,
@@ -9,20 +9,26 @@ import {
   AccordionTrigger,
 } from '@/ui/accordion';
 import { RegionFilter } from '@/components/filters/filter-types/region-filter';
+import { ReactiveVar, makeVar } from '@apollo/client';
 
 interface FilterInterface {
   regionsList: any[];
 }
 
-// you can add any category. City is just an example
 interface FilterDataInterface {
   region: string[]
 }
+
+export const dropzonesRegionsVar: ReactiveVar<any> = makeVar([]);
 
 export const DropzoneFilters: FunctionComponent<FilterInterface> = ({regionsList = []}) => {
   const [selectedFilters, setSelectedFilters] = useState<FilterDataInterface>({
     region: []
   });
+
+  useEffect(() => {
+    dropzonesRegionsVar(selectedFilters.region)
+  }, [selectedFilters]);
 
   const handleFiltersReset = () => {
     setSelectedFilters({
