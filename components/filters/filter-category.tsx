@@ -1,3 +1,5 @@
+"use client"
+
 import { VariantProps, cva } from 'class-variance-authority';
 import { FunctionComponent } from 'react';
 
@@ -25,17 +27,19 @@ const filterCategoryVariants = cva(
 
 interface FilterItemPropsInterface
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof filterCategoryVariants> {}
+    VariantProps<typeof filterCategoryVariants> {
+      label: string
+    }
 
-export const FilterCategory: FunctionComponent<FilterItemPropsInterface> = ({children}) => {
+export const FilterCategory: FunctionComponent<FilterItemPropsInterface> = ({children, label}) => {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem
         className="border-t dark:border-t-accent-200"
-        value="item-1"
+        value="1"
       >
-        <AccordionTrigger className='hover:text-accent dark:text-accent-500 dark:hover:text-accent-800'>
-          <span className="text-sm font-medium">{'Company name'}</span>
+        <AccordionTrigger className='hover:cursor-pointer hover:text-accent dark:text-accent-500 dark:hover:text-accent-800'>
+          <span className="text-sm font-medium">{label}</span>
         </AccordionTrigger>
         <AccordionContent>
           <div className='flex flex-col gap-2 mb-3'>
