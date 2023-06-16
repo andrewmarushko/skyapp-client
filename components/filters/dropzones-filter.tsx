@@ -9,11 +9,8 @@ import {
   AccordionTrigger,
 } from '@/ui/accordion';
 import { RegionFilter } from '@/components/filters/filter-types/region-filter';
-import { ReactiveVar, makeVar } from '@apollo/client';
-
-interface FilterInterface {
-  regionsList: any[];
-}
+import { ReactiveVar, makeVar, useQuery } from '@apollo/client';
+import { getDropzonesFilters } from '@/api/queries/dropzone';
 
 interface FilterDataInterface {
   region: string[]
@@ -21,10 +18,27 @@ interface FilterDataInterface {
 
 export const dropzonesRegionsVar: ReactiveVar<any> = makeVar([]);
 
-export const DropzoneFilters: FunctionComponent<FilterInterface> = ({regionsList = []}) => {
+export const DropzoneFilters: FunctionComponent = () => {
   const [selectedFilters, setSelectedFilters] = useState<FilterDataInterface>({
     region: []
   });
+
+  const [dropzoneRegions, setDropzoneRegions] = useState<string[]>([]);
+
+  const { data } = useQuery(getDropzonesFilters);
+
+  useEffect(() => {
+    if (data && data.dropzones && data.dropzones.data) {
+      const regionsSet = new Set<string>();
+      data.dropzones.data.forEach((dropzone: any) => {
+        const region = dropzone.attributes.location.continent;
+        regionsSet.add(region);
+      });
+      const regions = Array.from(regionsSet);
+      setDropzoneRegions(regions);
+    }
+  }, [data]);
+
 
   useEffect(() => {
     dropzonesRegionsVar(selectedFilters.region)
@@ -36,19 +50,27 @@ export const DropzoneFilters: FunctionComponent<FilterInterface> = ({regionsList
     });
   }
 
+  const isResetDisabled = selectedFilters.region.length === 0;
+  
   return (
     <>
       <div className='hidden lg:flex flex-col gap-5'>
         <div className='flex justify-between items-center'>
           <span className='leading-5 font-bold uppercase'>Filter by</span>
-          <Button onClick={handleFiltersReset} variant={'reset'} size={'sm'}>Reset</Button>
+          <Button 
+            onClick={handleFiltersReset} 
+            variant={'reset'} size={'sm'} 
+            disabled={isResetDisabled}
+          >
+            Reset
+          </Button>
         </div>
         <div className='flex flex-col'>
-          {regionsList.length>0 &&
+          {dropzoneRegions.length>0 &&
             <RegionFilter 
               selectedFilters={selectedFilters} 
               setSelectedFilters={setSelectedFilters} 
-              regionsList={regionsList} 
+              regionsList={dropzoneRegions} 
             />
           }
         </div>
@@ -66,11 +88,11 @@ export const DropzoneFilters: FunctionComponent<FilterInterface> = ({regionsList
               <div className='flex flex-col px-4 md:px-10 py-4 bg-sk-light dark:bg-accent gap-4'>
                 <Button onClick={handleFiltersReset} fullWidth variant={'reset'} size={'sm'}>Reset</Button>
                 <div className='flex flex-col'>
-                  {regionsList.length>0 &&
+                  {dropzoneRegions.length>0 &&
                     <RegionFilter 
                     selectedFilters={selectedFilters} 
                     setSelectedFilters={setSelectedFilters} 
-                    regionsList={regionsList} 
+                    regionsList={dropzoneRegions} 
                   />
                   }
                 </div>

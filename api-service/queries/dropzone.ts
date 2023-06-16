@@ -58,6 +58,20 @@ export const promotedDropzonesQuery = gql`
   }
 `;
 
+export const getDropzonesFilters = gql`
+  query {
+    dropzones {
+      data {
+        attributes {
+          location {
+            continent
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const dropzonesPageQuery = gql`
   query {
     dropzonesPage {

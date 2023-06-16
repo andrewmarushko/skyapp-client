@@ -1,6 +1,6 @@
 'use client';
 
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { Icons } from '@/components/icons';
 import { Input } from '@/ui/input';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -14,21 +14,26 @@ interface SearchInterface {
 export const indoorsSearchVar = makeVar('');
 export const dropzonesSearchVar = makeVar('');
 
-export const Search: FunctionComponent<SearchInterface> = ({locationParam}) => {
-  // const debouncedSetSearch = useDebounce(setSearch, 1000, [search]);
+export const Search: FunctionComponent<SearchInterface> = ({ locationParam }) => {
+  const [search, setSearch] = useState('');
+
+  const debouncedSearch = useDebounce(search, 500);
+
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = e.target.value;
-    // debouncedSetSearch(e.target.value);
-    // if (!!searchValue) setCurrentPage(0);
-
-    locationParam === 'dropzone' && dropzonesSearchVar(searchValue)
-    locationParam === 'indoor' && indoorsSearchVar(searchValue)
+    setSearch(searchValue);
   };
 
+  //It sets the debounced value for the reactive variables. Also, the handdler for the empty line is added
   useEffect(() => {
-    indoorsSearchVar('')
-    dropzonesSearchVar('')
-  }, [locationParam]);
+    if (debouncedSearch) {
+      locationParam === 'dropzone' && dropzonesSearchVar(debouncedSearch)
+      locationParam === 'indoor' && indoorsSearchVar(debouncedSearch)
+    }else {
+      locationParam === 'dropzone' && dropzonesSearchVar('')
+      locationParam === 'indoor' && indoorsSearchVar('')
+    }
+  }, [debouncedSearch, locationParam]);
 
   return (
     <div className="flex h-10 w-full max-w-full items-center rounded border border-accent-700 bg-sk-light text-sm transition-colors focus-within:border-accent-400 dark:border-accent-200 dark:bg-sk-dark dark:focus-within:border-accent-600">

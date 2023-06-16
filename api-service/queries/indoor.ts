@@ -117,6 +117,21 @@ export const allTubesQuery = gql`
   }
 `;
 
+export const getIndoorsFilters = gql`
+  query {
+    indoors {
+      data {
+        attributes {
+          company_name
+          location {
+            continent
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const getIndoorBySlug = gql`
   query getIndoorBySlug($slug: String!) {
     indoors(filters: { slug: { eq: $slug } }) {
