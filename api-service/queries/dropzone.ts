@@ -58,6 +58,20 @@ export const promotedDropzonesQuery = gql`
   }
 `;
 
+export const getDropzonesFilters = gql`
+  query {
+    dropzones {
+      data {
+        attributes {
+          location {
+            continent
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const dropzonesPageQuery = gql`
   query {
     dropzonesPage {
@@ -83,8 +97,8 @@ export const dropzonesPageQuery = gql`
 `;
 
 export const allDropzonesQuery = gql`
-  query {
-    dropzones {
+  query getFilteredDz($title: String!, $regions: [String!]) {
+    dropzones(filters: { title: { containsi: $title }, location: {continent: { in: $regions }} }) {
       data {
         attributes {
           title
@@ -92,6 +106,7 @@ export const allDropzonesQuery = gql`
           location {
             city
             address
+            continent
           }
           logo {
             data {

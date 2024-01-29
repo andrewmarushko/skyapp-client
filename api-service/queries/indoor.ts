@@ -78,16 +78,18 @@ export const promotedIndoorsQuery = gql`
 `;
 
 export const allTubesQuery = gql`
-  query {
-    indoors {
+  query getFilteredIndoors($title: String!, $company_name: [String!], $regions: [String!]) {
+    indoors(filters: { title: { containsi: $title }, company_name: { in: $company_name }, location: {continent: { in: $regions }}  }) {
       data {
         attributes {
           title
           slug
           diameter
+          company_name
           location {
             city
             address
+            continent
           }
           logo {
             data {
@@ -108,6 +110,21 @@ export const allTubesQuery = gql`
                 height
               }
             }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const getIndoorsFilters = gql`
+  query {
+    indoors {
+      data {
+        attributes {
+          company_name
+          location {
+            continent
           }
         }
       }

@@ -76,33 +76,6 @@ export async function generateMetadata({
   };
 }
 
-// enum PricesTypes {
-//   tandem = 'Tandem',
-//   aff = 'AFF',
-//   tandem_course = 'Tandem course',
-//   aff_course = 'Aff course',
-//   gear = 'Gear',
-//   junior_flyer = 'Junior flyer',
-//   pro_flyer = 'Pro flyer',
-//   kids = 'Kids',
-// }
-// enum PricesTypes {
-//   tandem = 'Tandem',
-//   aff = 'AFF',
-//   tandem_course = 'Tandem course',
-//   aff_course = 'Aff course',
-//   gear = 'Gear',
-//   junior_flyer = 'Junior flyer',
-//   pro_flyer = 'Pro flyer',
-//   kids = 'Kids',
-// }
-
-// interface PriceInterface {
-//   type: keyof typeof PricesTypes;
-//   price: number;
-//   currency: string;
-// }
-
 const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
   const {
     data: {
@@ -179,12 +152,15 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
                 {title}
               </LargeHeading>
             </div>
-            <div>
-              <span className='text-3xl'>
-                {places.details.rating}
-              </span>
-              /5
-            </div>
+            {places &&
+              <div>
+                <span className='text-3xl'>
+                  {places?.details.rating}
+                </span>
+                /5
+              </div>
+            }
+
           </div>
           <div className='divide-y divide-accent-700 dark:divide-accent-200'>
             {diameter > 0 && (
@@ -261,7 +237,7 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               {description}
             </ReactMarkdown>
           </div>
-          {facilities && (
+          {facilities.length>0 && (
             <div className="flex flex-col gap-6">
               <MediumHeading>Facilities</MediumHeading>
               <div className='flex flex-wrap gap-2'>
@@ -306,12 +282,19 @@ const IndoorTubePage = async ({ params: { slug } }: IndoorTubePageProps) => {
               ))}
             </div>
           </div>
-          <Suspense fallback={<h1>Loading...</h1>}>
-            <GooglePlacesSection googlePlaceId={places.place_id} />
-          </Suspense>
-          <Suspense fallback={<h1>Loading videos...</h1>}>
-            <YouTubeSection videos={youtube_videos} />
-          </Suspense>
+          {
+            places && 
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <GooglePlacesSection googlePlaceId={places.place_id} />
+            </Suspense>
+          }
+          {
+            youtube_videos &&
+            <Suspense fallback={<h1>Loading videos...</h1>}>
+              <YouTubeSection videos={youtube_videos} />
+            </Suspense>
+          }
+
         </div>
       </Content>
       <Content className='bg-accent-800 dark:bg-accent-100' variant={'fluid'}>

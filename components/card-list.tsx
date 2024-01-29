@@ -1,48 +1,76 @@
-/*
-    This component is just a wrapper for Inddor and Dropzones content where should be a filters and result items.
-    The main reason why it's neede it's becouse nextjs cant render client component inside SSR
-    
-    So also for optimization we make this component SSG for performance and SEO stuff.
-    
-    Author: @andrewmarushko
-*/
+"use client"
 
-import { useIndoorState } from '@/store/indoors';
+import { useState } from 'react';
+import { useQuery } from '@apollo/client';
 import { NavigationCard } from '@/components/navigation-card';
-
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { allTubesQuery } from '@/query/indoor';
 import { allDropzonesQuery } from '@/api/queries/dropzone';
-import { client } from '@/lib/graphql/apollo-server';
+import { NoDataPage } from '@/components/no-data-page';
+import { useReactiveVar } from '@apollo/client';
+import { indoorsCompaniesVar, indoorsRegionsVar } from '@/components/filters/indoors-filter';
+import { dropzonesRegionsVar } from '@/components/filters/dropzones-filter';
+import { dropzonesSearchVar, indoorsSearchVar } from '@/components/search';
 
-// TODO: next step make this component more reusable
+export const CardList = ({ locationParam }: any) => {
+  const [data, setData] = useState([]);
+  const indoorSearchValue = useReactiveVar(indoorsSearchVar);
+  const dropzonesSearchValue = useReactiveVar(dropzonesSearchVar);
+  const selectedIndoorCompanies = useReactiveVar(indoorsCompaniesVar);
+  const selectedIndoorRegions = useReactiveVar(indoorsRegionsVar);
+  const selectedDropzonesRegions = useReactiveVar(dropzonesRegionsVar);
 
-export const CardList = async ({
-  locationParam,
-}: {
-  locationParam: string;
-}) => {
-  // TODO: Refactor when search will implement just for working results. This component should be dummy
-  let data = [];
-  if (locationParam === 'dropzone') {
-    const {
-      data: {
-        dropzones: { data: dropzoneData },
+  const getVariables = () => {
+    let variables: {
+      title: string;
+      regions?: string[];
+      company_name?: string[];
+    } = {
+      title: '',
+    };
+
+    if (locationParam === 'dropzone') {
+      variables.title = dropzonesSearchValue;
+      if (selectedDropzonesRegions.length > 0) {
+        variables.regions = selectedDropzonesRegions;
+      }
+    } else {
+      variables.title = indoorSearchValue;
+      if (selectedIndoorRegions.length > 0) {
+        variables.regions = selectedIndoorRegions;
+      }
+      if (selectedIndoorCompanies.length > 0) {
+        variables.company_name = selectedIndoorCompanies;
+      }
+    }
+
+    return variables;
+  };
+  
+  const { loading, error } = useQuery(
+    locationParam === 'dropzone' ? allDropzonesQuery : allTubesQuery,
+    {
+      variables: getVariables(),
+      onCompleted: (data) => {
+        data && locationParam === 'dropzone' ? setData(data.dropzones.data) : setData(data.indoors.data);
       },
-    } = await client.query({ query: allDropzonesQuery });
-    data = dropzoneData;
-  } else {
-    const {
-      data: {
-        indoors: { data: indoorData },
-      },
-    } = await client.query({ query: allTubesQuery });
-    data = indoorData;
+    }
+  );
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (data.length === 0) {
+    return <NoDataPage />;
   }
 
   return (
     <div className="grid grid-cols-1 justify-center gap-6 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
-      {data.map(({ attributes, id }: any, index: number) => (
+      {data.map(({ attributes, id }, index) => (
         <NavigationCard
           link_location={locationParam}
           key={`indoor-${id}-${index}`}
